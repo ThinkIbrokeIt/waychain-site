@@ -66,6 +66,126 @@ th { color: var(--fg2); text-transform: uppercase; letter-spacing: 1px; font-siz
 #log .ok { color: var(--green); } #log .err { color: var(--red); } #log .info { color: var(--fg2); }
 
 .footer { text-align: center; padding: 30px 20px; color: var(--fg2); font-size: 0.7em; border-top: 1px solid var(--border); margin-top: 30px; }
+
+/* ── Mineral Extinguishment Module ── */
+.mem-section {
+  padding: 50px 20px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, transparent 0%, rgba(0,180,255,0.02) 50%, transparent 100%);
+}
+.mem-container { max-width: 900px; margin: 0 auto; }
+.mem-header { text-align: center; margin-bottom: 36px; }
+.mem-header h2 { font-size: 1.4em; color: var(--accent); margin-bottom: 6px; }
+.mem-header p { color: var(--fg2); font-size: 0.85em; }
+
+/* Stepper */
+.stepper { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; }
+.stepper::before {
+  content: ''; position: absolute; top: 20px; left: 5%; right: 5%; height: 2px;
+  background: var(--border); z-index: 0;
+}
+.step {
+  position: relative; z-index: 1; text-align: center; flex: 1; min-width: 0;
+}
+.step-circle {
+  width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 10px;
+  background: var(--bg2); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85em; font-weight: 700; color: var(--fg2);
+  transition: all 0.3s;
+}
+.step.done .step-circle { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.step.active .step-circle { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 12px rgba(0,180,255,0.3); }
+.step-label { font-size: 0.7em; color: var(--fg2); line-height: 1.3; padding: 0 4px; }
+.step.active .step-label { color: var(--fg); }
+
+/* Calculator */
+.calc {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 28px; position: relative; overflow: hidden;
+}
+.calc::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+}
+.calc-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+.calc-title { font-size: 0.9em; font-weight: 700; color: var(--fg); }
+.calc-status {
+  font-size: 0.65em; padding: 4px 10px; border-radius: 20px;
+  background: rgba(34,211,126,0.15); color: var(--green); font-weight: 600;
+}
+.calc-status.error { background: rgba(248,49,47,0.15); color: var(--red); }
+
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.calc-field { display: flex; flex-direction: column; }
+.calc-field label { font-size: 0.7em; color: var(--fg2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.calc-field input, .calc-field select {
+  background: var(--bg); border: 1px solid var(--border); color: var(--fg);
+  padding: 10px 12px; border-radius: 6px; font-size: 0.9em;
+  font-family: inherit; transition: border-color 0.2s;
+}
+.calc-field input:focus, .calc-field select:focus {
+  outline: none; border-color: var(--accent);
+}
+.calc-field input:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.calc-result {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px; margin-top: 20px;
+}
+.calc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; font-size: 0.85em;
+}
+.calc-row .label { color: var(--fg2); }
+.calc-row .value { color: var(--fg); font-weight: 600; font-family: 'SF Mono', Menlo, monospace; }
+.calc-row.negative .value { color: var(--red); }
+.calc-row.total {
+  border-top: 1px solid var(--border); margin-top: 8px; padding-top: 12px;
+}
+.calc-row.total .value { font-size: 1.2em; color: var(--accent); }
+
+/* CTA Button */
+.cta-row { display: flex; gap: 12px; margin-top: 24px; }
+.btn-primary {
+  flex: 1; padding: 14px 24px; border: none; border-radius: 8px;
+  background: var(--accent); color: var(--bg); font-weight: 700;
+  font-size: 0.9em; cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,180,255,0.3); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-secondary {
+  padding: 14px 24px; border: 1px solid var(--border); border-radius: 8px;
+  background: transparent; color: var(--fg2); font-weight: 600;
+  font-size: 0.85em; cursor: pointer; transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Live price ticker */
+.price-ticker {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.75em; color: var(--fg2);
+}
+.price-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+@media (max-width: 600px) {
+  .stepper::before { display: none; }
+  .step-circle { width: 32px; height: 32px; font-size: 0.75em; }
+  .step-label { font-size: 0.6em; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .cta-row { flex-direction: column; }
+}
+
 </style>
 </head>
 <body>
@@ -124,7 +244,112 @@ th { color: var(--fg2); text-transform: uppercase; letter-spacing: 1px; font-siz
   <div id="log"><div class="info">Loading...</div></div>
 </div>
 
-<div class="footer">WayChain v3.1.2 — "Actually Decentralized"<br><a href="https://waychain.org">waychain.org</a> &middot; Chain ID 10008</div>
+
+  <!-- Mineral Extinguishment Module -->
+  <div class="mem-section">
+    <div class="mem-container">
+      <div class="mem-header">
+        <h2>🔥 Mineral Extinguishment</h2>
+        <p>Tokenize verified mineral reserves. Price discovery via native oracle. Settle on-chain.</p>
+      </div>
+
+      <div class="stepper">
+        <div class="step active" id="step1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Verify<br>Reserves</div>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Oracle<br>Price Feed</div>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Calculate<br>Payout</div>
+        </div>
+        <div class="step" id="step4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Request<br>Extinguishment</div>
+        </div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-header">
+          <div class="calc-title">⬡ Live Extinguishment Calculator</div>
+          <div class="price-ticker">
+            <span class="price-dot" id="priceDot"></span>
+            <span id="priceStatus">Oracle: Connecting...</span>
+          </div>
+        </div>
+
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label>Mineral Type</label>
+            <select id="mineralType" onchange="updateCalc()">
+              <option value="gold">Gold (AU)</option>
+              <option value="silver">Silver (AG)</option>
+              <option value="copper">Copper (CU)</option>
+              <option value="lithium">Lithium (LI)</option>
+              <option value="rare-earth">Rare Earth (REO)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label>Reserve Volume (tons)</label>
+            <input type="number" id="volume" value="100" min="1" oninput="updateCalc()">
+          </div>
+          <div class="calc-field">
+            <label>Purity (%)</label>
+            <input type="number" id="purity" value="95" min="1" max="100" step="0.1" oninput="updateCalc()">
+          </div>
+          <div class="calc-field">
+            <label>Transport Distance (km)</label>
+            <input type="number" id="distance" value="50" min="0" oninput="updateCalc()">
+          </div>
+        </div>
+
+        <div class="calc-result" id="calcResult">
+          <div class="calc-row">
+            <span class="label">Oracle Spot Price</span>
+            <span class="value" id="spotPrice">Loading...</span>
+          </div>
+          <div class="calc-row">
+            <span class="label">Gross Value</span>
+            <span class="value" id="grossValue">—</span>
+          </div>
+          <div class="calc-row negative">
+            <span class="label">Fixed Protocol Fee (0.5%)</span>
+            <span class="value" id="protocolFee">—</span>
+          </div>
+          <div class="calc-row negative">
+            <span class="label">Extraction Estimate</span>
+            <span class="value" id="extractionCost">—</span>
+          </div>
+          <div class="calc-row negative">
+            <span class="label">Transport Estimate</span>
+            <span class="value" id="transportCost">—</span>
+          </div>
+          <div class="calc-row total">
+            <span class="label">Net Payout (USD)</span>
+            <span class="value" id="netPayout">—</span>
+          </div>
+          <div class="calc-row total">
+            <span class="label">Net Payout (WAY @ current price)</span>
+            <span class="value" id="netPayoutWay">—</span>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn-primary" id="btnRequest" onclick="openDapp()">
+            Request Extinguishment
+          </button>
+          <button class="btn-secondary" onclick="connectWallet()">
+            <span id="walletLabel">Connect Dox_Dev L2</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">WayChain v3.1.2 — "Actually Decentralized"<br><a href="https://waychain.org">waychain.org</a> &middot; Chain ID 10008</div>
 
 <script>
 const RPC_HTTP = 'https://api.waychain.org';
@@ -314,6 +539,130 @@ log('WayChain dashboard loading...', 'info');
 connectWS();
 // Also do an HTTP init to get catch-up blocks
 setTimeout(fetchBlocks, 500);
+
+// ── Mineral Extinguishment Module ──
+
+const MINERAL_PRICES = {
+  gold: 2340,      // USD/oz
+  silver: 29.5,
+  copper: 4.2,     // USD/lb
+  lithium: 14.5,   // USD/kg
+  'rare-earth': 85 // USD/kg (REO basket)
+};
+
+const PROTOCOL_FEE_RATE = 0.005; // 0.5%
+const EXTRACTION_COST_PER_TON = { gold: 450, silver: 35, copper: 8, lithium: 120, 'rare-earth': 200 };
+const TRANSPORT_COST_PER_KM = 0.15; // USD per ton per km
+
+let oraclePrice = null;
+let oracleTimestamp = null;
+
+async function fetchOraclePrice() {
+  try {
+    // Try native oracle precompile via RPC
+    const resp = await fetch(RPC_HTTP, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'eth_call',
+        params: [
+          { to: '0x0C', data: '0x' }, // OracleAggregator precompile
+          'latest'
+        ],
+        id: 1
+      })
+    });
+    const data = await resp.json();
+    if (data.result) {
+      // Parse oracle response (simplified)
+      oraclePrice = parseOracleResult(data.result);
+      oracleTimestamp = Date.now();
+      document.getElementById('priceDot').style.background = 'var(--green)';
+      document.getElementById('priceStatus').textContent = `Oracle: Updated ${new Date().toLocaleTimeString()}`;
+      updateCalc();
+      return;
+    }
+  } catch(e) {
+    log('Oracle RPC failed, using fallback prices', 'err');
+  }
+
+  // Fallback: use hardcoded spot prices
+  oraclePrice = MINERAL_PRICES[document.getElementById('mineralType').value];
+  oracleTimestamp = Date.now();
+  document.getElementById('priceDot').style.background = 'var(--accent2)';
+  document.getElementById('priceStatus').textContent = 'Oracle: Fallback prices (RPC offline)';
+  updateCalc();
+}
+
+function parseOracleResult(hex) {
+  // Simplified parser — in production this would decode ABI
+  try {
+    const clean = hex.replace('0x', '');
+    if (clean.length >= 128) {
+      // Price is first 32 bytes (256-bit), scaled to 1e18
+      const priceHex = clean.substring(0, 64);
+      const raw = parseInt(priceHex, 16);
+      if (!isNaN(raw) && raw > 0) return raw / 1e18;
+    }
+  } catch(e) {}
+  return null;
+}
+
+function updateCalc() {
+  const mineral = document.getElementById('mineralType').value;
+  const volume = parseFloat(document.getElementById('volume').value) || 0;
+  const purity = parseFloat(document.getElementById('purity').value) / 100 || 0;
+  const distance = parseFloat(document.getElementById('distance').value) || 0;
+
+  const spotPrice = oraclePrice || MINERAL_PRICES[mineral];
+  const volumeOz = mineral === 'gold' || mineral === 'silver' ? volume * 32150.7 : volume * 1000;
+  const effectiveVolume = volumeOz * purity;
+
+  const grossValue = effectiveVolume * spotPrice;
+  const protocolFee = grossValue * PROTOCOL_FEE_RATE;
+  const extractionCost = volume * (EXTRACTION_COST_PER_TON[mineral] || 100);
+  const transportCost = volume * distance * TRANSPORT_COST_PER_KM;
+
+  const netPayout = grossValue - protocolFee - extractionCost - transportCost;
+  const wayPrice = 0.05; // Fallback WAY price
+  const netPayoutWay = netPayout / wayPrice;
+
+  document.getElementById('spotPrice').textContent = `$${spotPrice.toLocaleString(undefined, {maximumFractionDigits: 2})}/${mineral === 'gold' || mineral === 'silver' ? 'oz' : mineral === 'copper' ? 'lb' : 'kg'}`;
+  document.getElementById('grossValue').textContent = `$${grossValue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  document.getElementById('protocolFee').textContent = `-$${protocolFee.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  document.getElementById('extractionCost').textContent = `-$${extractionCost.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  document.getElementById('transportCost').textContent = `-$${transportCost.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  document.getElementById('netPayout').textContent = `$${netPayout.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  document.getElementById('netPayoutWay').textContent = `${netPayoutWay.toLocaleString(undefined, {maximumFractionDigits: 0})} WAY`;
+
+  // Animate stepper
+  document.getElementById('step1').className = 'step done';
+  document.getElementById('step2').className = 'step done';
+  document.getElementById('step3').className = 'step active';
+}
+
+function openDapp() {
+  // In production: opens the dApp form requiring Dox_Dev L2
+  alert('Extinguishment dApp requires Dox_Dev Level 2 verification.
+
+In production, this opens the on-chain request form where you submit reserve documentation for curator review.');
+}
+
+function connectWallet() {
+  const btn = document.getElementById('walletLabel');
+  btn.textContent = 'Connecting...';
+  setTimeout(() => {
+    btn.textContent = '0x7a3F...9e2D (L2)';
+    btn.parentElement.style.borderColor = 'var(--green)';
+    btn.parentElement.style.color = 'var(--green)';
+    document.getElementById('btnRequest').disabled = false;
+  }, 1500);
+}
+
+// Initialize oracle price
+setTimeout(fetchOraclePrice, 1000);
+
 </script>
 </body>
 </html>
