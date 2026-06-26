@@ -186,6 +186,58 @@ th { color: var(--fg2); text-transform: uppercase; letter-spacing: 1px; font-siz
   .cta-row { flex-direction: column; }
 }
 
+
+/* ── Preservation Loop Spotlight ── */
+.spotlight {
+  padding: 50px 20px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,180,255,0.03) 30%, rgba(0,180,255,0.03) 70%, transparent 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.spotlight-container { max-width: 900px; margin: 0 auto; }
+.spotlight-header { text-align: center; margin-bottom: 40px; }
+.spotlight-header h2 { font-size: 1.3em; color: var(--accent); margin-bottom: 6px; }
+.spotlight-header p { color: var(--fg2); font-size: 0.85em; }
+
+.loop {
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 0; position: relative; margin-bottom: 30px;
+}
+.loop-step {
+  flex: 1; max-width: 240px; text-align: center; padding: 24px 16px;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  position: relative; transition: all 0.3s;
+}
+.loop-step:hover { border-color: var(--accent); transform: translateY(-4px); }
+.loop-step .icon { font-size: 2.4em; margin-bottom: 12px; display: block; }
+.loop-step .step-num {
+  font-size: 0.6em; text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--fg2); margin-bottom: 6px; font-weight: 600;
+}
+.loop-step h3 { font-size: 1em; color: var(--fg); margin-bottom: 8px; font-weight: 700; }
+.loop-step p { font-size: 0.78em; color: var(--fg2); line-height: 1.5; }
+
+.loop-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5em; color: var(--accent); padding: 0 8px;
+  margin-top: 60px; flex-shrink: 0;
+}
+
+.spotlight-caption {
+  text-align: center; padding: 20px 24px;
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.95em; color: var(--fg); line-height: 1.7;
+  max-width: 700px; margin: 0 auto;
+}
+.spotlight-caption a { color: var(--accent); font-weight: 600; }
+.spotlight-caption .hook { color: var(--accent2); font-weight: 700; }
+
+@media (max-width: 700px) {
+  .loop { flex-direction: column; align-items: center; }
+  .loop-step { max-width: 100%; width: 100%; }
+  .loop-arrow { transform: rotate(90deg); margin-top: 0; padding: 4px 0; }
+}
+
 </style>
 </head>
 <body>
@@ -345,6 +397,46 @@ th { color: var(--fg2); text-transform: uppercase; letter-spacing: 1px; font-siz
             <span id="walletLabel">Connect Dox_Dev L2</span>
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Preservation Loop Spotlight -->
+  <div class="spotlight">
+    <div class="spotlight-container">
+      <div class="spotlight-header">
+        <h2>🌍 The Preservation Loop</h2>
+        <p>How WayChain aligns economic incentives with land conservation</p>
+      </div>
+
+      <div class="loop">
+        <div class="loop-step">
+          <span class="icon">🏔️</span>
+          <div class="step-num">Step 1</div>
+          <h3>Claim</h3>
+          <p>Landowner stakes their mineral claim as a soulbound NFT, locked by their Dox_Dev Level 2 badge.</p>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <span class="icon">🛰️</span>
+          <div class="step-num">Step 2</div>
+          <h3>Enforce</h3>
+          <p>WayChain's native oracles (VRF + geospatial data) verify the land remains undisturbed every block.</p>
+        </div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-step">
+          <span class="icon">💰</span>
+          <div class="step-num">Step 3</div>
+          <h3>Reward</h3>
+          <p>If untouched, the landowner receives recurring WAY rewards. If disturbed, the claim is slashed and the badge revoked.</p>
+        </div>
+      </div>
+
+      <div class="spotlight-caption">
+        <span class="hook">This isn't a donation model.</span> It's an economic incentive structure where
+        <strong>destruction becomes financially irrational</strong>. Every block, the oracle checks.
+        Every check, the incentive shifts. The rational choice is preservation.
       </div>
     </div>
   </div>
