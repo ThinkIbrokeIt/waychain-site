@@ -543,11 +543,19 @@ setTimeout(fetchBlocks, 500);
 // ── Mineral Extinguishment Module ──
 
 const MINERAL_PRICES = {
-  gold: 2340,      // USD/oz
-  silver: 29.5,
+  gold: 2340,      // USD/troy oz
+  silver: 29.5,    // USD/troy oz
   copper: 4.2,     // USD/lb
   lithium: 14.5,   // USD/kg
   'rare-earth': 85 // USD/kg (REO basket)
+};
+
+const MINERAL_UNIT = {
+  gold: 'oz t',
+  silver: 'oz t',
+  copper: 'lb',
+  lithium: 'kg',
+  'rare-earth': 'kg'
 };
 
 const PROTOCOL_FEE_RATE = 0.005; // 0.5%
@@ -616,8 +624,13 @@ function updateCalc() {
   const distance = parseFloat(document.getElementById('distance').value) || 0;
 
   const spotPrice = oraclePrice || MINERAL_PRICES[mineral];
-  const volumeOz = mineral === 'gold' || mineral === 'silver' ? volume * 32150.7 : volume * 1000;
-  const effectiveVolume = volumeOz * purity;
+  // Convert input volume (tons) to appropriate unit
+  let effectiveVolume;
+  if (mineral === 'gold' || mineral === 'silver') {
+    effectiveVolume = volume * 32150.7 * purity; // tons → troy oz
+  } else {
+    effectiveVolume = volume * 1000 * purity; // tons → kg (or keep lb for copper)
+  }
 
   const grossValue = effectiveVolume * spotPrice;
   const protocolFee = grossValue * PROTOCOL_FEE_RATE;
@@ -628,7 +641,7 @@ function updateCalc() {
   const wayPrice = 0.05; // Fallback WAY price
   const netPayoutWay = netPayout / wayPrice;
 
-  document.getElementById('spotPrice').textContent = `$${spotPrice.toLocaleString(undefined, {maximumFractionDigits: 2})}/${mineral === 'gold' || mineral === 'silver' ? 'oz' : mineral === 'copper' ? 'lb' : 'kg'}`;
+  document.getElementById('spotPrice').textContent = `$${spotPrice.toLocaleString(undefined, {maximumFractionDigits: 2})}/${MINERAL_UNIT[mineral]}`;
   document.getElementById('grossValue').textContent = `$${grossValue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   document.getElementById('protocolFee').textContent = `-$${protocolFee.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   document.getElementById('extractionCost').textContent = `-$${extractionCost.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
