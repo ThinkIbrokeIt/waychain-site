@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WayChain — Actually Decentralized</title>
+<meta name="description" content="WayChain: The first blockchain where one human = one vote. 200 validators. Dox_Dev verified. No whale capture.">
+<style>
+:root {
+  --bg: #0a0a1a; --bg2: #12122a; --bg3: #1a1a3a;
+  --fg: #e0e0f0; --fg2: #8888bb;
+  --accent: #00d4ff; --accent2: #ff6b35; --accent3: #7b2ff7;
+  --green: #00ff88; --red: #ff3355;
+  --border: #2a2a5a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Courier New', monospace; background: var(--bg); color: var(--fg); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px;
+}
+.header h1 { font-size: 1.2em; color: var(--accent); }
+.header .nav a { font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; margin-left: 20px; color: var(--fg2); }
+.header .nav a:hover { color: var(--accent); }
+
+.hero { text-align: center; padding: 60px 20px 30px; border-bottom: 1px solid var(--border); }
+.hero h1 { font-size: 3em; background: linear-gradient(135deg, var(--accent), var(--accent3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+.hero .tagline { color: var(--fg2); font-size: 1em; letter-spacing: 4px; text-transform: uppercase; margin-top: 10px; }
+.hero .status-line { margin-top: 15px; font-size: 0.85em; }
+.status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; background: var(--fg2); }
+.status-dot.online { background: var(--green); }
+.status-dot.ws { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+.status-dot.offline { background: var(--red); }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 20px 0; }
+.stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 15px; text-align: center; }
+.stat-card .value { font-size: 1.5em; font-weight: 700; color: var(--accent); }
+.stat-card .value.green { color: var(--green); }
+.stat-card .label { font-size: 0.7em; color: var(--fg2); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 20px 0; }
+.feature { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.feature h3 { color: var(--accent); font-size: 0.9em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.feature p { font-size: 0.8em; color: var(--fg2); line-height: 1.6; }
+.feature .tag { display: inline-block; font-size: 0.65em; padding: 2px 8px; border-radius: 3px; margin-top: 6px; border: 1px solid var(--fg2); color: var(--fg2); }
+
+.section { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; margin: 15px 0; padding: 20px; }
+.section h2 { font-size: 0.9em; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 6px 8px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.75em; }
+th { color: var(--fg2); text-transform: uppercase; letter-spacing: 1px; font-size: 0.65em; }
+.hash { color: var(--accent); max-width: 180px; overflow: hidden; text-overflow: ellipsis; }
+.green { color: var(--green); } .red { color: var(--red); }
+
+.nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.nav-link { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 10px 16px; font-size: 0.75em; color: var(--fg); }
+.nav-link:hover { border-color: var(--accent); text-decoration: none; }
+
+#log { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-size: 0.7em; max-height: 100px; overflow-y: auto; margin-top: 8px; }
+#log div { padding: 2px 0; border-bottom: 1px solid rgba(42,42,90,0.2); }
+#log .ok { color: var(--green); } #log .err { color: var(--red); } #log .info { color: var(--fg2); }
+
+.footer { text-align: center; padding: 30px 20px; color: var(--fg2); font-size: 0.7em; border-top: 1px solid var(--border); margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>⬡ WayChain</h1>
+    <div class="nav">
+      <span id="statusSpan"><span class="status-dot offline" id="statusDot"></span><span id="statusText">Connecting...</span></span>
+      <a href="/explorer">Explorer</a>
+      <a href="/badge">Badge</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>⬡ WayChain</h1>
+    <div class="tagline">Actually Decentralized</div>
+    <div class="status-line">Chain ID: 10008 &middot; <span id="nodeVersion">v0.1.0</span></div>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat-card"><div class="value" id="blockHeight">—</div><div class="label">Block Height</div></div>
+    <div class="stat-card"><div class="value green" id="blockSpeed">—</div><div class="label">Blocks/sec</div></div>
+    <div class="stat-card"><div class="value" id="totalTxs">0</div><div class="label">Block Txs</div></div>
+    <div class="stat-card"><div class="value" id="connType">—</div><div class="label">Connection</div></div>
+    <div class="stat-card"><div class="value green">200</div><div class="label">Validators</div></div>
+    <div class="stat-card"><div class="value">100M</div><div class="label">WAY Supply</div></div>
+  </div>
+
+  <div class="features">
+    <div class="feature"><h3>One Human, One Vote</h3><p>Every Dox_Dev-verified human runs one validator with equal voting power. No whales. No vote buying.</p><span class="tag">200 max validators</span></div>
+    <div class="feature"><h3>Self-Sovereign</h3><p>Bitcoin-backed 1WAY stablecoin. Native oracle attestations. Dead Man's Switch inheritance. No wrapping, no bridging.</p><span class="tag">Native Bitcoin</span></div>
+    <div class="feature"><h3>Anti-Extractive</h3><p>Fixed gas fees, state rent with 60% burn, sqrt-weighted proposer lottery, no MEV.</p><span class="tag">No MEV</span></div>
+  </div>
+
+  <div class="section">
+    <h2>⧫ Live Blocks <span id="blockCount" style="color:var(--fg2);font-weight:400"></span></h2>
+    <table>
+      <thead><tr><th>Height</th><th>Hash</th><th>Proposer</th><th>Txs</th><th>Time</th></tr></thead>
+      <tbody id="blocksList"><tr><td colspan="5" style="color:var(--fg2)">Connecting...</td></tr></tbody>
+    </table>
+    <div style="text-align:right;margin-top:8px"><a href="/explorer" style="font-size:0.75em">Full Explorer →</a></div>
+  </div>
+
+  <div class="section">
+    <h2>Network</h2>
+    <div class="nav-links">
+      <a class="nav-link" href="/explorer">⧫ Block Explorer</a>
+      <a class="nav-link" href="/badge">🛡️ Dox_Dev Badge</a>
+      <a class="nav-link" href="https://github.com/wink/waychain-consensus/tree/main/projects/WAYCHAIN_BLUEPRINT">📐 Blueprint</a>
+      <a class="nav-link" href="/plan">📋 Launch Plan</a>
+      <a class="nav-link" href="/whitepaper">📄 Whitepaper</a>
+      <a class="nav-link" href="https://github.com/wink/waychain-consensus">GitHub</a>
+    </div>
+  </div>
+
+  <div id="log"><div class="info">Loading...</div></div>
+</div>
+
+<div class="footer">WayChain v0.1.0 — "Actually Decentralized"<br><a href="https://waychain.org">waychain.org</a> &middot; Chain ID 10008</div>
+
+<script>
+const RPC_HTTP = 'https://api.waychain.org';
+const RPC_WS = 'wss://api.waychain.org';
+const BLOCKS_SHOWN = 8;
+const refreshInterval = 3000; // fallback poll interval (ms)
+
+let blocks = [];
+let blockHeight = 0;
+let wsConnected = false;
+let httpPollTimer = null;
+let lastBlockTime = Date.now();
+
+function log(msg, cls = 'info') {
+  const el = document.getElementById('log');
+  const div = document.createElement('div');
+  div.className = cls; div.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  el.prepend(div);
+  while (el.children.length > 30) el.removeChild(el.lastChild);
+}
+
+function setStatus(mode, text) {
+  const dot = document.getElementById('statusDot');
+  dot.className = 'status-dot ' + mode;
+  document.getElementById('statusText').textContent = text;
+  document.getElementById('connType').textContent = mode === 'ws' ? 'WS' : (mode === 'online' ? 'HTTP' : '—');
+}
+
+async function rpc(method, params = []) {
+  const resp = await fetch(RPC_HTTP, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', method, params, id: 1 })
+  });
+  const data = await resp.json();
+  if (data.error) throw new Error(data.error.message);
+  return data.result;
+}
+
+function toNum(hex) {
+  if (typeof hex === 'number') return hex;
+  const s = (hex || '0x0').replace('0x', '');
+  return parseInt(s, 16) || 0;
+}
+
+function ago(ts) {
+  const sec = Math.floor(Date.now()/1000 - ts);
+  if (sec < 5) return 'just now'; if (sec < 60) return sec + 's ago';
+  if (sec < 3600) return Math.floor(sec/60) + 'm ago';
+  return Math.floor(sec/3600) + 'h ago';
+}
+
+function shortHash(h, len=10) {
+  if (!h || h === '0x' || h === '—') return '—';
+  const s = h.replace('0x','');
+  return s.slice(0,len) + '...' + s.slice(-len);
+}
+
+function renderBlocks() {
+  const tbody = document.getElementById('blocksList');
+  let html = '';
+  let totalNewTxs = 0;
+  const display = blocks.slice(0, BLOCKS_SHOWN);
+  display.forEach(b => {
+    const txs = b.transactions || 0;
+    const txCount = typeof txs === 'number' ? txs : (txs ? txs.length : 0);
+    totalNewTxs += txCount;
+    html += `<tr>
+      <td style="color:var(--accent);font-weight:700">${toNum(b.number).toLocaleString()}</td>
+      <td class="hash">${shortHash(b.hash)}</td>
+      <td>${b.proposer || '—'}</td>
+      <td>${txCount}</td>
+      <td>${b.timestamp ? ago(toNum(b.timestamp)) : '—'}</td>
+    </tr>`;
+  });
+  tbody.innerHTML = html || '<tr><td colspan="5" style="color:var(--fg2)">No blocks</td></tr>';
+  document.getElementById('totalTxs').textContent = totalNewTxs.toLocaleString();
+  document.getElementById('blockCount').textContent = blockHeight > 0 ? `(${blockHeight.toLocaleString()})` : '';
+}
+
+function addBlock(block) {
+  const num = toNum(block.number);
+  if (num > blockHeight) {
+    blockHeight = num;
+    document.getElementById('blockHeight').textContent = num.toLocaleString();
+    // Calc speed
+    const now = Date.now();
+    const elapsed = (now - lastBlockTime) / 1000;
+    if (elapsed > 0) document.getElementById('blockSpeed').textContent = (1 / elapsed).toFixed(1);
+    lastBlockTime = now;
+  }
+  // Prepend if new
+  if (!blocks.find(b => b.number === block.number)) {
+    blocks.unshift(block);
+    if (blocks.length > 50) blocks = blocks.slice(0, 50);
+  }
+  renderBlocks();
+}
+
+// ── WebSocket Connection ──
+function connectWS() {
+  const wsUrl = RPC_WS;
+  log(`Connecting WS: ${wsUrl}`);
+
+  let ws;
+  try {
+    ws = new WebSocket(wsUrl);
+  } catch(e) {
+    log(`WS not available, using HTTP polling`, 'info');
+    startHTTPPoll();
+    return;
+  }
+
+  ws.onopen = () => {
+    wsConnected = true;
+    setStatus('ws', 'Live');
+    log('WS connected, subscribing to newHeads', 'ok');
+
+    // Subscribe to new block headers
+    ws.send(JSON.stringify({ jsonrpc: '2.0', method: 'eth_subscribe', params: ['newHeads'], id: 1 }));
+    document.getElementById('connType').textContent = 'WS';
+  };
+
+  ws.onmessage = (event) => {
+    try {
+      const msg = JSON.parse(event.data);
+      if (msg.result && typeof msg.result === 'string' && msg.id === 1) {
+        // Subscribe confirmation, do nothing
+        return;
+      }
+      if (msg.method === 'eth_subscription' && msg.params) {
+        const block = msg.params.result;
+        if (block && block.number) {
+          addBlock(block);
+        }
+      }
+    } catch(e) {}
+  };
+
+  ws.onclose = () => {
+    wsConnected = false;
+    log('WS disconnected, falling back to HTTP', 'err');
+    setStatus('online', 'HTTP fallback');
+    startHTTPPoll();
+  };
+
+  ws.onerror = () => {
+    log('WS error, using HTTP polling', 'err');
+    wsConnected = false;
+    setStatus('online', 'HTTP');
+    startHTTPPoll();
+  };
+}
+
+// ── HTTP Polling Fallback ──
+function startHTTPPoll() {
+  if (httpPollTimer) return;
+  fetchBlocks();
+  httpPollTimer = setInterval(fetchBlocks, refreshInterval);
+}
+
+async function fetchBlocks() {
+  try {
+    const blockNum = await rpc('eth_blockNumber');
+    const height = toNum(blockNum);
+    if (height > 0) {
+      document.getElementById('blockHeight').textContent = height.toLocaleString();
+      document.getElementById('blockCount').textContent = `(${height.toLocaleString()})`;
+      setStatus('online', 'Connected');
+      blockHeight = height;
+
+      // Fetch latest blocks
+      const start = Math.max(1, height - BLOCKS_SHOWN + 1);
+      for (let i = height; i >= start; i--) {
+        const block = await rpc('eth_getBlockByNumber', [`0x${i.toString(16)}`]);
+        if (block && !blocks.find(b => b.number === block.number)) {
+          addBlock(block);
+        }
+      }
+    }
+  } catch(e) {
+    setStatus('offline', 'Offline');
+  }
+}
+
+// ── Init ──
+log('WayChain dashboard loading...', 'info');
+connectWS();
+// Also do an HTTP init to get catch-up blocks
+setTimeout(fetchBlocks, 500);
+</script>
+</body>
+</html>
