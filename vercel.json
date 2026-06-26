@@ -2,6 +2,5 @@
   "name": "waychain-site",
   "framework": null,
   "public": true,
-  "version": 3,
-  "$schema": "https://openapi.vercel.sh/vercel.json.json"
+  "version": 2
 }
