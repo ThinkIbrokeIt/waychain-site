@@ -1,13 +1,19 @@
 {
-  "version": "3.0.0",
+  "version": "3.1.0",
   "chain_id": 10008,
   "chain_id_hex": "0x2718",
   "name": "WayChain",
   "tagline": "Actually Decentralized",
-  "deployed_at": "2026-06-24",
-  "whitepaper_sections": 19,
-  "live_features": 15,
-  "spec_features": 9,
+  "deployed_at": "2026-06-26",
+  "whitepaper_sections": 22,
+  "live_features": 18,
+  "spec_features": 6,
+  "precompiles": 20,
   "blueprint_files": 29,
-  "blueprint_lines": 11947
+  "blueprint_lines": 11947,
+  "new_features": [
+    "Progressive Staking (anti-whale reward brackets)",
+    "Oracle VRF + Time Execution (scheduled triggers)",
+    "Mineral Rights Tokenization (MRT Registry 0x20)"
+  ]
 }
