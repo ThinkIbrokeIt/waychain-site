@@ -18,6 +18,7 @@
   --copper: #B87333;
   --amber: #FFBF00;
   --green: #4CAF50;
+  --red: #E53935;
   --border: #2A3040;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,11 +29,6 @@ a { color: var(--amber); text-decoration: none; transition: color .2s; }
 a:hover { color: var(--warm); }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* ── Lighthouse Logo (SVG inline) ── */
-.l-logo { width: 60px; height: 60px; }
-.l-logo-lg { width: 120px; height: 120px; }
-
-/* ── Nav ── */
 .nav { position: sticky; top: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: rgba(13,17,23,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .nav-logo { display: flex; align-items: center; gap: 12px; }
 .nav-logo-text { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.3em; color: var(--warm); letter-spacing: 2px; }
@@ -43,17 +39,15 @@ a:hover { color: var(--warm); }
 .nav-links a.active { color: var(--slate); background: var(--amber); }
 .nav-cta { background: rgba(255,191,0,.1) !important; color: var(--amber) !important; border: 1px solid rgba(255,191,0,.2); border-radius: 20px; }
 
-/* ── Pages ── */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── Hero ── */
-.hero { position: relative; text-align: center; padding: 100px 20px 80px; overflow: hidden; }
+.hero { position: relative; text-align: center; padding: 100px 20px 60px; overflow: hidden; }
 .hero-beam { position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(255,191,0,.06) 0%, transparent 60%); pointer-events: none; }
 .hero-logo { margin-bottom: 32px; }
 .hero h1 { font-size: 4em; color: var(--warm); line-height: 1.1; margin-bottom: 8px; letter-spacing: 3px; }
-.hero h1 em { font-style: normal; color: var(--amber); }
-.hero .tagline { font-family: 'Inter', sans-serif; font-size: 1em; color: var(--copper); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; }
+.hero h1 em { font-style: normal; color: var(--copper); }
+.hero .tagline { font-family: 'Inter', sans-serif; font-size: .9em; color: var(--amber); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 12px; }
 .hero .mission { color: var(--muted); font-size: .95em; max-width: 500px; margin: 0 auto 32px; }
 .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .btn-amber { background: var(--amber); color: var(--slate); font-weight: 700; padding: 14px 32px; border-radius: 50px; font-size: .85em; letter-spacing: .5px; transition: all .2s; border: none; cursor: pointer; }
@@ -61,14 +55,12 @@ a:hover { color: var(--warm); }
 .btn-outline { border: 1px solid rgba(255,248,240,.2); color: var(--warm); padding: 14px 32px; border-radius: 50px; font-size: .85em; letter-spacing: .5px; transition: all .2s; background: transparent; cursor: pointer; }
 .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
 
-/* ── Stats Bar ── */
 .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; max-width: 700px; margin: 0 auto; border-top: 1px solid rgba(255,248,240,.1); padding-top: 24px; }
 .stat { text-align: center; border-right: 1px solid var(--border); }
 .stat:last-child { border-right: none; }
 .stat-val { font-family: 'DM Serif Display', Georgia, serif; font-size: 2em; color: var(--amber); line-height: 1.2; }
 .stat-lbl { font-size: .65em; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; }
 
-/* ── Pillars ── */
 .pillars { padding: 80px 20px; border-top: 1px solid var(--border); text-align: center; }
 .pillars h2 { font-size: 2.2em; color: var(--warm); margin-bottom: 4px; }
 .pillars h2 em { font-style: normal; color: var(--amber); }
@@ -77,17 +69,16 @@ a:hover { color: var(--warm); }
 .pillar { background: var(--slate2); border: 1px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; transition: all .3s; }
 .pillar:hover { border-color: var(--copper); transform: translateY(-4px); }
 .pillar-icon { font-size: 2em; margin-bottom: 10px; }
-.pillar h3 { font-size: 1em; color: var(--amber); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
+.pillar h3 { font-size: .9em; color: var(--amber); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; }
 .pillar p { font-size: .8em; color: var(--muted); line-height: 1.5; }
 
-/* ── Three Tiers (Protocol Page) ── */
 .tiers { padding: 80px 20px; }
 .tiers-intro { text-align: center; margin-bottom: 60px; }
 .tiers-intro h2 { font-size: 2.2em; color: var(--warm); margin-bottom: 8px; }
 .tiers-intro h2 em { font-style: normal; color: var(--amber); }
 .tiers-intro p { color: var(--muted); max-width: 600px; margin: 0 auto; }
 .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
-.tier-card { background: var(--slate2); border: 1px solid var(--border); border-radius: 16px; padding: 0 0 24px; overflow: hidden; text-align: center; transition: all .3s; }
+.tier-card { background: var(--slate2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; text-align: center; transition: all .3s; }
 .tier-card:hover { border-color: var(--copper); transform: translateY(-4px); }
 .tier-header { padding: 24px 20px 16px; }
 .tier-level { font-size: .65em; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
@@ -97,7 +88,6 @@ a:hover { color: var(--warm); }
 .tier-card .tier-desc { font-size: .8em; color: var(--muted); line-height: 1.6; padding: 0 20px 16px; }
 .tier-footer { font-size: .75em; color: var(--copper); text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; border-top: 1px solid var(--border); }
 
-/* ── Features Grid ── */
 .features-section { padding: 60px 20px; border-top: 1px solid var(--border); }
 .features-section h2 { text-align: center; font-size: 2em; color: var(--warm); margin-bottom: 4px; }
 .features-section > p { text-align: center; color: var(--muted); font-size: .9em; margin-bottom: 30px; }
@@ -110,7 +100,6 @@ a:hover { color: var(--warm); }
 .badge-build { background: rgba(184,115,51,.15); color: var(--copper); }
 .chip-addr { font-size: .6em; color: var(--muted); font-family: 'SF Mono', Menlo, monospace; margin-top: 4px; }
 
-/* ── Modal ── */
 .modal-overlay { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.open { display: flex; }
 .modal { background: var(--slate2); border: 1px solid var(--border); border-radius: 12px; padding: 28px; max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto; }
@@ -120,7 +109,6 @@ a:hover { color: var(--warm); }
 .modal .link { display: inline-block; margin-top: 12px; font-weight: 600; font-size: .85em; }
 .modal-close { float: right; background: none; border: none; color: var(--muted); font-size: 1.2em; cursor: pointer; }
 
-/* ── Calculator ── */
 .calc-section { padding: 60px 20px; }
 .calc { max-width: 500px; margin: 0 auto; background: var(--slate2); border: 1px solid var(--border); border-radius: 12px; padding: 28px; position: relative; overflow: hidden; }
 .calc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--copper), var(--amber)); }
@@ -140,7 +128,6 @@ a:hover { color: var(--warm); }
 .cta-row .btn-amber { flex: 1; text-align: center; }
 .cta-row .btn-outline { flex: 1; text-align: center; }
 
-/* ── Use Cases ── */
 .use-case-list { max-width: 700px; margin: 40px auto; }
 .use-case { display: flex; gap: 16px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--border); }
 .use-case:last-child { border-bottom: none; }
@@ -148,7 +135,6 @@ a:hover { color: var(--warm); }
 .use-case h4 { font-size: 1em; color: var(--warm); margin-bottom: 4px; }
 .use-case p { font-size: .8em; color: var(--muted); line-height: 1.5; }
 
-/* ── Developers ── */
 .code-block { background: var(--slate2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px auto; max-width: 700px; overflow-x: auto; }
 .code-block pre { font-family: 'SF Mono', Menlo, monospace; font-size: .78em; color: var(--fg); line-height: 1.7; }
 .code-block .kw { color: var(--amber); }
@@ -165,7 +151,6 @@ a:hover { color: var(--warm); }
 .precompile-table .func { font-size: .78em; color: var(--muted); }
 .precompile-table .status { font-size: .75em; color: var(--green); }
 
-/* ── About / Story ── */
 .story { max-width: 700px; margin: 0 auto; padding: 60px 20px; }
 .story p { font-size: 1em; line-height: 2; margin-bottom: 20px; color: var(--fg); }
 .story blockquote { border-left: 3px solid var(--amber); padding-left: 20px; margin: 28px 0; font-family: 'DM Serif Display', Georgia, serif; font-size: 1.4em; color: var(--amber); line-height: 1.5; }
@@ -179,7 +164,6 @@ a:hover { color: var(--warm); }
 .coordinates .tagline { margin-top: 20px; font-style: italic; color: var(--muted); }
 .signature { font-size: .8em; color: var(--copper); margin-top: 12px; letter-spacing: 1px; }
 
-/* ── Logo Banner ── */
 .logo-banner { text-align: center; padding: 50px 20px; border-top: 1px solid var(--border); }
 .logo-banner-text { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.5em; color: var(--warm); letter-spacing: 6px; margin-bottom: 8px; }
 .logo-banner-sub { font-size: .75em; color: var(--copper); text-transform: uppercase; letter-spacing: 4px; }
@@ -187,7 +171,6 @@ a:hover { color: var(--warm); }
 .signature-name { font-family: 'DM Serif Display', Georgia, serif; font-size: 1em; color: var(--muted); }
 .signature-desc { font-size: .7em; color: var(--muted); }
 
-/* ── Footer ── */
 .footer { background: rgba(13,17,23,.9); border-top: 1px solid var(--border); padding: 50px 20px; }
 .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
 .footer h4 { font-size: .65em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 12px; }
@@ -200,7 +183,6 @@ a:hover { color: var(--warm); }
 .footer-bottom { max-width: 1100px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid var(--border); text-align: center; }
 .footer-bottom p { font-size: .7em; color: var(--muted); }
 
-/* ── Responsive ── */
 @media(max-width:768px){
   body{line-height:2}
   .hero h1{font-size:2.5em;letter-spacing:2px}
@@ -224,10 +206,9 @@ a:hover { color: var(--warm); }
 </head>
 <body>
 
-<!-- ═══════════ NAV ═══════════ -->
 <nav class="nav">
   <div class="nav-logo">
-    <svg class="l-logo" viewBox="0 0 60 60" fill="none">
+    <svg width="36" height="36" viewBox="0 0 60 60" fill="none">
       <circle cx="30" cy="30" r="28" stroke="#B87333" stroke-width="1" fill="none"/>
       <path d="M26 12 L34 12 L36 38 L24 38 Z" fill="#FFF8F0" stroke="#B87333" stroke-width="0.8"/>
       <rect x="25" y="8" width="10" height="5" rx="1" fill="#B87333"/>
@@ -251,12 +232,12 @@ a:hover { color: var(--warm); }
   </div>
 </nav>
 
-<!-- ═══════════ PAGE 1: HOME ═══════════ -->
+<!-- ═══ PAGE 1: HOME — The Beacon ═══ -->
 <div class="page active" id="home">
   <section class="hero">
     <div class="hero-beam"></div>
     <div class="hero-logo">
-      <svg class="l-logo-lg" viewBox="0 0 120 120" fill="none">
+      <svg viewBox="0 0 120 120" width="120" height="120" fill="none">
         <circle cx="60" cy="60" r="56" stroke="#B87333" stroke-width="1.5" fill="none"/>
         <path d="M52 24 L68 24 L72 76 L48 76 Z" fill="#FFF8F0" stroke="#B87333" stroke-width="1"/>
         <rect x="50" y="16" width="20" height="10" rx="2" fill="#FFBF00" stroke="#B87333" stroke-width="1"/>
@@ -283,127 +264,67 @@ a:hover { color: var(--warm); }
     </div>
   </section>
 
-  <!-- Brand Values / Pillars -->
   <section class="pillars">
     <h2>Built to Guide. <em>Not to Control.</em></h2>
     <div class="pillars-sub">Four principles that shape every decision on WayChain.</div>
     <div class="pillars-grid">
-      <div class="pillar">
-        <div class="pillar-icon">🔦</div>
-        <h3>Illuminate</h3>
-        <p>We make truth visible. You choose the path. Nothing is hidden, everything is verifiable.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🛡️</div>
-        <h3>Immovable</h3>
-        <p>Built on bedrock. Designed to endure. Standing watch long after the builders are gone.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">🧑‍💼</div>
-        <h3>Tended</h3>
-        <p>Kept by stewards. Never owned. The Keeper maintains the light — the light is not the Keeper.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-icon">⛵</div>
-        <h3>For All</h3>
-        <p>Free to use. Free to become. Ships home are guided, not captured, not taxed, not extracted from.</p>
-      </div>
+      <div class="pillar"><div class="pillar-icon">🔦</div><h3>Illuminate</h3><p>We make truth visible. You choose the path.</p></div>
+      <div class="pillar"><div class="pillar-icon">🛡️</div><h3>Immovable</h3><p>Built on bedrock. Designed to endure.</p></div>
+      <div class="pillar"><div class="pillar-icon">🧑‍💼</div><h3>Tended</h3><p>Kept by stewards. A guide. Never owned.</p></div>
+      <div class="pillar"><div class="pillar-icon">⛵</div><h3>For All</h3><p>Lighting the way home. Free to use. Free to become.</p></div>
     </div>
   </section>
 
-  <!-- 18 Features Grid -->
   <section class="features-section">
     <h2>18 Features Live</h2>
     <p>Every feature verified on-chain. Click any chip for details.</p>
     <div class="features-grid" id="featuresGrid"></div>
   </section>
-  <div class="modal-overlay" id="featureModal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <div class="addr" id="modalAddr"></div>
-      <a class="link" id="modalLink" href="#">Read in whitepaper →</a>
-    </div>
-  </div>
+  <div class="modal-overlay" id="featureModal"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><h3 id="modalTitle"></h3><p id="modalDesc"></p><div class="addr" id="modalAddr"></div><a class="link" id="modalLink" href="#">Read in whitepaper →</a></div></div>
 
-  <!-- Logo Banner -->
   <section class="logo-banner">
     <div class="logo-banner-text">WAYCHAIN</div>
     <div class="logo-banner-sub">Illuminate the Way</div>
-    <div class="signature-block">
-      <div class="signature-name">N. Tesla</div>
-      <div class="signature-desc">The Vision Continues.</div>
-    </div>
+    <div class="signature-block"><div class="signature-name">N. Tesla</div><div class="signature-desc">The Vision Continues.</div></div>
   </section>
 </div>
 
-<!-- ═══════════ PAGE 2: PROTOCOL ═══════════ -->
+<!-- ═══ PAGE 2: PROTOCOL — The Architecture ═══ -->
 <div class="page" id="protocol">
   <section class="pillars" style="padding-top:60px">
     <h2>The Three Tiers</h2>
     <div class="pillars-sub">The Verification Ladder. From individual to steward.</div>
   </section>
-
-  <!-- Three Tiers -->
   <section class="tiers" style="padding-top:20px">
     <div class="tiers-grid">
       <div class="tier-card">
-        <div class="tier-header">
-          <div class="tier-level">Level I</div>
-          <div class="tier-icon">🏮</div>
-          <h3>THE LANTERN</h3>
-          <div class="tier-phrase">The Light Begins.</div>
-        </div>
+        <div class="tier-header"><div class="tier-level">Level I</div><div class="tier-icon">🏮</div><h3>THE LANTERN</h3><div class="tier-phrase">The light begins.</div></div>
         <div class="tier-desc">A verified human. A new beginning. No doxxing. Video or ZK verification. Simple data contracts. Full anonymity.</div>
-        <div class="tier-footer">A Verified Human</div>
+        <div class="tier-footer">A Verified Human. A New Beginning.</div>
       </div>
       <div class="tier-card">
-        <div class="tier-header">
-          <div class="tier-level">Level II</div>
-          <div class="tier-icon">🧭</div>
-          <h3>THE COMPASS</h3>
-          <div class="tier-phrase">Find Your True North.</div>
-        </div>
+        <div class="tier-header"><div class="tier-level">Level II</div><div class="tier-icon">🧭</div><h3>THE COMPASS</h3><div class="tier-phrase">Find your true north.</div></div>
         <div class="tier-desc">100 WAY bond. Truth, Learn, Build, Serve. DeFi, validators, oracle participation. 2 curator endorsements required.</div>
-        <div class="tier-footer">Integrity Is Your Compass</div>
+        <div class="tier-footer">Integrity Is Your Compass.</div>
       </div>
       <div class="tier-card">
-        <div class="tier-header">
-          <div class="tier-level">Level III</div>
-          <div class="tier-icon">🗼</div>
-          <h3>THE LIGHTHOUSE</h3>
-          <div class="tier-phrase">Tend the Light.</div>
-        </div>
+        <div class="tier-header"><div class="tier-level">Level III</div><div class="tier-icon">🗼</div><h3>THE LIGHTHOUSE</h3><div class="tier-phrase">Tend the light.</div></div>
         <div class="tier-desc">5,000 WAY bond. 90-day term. Elected Curator. Can issue/revoke badges. Full accountability. Guides others. Leaves a legacy.</div>
         <div class="tier-footer">Guide Others. Leave a Legacy.</div>
       </div>
     </div>
   </section>
-
-  <!-- Deploy Gate -->
   <section class="pillars">
-    <h2>The 3-Layer Deploy Gate</h2>
+    <h2 style="font-size:1.6em">The 3-Layer Deploy Gate</h2>
     <div class="pillars-sub">Every action passes through three verification layers. No exceptions.</div>
     <div class="tiers-grid" style="grid-template-columns:repeat(3,1fr);margin-top:30px">
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">🌐</div><h3 style="font-size:1.2em">Layer 1: RPC</h3></div>
-        <div class="tier-desc">Rate limiting. Method filtering. Information disclosure minimization.</div>
-      </div>
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">⛓️</div><h3 style="font-size:1.2em">Layer 2: Block</h3></div>
-        <div class="tier-desc">Consensus-level validation. Proposer verification. State consistency.</div>
-      </div>
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">⚙️</div><h3 style="font-size:1.2em">Layer 3: Opcode</h3></div>
-        <div class="tier-desc">Deploy gate precompile checks Dox_Dev badge level before execution.</div>
-      </div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">🌐</div><h3 style="font-size:1.2em">Layer 1: RPC</h3></div><div class="tier-desc">Rate limiting. Method filtering. Information disclosure minimization.</div></div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">⛓️</div><h3 style="font-size:1.2em">Layer 2: Block</h3></div><div class="tier-desc">Consensus-level validation. Proposer verification. State consistency.</div></div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">⚙️</div><h3 style="font-size:1.2em">Layer 3: Opcode</h3></div><div class="tier-desc">Deploy gate precompile checks Dox_Dev badge level before execution.</div></div>
     </div>
   </section>
-
-  <!-- Precompile Reference -->
   <section class="pillars">
-    <h2>20 Live Precompiles</h2>
+    <h2 style="font-size:1.6em">20 Live Precompiles</h2>
     <div class="pillars-sub">All live on chain ID 10008.</div>
     <div class="precompile-table">
       <div class="thead"><div>Address</div><div>Name</div><div>Function</div><div>Status</div></div>
@@ -421,38 +342,19 @@ a:hover { color: var(--warm); }
   </section>
 </div>
 
-<!-- ═══════════ PAGE 3: USE CASES ═══════════ -->
+<!-- ═══ PAGE 3: USE CASES — The Beacon ═══ -->
 <div class="page" id="usecases">
-  <section class="pillars" style="padding-top:60px">
-    <h2>Use Cases</h2>
-    <div class="pillars-sub">Real-world impact. On-chain finality.</div>
-  </section>
-
-  <!-- Mineral Rights Pipeline -->
+  <section class="pillars" style="padding-top:60px"><h2>Use Cases</h2><div class="pillars-sub">Real-world impact. On-chain finality.</div></section>
   <section class="pillars" style="padding-top:20px">
     <h2 style="font-size:1.6em">🔥 Mineral Rights Extinguishment</h2>
     <div class="pillars-sub">Paying claim-holders to leave resources in the ground—permanently.</div>
     <div class="tiers-grid" style="grid-template-columns:repeat(4,1fr);margin-top:30px">
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">📜</div><h3 style="font-size:1em">1. Prove</h3></div>
-        <div class="tier-desc">Title deed + GPS hashed to Binary Journal</div>
-      </div>
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">⚖️</div><h3 style="font-size:1em">2. Price</h3></div>
-        <div class="tier-desc">Oracle pulls spot → deducts fees → shows payout</div>
-      </div>
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">🔒</div><h3 style="font-size:1em">3. Escrow</h3></div>
-        <div class="tier-desc">WAY locked → title NFT to Permanent Reserve</div>
-      </div>
-      <div class="tier-card">
-        <div class="tier-header"><div class="tier-icon">🏆</div><h3 style="font-size:1em">4. Extinguish</h3></div>
-        <div class="tier-desc">Immutable certificate. Resource is dead forever.</div>
-      </div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">📜</div><h3 style="font-size:1em">1. Prove</h3></div><div class="tier-desc">Title deed + GPS hashed to Binary Journal</div></div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">⚖️</div><h3 style="font-size:1em">2. Price</h3></div><div class="tier-desc">Oracle pulls spot → deducts fees → shows payout</div></div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">🔒</div><h3 style="font-size:1em">3. Escrow</h3></div><div class="tier-desc">WAY locked → title NFT to Permanent Reserve</div></div>
+      <div class="tier-card"><div class="tier-header"><div class="tier-icon">🏆</div><h3 style="font-size:1em">4. Extinguish</h3></div><div class="tier-desc">Immutable certificate. Resource is dead forever.</div></div>
     </div>
   </section>
-
-  <!-- Calculator -->
   <div class="calc-section">
     <div class="calc">
       <h3>⬡ Calculate Your Payout</h3>
@@ -471,14 +373,9 @@ a:hover { color: var(--warm); }
         <div class="calc-row total"><span class="lbl">Net Payout (USD)</span><span class="val" id="netUsd">—</span></div>
         <div class="calc-row total"><span class="lbl">Net Payout (WAY)</span><span class="val" id="netWay">—</span></div>
       </div>
-      <div class="cta-row">
-        <button class="btn-amber" onclick="openDapp()">Request Extinguishment</button>
-        <button class="btn-outline" id="walletBtn" onclick="connectWallet()">Connect Dox_Dev L2</button>
-      </div>
+      <div class="cta-row"><button class="btn-amber" onclick="openDapp()">Request Extinguishment</button><button class="btn-outline" id="walletBtn" onclick="connectWallet()">Connect Dox_Dev L2</button></div>
     </div>
   </div>
-
-  <!-- Other Use Cases -->
   <section class="pillars">
     <h2 style="font-size:1.6em">More Use Cases</h2>
     <div class="use-case-list">
@@ -490,17 +387,12 @@ a:hover { color: var(--warm); }
   </section>
 </div>
 
-<!-- ═══════════ PAGE 4: DEVELOPERS ═══════════ -->
+<!-- ═══ PAGE 4: DEVELOPERS — The Workshop ═══ -->
 <div class="page" id="developers">
-  <section class="pillars" style="padding-top:60px">
-    <h2>Developers</h2>
-    <div class="pillars-sub">Build on the lighthouse. Native Go precompiles. 1-second finality.</div>
-  </section>
-
+  <section class="pillars" style="padding-top:60px"><h2>Developers</h2><div class="pillars-sub">Build on the lighthouse. Native Go precompiles. 1-second finality.</div></section>
   <section class="pillars">
     <h2 style="font-size:1.4em">Quick Start</h2>
-    <div class="code-block">
-      <pre><span class="cm">// Connect to WayChain</span>
+    <div class="code-block"><pre><span class="cm">// Connect to WayChain</span>
 client := waychain.Connect(<span class="str">"https://api.waychain.org"</span>)
 
 <span class="cm">// Check Dox_Dev badge level</span>
@@ -510,26 +402,19 @@ level := client.Precompile(<span class="str">"0x13"</span>).Call(<span class="st
 }
 
 <span class="cm">// Deploy contract (badge verified automatically)</span>
-tx := client.Deploy(contractCode, deployerAddr)</pre>
-    </div>
+tx := client.Deploy(contractCode, deployerAddr)</pre></div>
     <h2 style="font-size:1.4em;margin-top:30px">RPC API</h2>
-    <div class="code-block">
-      <pre><span class="cm"># Current block</span>
+    <div class="code-block"><pre><span class="cm"># Current block</span>
 curl -X POST https://api.waychain.org   -H <span class="str">"Content-Type: application/json"</span>   -d <span class="str">'{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'</span>
 
 <span class="cm"># WebSocket stream</span>
-wss://api.waychain.org/ws</pre>
-    </div>
+wss://api.waychain.org/ws</pre></div>
   </section>
 </div>
 
-<!-- ═══════════ PAGE 5: ABOUT ═══════════ -->
+<!-- ═══ PAGE 5: ABOUT — The Logbook ═══ -->
 <div class="page" id="about">
-  <section class="pillars" style="padding-top:60px">
-    <h2>About</h2>
-    <div class="pillars-sub">The light stays on.</div>
-  </section>
-
+  <section class="pillars" style="padding-top:60px"><h2>About</h2><div class="pillars-sub">The light stays on.</div></section>
   <section class="story">
     <p>In 1901, Nikola Tesla began building the Wardenclyffe Tower—a structure meant to transmit wireless power and communication across the Atlantic. It was never finished. The tower was dismantled, the funding ran dry, and the world got radio towers instead of resonance.</p>
     <blockquote>We built WayChain as the lighthouse Tesla never got to complete.</blockquote>
@@ -550,47 +435,23 @@ wss://api.waychain.org/ws</pre>
   </section>
 </div>
 
-<!-- ═══════════ FOOTER ═══════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div class="footer-grid">
-    <div>
-      <div class="footer-brand">⛓ WAYCHAIN</div>
-      <div class="footer-tagline">ILLUMINATE. NAVIGATE. ARRIVE.</div>
-    </div>
-    <div>
-      <h4>Protocol</h4>
-      <ul><li><a href="#protocol">Three Tiers</a></li><li><a href="#protocol">Deploy Gate</a></li><li><a href="#protocol">Precompiles</a></li></ul>
-    </div>
-    <div>
-      <h4>Use Cases</h4>
-      <ul><li><a href="#usecases">Mineral Rights</a></li><li><a href="#usecases">Binary Journal</a></li><li><a href="#usecases">2WAY Stablecoin</a></li></ul>
-    </div>
-    <div>
-      <h4>Connect</h4>
-      <ul><li><a href="/explorer">Explorer</a></li><li><a href="/badge">Get Your Badge</a></li><li><a href="https://api.waychain.org/rpc">RPC</a></li></ul>
-    </div>
+    <div><div class="footer-brand">⛓ WAYCHAIN</div><div class="footer-tagline">ILLUMINATE. NAVIGATE. ARRIVE.</div><div style="font-size:.7em;color:var(--muted);margin-top:8px">EST. MMXXIV</div></div>
+    <div><h4>Protocol</h4><ul><li><a href="#protocol">Three Tiers</a></li><li><a href="#protocol">Deploy Gate</a></li><li><a href="#protocol">Precompiles</a></li></ul></div>
+    <div><h4>Use Cases</h4><ul><li><a href="#usecases">Mineral Rights</a></li><li><a href="#usecases">Binary Journal</a></li><li><a href="#usecases">2WAY Stablecoin</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="/explorer">Explorer</a></li><li><a href="/badge">Get Your Badge</a></li><li><a href="https://api.waychain.org/rpc">RPC</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
-    <p>🏛️ The light stays on. 40.7128° N  74.0060° W</p>
-  </div>
+  <div class="footer-bottom"><p>🏛️ The light stays on. 40.7128° N  74.0060° W</p></div>
 </footer>
 
 <script>
-// ── Navigation ──
-const pages = ['home','protocol','usecases','developers','about'];
-function showPage(id) {
-  pages.forEach(p => {
-    document.getElementById(p).classList.toggle('active', p === id);
-    document.querySelector(`.nav-links a[data-page="${p}"]`)?.classList.toggle('active', p === id);
-  });
-  window.scrollTo(0,0);
-}
-document.querySelectorAll('[data-page]').forEach(el => {
-  el.addEventListener('click', e => { e.preventDefault(); showPage(el.dataset.page); });
-});
+const pages=['home','protocol','usecases','developers','about'];
+function showPage(id){pages.forEach(p=>{document.getElementById(p).classList.toggle('active',p===id);document.querySelector(`.nav-links a[data-page="${p}"]`)?.classList.toggle('active',p===id)});window.scrollTo(0,0)}
+document.querySelectorAll('[data-page]').forEach(el=>{el.addEventListener('click',e=>{e.preventDefault();showPage(el.dataset.page)})});
 
-// ── Features Grid ──
-const FEATURES = [
+const FEATURES=[
   {name:"Chain ID 10008",status:"live",addr:"0x2718",desc:"Independent L1 chain with custom consensus. Not a fork, not an L2.",link:"#protocol"},
   {name:"1-Second Block Time",status:"live",addr:"—",desc:"Blocks produced every 1 second.",link:"#protocol"},
   {name:"Instant Finality",status:"live",addr:"—",desc:"Single-block BFT. Transactions are final immediately.",link:"#protocol"},
@@ -610,54 +471,18 @@ const FEATURES = [
   {name:"Mineral Rights (MRT)",status:"live",addr:"0x20",desc:"Tokenize mineral reserves. Full lifecycle: register → verify → approve → issue → monitor → transfer. 12 tests passing.",link:"#usecases"},
   {name:"State Rent",status:"building",addr:"0x12",desc:"State rent enforcement with 60% burn. Precompile exists, enforcement coming in Phase 7.",link:"#protocol"},
 ];
-const grid = document.getElementById('featuresGrid');
-FEATURES.forEach(f => {
-  const c = document.createElement('div');
-  c.className = 'chip';
-  c.innerHTML = `<div class="chip-name">${f.name}</div><span class="chip-badge badge-${f.status}">${f.status==='live'?'Live':'Building'}</span>${f.addr!=='—'?`<div class="chip-addr">${f.addr}</div>`:''}`;
-  c.onclick = () => openModal(f);
-  grid.appendChild(c);
-});
-function openModal(f) {
-  document.getElementById('modalTitle').textContent = f.name;
-  document.getElementById('modalDesc').textContent = f.desc;
-  document.getElementById('modalAddr').textContent = f.addr !== '—' ? `Precompile: ${f.addr}` : '';
-  document.getElementById('modalLink').href = f.link;
-  document.getElementById('featureModal').classList.add('open');
-}
-function closeModal() { document.getElementById('featureModal').classList.remove('open'); }
-document.getElementById('featureModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+const grid=document.getElementById('featuresGrid');
+FEATURES.forEach(f=>{const c=document.createElement('div');c.className='chip';c.innerHTML=`<div class="chip-name">${f.name}</div><span class="chip-badge badge-${f.status}">${f.status==='live'?'Live':'Building'}</span>${f.addr!=='—'?`<div class="chip-addr">${f.addr}</div>`:''}`;c.onclick=()=>openModal(f);grid.appendChild(c)});
+function openModal(f){document.getElementById('modalTitle').textContent=f.name;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalAddr').textContent=f.addr!=='—'?`Precompile: ${f.addr}`:'';document.getElementById('modalLink').href=f.link;document.getElementById('featureModal').classList.add('open')}
+function closeModal(){document.getElementById('featureModal').classList.remove('open')}
+document.getElementById('featureModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
 
-// ── Calculator ──
-const PRICES = { gold:2340, silver:29.5, copper:4.2, lithium:14.5, 'rare-earth':85 };
-const UNITS = { gold:'oz t', silver:'oz t', copper:'lb', lithium:'kg', 'rare-earth':'kg' };
-const EXTRACTION = { gold:450, silver:35, copper:8, lithium:120, 'rare-earth':200 };
-async function updateCalc() {
-  const m = document.getElementById('mineral').value;
-  const vol = +document.getElementById('volume').value || 0;
-  const p = (+document.getElementById('purity').value || 0) / 100;
-  const d = +document.getElementById('distance').value || 0;
-  const spot = PRICES[m];
-  const u = (m==='gold'||m==='silver') ? vol*32150.7*p : (m==='copper'?vol*p:vol*1000*p);
-  const gross = u * spot;
-  const fee = gross * 0.005;
-  const ex = vol * (EXTRACTION[m]||100);
-  const tr = vol * d * 0.15;
-  const net = gross - fee - ex - tr;
-  document.getElementById('spotPrice').textContent = `$${spot.toLocaleString()}/${UNITS[m]}`;
-  document.getElementById('grossValue').textContent = `$${gross.toLocaleString(undefined,{maximumFractionDigits:0})}`;
-  document.getElementById('fee').textContent = `-$${fee.toLocaleString(undefined,{maximumFractionDigits:0})}`;
-  document.getElementById('extraction').textContent = `-$${ex.toLocaleString(undefined,{maximumFractionDigits:0})}`;
-  document.getElementById('transport').textContent = `-$${tr.toLocaleString(undefined,{maximumFractionDigits:0})}`;
-  document.getElementById('netUsd').textContent = `$${net.toLocaleString(undefined,{maximumFractionDigits:0})}`;
-  document.getElementById('netWay').textContent = `${(net/0.05).toLocaleString(undefined,{maximumFractionDigits:0})} WAY`;
-}
-function openDapp() { alert('Extinguishment dApp requires Dox_Dev Level 2 verification.'); }
-function connectWallet() {
-  const b = document.getElementById('walletBtn');
-  b.textContent = 'Connecting...';
-  setTimeout(() => { b.textContent = '0x7a3F...9e2D (L2) ✓'; b.style.borderColor = 'var(--green)'; b.style.color = 'var(--green)'; }, 1200);
-}
+const PRICES={gold:2340,silver:29.5,copper:4.2,lithium:14.5,'rare-earth':85};
+const UNITS={gold:'oz t',silver:'oz t',copper:'lb',lithium:'kg','rare-earth':'kg'};
+const EXTRACTION={gold:450,silver:35,copper:8,lithium:120,'rare-earth':200};
+async function updateCalc(){const m=document.getElementById('mineral').value;const vol=+document.getElementById('volume').value||0;const p=(+document.getElementById('purity').value||0)/100;const d=+document.getElementById('distance').value||0;const spot=PRICES[m];const u=(m==='gold'||m==='silver')?vol*32150.7*p:(m==='copper'?vol*p:vol*1000*p);const gross=u*spot;const fee=gross*0.005;const ex=vol*(EXTRACTION[m]||100);const tr=vol*d*0.15;const net=gross-fee-ex-tr;document.getElementById('spotPrice').textContent=`$${spot.toLocaleString()}/${UNITS[m]}`;document.getElementById('grossValue').textContent=`$${gross.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('fee').textContent=`-$${fee.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('extraction').textContent=`-$${ex.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('transport').textContent=`-$${tr.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('netUsd').textContent=`$${net.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('netWay').textContent=`${(net/0.05).toLocaleString(undefined,{maximumFractionDigits:0})} WAY`}
+function openDapp(){alert('Extinguishment dApp requires Dox_Dev Level 2 verification.')}
+function connectWallet(){const b=document.getElementById('walletBtn');b.textContent='Connecting...';setTimeout(()=>{b.textContent='0x7a3F...9e2D (L2) ✓';b.style.borderColor='var(--green)';b.style.color='var(--green)'},1200)}
 updateCalc();
 </script>
 </body>
