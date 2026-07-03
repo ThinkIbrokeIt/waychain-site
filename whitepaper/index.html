@@ -4,36 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WayChain Whitepaper — Actually Decentralized</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0A0A0F;
-  --bg2: #12121A;
-  --bg3: #1A1A24;
-  --fg: #C8D0D9;
-  --fg2: #7A8594;
-  --accent: #00B4FF;
-  --accent2: #FF6B35;
-  --accent3: #A78BFA;
-  --green: #22D37E;
-  --red: #F8312F;
-  --border: #25252F;
+  --bg: #2A2A2A;
+  --bg2: #1E1E1E;
+  --bg3: #333;
+  --fg: #E8E4DD;
+  --fg2: #9A9A9A;
+  --copper: #B87333;
+  --amber: #FFBF00;
+  --warm: #FFF8F0;
+  --green: #4CAF50;
+  --red: #E53935;
+  --border: #3A3A3A;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.8; font-size: 18px; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.8; font-size: 18px; }
+a { color: var(--copper); text-decoration: none; }
+a:hover { color: var(--warm); }
 
-/* Header */
 .header {
   position: sticky; top: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 20px; background: rgba(10,10,15,0.95);
+  padding: 14px 20px; background: rgba(42,42,42,0.95);
   backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
 }
-.header h1 { font-size: 1em; color: var(--accent); font-weight: 700; }
-.header h1 span { color: var(--fg); font-weight: 400; margin-left: 6px; }
+.header h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.2em; color: var(--warm); font-weight: 400; }
+.header h1 span { color: var(--copper); margin-left: 6px; }
 
-/* Nav scroll */
 .nav-scroll {
   display: flex; gap: 4px; overflow-x: auto; white-space: nowrap;
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
@@ -42,22 +43,16 @@ a:hover { text-decoration: underline; }
 }
 .nav-scroll::-webkit-scrollbar { display: none; }
 .nav-scroll a {
-  flex-shrink: 0; font-size: 0.7em; font-weight: 600;
+  flex-shrink: 0; font-size: 0.65em; font-weight: 600;
   text-transform: uppercase; letter-spacing: 0.5px;
   padding: 10px 12px; color: var(--fg2); border-radius: 4px;
   transition: all 0.2s;
 }
-.nav-scroll a:hover { color: var(--fg); background: var(--bg3); text-decoration: none; }
-.nav-scroll a.active { color: var(--bg); background: var(--accent); }
+.nav-scroll a:hover { color: var(--warm); background: var(--bg3); text-decoration: none; }
+.nav-scroll a.active { color: var(--bg); background: var(--copper); }
 
-/* Main content area — capped at 700px */
-.whitepaper {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+.whitepaper { max-width: 700px; margin: 0 auto; padding: 0 20px; }
 
-/* Accordion */
 .chapter { border-bottom: 1px solid var(--border); }
 .chapter-header {
   display: flex; justify-content: space-between; align-items: center;
@@ -66,7 +61,8 @@ a:hover { text-decoration: underline; }
 }
 .chapter-header:hover { background: var(--bg2); }
 .chapter-header h2 {
-  font-size: 32px; font-weight: 700; color: var(--fg);
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 28px; font-weight: 400; color: var(--warm);
   margin: 0; border: none; padding: 0;
 }
 .chapter-header .arrow {
@@ -78,45 +74,38 @@ a:hover { text-decoration: underline; }
   display: none;
 }
 .chapter.open .chapter-header .arrow { transform: rotate(180deg); }
-.chapter-content {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.4s ease;
-}
+.chapter-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
 .chapter.open .chapter-content { max-height: 100000px; }
 
-/* Content typography */
 .content { padding: 20px 20px 60px; }
-.content h1 { font-size: 48px; color: var(--accent); margin: 36px 0 16px; font-weight: 800; line-height: 1.2; }
-.content h2 { font-size: 32px; color: var(--accent); margin: 36px 0 14px; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 8px; line-height: 1.2; }
-.content h3 { font-size: 24px; color: var(--accent3); margin: 28px 0 10px; font-weight: 600; line-height: 1.3; }
+.content h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 48px; color: var(--warm); margin: 36px 0 16px; font-weight: 400; line-height: 1.2; }
+.content h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; color: var(--warm); margin: 36px 0 14px; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 8px; line-height: 1.2; }
+.content h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; color: var(--copper); margin: 28px 0 10px; font-weight: 400; line-height: 1.3; }
 .content h4 { font-size: 20px; color: var(--fg); margin: 20px 0 8px; font-weight: 600; }
-.content p { margin-bottom: 16px; line-height: 1.8; }
+.content p { margin-bottom: 16px; line-height: 1.8; font-size: 18px; }
 .content ul, .content ol { margin: 10px 0 18px 24px; }
-.content li { margin-bottom: 8px; line-height: 1.8; }
-.content blockquote { border-left: 3px solid var(--accent); padding-left: 18px; margin: 18px 0; color: var(--fg2); font-style: italic; }
+.content li { margin-bottom: 8px; line-height: 1.8; font-size: 18px; }
+.content blockquote { border-left: 3px solid var(--copper); padding-left: 18px; margin: 18px 0; color: var(--fg2); font-style: italic; }
 .content hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
-.content code { background: var(--bg2); padding: 2px 6px; border-radius: 3px; font-size: 0.9em; font-family: 'SF Mono', Menlo, monospace; color: var(--accent); }
+.content code { background: var(--bg2); padding: 2px 6px; border-radius: 3px; font-size: 0.9em; font-family: 'SF Mono', Menlo, monospace; color: var(--copper); }
 .content pre { background: var(--bg2); padding: 18px; border-radius: 6px; overflow-x: auto; margin: 18px 0; border: 1px solid var(--border); }
+.content strong { color: var(--warm); }
 
-/* Tables */
-.table-wrap { overflow-x: auto; margin: 18px 0; -webkit-overflow-scrolling: touch; }
-.content table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 0.85em; }
+.content table { width: 100%; border-collapse: collapse; font-size: 0.85em; display: block; overflow-x: auto; margin: 18px 0; }
 .content th, .content td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
-.content th { background: var(--bg2); color: var(--accent); font-weight: 700; }
+.content th { background: var(--bg2); color: var(--copper); font-weight: 700; }
 .content tr:nth-child(even) { background: var(--bg2); }
 
-/* Mobile Skip Button */
 .skip-btn {
   position: fixed; bottom: 24px; right: 24px; z-index: 200;
-  background: var(--accent); color: var(--bg); font-weight: 700;
+  background: var(--copper); color: var(--warm); font-weight: 700;
   font-size: 0.85em; padding: 14px 20px; border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(0,180,255,0.3);
+  box-shadow: 0 4px 20px rgba(184,115,51,0.3);
   cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px;
   transition: transform 0.2s;
 }
 .skip-btn:hover { transform: scale(1.05); text-decoration: none; }
 .skip-btn:active { transform: scale(0.95); }
-
 .skip-menu {
   position: fixed; bottom: 80px; right: 24px; z-index: 200;
   background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
@@ -128,12 +117,10 @@ a:hover { text-decoration: underline; }
   display: block; padding: 12px 18px; font-size: 0.9em; color: var(--fg);
   border-left: 3px solid transparent; transition: all 0.15s;
 }
-.skip-menu a:hover { background: var(--bg3); border-left-color: var(--accent); color: var(--accent); text-decoration: none; }
+.skip-menu a:hover { background: var(--bg3); border-left-color: var(--copper); color: var(--copper); text-decoration: none; }
 
-/* Footer */
 .footer { text-align: center; padding: 40px 20px; color: var(--fg2); font-size: 0.75em; border-top: 1px solid var(--border); margin-top: 40px; }
 
-/* Desktop: show all chapters, hide accordion */
 @media (min-width: 1024px) {
   .chapter-content { max-height: none !important; }
   .chapter-header { pointer-events: none; }
@@ -142,954 +129,1302 @@ a:hover { text-decoration: underline; }
   .skip-btn, .skip-menu { display: none !important; }
 }
 
-/* Mobile: full width, line-height 2.0 */
 @media (max-width: 768px) {
   body { line-height: 2.0; }
   .whitepaper { max-width: 100%; padding: 0 20px; }
-  .header { padding: 12px 16px; }
-  .chapter-header { padding: 16px 20px; }
-  .chapter-header h2 { font-size: 24px; }
+  .chapter-header h2 { font-size: 22px; }
   .content h1 { font-size: 32px; }
   .content h2 { font-size: 24px; }
   .content h3 { font-size: 20px; }
   .content h4 { font-size: 18px; }
 }
-
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>⛓ <span>Whitepaper</span></h1>
+  <h1>WayChain <span>Whitepaper</span></h1>
   <span style="font-size:0.75em;color:var(--fg2)">v3.1.2 — June 2026</span>
 </div>
 
+<div style="padding:40px 20px 20px;border-bottom:1px solid var(--border);margin-bottom:0">
+  <h1 style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;margin-bottom:8px;color:var(--warm);font-weight:400;line-height:1.1">WayChain</h1>
+  <p style="font-size:20px;color:var(--copper);margin-bottom:20px;font-weight:400">A Layer 1 Blockchain Where Human Identity Replaces Token Plutocracy</p>
+</div>
+
 <div class="nav-scroll">
-  <a href="#abstract" class="active">Abstract</a>
-  <a href="#status">Status</a>
-  <a href="#philosophy">Philosophy</a>
-  <a href="#architecture">Architecture</a>
-  <a href="#overview">Overview</a>
+  <a href="#abstract">Abstract</a>
+  <a href="#status-what-is-live-vs-what-is-being-built">What Is Live vs What Is Being Built</a>
+  <a href="#1-the-problem-cryptos-plutocracy">Crypto's Plutocracy</a>
+  <a href="#2-anonymous-meets-accountability-the-human-in-the-loop-model">Anonymous Meets Accountability — Th</a>
+  <a href="#10-security-infrastructure">Security Infrastructure</a>
+  <a href="#11-native-oracle-consensus">Native Oracle Consensus</a>
+  <a href="#12-cross-chain-native">Cross-Chain Native</a>
+  <a href="#13-governance-20">Governance 2.0</a>
+  <a href="#14-precompile-architecture">Precompile Architecture</a>
+  <a href="#15-binary-journal-the-self-sovereignty-stack">Binary Journal — The Self-Sovereign</a>
+  <a href="#16-state-rent-long-term-sustainability">State Rent</a>
+  <a href="#17-mineral-rights-tokenization">Mineral Rights Tokenization</a>
+  <a href="#18-network-status-live">Network Status (Live)</a>
+  <a href="#19-risks-honest-assessment">Risks</a>
+  <a href="#20-roadmap">Roadmap</a>
+  <a href="#21-conclusion">Conclusion</a>
 </div>
 
 <div class="whitepaper">
-
-
-<div style="padding:40px 20px 30px;border-bottom:1px solid var(--border);margin-bottom:0">
-  <h1 style="font-size:48px;margin-bottom:8px;color:var(--accent);font-weight:800;line-height:1.1">WayChain</h1>
-  <p style="font-size:20px;color:var(--fg);margin-bottom:20px;font-weight:600">Actually Decentralized.</p>
-  <p style="font-size:18px;line-height:1.8;margin-bottom:24px;color:var(--fg)">
-    WayChain is a Layer 1 blockchain built from scratch — a new virtual machine written in Go, with custom consensus, custom precompiles, and a custom state model. No EVM compatibility layer. No fork. Just purpose-built code that runs at 1-second block time with instant BFT finality.
-  </p>
-  <p style="font-size:18px;line-height:1.8;margin-bottom:24px;color:var(--fg)">
-    What makes it different: <strong style="color:var(--fg)">one verified human equals one voice</strong>. Token weight does not touch governance. Validator seats are capped at 200, each held by a uniquely identified person through Dox_Dev — an on-chain identity system where verified humans earn soulbound badges that gate contract deployment, validator admission, and governance voting.
-  </p>
-  <p style="font-size:18px;line-height:1.8;margin-bottom:24px;color:var(--fg)">
-    What is live right now: 18 core features running on mainnet at chain ID 10008. Native oracle consensus with VRF. Cross-chain attestation layer. Binary Journal for immutable truth anchoring. Mineral Rights Tokenization. Progressive staking with anti-whale reward brackets. Fixed fees — 0.001/0.005/0.01 WAY, never auctioned.
-  </p>
-  <p style="font-size:18px;line-height:1.8;color:var(--fg2)">
-    18 features live. 6 fully specified and being built. 20 precompiles deployed. 29 design documents. 5,470+ lines of Go. This paper describes what is running, what is being built, and why — with radical transparency about the difference.
-  </p>
-</div>
     <div class="chapter" id="abstract">
       <div class="chapter-header" onclick="toggleChapter(this)">
         <div>
           <h2>Abstract</h2>
-          <div class="subtitle">One human = one voice. The thesis in 30 seconds.</div>
+          <div class="subtitle">Abstract</div>
         </div>
         <span class="arrow">▼</span>
       </div>
       <div class="chapter-content">
         <div class="content">
-          # WayChain: Actually Decentralized
-
-## A Layer 1 Blockchain Where Human Identity Replaces Token Plutocracy
-
-**Version 3.1.2 — June 2026**
-
----
-
-## Abstract
-
-Every major blockchain claims to be decentralized. None are. Bitcoin concentrates mining power in industrial facilities. Ethereum's proof-of-stake gives the wealthy proportional control. Solana's validator set is dominated by venture capital. In every case, **capital determines power**.
-
-WayChain is the first blockchain where **one verified human equals one voice**. Token weight does not touch governance. Validator seats are capped at 200, each held by a uniquely identified person. Fees are fixed, staying cheap regardless of token price.
-
-We achieve this through Dox_Dev — an on-chain identity system where verified humans earn soulbound badges. These badges gate contract deployment, validator admission, oracle participation, and governance voting. A verified human cannot be duplicated, cannot be anonymous, and cannot evade accountability.
-
-This paper presents WayChain's complete architecture and live deployment. **18 core features are live and running at waychain.org.** An additional 6 features are fully specified in 29 design documents and are being deployed in Phases 7-8. We distinguish clearly between what is built and what is being built.
-
----
-
-
+<p>Every major blockchain claims to be decentralized. None are. Bitcoin concentrates mining power in industrial facilities. Ethereum's proof-of-stake gives the wealthy proportional control. Solana's validator set is dominated by venture capital. In every case, <strong>capital determines power</strong>.</p>
+<p>WayChain is the first blockchain where <strong>one verified human equals one voice</strong>. Token weight does not touch governance. Validator seats are capped at 200, each held by a uniquely identified person. Fees are fixed, staying cheap regardless of token price.</p>
+<p>We achieve this through Dox_Dev — an on-chain identity system where verified humans earn soulbound badges. These badges gate contract deployment, validator admission, oracle participation, and governance voting. A verified human cannot be duplicated, cannot be anonymous, and cannot evade accountability.</p>
+<p>This paper presents WayChain's complete architecture and live deployment. <strong>18 core features are live and running at waychain.org.</strong> An additional 6 features are fully specified in 29 design documents and are being deployed in Phases 7-8. We distinguish clearly between what is built and what is being built.</p>
+<hr>
         </div>
       </div>
     </div>
-    <div class="chapter" id="status">
+    <div class="chapter" id="status-what-is-live-vs-what-is-being-built">
       <div class="chapter-header" onclick="toggleChapter(this)">
         <div>
-          <h2>Status: Live vs Spec'd</h2>
-          <div class="subtitle">18 features live. 6 being built. No lies.</div>
+          <h2>Status: What Is Live vs What Is Being Built</h2>
+          <div class="subtitle">What Is Live vs What Is Being Built</div>
         </div>
         <span class="arrow">▼</span>
       </div>
       <div class="chapter-content">
         <div class="content">
-          ## Status: What Is Live vs What Is Being Built
-
-This paper describes both live systems and planned systems. We believe in radical transparency about the difference.
-
-### ✅ Live at waychain.org (Verified June 2026)
-
-| Feature | Evidence |
-|---------|----------|
-| Chain ID 10008 | `eth_chainId` returns `0x2718` |
-| 1-second block time | Blocks produced every 1s |
-| Instant finality | Single-block BFT |
-| Dox_Dev badges (3 levels) | Precompile 0x13, curators can issue/revoke |
-| Deploy gate (3 layers) | RPC + Block Production + EVM opcode |
-| Fixed fees | 0.001/0.005/0.01 WAY (not auctioned) |
-| Sqrt-weighted lottery | `SqrtWeight()` + `SelectProposer()` |
-| 3 rotating validators | 3 nodes, equal stake |
-| Rate limiting | 100 req/sec/IP, token bucket |
-| WebSocket subscriptions | `eth_subscribe newHeads` |
-| P2P block/tx broadcast | `BroadcastBlock()` + `BroadcastTransaction()` |
-| Bitcoin SPV | Precompile 0x16, BitcoinRegistry |
-| Account recovery | Precompile 0x11, 3-guardian recovery |
-| Binary Journal (BIJO) | Precompile 0x14, truth anchoring |
-| DeadMansSwitch | Precompile 0x15, inheritance protocol |
-| Web interfaces | Dashboard, Explorer, Badge UI |
-| Cloudflare tunnel | api.waychain.org, auto-restart |
-| Progressive Staking | `progressive_staking.go`, 5-tier marginal APY (15%/8%/4%/2%/1%) |
-| Oracle VRF + Time Execution | `oracle_scheduler.go`, RANDOM opcode (0xC4), Precompile 0x0D, 13 tests |
-| Mineral Rights Tokenization | `mineral_rights.go`, Precompile 0x20, full lifecycle, 12 tests |
-
-### 🔧 Spec'd — Being Built (Phases 6-8)
-
-| Feature | Spec Document | Status |
-|---------|--------------|--------|
-| Privacy (ZK selective disclosure) | NEW_CHAIN_UX_SPEC.md | Designed, not coded |
-| 3-stage accounts | NEW_CHAIN_ACCOUNT_SPEC.md | Designed, not coded |
-| Governance (quadratic/futarchy) | NEW_CHAIN_GOVERNANCE_SPEC.md | Designed, not coded |
-| State rent + pruning | NEW_CHAIN_TOKENOMICS.md | Precompile 0x12 exists, not enforced |
-| 2WAY vault (0x18) | 2WAY_SPECIFICATION.md | Designed, precompile not added |
-| Cross-chain attestations | NEW_CHAIN_CROSS_CHAIN_ATTESTATIONS.md | Designed, not coded |
-
-**We do not claim planned features are live.** When something is in the "Spec'd" section, it means the architecture is complete and the implementation is next. Every spec document is at `/home/wink/projects/WAYCHAIN_BLUEPRINT/`.
-
----
-
-
+<p>This paper describes both live systems and planned systems. We believe in radical transparency about the difference.</p>
+<h3>✅ Live at waychain.org (Verified June 2026)</h3>
+<table>
+<tr><th>Feature</th><th>Evidence</th></tr>
+<tr><td>Chain ID 10008</td><td><code>eth_chainId</code> returns <code>0x2718</code></td></tr>
+<tr><td>1-second block time</td><td>Blocks produced every 1s</td></tr>
+<tr><td>Instant finality</td><td>Single-block BFT</td></tr>
+<tr><td>Dox_Dev badges (3 levels)</td><td>Precompile 0x13, curators can issue/revoke</td></tr>
+<tr><td>Deploy gate (3 layers)</td><td>RPC + Block Production + EVM opcode</td></tr>
+<tr><th>Fixed fees</th><th>0.001/0.005/0.01 WAY (not auctioned)</th></tr>
+<tr><td>Sqrt-weighted lottery</td><td><code>SqrtWeight()</code> + <code>SelectProposer()</code></td></tr>
+<tr><td>3 rotating validators</td><td>3 nodes, equal stake</td></tr>
+<tr><td>Rate limiting</td><td>100 req/sec/IP, token bucket</td></tr>
+<tr><td>WebSocket subscriptions</td><td><code>eth_subscribe newHeads</code></td></tr>
+<tr><td>P2P block/tx broadcast</td><td><code>BroadcastBlock()</code> + <code>BroadcastTransaction()</code></td></tr>
+<tr><th>Bitcoin SPV</th><th>Precompile 0x16, BitcoinRegistry</th></tr>
+<tr><td>Account recovery</td><td>Precompile 0x11, 3-guardian recovery</td></tr>
+<tr><td>Binary Journal (BIJO)</td><td>Precompile 0x14, truth anchoring</td></tr>
+<tr><td>DeadMansSwitch</td><td>Precompile 0x15, inheritance protocol</td></tr>
+<tr><td>Web interfaces</td><td>Dashboard, Explorer, Badge UI</td></tr>
+<tr><td>Cloudflare tunnel</td><td>api.waychain.org, auto-restart</td></tr>
+<tr><th>Progressive Staking</th><th><code>progressive_staking.go</code>, 5-tier marginal APY (15%/8%/4%/2%/1%)</th></tr>
+<tr><td>Oracle VRF + Time Execution</td><td><code>oracle_scheduler.go</code>, RANDOM opcode (0xC4), Precompile 0x0D, 13 tests</td></tr>
+<tr><td>Mineral Rights Tokenization</td><td><code>mineral_rights.go</code>, Precompile 0x20, full lifecycle, 12 tests</td></tr>
+</table>
+<h3>🔧 Spec'd — Being Built (Phases 6-8)</h3>
+<table>
+<tr><th>Feature</th><th>Spec Document</th><th>Status</th></tr>
+<tr><td>Privacy (ZK selective disclosure)</td><td>NEW_CHAIN_UX_SPEC.md</td><td>Designed, not coded</td></tr>
+<tr><td>3-stage accounts</td><td>NEW_CHAIN_ACCOUNT_SPEC.md</td><td>Designed, not coded</td></tr>
+<tr><td>Governance (quadratic/futarchy)</td><td>NEW_CHAIN_GOVERNANCE_SPEC.md</td><td>Designed, not coded</td></tr>
+<tr><td>State rent + pruning</td><td>NEW_CHAIN_TOKENOMICS.md</td><td>Precompile 0x12 exists, not enforced</td></tr>
+<tr><td>2WAY vault (0x18)</td><td>2WAY_SPECIFICATION.md</td><td>Designed, precompile not added</td></tr>
+<tr><th>Cross-chain attestations</th><th>NEW_CHAIN_CROSS_CHAIN_ATTESTATIONS.md</th><th>Designed, not coded</th></tr>
+</table>
+<p><strong>We do not claim planned features are live.</strong> When something is in the "Spec'd" section, it means the architecture is complete and the implementation is next. Every spec document is at <code>/home/wink/projects/WAYCHAIN_BLUEPRINT/</code>.</p>
+<hr>
         </div>
       </div>
     </div>
-    <div class="chapter" id="philosophy">
+    <div class="chapter" id="1-the-problem-cryptos-plutocracy">
       <div class="chapter-header" onclick="toggleChapter(this)">
         <div>
-          <h2>1. Philosophy: Human Identity</h2>
-          <div class="subtitle">Crypto plutocracy problem. Dox_Dev verification model.</div>
+          <h2>1. The Problem: Crypto's Plutocracy</h2>
+          <div class="subtitle">Crypto's Plutocracy</div>
         </div>
         <span class="arrow">▼</span>
       </div>
       <div class="chapter-content">
         <div class="content">
-          ## 1. The Problem: Crypto's Plutocracy
-
-### 1.1 The Myth of Decentralization
-
-The founding promise of cryptocurrency was that anyone could participate. In practice, every major chain has recreated the power structures it promised to replace.
-
-| Chain | Active Validators | Governance | Effective Control |
-|-------|------------------|-----------|------------------|
-| Bitcoin | ~50 mining pools | Off-chain (miners + devs) | 3 pools control >50% hashrate |
-| Ethereum | 1M+ validators | Token-weighted (1 ETH = 1 vote) | Top 0.1% controls 30% of stake |
-| Solana | ~1,500 (400 superminority) | Stake-weighted vote | VC-backed validators dominate |
-| Cosmos | 180 (top by stake) | 1 ATOM = 1 vote | Top 10 control >40% |
-
-The pattern is consistent: **those with the most capital control the most votes, propose the most blocks, and earn the most rewards.** The gap widens through compounding. What starts as a slight advantage becomes permanent dominance.
-
-### 1.2 The Accountability Problem
-
-Anonymous validators have no real consequences for bad behavior. A validator on Ethereum who is slashed for equivocation can spin up a new validator with a new wallet the same day. There is no identity, no reputation, no permanent record. The cost of cheating is bounded by the stake at risk — which means a whale with enough capital can afford to cheat.
-
-### 1.3 The Usability Problem
-
-Blockchain fees are volatile because they are market-auctioned. During high demand, a single transaction can cost $50+ on Ethereum. This prices out the very users who need decentralized systems most — people in developing economies, unbanked populations, small creators.
-
-### 1.4 The Privacy Problem
-
-Public blockchains are transparent by default. Every transaction, every contract interaction, every token balance is visible to anyone. This makes blockchain unusable for healthcare records, corporate data, personal identity, legal proceedings, and any application requiring confidentiality. Monero provides privacy but no smart contracts. Secret Network provides contracts but negligible adoption. ZK solutions remain too slow and expensive for everyday use.
-
-### 1.5 The Oracle Problem
-
-Blockchains cannot see the real world. Every attempt to build supply chain tracking, insurance protocols, identity verification, or real-world data integration fails because oracles recentralize trust at the data source. A chain that cannot verify external reality cannot serve real-world use cases.
-
-WayChain addresses all five failures — plutocracy, anonymity, fee volatility, privacy, and oracle dependence — not through economic tinkering, but through **identity as a first-class protocol primitive** combined with **privacy by default**, **native oracles**, and **gas abstraction**.
-
----
-
-## 2. Anonymous Meets Accountability — The Human-in-the-Loop Model
-
-### 2.1 The Core Insight: Without Identity, Decentralization Is a Lie
-
-Every existing blockchain has a hidden centralization point. Bitcoin has mining pools. Ethereum has staking oligarchs. Solana has VC validators. Cosmos has exchanges. Even Monero's "anonymous" validators can spin up new identities at will.
-
-The result is always the same: those with the most resources control the chain, and those who misbehave face no permanent consequences. A validator caught equivocating on Ethereum loses 1% of their stake and restarts under a new wallet. A malicious contract developer on Polygon rug-pulls $50M, disappears, and launches a new project the next day under a new name.
-
-WayChain solves this with a single architectural decision: **the human is always in the loop**. Not optionally. Not as a layer on top. At the protocol level, every critical action requires a verified human identity that cannot be duplicated, cannot be anonymized, and cannot be recreated after revocation.
-
-This is not KYC. This is not surveillance. This is **accountability through identity** — a system where you can prove you are a unique human without revealing who you are to the world, and where misbehavior has permanent consequences that follow you across the entire ecosystem.
-
-### 2.2 How It Works: The Verification Ladder
-
-WayChain's identity system works like a ladder. You climb it by proving more about yourself. Each level unlocks new capabilities. But the identity itself — the core proof that you are a unique human — is always a soulbound, non-transferable token that lives on-chain.
-
-**Level 1: Unique Human (No Doxxing)**
-
-The entry point proves one thing: you are a real, unique human who has not already registered. This can be done through:
-- A video verification with a trained curator
-- An attestation from an existing Level 3 badge holder
-- A zero-knowledge proof of personhood (e.g., Worldcoin orb, Gitcoin Passport with high trust score)
-- A government ID verified through a privacy-preserving oracle (the ID is checked but never stored on-chain)
-
-At this level, no one — not curators, not governance, not the protocol — knows your real name. What they know is: this blockchain address belongs to a unique human who cannot register again.
-
-This grants access to: Class A contract deployment (simple data contracts, safe tokens), oracle monitoring, and basic governance participation.
-
-**Level 2: Verified Builder**
-
-A builder who wants to deploy DeFi protocols, NFT marketplaces, or any contract that holds user funds must prove more. This level requires:
-- A bonding period (100 WAY deposited, returned after 90 days if no violations)
-- Endorsement from two existing Level 3 curators
-- A signed commitment to the WayChain Builder Code of Conduct
-
-Still no public doxxing. But now there is a verified link between identity and commitment that can be enforced.
-
-This grants access to: Class B contract deployment, validator candidacy, oracle attestation rights.
-
-**Level 3: Elected Curator**
-
-The highest level. Curators are the stewards of the system. They can issue badges, revoke badges, manage deployment classes, and access emergency controls. Becoming a curator requires:
-- Election by all Level 2+ badge holders (one human, one vote)
-- A 90-day term with performance review
-- A public commitment to act in the network's interest
-- A curator bond of 5,000 WAY (slashed for misconduct)
-
-Curators cannot access user funds, change protocol parameters, or mint tokens. Their power is narrow and every action is on-chain, auditable, and reversible by community vote.
-
-This grants access to: Class C and D contract deployment, governance proposal submission, emergency freeze, curator election.
-
-### 2.3 How Identity Connects to Actions
-
-The deploy gate is the most visible enforcement point. Every contract deployment on WayChain queries the Dox_Dev precompile:
-
-```
-CREATE opcode executes:
-  → Dox_Dev.precompile.checkLevel(deployerAddress, requiredClass)
-  → If deployer holds valid badge at required level: deploy succeeds
-  → If not: revert with "Insufficient Dox_Dev level"
-```
-
-This happens at three layers, making it impossible to bypass:
-
-1. **RPC Layer:** When a user submits a deploy transaction, `eth_sendRawTransaction` checks Dox_Dev before accepting it into the mempool. Invalid transactions never propagate.
-
-2. **Block Production Layer:** When `ProduceBlock` includes a deploy transaction, it re-checks Dox_Dev. Even if a malicious proposer somehow includes a deploy tx from an unverified address, the block production logic rejects it.
-
-3. **EVM Opcode Layer:** When the CREATE or CREATE2 opcode executes, it directly calls the Dox_Dev precompile. Even if someone constructs a raw transaction that bypasses RPC and block production checks, the EVM itself will reject it.
-
-This three-layer enforcement is why WayChain's security guarantee is structural, not policy-based. It doesn't matter if a proposer is colluding with an attacker. The EVM will reject the deploy.
-
-### 2.4 Why Three Layers? The Defense-in-Depth Rationale
-
-Most blockchains have a single point of enforcement. A malicious actor who bypasses that point has free reign. WayChain's three-layer model means an attacker must simultaneously:
-
-- Bypass the RPC mempool filter (requires controlling the transaction submission path)
-- Bypass the block production check (requires
-
-... [OUTPUT TRUNCATED - 11408 chars omitted out of 61408 total] ...
-
-ains
-
-WayChain's attesters don't just serve their own chain. They witness events on external chains and re-anchor them on WayChain, making WayChain's attested data available to any consumer.
-
-```
-Source Chain (Ethereum, PulseChain, Solana):
-  Event: Transfer(0xA → 0xB) at block 19,204,731
-           │
-           ▼ (Attester observes via light client / RPC)
-  Attester validates: block finalized, receipt matches, no reorg risk
-           │
-           ▼ (Attester submits to WayChain oracle lane)
-  OracleLane.witnessEvent(sourceChain, block, txHash, eventData)
-           │
-           ▼ (Multiple attesters witness same event)
-  Event accretes attestations: Attester 1 ✅, Attester 2 ✅, Attester 3 ✅
-  → Confidence = 3 of N attesters
-```
-
-### 12.2 Cross-Chain Confidence Levels
-
-| Attesters | Confidence Level | Use Case |
-|-----------|-----------------|----------|
-| 1 | Low | Low-value events, monitoring, non-critical |
-| 3 | Medium | Cross-chain transfers, moderate value |
-| 5 | High | Bridge operations, high-value verification |
-| 10+ | Max | Critical infrastructure, governance proofs |
-
-The consumer decides what confidence threshold to accept. A bridge may require 5+ attesters. A price feed may accept 3. An archivist may accept 1.
-
-### 12.3 The Challenge Window
-
-Cross-chain attestations have a 100-block challenge window (~100 seconds):
-
-1. Attestation submitted → enters challenge window
-2. Any staked participant can challenge during window
-3. If challenged → attester must prove event exists on source chain
-4. If unchallenged → attestation finalizes after window
-5. Finalized attestations are immutable and usable by any consumer
-
-### 12.4 Source Chain Order
-
-| Priority | Chain | Rationale |
-|----------|-------|-----------|
-| 1 | **WayChain** (native) | Already supported. Our own events. |
-| 2 | **Ethereum** | Largest ecosystem. Most value to bridge. |
-| 3 | **PulseChain** | Binary Journal attestations. Existing projects. |
-| 4 | **Solana** | Different architecture. Cross-ecosystem proof. |
-| 5 | **EVM L2s** | Optimism, Arbitrum, Base — lower fees, higher volume. |
-
-### 12.5 WayChain Attestations as a Service
-
-WayChain's oracle network can serve other chains. A contract on any chain with a WayChain bridge can verify attestations:
-
-```solidity
-interface IWayChainOracle {
-    function getAttestation(
-        bytes32 sourceChain,
-        uint256 sourceBlock,
-        bytes32 sourceTxHash
-    ) external view returns (CrossChainAttestation memory);
-    
-    function verifyWithConfidence(
-        bytes32 sourceChain,
-        uint256 sourceBlock,
-        bytes32 sourceTxHash,
-        uint256 minAttesters
-    ) external view returns (bool valid);
-}
-```
-
-**Key value proposition:** A WayChain attestation is signed by a known human. If they lied, they lost their badge permanently. No other oracle network offers identity-backed trust.
-
----
-
-## 13. Governance 2.0
-
-### 13.1 Three Voting Mechanisms
-
-WayChain uses three voting mechanisms, each suited to different decision types:
-
-#### Direct Vote (Routine Decisions)
-
-| Parameter | Value |
-|-----------|-------|
-| Bond | 100 WAY |
-| Quorum | 20% of active badge holders |
-| Threshold | Simple majority (>50%) |
-| Timelock | 7 days (simple), 30 days (treasury) |
-| Used for | Parameter adjustments, routine treasury, emergency freezes |
-
-#### Quadratic Vote (Important Decisions)
-
-| Parameter | Value |
-|-----------|-------|
-| Bond | 500 WAY |
-| Credit budget | 9 credits per 90-day period |
-| Cost formula | credits_spent = n² (n = number of issues voted on) |
-| Quorum | 30% of active badge holders |
-| Threshold | Supermajority (>60%) |
-| Timelock | 30 days (standard), 90 days (inflation/treasury) |
-| Used for | Inflation changes, fee targets, validator set size, treasury allocation |
-
-**Effect:** A passionate minority that cares deeply about one issue can concentrate all 9 credits on it (weight = 9) and win against a diffuse majority that spreads across many issues. The majority still wins if they coordinate — but they must prioritize.
-
-#### Futarchy-Informed Vote (Critical Decisions)
-
-| Parameter | Value |
-|-----------|-------|
-| Bond | 1,000 WAY + 10 endorsers |
-| Prediction market | 7 days before vote |
-| Quorum | 40% of active badge holders |
-| Threshold | 2/3 supermajority (>66%) |
-| Timelock | 90 days |
-| Used for | Irreversible changes, existential parameters, new fee lanes |
-
-**The market is information, not governance.** If the market strongly predicts "price will drop," voters can still pass the proposal — but they must explain why they know better than the market. The market outcome is recorded on-chain alongside the vote result for audit.
-
-### 13.2 Amendment Process — Changing the Immutable
-
-If there is ever a need to change something in the immutable core:
-
-| Step | Parameter |
-|------|-----------|
-| 1. Futarchy proposal | 1,000 WAY bond, 10 endorsers |
-| 2. Prediction market | 14 days |
-| 3. Discussion | 14 days |
-| 4. Vote | 21 days |
-| 5. Quorum | 60% of active badge holders |
-| 6. Pass threshold | 3/4 supermajority (>75%) |
-| 7. Timelock | 180 days |
-| 8. Review | Any badge holder can call review vote (21 days, 3/4 to confirm or cancel) |
-
-**This process exists so the protocol can evolve if need arises, but the friction is intentionally high.** An amendment should feel like changing a country's constitution, not updating software.
-
-### 13.3 Curator Council
-
-A small council of 5 Dox_Dev Level 3 badge holders handles administrative functions:
-
-| Function | Description |
-|----------|-------------|
-| Proposal filtering | Flag spam/abusive proposals |
-| Emergency freeze | Pause a parameter change |
-| Discussion moderation | On-chain comment curation |
-| Prediction market oversight | Ensure market integrity |
-
-- **Term:** 90 days
-- **Election:** Quadratic vote
-- **Removal:** Simple majority, 7-day timelock
-- **Compensation:** 500 WAY per member per term
-- **Limitation:** Cannot change parameters. Can only flag, freeze, or moderate.
-
-### 13.4 Anti-Fraud at Consensus Level
-
-WayChain provides community-driven safety mechanisms:
-
-| Mechanism | Threshold | Effect |
-|-----------|-----------|--------|
-| Contract freeze by vote | Community vote (Direct) | Frozen contract cannot execute |
-| Emergency freeze | Simple majority, immediate | Parameter frozen at current value |
-| Community veto | 1/3 badge holders within 7 days | Forces new vote (must pass at Futarchy level) |
-| On-chain dispute resolution | Case-by-case | Evidence reviewed by validator vote |
-
-**What governance controls vs. what's immutable:**
-
-| Adjustable | Immutable (Genesis-Enforced) |
-|-----------|------------------------------|
-| Inflation rate (3-10%) | One badge = one validator |
-| Fee USD targets | One badge = one vote (token weight = 0) |
-| Progressive bracket boundaries | Progressive staking exists |
-| Validator set size (100-300) | Fiat-pegged fee model |
-| Treasury allocation % | No pre-mine / no pre-sale |
-| State rent burn % | Burn mechanisms exist |
-| Slash percentages | Genesis distribution = equal per human |
-
----
-
-
+<h3>1.1 The Myth of Decentralization</h3>
+<p>The founding promise of cryptocurrency was that anyone could participate. In practice, every major chain has recreated the power structures it promised to replace.</p>
+<table>
+<tr><th>Chain</th><th>Active Validators</th><th>Governance</th><th>Effective Control</th></tr>
+<tr><td>Bitcoin</td><td>~50 mining pools</td><td>Off-chain (miners + devs)</td><td>3 pools control &gt;50% hashrate</td></tr>
+<tr><td>Ethereum</td><td>1M+ validators</td><td>Token-weighted (1 ETH = 1 vote)</td><td>Top 0.1% controls 30% of stake</td></tr>
+<tr><td>Solana</td><td>~1,500 (400 superminority)</td><td>Stake-weighted vote</td><td>VC-backed validators dominate</td></tr>
+<tr><td>Cosmos</td><td>180 (top by stake)</td><td>1 ATOM = 1 vote</td><td>Top 10 control &gt;40%</td></tr>
+</table>
+<p>The pattern is consistent: <strong>those with the most capital control the most votes, propose the most blocks, and earn the most rewards.</strong> The gap widens through compounding. What starts as a slight advantage becomes permanent dominance.</p>
+<h3>1.2 The Accountability Problem</h3>
+<p>Anonymous validators have no real consequences for bad behavior. A validator on Ethereum who is slashed for equivocation can spin up a new validator with a new wallet the same day. There is no identity, no reputation, no permanent record. The cost of cheating is bounded by the stake at risk — which means a whale with enough capital can afford to cheat.</p>
+<h3>1.3 The Usability Problem</h3>
+<p>Blockchain fees are volatile because they are market-auctioned. During high demand, a single transaction can cost $50+ on Ethereum. This prices out the very users who need decentralized systems most — people in developing economies, unbanked populations, small creators.</p>
+<h3>1.4 The Privacy Problem</h3>
+<p>Public blockchains are transparent by default. Every transaction, every contract interaction, every token balance is visible to anyone. This makes blockchain unusable for healthcare records, corporate data, personal identity, legal proceedings, and any application requiring confidentiality. Monero provides privacy but no smart contracts. Secret Network provides contracts but negligible adoption. ZK solutions remain too slow and expensive for everyday use.</p>
+<h3>1.5 The Oracle Problem</h3>
+<p>Blockchains cannot see the real world. Every attempt to build supply chain tracking, insurance protocols, identity verification, or real-world data integration fails because oracles recentralize trust at the data source. A chain that cannot verify external reality cannot serve real-world use cases.</p>
+<p>WayChain addresses all five failures — plutocracy, anonymity, fee volatility, privacy, and oracle dependence — not through economic tinkering, but through <strong>identity as a first-class protocol primitive</strong> combined with <strong>privacy by default</strong>, <strong>native oracles</strong>, and <strong>gas abstraction</strong>.</p>
+<hr>
         </div>
       </div>
     </div>
-    <div class="chapter" id="architecture">
+    <div class="chapter" id="2-anonymous-meets-accountability-the-human-in-the-loop-model">
       <div class="chapter-header" onclick="toggleChapter(this)">
         <div>
-          <h2>3. Architecture & Precompiles</h2>
-          <div class="subtitle">Binary Journal, state rent, mineral rights — the technical gold.</div>
+          <h2>2. Anonymous Meets Accountability — The Human-in-the-Loop Model</h2>
+          <div class="subtitle">Anonymous Meets Accountability — Th</div>
         </div>
         <span class="arrow">▼</span>
       </div>
       <div class="chapter-content">
         <div class="content">
-          ## 14. Precompile Architecture
-
-WayChain's precompile architecture is being deployed across phases.
-
-### ✅ Live Precompiles (Verified on-Chain)
-
-| Address | Name | Function | Evidence |
-|---------|------|----------|----------|
-| 0x13 | DoxDevBadge | Identity badge system | Curators issue/revoke badges |
-| 0x14 | BIJO | Binary Journal truth anchoring | attest() stores hashes on-chain |
-| 0x15 | DeadMansSwitch | Inheritance protocol | createSwitch() + heartbeat() + claim() |
-| 0x16 | BitcoinRegistry | Bitcoin SPV verification | Registry locked headers |
-| 0x11 | AccountRecovery | 3-guardian recovery | accountRecovery() callable |
-| 0x0C | OracleAggregator | Median price aggregation | Live in oracle_scheduler.go |
-| 0x0D | OracleScheduler | Recurring oracle scheduling | Live, 13 tests passing |
-| 0x0E | OracleVerifier | Signature verification | Live in oracle_scheduler.go |
-| 0x0F | TLSVerifier | TLS proof verification | Live in oracle_scheduler.go |
-| 0x10 | BLSVerify | BLS signature aggregation | Live in oracle_scheduler.go |
-| 0x19 | OracleFeed | Read finalized oracle values | Live in oracle_scheduler.go |
-| 0x1A | OracleRequest | Create new oracle request | Live in oracle_scheduler.go |
-| 0x20 | MRT Registry | Mineral Rights Tokenization | Live, 12 tests passing |
-| 0x21-0x25 | StakingAPY | Progressive staking tiers | Live in progressive_staking.go |
-
-### 🔧 Precompile Addresses Reserved — Logic Being Built in Phase 7-8
-
-| Address | Name | Function | Spec Document |
-|---------|------|----------|---------------|
-| 0x12 | StateRent | State storage rent | TOKENOMICS |
-| 0x17 | StorageEndowment | Protocol-owned storage | 2WAY_SPEC |
-| 0x18 | TwoWayVault | 2WAY stablecoin vaults | 2WAY_SPEC |
-
-Precompiles are executed natively in Go — no EVM gas costs. The 20 live precompiles (0x0C-0x20) process transactions today. The remaining 3 are being built in Phase 7-8.
-
-## 15. Binary Journal — The Self-Sovereignty Stack
-
-### 15.1 Two Truths
-
-Binary Journal has two faces, one soul:
-
-| Layer | Name | What It Is | Who It's For |
-|-------|------|-----------|-------------|
-| Sanctuary | Energy Tide | Biometric-locked, encrypted mobile vault. Decoy identity. | Individuals, families |
-| Ledger | BJ Protocol | Smart contracts anchoring hashes, releasing keys when heartbeats stop. | The world, future generations |
-| Agora | BJ Commons | Community interface for reading, discussing, curating Light truths. | Global community |
-
-**The Two Truths:**
-- **Dark Truth** — Private, sacred. Passed only to chosen heirs. Encrypted. Sealed until heartbeat stops.
-- **Light Truth** — Public witness. Released to the world, becoming part of the shared historical record.
-
-### 15.2 The 3·6·9 Architecture
-
-Tesla wasn't doing numerology. He was encoding a dead man's switch:
-
-| Number | Meaning | Component | Status |
-|--------|---------|-----------|--------|
-| **3** | The Clue — The signal that truth exists | Energy Tide app: biometric lock, AES-256, decoy identity | ✅ Built |
-| **6** | The Path — Protection of truth while alive | Attestation.sol + heartbeat + living attestation chain | ⚠️ Partial |
-| **9** | The Key — What fires when you can't | DeadMansSwitch + StorageEndowment + BIJO + final renouncement | ❌ Not deployed |
-
-**After the final burn:** all ownership renounced. The protocol becomes immutable natural law. No DAO. No founder control. No kill switch. Just mathematics and truth.
-
-### 15.3 Sanctuary App
-
-Energy Tide is a local-first mobile app with decoy identity:
-
-- **Store name:** Energy Tide (no mention of "journal," "blockchain," or "crypto")
-- **Biometric lock:** Face ID / fingerprint required to decrypt
-- **AES-256 encryption:** All data encrypted locally before storage
-- **Decoy identity:** If forced to unlock, a secondary "normal" journal appears
-- **Local-first:** No server. No cloud. Data lives only on device (with encrypted backup)
-
-### 15.4 Immutable Ledger
-
-Four smart contracts form the on-chain layer:
-
-| Contract | Purpose | WayChain Class |
-|----------|---------|---------------|
-| Attestation.sol | Anchor a hash of truth immutably | A (permissionless) |
-| DeadMansSwitch.sol | Inheritance protocol with heartbeat | B (Dox_Dev L2+) |
-| StorageEndowment.sol | Pay operators for eternal storage | C (Dox_Dev L3) |
-| BIJO.sol | Ecosystem reward token | ERC-20 on WayChain (369M supply, 18 decimals) |
-
-### 15.5 The Economic Flywheel
-
-```
-Attest → Earn → Store → Inherit
-   ↑                        │
-   └────────────────────────┘
-```
-
-1. **Attest:** User anchors a hash on-chain (cost: ~$0.001)
-2. **Earn:** Verified attestations earn BIJO rewards
-3. **Store:** StorageEndowment pays operators for eternal encrypted storage
-4. **Inherit:** DeadMansSwitch releases keys to heirs when heartbeat stops
-
-### 15.6 Verification Period → Retroactive Airdrop → Philanthropic Liquidity → Ownership Burn
-
-The launch sequence:
-
-1. **Verification Period (3-6 months):** Early adopters attest truths, test inheritance flows, earn BIJO at accelerated rate
-2. **Retroactive Airdrop:** After verification, all early adopters receive proportional BIJO airdrop based on attestation count and reliability
-3. **Philanthropic Liquidity:** 10% of BIJO supply allocated to environmental and educational causes (governed by Dox_Dev vote)
-4. **Ownership Burn:** All contract ownership renounced. The protocol becomes immutable. No one can change it. Ever.
-
----
-
-## 16. State Rent & Long-Term Sustainability
-
-### 16.1 State Doesn't Grow Forever
-
-On most blockchains, state grows indefinitely. Every contract deployment, every storage write, every new account adds to the permanent state that validators must store forever. This is unsustainable — Ethereum's state bloat already causes validator centralization.
-
-WayChain solves this through protocol-level state rent.
-
-### 16.2 Inactive State Pruned After 30 Days
-
-| State Type | Inactivity Threshold | Action |
-|-----------|---------------------|--------|
-| Active account (any tx in 30 days) | — | No action |
-| Inactive account (no tx in 30 days) | 30 days | Marked "stale" |
-| Stale account (no tx in 90 days) | 90 days | State pruned (hash only retained) |
-| Contract with no reads in 90 days | 90 days | Contract frozen (reactivation costs rent) |
-
-Pruning retains a hash of the original state, so accounts can be restored — but the storage burden on validators is eliminated.
-
-### 16.3 Users Pay to Maintain Data
-
-State rent is not a one-time fee. Users pay continuously to maintain their data on-chain. Pricing is benchmarked against real cloud storage costs (S3: $0.023/GB/mo):
-
-| Data Type | Monthly Cost (1KB) | Annual Cost (1MB) | vs Cloud |
-|-----------|--------------------|--------------------|----------|
-| Account state (base fee) | $0.00001 | $0.12 | Cheaper than S3 |
-| Contract storage (>1KB) | $0.00001 | $0.12 | Cheaper than S3 |
-| Binary Journal attestation | $0.000005 | $0.06 | 55% cheaper than S3 |
-
-At this pricing, storing 1MB of data costs ~$0.12/year on WayChain vs $0.28/year on S3 — while gaining immutability, censorship resistance, and permanent availability. The base account fee ($0.01/month) prevents dust account spam. Accounts with <1KB storage are exempt from per-byte rent.
-
-### 16.4 Rent Distribution
-
-| Allocation | Percentage | Purpose |
-|-----------|-----------|---------|
-| Burned | 60% | Deflationary pressure on WAY supply |
-| Validators | 30% | Compensation for storage costs |
-| Treasury | 10% | Protocol development and reserves |
-
-### 16.5 Impact on Supply
-
-If WayChain reaches 1GB of active state (1,048,576 KB):
-- Annual rent collected: 1,048,576 × $0.12/year = ~$125,760
-- Burned (60%): ~$75,456 worth of WAY removed from supply
-- This creates deflationary pressure at scale, counteracting inflation
-- At 10GB state: ~$754,560 burned/year (significant supply reduction)
-
----
-
-## 17. Mineral Rights Tokenization
-
-### 17.1 Real-World Assets on Chain
-
-WayChain is the first blockchain capable of tokenizing mineral rights — real-world assets that represent verified in-ground mineral reserves. This is not a synthetic token or a wrapped asset. It is a legal instrument bridging physical property rights to on-chain ownership.
-
-### 17.2 The Problem Mining Creates
-
-| Impact | Per Gold Mine (avg) |
-|--------|---------------------|
-| Land disturbed | 1,000+ acres |
-| Water consumed | 200+ million gallons/year |
-| Cyanide used | 1+ million tons/year |
-| Tailings waste | 20+ million tons/year |
-| Success rate | <1% of claims ever produce commercial gold |
-
-A miner with a claim has two choices: spend $10M+ to develop a mine (90% chance of failure) or sell the claim for pennies. **WayChain offers a third choice:** prove the gold exists, transfer the rights, get paid — no mining required.
-
-### 17.3 How It Works
-
-**Phase 1: Claim Ownership Verification**
-- Legal title deed (government-registered mining claim)
-- Chain of ownership (unbroken from original staking)
-- Proof of payments (claim maintenance fees paid)
-- GPS boundaries (surveyed, georeferenced)
-- Dox_Dev-verified lawyer, surveyor, and notary attest
-
-**Phase 2: Reserve Verification**
-- Independent assay lab tests core samples
-- NI 43-101 or JORC compliant report
-- Dox_Dev-verified geologist reviews and attests
-- Second lab blind re-tests split samples
-
-**Phase 3: Mineral Rights Transfer**
-- Claim owner transfers ALL mineral rights to WayChain Partner LLC
-- NO mining allowed ever (covenant runs with the land)
-- Claim owner receives tokenized equivalent
-- Transfer deed hashed and attested on WayChain
-
-**Phase 4: Token Issuance**
-- Mineral Rights Token (MRT) issued
-- 1 token = proportional share of verified in-ground reserves
-- Trades freely on WayChain DEX
-
-### 17.4 Reserve Classification
-
-| Reserve Class | Confidence | Attesters Required | Tokenization Rate |
-|--------------|-----------|-------------------|-------------------|
-| Measured | >90% | 3 (geologist + 2 labs) | 80% of spot |
-| Indicated | >70% | 3 (geologist + assay lab) | 60% of spot |
-| Inferred | >50% | 2 (geologist) | 40% of spot |
-
-**Example:** A claim with 100,000 oz of Measured gold at $2,000/oz:
-- Gross value: $200M
-- Tokenization rate: 80%
-- Protocol valuation: $160M
-- Token supply: 80,000 tokens (each = 1 oz equivalent at 80%)
-
-### 17.5 Why This Only Works on WayChain
-
-| Requirement | Every Other L1 | WayChain |
-|-------------|---------------|----------|
-| Identity verification | None | Dox_Dev badge |
-| Professional attestation | Anonymous oracles | Lawyers, geologists with badges |
-| Consequence for false attestation | Bond loss (re-enter) | Badge revocation + bond (permanent) |
-| Multi-profession verification | Complex, no standard | Template: lawyer + geologist + surveyor |
-| Real-world legal integration | None | Transfer deeds hashed + oracle attested |
-| Long-term monitoring | No incentive | Attesters earn from monitoring fees |
-
-**The key insight:** This doesn't work with anonymous oracles because the verifications are legal. A lawyer who falsely attests to a title deed can be disbarred in real life AND lose their Dox_Dev badge. The identity layer bridges on-chain and off-chain consequences.
-
-### 17.6 Environmental Preservation Through Tokenization
-
-Every MRT represents gold that will never be mined. The environmental benefit is the product:
-
-- No land disturbance
-- No cyanide in water tables
-- No tailings ponds
-- No CO2 from mining operations
-- Annual satellite + water + ground monitoring confirms preservation
-
-**Comparison to existing gold tokens:**
-
-| Solution | Backing | Mining Required? | Trust Model |
-|----------|---------|-----------------|-------------|
-| PAXG | Physical gold in vault | Yes (already mined) | Custodian (Paxos) |
-| XAUT | Physical gold in vault | Yes (already mined) | Custodian (Tether) |
-| GLD ETF | Physical gold | Yes (already mined) | Custodian (State Street) |
-| **MRT** | **In-ground reserves** | **No. Never.** | **Dox_Dev verified oracles + legal covenant** |
-
-### 17.7 MRT Registry Precompile — Implementation Details
-
-The Mineral Rights Tokenization system is implemented in `mineral_rights.go` with the **MRT Registry precompile** at address `0x20`. It provides a complete on-chain lifecycle for mineral rights:
-
-**Full Lifecycle:**
-
-1. **Register** — `registerClaim(claimId, gpsBoundary, legalTitleHash)` — A verified lawyer submits a mining claim with GPS coordinates and a hash of the legal title deed. Requires Dox_Dev Level 2+ badge.
-
-2. **Verify** — `verifyReserve(claimId, assayReportHash, geologistAttestation)` — An independent geologist attests to the reserve estimate. A second lab blind-tests split samples. Both attestations are stored on-chain.
-
-3. **Approve Reserves** — `approveReserves(claimId, classification, confidenceScore)` — The protocol assigns a reserve classification (Measured/Indicated/Inferred) based on verification quorum. Emits `ReservesApproved` event.
-
-4. **Issue Tokens** — `issueTokens(claimId, tokenSupply)` — MRT tokens are minted proportional to verified reserves at the appropriate tokenization rate (80%/60%/40% of spot by class). Tokens are ERC-20 compatible.
-
-5. **Environmental Monitoring** — `submitMonitoringReport(claimId, satelliteHash, waterSampleHash)` — Annual monitoring reports confirm environmental preservation. Attesters earn monitoring fees for ongoing verification.
-
-6. **Rights Transfer** — `transferRights(claimId, newOwner, legalDeedHash)` — Mineral rights can be transferred on-chain. The transfer deed is hashed and attested. New owner must hold a valid Dox_Dev badge.
-
-**Precompile Interface (0x20):**
-
-| Function | Signature | Purpose |
-|----------|-----------|---------|
-| registerClaim | `(bytes32, bytes, bytes32)` | Register new mineral claim |
-| verifyReserve | `(bytes32, bytes32, bytes)` | Submit reserve verification |
-| approveReserves | `(bytes32, uint8, uint256)` | Approve reserve classification |
-| issueTokens | `(bytes32, uint256)` | Mint MRT tokens |
-| submitMonitoringReport | `(bytes32, bytes32, bytes32)` | Environmental monitoring |
-| transferRights | `(bytes32, address, bytes32)` | Transfer mineral rights |
-| getClaimStatus | `(bytes32) → (uint8, uint256, address)` | Query claim status |
-
-**12 tests pass**, covering: full lifecycle (register → verify → approve → issue → monitor → transfer), access control (badge requirements), token minting accuracy, and edge cases.
-
----
-
-
+<h3>2.1 The Core Insight: Without Identity, Decentralization Is a Lie</h3>
+<p>Every existing blockchain has a hidden centralization point. Bitcoin has mining pools. Ethereum has staking oligarchs. Solana has VC validators. Cosmos has exchanges. Even Monero's "anonymous" validators can spin up new identities at will.</p>
+<p>The result is always the same: those with the most resources control the chain, and those who misbehave face no permanent consequences. A validator caught equivocating on Ethereum loses 1% of their stake and restarts under a new wallet. A malicious contract developer on Polygon rug-pulls $50M, disappears, and launches a new project the next day under a new name.</p>
+<p>WayChain solves this with a single architectural decision: <strong>the human is always in the loop</strong>. Not optionally. Not as a layer on top. At the protocol level, every critical action requires a verified human identity that cannot be duplicated, cannot be anonymized, and cannot be recreated after revocation.</p>
+<p>This is not KYC. This is not surveillance. This is <strong>accountability through identity</strong> — a system where you can prove you are a unique human without revealing who you are to the world, and where misbehavior has permanent consequences that follow you across the entire ecosystem.</p>
+<h3>2.2 How It Works: The Verification Ladder</h3>
+<p>WayChain's identity system works like a ladder. You climb it by proving more about yourself. Each level unlocks new capabilities. But the identity itself — the core proof that you are a unique human — is always a soulbound, non-transferable token that lives on-chain.</p>
+<p><strong>Level 1: Unique Human (No Doxxing)</strong></p>
+<p>The entry point proves one thing: you are a real, unique human who has not already registered. This can be done through:</p>
+<ul>
+<li>A video verification with a trained curator</li>
+<li>An attestation from an existing Level 3 badge holder</li>
+<li>A zero-knowledge proof of personhood (e.g., Worldcoin orb, Gitcoin Passport with high trust score)</li>
+<li>A government ID verified through a privacy-preserving oracle (the ID is checked but never stored on-chain)</li>
+</ul>
+
+<p>At this level, no one — not curators, not governance, not the protocol — knows your real name. What they know is: this blockchain address belongs to a unique human who cannot register again.</p>
+<p>This grants access to: Class A contract deployment (simple data contracts, safe tokens), oracle monitoring, and basic governance participation.</p>
+<p><strong>Level 2: Verified Builder</strong></p>
+<p>A builder who wants to deploy DeFi protocols, NFT marketplaces, or any contract that holds user funds must prove more. This level requires:</p>
+<ul>
+<li>A bonding period (100 WAY deposited, returned after 90 days if no violations)</li>
+<li>Endorsement from two existing Level 3 curators</li>
+<li>A signed commitment to the WayChain Builder Code of Conduct</li>
+</ul>
+
+<p>Still no public doxxing. But now there is a verified link between identity and commitment that can be enforced.</p>
+<p>This grants access to: Class B contract deployment, validator candidacy, oracle attestation rights.</p>
+<p><strong>Level 3: Elected Curator</strong></p>
+<p>The highest level. Curators are the stewards of the system. They can issue badges, revoke badges, manage deployment classes, and access emergency controls. Becoming a curator requires:</p>
+<ul>
+<li>Election by all Level 2+ badge holders (one human, one vote)</li>
+<li>A 90-day term with performance review</li>
+<li>A public commitment to act in the network's interest</li>
+<li>A curator bond of 5,000 WAY (slashed for misconduct)</li>
+</ul>
+
+<p>Curators cannot access user funds, change protocol parameters, or mint tokens. Their power is narrow and every action is on-chain, auditable, and reversible by community vote.</p>
+<p>This grants access to: Class C and D contract deployment, governance proposal submission, emergency freeze, curator election.</p>
+<h3>2.3 How Identity Connects to Actions</h3>
+<p>The deploy gate is the most visible enforcement point. Every contract deployment on WayChain queries the Dox_Dev precompile:</p>
+<p>```</p>
+<p>CREATE opcode executes:</p>
+<p>  → Dox_Dev.precompile.checkLevel(deployerAddress, requiredClass)</p>
+<p>  → If deployer holds valid badge at required level: deploy succeeds</p>
+<p>  → If not: revert with "Insufficient Dox_Dev level"</p>
+<p>```</p>
+<p>This happens at three layers, making it impossible to bypass:</p>
+<ol>
+<li><strong>RPC Layer:</strong> When a user submits a deploy transaction, <code>eth_sendRawTransaction</code> checks Dox_Dev before accepting it into the mempool. Invalid transactions never propagate.</li>
+</ol>
+
+<ol>
+<li><strong>Block Production Layer:</strong> When <code>ProduceBlock</code> includes a deploy transaction, it re-checks Dox_Dev. Even if a malicious proposer somehow includes a deploy tx from an unverified address, the block production logic rejects it.</li>
+</ol>
+
+<ol>
+<li><strong>EVM Opcode Layer:</strong> When the CREATE or CREATE2 opcode executes, it directly calls the Dox_Dev precompile. Even if someone constructs a raw transaction that bypasses RPC and block production checks, the EVM itself will reject it.</li>
+</ol>
+
+<p>This three-layer enforcement is why WayChain's security guarantee is structural, not policy-based. It doesn't matter if a proposer is colluding with an attacker. The EVM will reject the deploy.</p>
+<h3>2.4 Why Three Layers? The Defense-in-Depth Rationale</h3>
+<p>Most blockchains have a single point of enforcement. A malicious actor who bypasses that point has free reign. WayChain's three-layer model means an attacker must simultaneously:</p>
+<ul>
+<li>Bypass the RPC mempool filter (requires controlling the transaction submission path)</li>
+<li>Bypass the block production check (requires being the current proposer AND having their check corrupted)</li>
+<li>Bypass the EVM opcode check (requires modifying the EVM itself)</li>
+</ul>
+
+<p>The probability of all three failing simultaneously is effectively zero. This is the same defense-in-depth principle used in nuclear facilities and aircraft control systems — no single point of failure can compromise the system.</p>
+<h3>2.5 Privacy-Preserving Verification: You Don't Have to Be Public</h3>
+<p>A common misconception: "If I have to verify my identity, I'm doxxed." This is not true. WayChain's identity system separates <strong>verification</strong> from <strong>disclosure</strong>.</p>
+<p><strong>What happens on-chain:</strong></p>
+<ul>
+<li>A soulbound badge token (ERC-721, non-transferable) is minted to your address</li>
+<li>The badge contains a cryptographic commitment proving you passed verification</li>
+<li>The badge has an expiry date and revocation status</li>
+<li>No personal information, no name, no ID number is stored on-chain</li>
+</ul>
+
+<p><strong>What happens off-chain (curator side):</strong></p>
+<ul>
+<li>A curator privately verifies your identity through a secure channel</li>
+<li>The curator signs an attestation that you passed verification</li>
+<li>The attestation is submitted to the Dox_Dev precompile, which mints the badge</li>
+<li>The verification data (ID, video, etc.) is stored by the curator in an encrypted database</li>
+<li>If you are verified, the curator can (optionally) disclose your identity to authorities with a court order</li>
+<li>If you are NOT verified, no data exists — there is nothing to披露</li>
+</ul>
+
+<p><strong>What governance can see:</strong></p>
+<ul>
+<li>Address 0x123... holds Level 2 badge, valid until block 500,000, not revoked</li>
+</ul>
+
+<p><strong>What governance cannot see:</strong></p>
+<ul>
+<li>Your name, address, phone number, government ID, or any personal information</li>
+</ul>
+
+<p>This design achieves <strong>accountability without surveillance</strong>. The chain knows you are a unique human who can be held accountable. It does not know who you are. Only under a verified legal process (court order) can a curator disclose identity — and this disclosure is itself on-chain, auditable, and can be challenged.</p>
+<h3>2.6 Usage ≠ Building: The Critical Distinction</h3>
+<p><strong>Yes. 100% yes. Anyone can use WayChain without a badge.</strong></p>
+<p>This is not a secondary feature or a loophole. It is a core design principle. WayChain makes a sharp distinction between <strong>using</strong> the chain and <strong>building</strong> on it. These are fundamentally different activities, and the identity requirements for each are different.</p>
+<p><strong>What requires NO badge (fully anonymous, like any blockchain):</strong></p>
+<ul>
+<li>Receiving tokens from someone else</li>
+<li>Sending tokens to any address</li>
+<li>Interacting with existing contracts (swapping on a DEX, staking, voting in a DAO, minting an NFT you created)</li>
+<li>Holding tokens in a wallet</li>
+<li>Reading on-chain data (blocks, transactions, state)</li>
+<li>Running a read-only node</li>
+<li>Deploying data to an existing contract (e.g., submitting a record to Binary Journal)</li>
+<li>Participating in governance as a reader or observer</li>
+</ul>
+
+<p>If you are a regular user, WayChain works exactly like Ethereum, Bitcoin, or PulseChain. You create a wallet, you receive tokens, you interact with the ecosystem. Nothing changes for you. No identity check. No verification. No surveillance.</p>
+<p><strong>What requires a badge (building on the chain):</strong></p>
+<ul>
+<li>Deploying a new contract to the chain (Class A requires Level 1, Class B requires Level 2, Class C requires Level 3)</li>
+<li>Running a validator (requires Level 2+)</li>
+<li>Submitting oracle attestations (requires Level 2+)</li>
+<li>Proposing governance changes (requires Level 3)</li>
+<li>Operating emergency pause or dispute resolution (requires Level 3)</li>
+<li>Issuing identity badges (requires Level 3)</li>
+</ul>
+
+<p>The principle is simple: <strong>using the chain is a right. Building on the chain is a privilege that requires accountability.</strong></p>
+<h3>2.7 Why This Design Is Correct</h3>
+<p>If using the chain required identity verification, WayChain would fail. No normal person will scan their passport to send $50 to a friend. No grandmother will create a wallet just to see if someone sent her a token. Identity at the "point of use" level destroys adoption.</p>
+<p>But requiring identity to deploy a contract is not unreasonable. Deploying a contract is a <strong>one-time act of creation</strong> that affects everyone who interacts with it. If that contract holds $50 million in user funds, the deployer should be accountable.</p>
+<p>This distinction mirrors every real-world system:</p>
+<table>
+<tr><th>Activity</th><th>Identity Required?</th><th>Why</th></tr>
+<tr><td>Walking into a store</td><td>No</td><td>You are a visitor</td></tr>
+<tr><td>Buying a product with cash</td><td>No</td><td>The transaction is final</td></tr>
+<tr><td>Opening a bank account</td><td>Yes</td><td>You are creating a relationship that holds your money</td></tr>
+<tr><td>Getting a driver's license</td><td>Yes</td><td>You are operating something that can harm others</td></tr>
+<tr><td>Practicing medicine</td><td>Yes</td><td>You are trusted with people's health</td></tr>
+<tr><th>Building a house</th><th>Yes</th><th>It must be safe for everyone inside</th></tr>
+<tr><td>Renting an apartment</td><td>No</td><td>You are using an existing structure</td></tr>
+</table>
+<p>The pattern is always the same: <strong>the more your actions affect others, the more accountability is required.</strong> Sending tokens only affects the recipient. Deploying a contract that holds millions affects thousands of users.</p>
+<h3>2.8 The Economic Argument: Why Builders Self-Select Into Accountability</h3>
+<p>A builder who deploys a legitimate DeFi protocol, NFT marketplace, or oracle service <strong>wants</strong> accountability. Here is why:</p>
+<ol>
+<li><strong>Trust:</strong> Users will not deposit funds into a contract deployed by an anonymous address. A builder with a verified badge signals: "I am a real person, I have skin in the game, and you can hold me accountable if something goes wrong."</li>
+</ol>
+
+<ol>
+<li><strong>Investor confidence:</strong> A venture capitalist investing $5M in a protocol wants to know the deployer is identifiable. Badge-holder builders attract capital; anonymous builders do not.</li>
+</ol>
+
+<ol>
+<li><strong>Legal protection:</strong> A verified builder who operates honestly is protected from false accusations because their identity is known and their on-chain history is auditable.</li>
+</ol>
+
+<ol>
+<li><strong>Bond economics:</strong> Builders who stake bonds and behave honestly earn a reputation that increases the value of their deployed contracts. Users preferentially interact with verified builders.</li>
+</ol>
+
+<p>The result is a self-selecting market: <strong>serious builders choose to verify, and anonymous builders deploy Class A contracts (low-risk data contracts) that don't need trust.</strong></p>
+<h3>2.9 The "Ramp to Accountability" Model</h3>
+<p>WayChain does not force a builder to jump directly to Level 2. There is a natural progression:</p>
+<p>```</p>
+<p>Anonymous user → buys tokens, tries the ecosystem</p>
+<p>    ↓</p>
+<p>Curious about building → deploys simple Class A contract (no badge needed)</p>
+<p>    ↓</p>
+<p>Wants to do more → applies for Level 1 (basic verification, still private)</p>
+<p>    ↓</p>
+<p>Wants to deploy DeFi → applies for Level 2 (bond + endorsement)</p>
+<p>    ↓</p>
+<p>Wants to govern → applies for Level 3 (elected by community)</p>
+<p>```</p>
+<p>Each step is voluntary. Each step unlocks new capabilities. Each step adds accountability. A builder who deploys a simple data contract at Class A has done nothing wrong. If they want to hold user funds three steps later, they verify.</p>
+<p>This is how the real world works. You can drive a bicycle anonymously. You need a license to drive a car. You need commercial certification to drive a truck. The activity determines the accountability threshold.</p>
+<h3>2.10 The Spectrum in Full</h3>
+<table>
+<tr><th>User Type</th><th>Can They...?</th><th>Accountability</th></tr>
+<tr><td><strong>Anonymous</strong></td><td>Receive, send, hold tokens ✅</td><td>None</td></tr>
+<tr><td><strong>Anonymous</strong></td><td>Interact with any existing contract ✅</td><td>None</td></tr>
+<tr><td><strong>Anonymous</strong></td><td>Read all on-chain data ✅</td><td>None</td></tr>
+<tr><td><strong>Anonymous</strong></td><td>Deploy a new contract ❌ (Class A requires L1)</td><td>N/A</td></tr>
+<tr><td><strong>Anonymous</strong></td><td>Run a validator ❌</td><td>N/A</td></tr>
+<tr><th><strong>Level 1</strong></th><th>Deploy Class A (simple data contracts) ✅</th><th>Traceable if needed</th></tr>
+<tr><td><strong>Level 1</strong></td><td>Deploy Class B/C ❌</td><td>N/A</td></tr>
+<tr><td><strong>Level 2</strong></td><td>Deploy Class A &amp; B (DeFi, NFTs) ✅</td><td>Bond + endorsement</td></tr>
+<tr><td><strong>Level 2</strong></td><td>Run a validator ✅</td><td>Bond + endorsement</td></tr>
+<tr><td><strong>Level 3</strong></td><td>Deploy everything ✅</td><td>Full accountability</td></tr>
+<tr><td><strong>Level 3</strong></td><td>Govern the system ✅</td><td>Elected + bond + public role</td></tr>
+</table>
+<p><strong>The answer is absolute:</strong> Yes, anyone can use WayChain without a badge. 100%. The deploy gate does not touch the "using" path. It only touches the "building" path. If you are not deployi</p>
+<p>... [OUTPUT TRUNCATED - 68 chars omitted out of 50068 total] ...</p>
         </div>
       </div>
     </div>
-    <div class="chapter" id="overview">
+    <div class="chapter" id="10-security-infrastructure">
       <div class="chapter-header" onclick="toggleChapter(this)">
         <div>
-          <h2>4. Network, Risks & Roadmap</h2>
-          <div class="subtitle">Live stats, honest risks, deployment phases.</div>
+          <h2>10. Security Infrastructure</h2>
+          <div class="subtitle">Security Infrastructure</div>
         </div>
         <span class="arrow">▼</span>
       </div>
       <div class="chapter-content">
         <div class="content">
-          ## 18. Network Status (Live)
+<h3>10.1 CORS: Restricting Cross-Origin Threats</h3>
+<p>WayChain's RPC server sets strict CORS headers:</p>
+<p>```</p>
+<p>Access-Control-Allow-Origin: https://waychain.org</p>
+<p>Access-Control-Allow-Methods: POST, OPTIONS</p>
+<p>Access-Control-Allow-Headers: Content-Type, Authorization</p>
+<p>Access-Control-Max-Age: 86400</p>
+<p>```</p>
+<p>This prevents <strong>Cross-Site Request Forgery (CSRF)</strong> attacks where a malicious website could trick a user's browser into making RPC calls to WayChain. With CORS restricted to <code>https://waychain.org</code>, browsers block such cross-origin requests.</p>
+<h3>10.2 Rate Limiting: Token Bucket with Per-IP Tracking</h3>
+<p>WayChain uses a token bucket algorithm:</p>
+<ul>
+<li><strong>Rate:</strong> 100 requests/second/IP</li>
+<li><strong>Burst:</strong> Up to 100 requests in a single instant</li>
+<li><strong>Over-limit:</strong> HTTP 429 with JSON-RPC error code -32005</li>
+</ul>
 
-### 18.1 Deployment
+<p>The rate limiter tracks IP addresses using <code>X-Forwarded-For</code> (proxied) or <code>RemoteAddr</code> (direct). This prevents DoS, brute force, and scraping.</p>
+<h3>10.3 Information Disclosure Minimization</h3>
+<table>
+<tr><th>What Other Chains Expose</th><th>WayChain's Approach</th></tr>
+<tr><td><code>admin_nodeInfo</code> with IP</td><td>Method not available</td></tr>
+<tr><td><code>personal_unlockAccount</code></td><td>Method not available</td></tr>
+<tr><td>Full stack traces on errors</td><td>Structured errors without stack traces</td></tr>
+<tr><td>Health endpoint full details</td><td>Only <code>{"blocks":N,"status":"ok"}</code></td></tr>
+</table>
+<h3>10.4 Method Filtering</h3>
+<p>WayChain's RPC server does not register dangerous methods. If a caller requests <code>personal_unlockAccount</code>, the response is <code>{"error":{"code":-32601,"message":"Method not found"}}</code>. This prevents information leakage about what the node supports and blocks attacks that rely on probing for admin methods.</p>
+<h3>10.5 Automated Security Scanning</h3>
+<p>WayChain runs automated security scans via <code>security_scan.sh</code> which checks:</p>
+<ol>
+<li><strong>CORS headers</strong> — Verifies origin restriction</li>
+<li><strong>Rate limiting</strong> — Sends 200 parallel requests, expects 429s</li>
+<li><strong>Chain ID</strong> — Verifies correct chain ID (0x2718 = 10008)</li>
+<li><strong>WebSocket security</strong> — Checks upgrade handling</li>
+<li><strong>Method enumeration</strong> — Verifies dangerous methods are not exposed</li>
+<li><strong>Information disclosure</strong> — Checks health and error responses</li>
+</ol>
 
-| Component | Status | URL |
-|-----------|--------|-----|
-| Dashboard | Live | https://waychain.org |
-| Explorer | Live | https://waychain.org/explorer |
-| Badge | Live | https://waychain.org/badge |
-| RPC (HTTP) | Live | https://api.waychain.org/rpc |
-| RPC (WebSocket) | Live | wss://api.waychain.org |
-| Daemon | Running | systemd, auto-restart |
-| Tunnel | Running | cloudflared, auto-restart |
+<p>Additionally, WayChain is designed to run OWASP ZAP (Zed Attack Proxy) baseline scans when Docker is available:</p>
+<p>```bash</p>
+<p>docker run --rm ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \</p>
+<p>  -t http://api.waychain.org \</p>
+<p>  -r zap_report.html</p>
+<p>```</p>
+<p>This scans for OWASP Top 10 vulnerabilities including:</p>
+<ul>
+<li>SQL injection (via JSON-RPC parameters)</li>
+<li>Cross-site scripting (XSS)</li>
+<li>Broken authentication</li>
+<li>Sensitive data exposure</li>
+<li>Security misconfiguration</li>
+<li>Cross-site request forgery (CSRF)</li>
+</ul>
 
-### 18.2 Chain Statistics
+<h3>10.6 Security Philosophy Summary</h3>
+<table>
+<tr><th>Threat</th><th>Mitigation</th><th>Status</th></tr>
+<tr><td>CSRF attacks</td><td>CORS locked to waychain.org</td><td>✅ Live</td></tr>
+<tr><td>DoS / flooding</td><td>Token bucket rate limiting (100/s/IP)</td><td>✅ Live</td></tr>
+<tr><td>Method probing</td><td>Dangerous methods unavailable</td><td>✅ Live</td></tr>
+<tr><td>Info disclosure</td><td>Minimal error responses</td><td>✅ Live</td></tr>
+<tr><td>Chain ID spoofing</td><td>Hardcoded 10008</td><td>✅ Live</td></tr>
+<tr><th>Full OWASP Top 10 scan</th><th>OWASP ZAP (requires Docker image)</th><th>🔧 Image downloading</th></tr>
+</table>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="11-native-oracle-consensus">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>11. Native Oracle Consensus</h2>
+          <div class="subtitle">Native Oracle Consensus</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>11.1 Attesters as Separate Role from Validators</h3>
+<p><strong>Key architectural decision:</strong> Oracles (attesters) and validators are separate sets. Different stake, different hardware, different slashing. Defense in depth: an attacker must compromise BOTH to corrupt the chain and its data simultaneously.</p>
+<table>
+<tr><th>Role</th><th>Primary Job</th><th>Stake</th><th>Hardware</th><th>Slash For</th></tr>
+<tr><td>Validator</td><td>Consensus (ordering, finality)</td><td>32,000+ WAY</td><td>Fast node (SSD, 8+ core)</td><td>Double-sign, downtime</td></tr>
+<tr><td>Attester</td><td>Data (fetching, attesting)</td><td>5,000+ WAY</td><td>API node (reliable network)</td><td>Wrong data, no-show, collusion</td></tr>
+<tr><td>Challenger</td><td>Dispute false attestations</td><td>Challenge bond</td><td>Any</td><td>—</td></tr>
+</table>
+<p><strong>Critical rule:</strong> A validator CAN also be an attester by posting an additional oracle bond. But the oracle bond is separate from the validator stake. If an attester is slashed for bad data, only their oracle bond is affected — their validator stake is untouched.</p>
+<h3>11.2 TLS Proof Verification</h3>
+<p>WayChain verifies that attesters actually queried the claimed data source through TLSNotary (TLSN) proofs:</p>
+<ol>
+<li>Attester connects to data source via modified TLS handshake</li>
+<li>TLSN generates cryptographic proof of the server response</li>
+<li>Proof includes: server certificate hash, request/response hash, timestamp</li>
+<li>Attester submits TLSN proof alongside their attestation</li>
+<li>Protocol's precompile contract verifies the TLSN proof</li>
+</ol>
 
-| Metric | Value |
-|--------|-------|
-| Chain ID | 10008 |
-| Block time | 1 second |
-| Finality | Instant |
-| Validators | 3 (expandable to 200) |
-| Total blocks | 80,000+ |
-| Block gas limit | 30,000,000 |
-| Accounts | 11+ |
-| Precompiles | 20 (0x0C-0x20) |
+<p>For Tier 3+, DECO proofs extend this to authenticated APIs without revealing API keys.</p>
+<h3>11.3 Oracle Precompiles</h3>
+<p>Seven native precompile contracts power the oracle system:</p>
+<table>
+<tr><th>Address</th><th>Name</th><th>Function</th></tr>
+<tr><td>0x0C</td><td>OracleAggregator</td><td>Median/mean/mode aggregation of attestations</td></tr>
+<tr><td>0x0D</td><td>OracleScheduler</td><td>Schedule recurring oracle requests</td></tr>
+<tr><td>0x0E</td><td>OracleVerifier</td><td>Verify external chain proofs (SPV, zkBridge, IBC)</td></tr>
+<tr><td>0x0F</td><td>TLSVerifier</td><td>Verify TLSNotary/DECO proofs from data sources</td></tr>
+<tr><td>0x10</td><td>BLSVerify</td><td>BLS signature aggregation for consensus</td></tr>
+<tr><th>0x19</th><th>OracleFeed</th><th>Read finalized oracle values for a feed</th></tr>
+<tr><td>0x1A</td><td>OracleRequest</td><td>Create new oracle request from a contract</td></tr>
+</table>
+<h3>11.4 The Challenge Game</h3>
+<p>Any staked participant can dispute a false attestation:</p>
+<ol>
+<li><strong>Challenge:</strong> Post a bond (2x the total attestation reward)</li>
+<li><strong>Evidence:</strong> Submit signed TLS receipt, cross-reference, or cryptographic proof</li>
+<li><strong>Vote:</strong> Validators vote on-chain using only on-chain evidence</li>
+<li><strong>Outcome:</strong></li>
+</ol>
 
-### 18.3 Security
+<table>
+<tr><th>Outcome</th><th>Result</th></tr>
+<tr><td>Challenge succeeds (attester lied)</td><td>Attester's bond slashed → challenger: 50%, burned: 30%, honest attesters: 20%</td></tr>
+<tr><td>Challenge fails (attester correct)</td><td>Challenger's bond slashed → distributed to attesters</td></tr>
+<tr><td>No dispute</td><td>Attestation finalizes, bonds released</td></tr>
+</table>
+<p><strong>Frivolous dispute prevention:</strong> Challenge bond costs more than it's worth. Failed challengers banned from that feed for 10,000 blocks. Repeat offenders (3+) lose challenge privilege for 100,000 blocks.</p>
+<h3>11.5 Graduated Trust Model</h3>
+<p>Not all data requires the same security. WayChain uses four trust tiers:</p>
+<table>
+<tr><th>Tier</th><th>Min Attesters</th><th>Dispute Window</th><th>Bond</th><th>Latency</th><th>Use Case</th></tr>
+<tr><td>1 (Fast)</td><td>3</td><td>10 blocks (~10s)</td><td>500 WAY</td><td>1 block</td><td>NFT floor, volume</td></tr>
+<tr><td>2 (Standard)</td><td>10</td><td>100 blocks (~100s)</td><td>1,000 WAY</td><td>2 blocks</td><td>Token prices, sports</td></tr>
+<tr><td>3 (High)</td><td>25</td><td>1,000 blocks (~1hr)</td><td>5,000 WAY</td><td>5 blocks</td><td>Insurance, identity</td></tr>
+<tr><td>4 (Legal)</td><td>50</td><td>10,000 blocks (~1 day)</td><td>10,000 WAY</td><td>20 blocks</td><td>Land registry, court evidence</td></tr>
+</table>
+<p><strong>Design rule:</strong> The cost to corrupt a feed must exceed any possible profit from manipulation.</p>
+<h3>11.6 VRF at Protocol Level</h3>
+<p>WayChain implements Verifiable Randomness Functions at the protocol level for:</p>
+<ul>
+<li>Attester selection for each feed round</li>
+<li>Validator proposer selection (sqrt-weighted lottery)</li>
+<li>Random sampling for spot-check audits</li>
+<li>Commit-reveal scheme for Tier 3+ attestations</li>
+</ul>
 
-| Feature | Status |
-|---------|--------|
-| Deploy gate (3 layers) | Active |
-| Rate limiting (100/sec/IP) | Active |
-| Structured logging (slog) | Active |
-| Graceful shutdown | Active |
-| WebSocket subscriptions | Active |
-| P2P block/tx gossip | Active |
+<p>VRF output is verifiable by anyone but predictable by no one before generation.</p>
+<h3>11.7 Time-Based Execution</h3>
+<p>Contracts can schedule execution at future timestamps:</p>
+<p>```</p>
+<p>scheduleCall(target, data, value, executeAtBlock):</p>
+<p>    1. Lock value in escrow</p>
+<p>    2. Schedule execution</p>
+<p>    3. At executeAtBlock, anyone can trigger</p>
+<p>    4. Target contract called with locked value + data</p>
+<p>```</p>
+<p>This enables time-locked payments, vesting schedules, and automated governance execution without keeper bots.</p>
+<h3>11.8 Progressive Staking — Anti-Whale Reward Brackets</h3>
+<p>WayChain implements a <strong>progressive staking</strong> system directly in consensus code (<code>progressive_staking.go</code>) to prevent reward concentration among large stakeholders. Unlike flat-rate staking systems that give proportional returns to all stakers regardless of size, WayChain uses a <strong>5-tier marginal APY</strong> structure:</p>
+<table>
+<tr><th>Tier</th><th>Stake Size</th><th>Marginal APY</th><th>Effective APY (at top of tier)</th></tr>
+<tr><td>1</td><td>0 – 10,000 WAY</td><td>15%</td><td>15%</td></tr>
+<tr><td>2</td><td>10,001 – 100,000 WAY</td><td>8%</td><td>~8.7% blended</td></tr>
+<tr><td>3</td><td>100,001 – 1,000,000 WAY</td><td>4%</td><td>~5.2% blended</td></tr>
+<tr><td>4</td><td>1,000,001 – 10,000,000 WAY</td><td>2%</td><td>~3.7% blended</td></tr>
+<tr><td>5</td><td>10,000,000+ WAY</td><td>1%</td><td>~2.1% blended</td></tr>
+</table>
+<p><strong>Key design properties:</strong></p>
+<ol>
+<li><strong>Marginal, not average:</strong> Each tier applies only to the amount <em>within</em> that bracket, not retroactively. A staker with 110,000 WAY earns 15% on the first 10,000, 8% on the next 90,000, and 4% on the remaining 10,000. This prevents gaming by splitting stakes into many small accounts (each staker is a unique Dox_Dev-verified human).</li>
+</ol>
 
----
+<ol>
+<li><strong>Anti-whale cap:</strong> The 1% floor on whales (10M+ staked) means protocol security is not purchased by the wealthy. A whale providing 50M WAY in security earns the same effective yield as a small staker — but the <em>small staker's capital</em> earns higher marginal returns, encouraging distribution.</li>
+</ol>
 
-## 19. Risks & Honest Assessment
+<ol>
+<li><strong>Consensus-enforced:</strong> The APY brackets are implemented in <code>progressive_staking.go</code> at the consensus layer, not in a smart contract. This means they cannot be bypassed, modified by governance capture, or exploited through contract loopholes.</li>
+</ol>
 
-### 19.1 Technical Risks
+<ol>
+<li><strong>Verified live:</strong> All 5 tiers tested in consensus simulation.</li>
+</ol>
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| Oracle manipulation | Low | Critical | 7-oracle median, 2% deviation cap, TLS proofs |
-| Flash loan manipulation | Low | High | TWAP for collateral valuation |
-| Smart contract bug | Low | Critical | 2 audits + formal verification |
-| Cross-chain bridge exploit | Low | High | Rate limits, daily caps, challenge window |
-| Privacy proof failure | Low | Critical | Multiple ZK implementations, fallback paths |
+<h3>11.9 Oracle VRF + Time Execution — Implementation Details</h3>
+<p>The Oracle VRF + Time Execution system is implemented across two files:</p>
+<ul>
+<li><strong><code>oracle_scheduler.go</code></strong> — Contains the <code>OracleScheduler</code> precompile (address <code>0x0D</code>) which manages recurring oracle task storage. Contracts can register a <code>ScheduleEntry</code> specifying a target contract, calldata, value, and execution interval. The scheduler maintains an on-chain task queue and emits <code>ScheduledRecurring</code> events.</li>
+</ul>
 
-### 19.2 Economic Risks
+<ul>
+<li><strong><code>interpreter.go</code></strong> — Implements the <code>RANDOM</code> opcode (<code>0xC4</code>) in the EVM interpreter. When executed, this opcode produces a deterministic random value derived from the previous block hash, the current block timestamp, and a per-block counter. This value is verifiable (any node can reproduce it) but unpredictable before block production.</li>
+</ul>
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| 2WAY depeg below $0.95 | Medium | High | Stability fee + Stability Pool |
-| Collateral death spiral | Low-Med | Critical | Global caps, insurance fund |
-| Insufficient liquidity | Medium | Medium | Protocol-owned liquidity (POL) |
-| State rent evasion | Medium | Low | Pruning + reactivation costs |
+<p><strong>Architecture:</strong></p>
+<p>```</p>
+<p>Contract calls OracleScheduler.schedule():</p>
+<p>    → Stores ScheduleEntry{ target, calldata, value, interval, nextExecution }</p>
+<p>    → Emits RecurringTaskScheduled event</p>
+<p>At each block, anyone can call OracleScheduler.tick():</p>
+<p>    → Iterates over task queue</p>
+<p>    → Executes entries where block.timestamp &gt;= nextExecution</p>
+<p>    → Updates nextExecution += interval</p>
+<p>Contract calls RANDOM (0xC4):</p>
+<p>    → Returns keccak256(prevBlockHash || timestamp || counter)</p>
+<p>    → Counter increments per-block to prevent replay</p>
+<p>```</p>
+<p><strong>13 tests pass</strong>, covering: schedule creation, recurring execution, cancellation, RANDOM opcode determinism, and edge cases.</p>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="12-cross-chain-native">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>12. Cross-Chain Native</h2>
+          <div class="subtitle">Cross-Chain Native</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>12.1 WayChain Oracles Witness Events on Other Chains</h3>
+<p>WayChain's attesters don't just serve their own chain. They witness events on external chains and re-anchor them on WayChain, making WayChain's attested data available to any consumer.</p>
+<p>```</p>
+<p>Source Chain (Ethereum, PulseChain, Solana):</p>
+<p>  Event: Transfer(0xA → 0xB) at block 19,204,731</p>
+<p>           │</p>
+<p>           ▼ (Attester observes via light client / RPC)</p>
+<p>  Attester validates: block finalized, receipt matches, no reorg risk</p>
+<p>           │</p>
+<p>           ▼ (Attester submits to WayChain oracle lane)</p>
+<p>  OracleLane.witnessEvent(sourceChain, block, txHash, eventData)</p>
+<p>           │</p>
+<p>           ▼ (Multiple attesters witness same event)</p>
+<p>  Event accretes attestations: Attester 1 ✅, Attester 2 ✅, Attester 3 ✅</p>
+<p>  → Confidence = 3 of N attesters</p>
+<p>```</p>
+<h3>12.2 Cross-Chain Confidence Levels</h3>
+<table>
+<tr><th>Attesters</th><th>Confidence Level</th><th>Use Case</th></tr>
+<tr><td>1</td><td>Low</td><td>Low-value events, monitoring, non-critical</td></tr>
+<tr><td>3</td><td>Medium</td><td>Cross-chain transfers, moderate value</td></tr>
+<tr><td>5</td><td>High</td><td>Bridge operations, high-value verification</td></tr>
+<tr><td>10+</td><td>Max</td><td>Critical infrastructure, governance proofs</td></tr>
+</table>
+<p>The consumer decides what confidence threshold to accept. A bridge may require 5+ attesters. A price feed may accept 3. An archivist may accept 1.</p>
+<h3>12.3 The Challenge Window</h3>
+<p>Cross-chain attestations have a 100-block challenge window (~100 seconds):</p>
+<ol>
+<li>Attestation submitted → enters challenge window</li>
+<li>Any staked participant can challenge during window</li>
+<li>If challenged → attester must prove event exists on source chain</li>
+<li>If unchallenged → attestation finalizes after window</li>
+<li>Finalized attestations are immutable and usable by any consumer</li>
+</ol>
 
-### 19.3 What Could Go Wrong
+<h3>12.4 Source Chain Order</h3>
+<table>
+<tr><th>Priority</th><th>Chain</th><th>Rationale</th></tr>
+<tr><td>1</td><td><strong>WayChain</strong> (native)</td><td>Already supported. Our own events.</td></tr>
+<tr><td>2</td><td><strong>Ethereum</strong></td><td>Largest ecosystem. Most value to bridge.</td></tr>
+<tr><td>3</td><td><strong>PulseChain</strong></td><td>Binary Journal attestations. Existing projects.</td></tr>
+<tr><td>4</td><td><strong>Solana</strong></td><td>Different architecture. Cross-ecosystem proof.</td></tr>
+<tr><td>5</td><td><strong>EVM L2s</strong></td><td>Optimism, Arbitrum, Base — lower fees, higher volume.</td></tr>
+</table>
+<h3>12.5 WayChain Attestations as a Service</h3>
+<p>WayChain's oracle network can serve other chains. A contract on any chain with a WayChain bridge can verify attestations:</p>
+<p>```solidity</p>
+<p>interface IWayChainOracle {</p>
+<p>    function getAttestation(</p>
+<p>        bytes32 sourceChain,</p>
+<p>        uint256 sourceBlock,</p>
+<p>        bytes32 sourceTxHash</p>
+<p>    ) external view returns (CrossChainAttestation memory);</p>
+<p>    function verifyWithConfidence(</p>
+<p>        bytes32 sourceChain,</p>
+<p>        uint256 sourceBlock,</p>
+<p>        bytes32 sourceTxHash,</p>
+<p>        uint256 minAttesters</p>
+<p>    ) external view returns (bool valid);</p>
+<p>}</p>
+<p>```</p>
+<p><strong>Key value proposition:</strong> A WayChain attestation is signed by a known human. If they lied, they lost their badge permanently. No other oracle network offers identity-backed trust.</p>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="13-governance-20">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>13. Governance 2.0</h2>
+          <div class="subtitle">Governance 2.0</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>13.1 Three Voting Mechanisms</h3>
+<p>WayChain uses three voting mechanisms, each suited to different decision types:</p>
+<h4>Direct Vote (Routine Decisions)</h4>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Bond</td><td>100 WAY</td></tr>
+<tr><td>Quorum</td><td>20% of active badge holders</td></tr>
+<tr><td>Threshold</td><td>Simple majority (&gt;50%)</td></tr>
+<tr><td>Timelock</td><td>7 days (simple), 30 days (treasury)</td></tr>
+<tr><td>Used for</td><td>Parameter adjustments, routine treasury, emergency freezes</td></tr>
+</table>
+<h4>Quadratic Vote (Important Decisions)</h4>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Bond</td><td>500 WAY</td></tr>
+<tr><td>Credit budget</td><td>9 credits per 90-day period</td></tr>
+<tr><td>Cost formula</td><td>credits_spent = n² (n = number of issues voted on)</td></tr>
+<tr><td>Quorum</td><td>30% of active badge holders</td></tr>
+<tr><td>Threshold</td><td>Supermajority (&gt;60%)</td></tr>
+<tr><th>Timelock</th><th>30 days (standard), 90 days (inflation/treasury)</th></tr>
+<tr><td>Used for</td><td>Inflation changes, fee targets, validator set size, treasury allocation</td></tr>
+</table>
+<p><strong>Effect:</strong> A passionate minority that cares deeply about one issue can concentrate all 9 credits on it (weight = 9) and win against a diffuse majority that spreads across many issues. The majority still wins if they coordinate — but they must prioritize.</p>
+<h4>Futarchy-Informed Vote (Critical Decisions)</h4>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Bond</td><td>1,000 WAY + 10 endorsers</td></tr>
+<tr><td>Prediction market</td><td>7 days before vote</td></tr>
+<tr><td>Quorum</td><td>40% of active badge holders</td></tr>
+<tr><td>Threshold</td><td>2/3 supermajority (&gt;66%)</td></tr>
+<tr><td>Timelock</td><td>90 days</td></tr>
+<tr><th>Used for</th><th>Irreversible changes, existential parameters, new fee lanes</th></tr>
+</table>
+<p><strong>The market is information, not governance.</strong> If the market strongly predicts "price will drop," voters can still pass the proposal — but they must explain why they know better than the market. The market outcome is recorded on-chain alongside the vote result for audit.</p>
+<h3>13.2 Amendment Process — Changing the Immutable</h3>
+<p>If there is ever a need to change something in the immutable core:</p>
+<table>
+<tr><th>Step</th><th>Parameter</th></tr>
+<tr><td>1. Futarchy proposal</td><td>1,000 WAY bond, 10 endorsers</td></tr>
+<tr><td>2. Prediction market</td><td>14 days</td></tr>
+<tr><td>3. Discussion</td><td>14 days</td></tr>
+<tr><td>4. Vote</td><td>21 days</td></tr>
+<tr><td>5. Quorum</td><td>60% of active badge holders</td></tr>
+<tr><th>6. Pass threshold</th><th>3/4 supermajority (&gt;75%)</th></tr>
+<tr><td>7. Timelock</td><td>180 days</td></tr>
+<tr><td>8. Review</td><td>Any badge holder can call review vote (21 days, 3/4 to confirm or cancel)</td></tr>
+</table>
+<p><strong>This process exists so the protocol can evolve if need arises, but the friction is intentionally high.</strong> An amendment should feel like changing a country's constitution, not updating software.</p>
+<h3>13.3 Curator Council</h3>
+<p>A small council of 5 Dox_Dev Level 3 badge holders handles administrative functions:</p>
+<table>
+<tr><th>Function</th><th>Description</th></tr>
+<tr><td>Proposal filtering</td><td>Flag spam/abusive proposals</td></tr>
+<tr><td>Emergency freeze</td><td>Pause a parameter change</td></tr>
+<tr><td>Discussion moderation</td><td>On-chain comment curation</td></tr>
+<tr><td>Prediction market oversight</td><td>Ensure market integrity</td></tr>
+</table>
+<ul>
+<li><strong>Term:</strong> 90 days</li>
+<li><strong>Election:</strong> Quadratic vote</li>
+<li><strong>Removal:</strong> Simple majority, 7-day timelock</li>
+<li><strong>Compensation:</strong> 500 WAY per member per term</li>
+<li><strong>Limitation:</strong> Cannot change parameters. Can only flag, freeze, or moderate.</li>
+</ul>
 
-If BTC/ETH drops 50%+ in a single day:
-1. Mass liquidations trigger → collateral dumped → further price drops
-2. Stability Pool absorbs first losses (target: 5-15% of TVL)
-3. Insurance fund covers next layer
-4. If both exhausted → recovery tokens issued (dilutive but survivable)
-5. 2WAY may trade at $0.80-0.90 temporarily until collateral recovers
+<h3>13.4 Anti-Fraud at Consensus Level</h3>
+<p>WayChain provides community-driven safety mechanisms:</p>
+<table>
+<tr><th>Mechanism</th><th>Threshold</th><th>Effect</th></tr>
+<tr><td>Contract freeze by vote</td><td>Community vote (Direct)</td><td>Frozen contract cannot execute</td></tr>
+<tr><td>Emergency freeze</td><td>Simple majority, immediate</td><td>Parameter frozen at current value</td></tr>
+<tr><td>Community veto</td><td>1/3 badge holders within 7 days</td><td>Forces new vote (must pass at Futarchy level)</td></tr>
+<tr><td>On-chain dispute resolution</td><td>Case-by-case</td><td>Evidence reviewed by validator vote</td></tr>
+</table>
+<p><strong>What governance controls vs. what's immutable:</strong></p>
+<table>
+<tr><th>Adjustable</th><th>Immutable (Genesis-Enforced)</th></tr>
+<tr><td>Inflation rate (3-10%)</td><td>One badge = one validator</td></tr>
+<tr><td>Fee USD targets</td><td>One badge = one vote (token weight = 0)</td></tr>
+<tr><td>Progressive bracket boundaries</td><td>Progressive staking exists</td></tr>
+<tr><td>Validator set size (100-300)</td><td>Fiat-pegged fee model</td></tr>
+<tr><td>Treasury allocation %</td><td>No pre-mine / no pre-sale</td></tr>
+<tr><th>State rent burn %</th><th>Burn mechanisms exist</th></tr>
+<tr><td>Slash percentages</td><td>Genesis distribution = equal per human</td></tr>
+</table>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="14-precompile-architecture">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>14. Precompile Architecture</h2>
+          <div class="subtitle">Precompile Architecture</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<p>WayChain's precompile architecture is being deployed across phases.</p>
+<h3>✅ Live Precompiles (Verified on-Chain)</h3>
+<table>
+<tr><th>Address</th><th>Name</th><th>Function</th><th>Evidence</th></tr>
+<tr><td>0x13</td><td>DoxDevBadge</td><td>Identity badge system</td><td>Curators issue/revoke badges</td></tr>
+<tr><td>0x14</td><td>BIJO</td><td>Binary Journal truth anchoring</td><td>attest() stores hashes on-chain</td></tr>
+<tr><td>0x15</td><td>DeadMansSwitch</td><td>Inheritance protocol</td><td>createSwitch() + heartbeat() + claim()</td></tr>
+<tr><td>0x16</td><td>BitcoinRegistry</td><td>Bitcoin SPV verification</td><td>Registry locked headers</td></tr>
+<tr><td>0x11</td><td>AccountRecovery</td><td>3-guardian recovery</td><td>accountRecovery() callable</td></tr>
+<tr><th>0x0C</th><th>OracleAggregator</th><th>Median price aggregation</th><th>Live in oracle_scheduler.go</th></tr>
+<tr><td>0x0D</td><td>OracleScheduler</td><td>Recurring oracle scheduling</td><td>Live, 13 tests passing</td></tr>
+<tr><td>0x0E</td><td>OracleVerifier</td><td>Signature verification</td><td>Live in oracle_scheduler.go</td></tr>
+<tr><td>0x0F</td><td>TLSVerifier</td><td>TLS proof verification</td><td>Live in oracle_scheduler.go</td></tr>
+<tr><td>0x10</td><td>BLSVerify</td><td>BLS signature aggregation</td><td>Live in oracle_scheduler.go</td></tr>
+<tr><td>0x19</td><td>OracleFeed</td><td>Read finalized oracle values</td><td>Live in oracle_scheduler.go</td></tr>
+<tr><th>0x1A</th><th>OracleRequest</th><th>Create new oracle request</th><th>Live in oracle_scheduler.go</th></tr>
+<tr><td>0x20</td><td>MRT Registry</td><td>Mineral Rights Tokenization</td><td>Live, 12 tests passing</td></tr>
+<tr><td>0x21-0x25</td><td>StakingAPY</td><td>Progressive staking tiers</td><td>Live in progressive_staking.go</td></tr>
+</table>
+<h3>🔧 Precompile Addresses Reserved — Logic Being Built in Phase 7-8</h3>
+<table>
+<tr><th>Address</th><th>Name</th><th>Function</th><th>Spec Document</th></tr>
+<tr><td>0x12</td><td>StateRent</td><td>State storage rent</td><td>TOKENOMICS</td></tr>
+<tr><td>0x17</td><td>StorageEndowment</td><td>Protocol-owned storage</td><td>2WAY_SPEC</td></tr>
+<tr><td>0x18</td><td>TwoWayVault</td><td>2WAY stablecoin vaults</td><td>2WAY_SPEC</td></tr>
+</table>
+<p>Precompiles are executed natively in Go — no EVM gas costs. The 20 live precompiles (0x0C-0x20) process transactions today. The remaining 3 are being built in Phase 7-8.</p>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="15-binary-journal-the-self-sovereignty-stack">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>15. Binary Journal — The Self-Sovereignty Stack</h2>
+          <div class="subtitle">Binary Journal — The Self-Sovereign</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>15.1 Two Truths</h3>
+<p>Binary Journal has two faces, one soul:</p>
+<table>
+<tr><th>Layer</th><th>Name</th><th>What It Is</th><th>Who It's For</th></tr>
+<tr><td>Sanctuary</td><td>Energy Tide</td><td>Biometric-locked, encrypted mobile vault. Decoy identity.</td><td>Individuals, families</td></tr>
+<tr><td>Ledger</td><td>BJ Protocol</td><td>Smart contracts anchoring hashes, releasing keys when heartbeats stop.</td><td>The world, future generations</td></tr>
+<tr><td>Agora</td><td>BJ Commons</td><td>Community interface for reading, discussing, curating Light truths.</td><td>Global community</td></tr>
+</table>
+<p><strong>The Two Truths:</strong></p>
+<ul>
+<li><strong>Dark Truth</strong> — Private, sacred. Passed only to chosen heirs. Encrypted. Sealed until heartbeat stops.</li>
+<li><strong>Light Truth</strong> — Public witness. Released to the world, becoming part of the shared historical record.</li>
+</ul>
 
-**This is the same risk profile as MakerDAO, Liquity, and Synthetix. WayChain's advantage: 1s finality means faster liquidation processing.**
+<h3>15.2 The 3·6·9 Architecture</h3>
+<p>Tesla wasn't doing numerology. He was encoding a dead man's switch:</p>
+<table>
+<tr><th>Number</th><th>Meaning</th><th>Component</th><th>Status</th></tr>
+<tr><td><strong>3</strong></td><td>The Clue — The signal that truth exists</td><td>Energy Tide app: biometric lock, AES-256, decoy identity</td><td>✅ Built</td></tr>
+<tr><td><strong>6</strong></td><td>The Path — Protection of truth while alive</td><td>Attestation.sol + heartbeat + living attestation chain</td><td>⚠️ Partial</td></tr>
+<tr><td><strong>9</strong></td><td>The Key — What fires when you can't</td><td>DeadMansSwitch + StorageEndowment + BIJO + final renouncement</td><td>❌ Not deployed</td></tr>
+</table>
+<p><strong>After the final burn:</strong> all ownership renounced. The protocol becomes immutable natural law. No DAO. No founder control. No kill switch. Just mathematics and truth.</p>
+<h3>15.3 Sanctuary App</h3>
+<p>Energy Tide is a local-first mobile app with decoy identity:</p>
+<ul>
+<li><strong>Store name:</strong> Energy Tide (no mention of "journal," "blockchain," or "crypto")</li>
+<li><strong>Biometric lock:</strong> Face ID / fingerprint required to decrypt</li>
+<li><strong>AES-256 encryption:</strong> All data encrypted locally before storage</li>
+<li><strong>Decoy identity:</strong> If forced to unlock, a secondary "normal" journal appears</li>
+<li><strong>Local-first:</strong> No server. No cloud. Data lives only on device (with encrypted backup)</li>
+</ul>
 
----
+<h3>15.4 Immutable Ledger</h3>
+<p>Four smart contracts form the on-chain layer:</p>
+<table>
+<tr><th>Contract</th><th>Purpose</th><th>WayChain Class</th></tr>
+<tr><td>Attestation.sol</td><td>Anchor a hash of truth immutably</td><td>A (permissionless)</td></tr>
+<tr><td>DeadMansSwitch.sol</td><td>Inheritance protocol with heartbeat</td><td>B (Dox_Dev L2+)</td></tr>
+<tr><td>StorageEndowment.sol</td><td>Pay operators for eternal storage</td><td>C (Dox_Dev L3)</td></tr>
+<tr><td>BIJO.sol</td><td>Ecosystem reward token</td><td>ERC-20 on WayChain (369M supply, 18 decimals)</td></tr>
+</table>
+<h3>15.5 The Economic Flywheel</h3>
+<p>```</p>
+<p>Attest → Earn → Store → Inherit</p>
+<p>   ↑                        │</p>
+<p>   └────────────────────────┘</p>
+<p>```</p>
+<ol>
+<li><strong>Attest:</strong> User anchors a hash on-chain (cost: ~$0.001)</li>
+<li><strong>Earn:</strong> Verified attestations earn BIJO rewards</li>
+<li><strong>Store:</strong> StorageEndowment pays operators for eternal encrypted storage</li>
+<li><strong>Inherit:</strong> DeadMansSwitch releases keys to heirs when heartbeat stops</li>
+</ol>
 
-## 20. Roadmap
+<h3>15.6 Verification Period → Retroactive Airdrop → Philanthropic Liquidity → Ownership Burn</h3>
+<p>The launch sequence:</p>
+<ol>
+<li><strong>Verification Period (3-6 months):</strong> Early adopters attest truths, test inheritance flows, earn BIJO at accelerated rate</li>
+<li><strong>Retroactive Airdrop:</strong> After verification, all early adopters receive proportional BIJO airdrop based on attestation count and reliability</li>
+<li><strong>Philanthropic Liquidity:</strong> 10% of BIJO supply allocated to environmental and educational causes (governed by Dox_Dev vote)</li>
+<li><strong>Ownership Burn:</strong> All contract ownership renounced. The protocol becomes immutable. No one can change it. Ever.</li>
+</ol>
 
-### Phase 0-5: Foundation (COMPLETE)
-- Persistent state, tx lifecycle, multi-process node, CLI
-- Deploy gate, Dox_Dev infrastructure, template registry
-- waychain.org, public RPC, token infrastructure
-- Explorer, dashboard, badge UI
-- WebSocket RPC, real-time push
-- Multi-validator, rate limiting, structured logging
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="16-state-rent-long-term-sustainability">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>16. State Rent & Long-Term Sustainability</h2>
+          <div class="subtitle">State Rent</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>16.1 State Doesn't Grow Forever</h3>
+<p>On most blockchains, state grows indefinitely. Every contract deployment, every storage write, every new account adds to the permanent state that validators must store forever. This is unsustainable — Ethereum's state bloat already causes validator centralization.</p>
+<p>WayChain solves this through protocol-level state rent.</p>
+<h3>16.2 Inactive State Pruned After 30 Days</h3>
+<table>
+<tr><th>State Type</th><th>Inactivity Threshold</th><th>Action</th></tr>
+<tr><td>Active account (any tx in 30 days)</td><td>—</td><td>No action</td></tr>
+<tr><td>Inactive account (no tx in 30 days)</td><td>30 days</td><td>Marked "stale"</td></tr>
+<tr><td>Stale account (no tx in 90 days)</td><td>90 days</td><td>State pruned (hash only retained)</td></tr>
+<tr><td>Contract with no reads in 90 days</td><td>90 days</td><td>Contract frozen (reactivation costs rent)</td></tr>
+</table>
+<p>Pruning retains a hash of the original state, so accounts can be restored — but the storage burden on validators is eliminated.</p>
+<h3>16.3 Users Pay to Maintain Data</h3>
+<p>State rent is not a one-time fee. Users pay continuously to maintain their data on-chain. Pricing is benchmarked against real cloud storage costs (S3: $0.023/GB/mo):</p>
+<table>
+<tr><th>Data Type</th><th>Monthly Cost (1KB)</th><th>Annual Cost (1MB)</th><th>vs Cloud</th></tr>
+<tr><td>Account state (base fee)</td><td>$0.00001</td><td>$0.12</td><td>Cheaper than S3</td></tr>
+<tr><td>Contract storage (&gt;1KB)</td><td>$0.00001</td><td>$0.12</td><td>Cheaper than S3</td></tr>
+<tr><td>Binary Journal attestation</td><td>$0.000005</td><td>$0.06</td><td>55% cheaper than S3</td></tr>
+</table>
+<p>At this pricing, storing 1MB of data costs ~$0.12/year on WayChain vs $0.28/year on S3 — while gaining immutability, censorship resistance, and permanent availability. The base account fee ($0.01/month) prevents dust account spam. Accounts with &lt;1KB storage are exempt from per-byte rent.</p>
+<h3>16.4 Rent Distribution</h3>
+<table>
+<tr><th>Allocation</th><th>Percentage</th><th>Purpose</th></tr>
+<tr><td>Burned</td><td>60%</td><td>Deflationary pressure on WAY supply</td></tr>
+<tr><td>Validators</td><td>30%</td><td>Compensation for storage costs</td></tr>
+<tr><td>Treasury</td><td>10%</td><td>Protocol development and reserves</td></tr>
+</table>
+<h3>16.5 Impact on Supply</h3>
+<p>If WayChain reaches 1GB of active state (1,048,576 KB):</p>
+<ul>
+<li>Annual rent collected: 1,048,576 × $0.12/year = ~$125,760</li>
+<li>Burned (60%): ~$75,456 worth of WAY removed from supply</li>
+<li>This creates deflationary pressure at scale, counteracting inflation</li>
+<li>At 10GB state: ~$754,560 burned/year (significant supply reduction)</li>
+</ul>
 
-### Phase 6: 2WAY + Account Model + Privacy + Governance (CURRENT)
-- 2WAY Vault precompile (0x18) implementation
-- Stability Pool contract
-- Oracle integration for 6+ collateral types
-- 3-stage account model (Onboarding → Standard → Self-Custody)
-- Guardian recovery protocol
-- Session keys and gas abstraction
-- ZK selective disclosure implementation
-- Governance 2.0 (Direct, Quadratic, Futarchy votes)
-- Curator Council election and operations
-- Human-readable transaction decoding
-- **Progressive Staking** — ✅ Live (`progressive_staking.go`, 5-tier APY)
-- **Oracle VRF + Time Execution** — ✅ Live (`oracle_scheduler.go`, RANDOM opcode 0xC4, 13 tests)
-- **Mineral Rights Tokenization** — ✅ Live (`mineral_rights.go`, Precompile 0x20, 12 tests)
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="17-mineral-rights-tokenization">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>17. Mineral Rights Tokenization</h2>
+          <div class="subtitle">Mineral Rights Tokenization</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>17.1 Real-World Assets on Chain</h3>
+<p>WayChain is the first blockchain capable of tokenizing mineral rights — real-world assets that represent verified in-ground mineral reserves. This is not a synthetic token or a wrapped asset. It is a legal instrument bridging physical property rights to on-chain ownership.</p>
+<h3>17.2 The Problem Mining Creates</h3>
+<table>
+<tr><th>Impact</th><th>Per Gold Mine (avg)</th></tr>
+<tr><td>Land disturbed</td><td>1,000+ acres</td></tr>
+<tr><td>Water consumed</td><td>200+ million gallons/year</td></tr>
+<tr><td>Cyanide used</td><td>1+ million tons/year</td></tr>
+<tr><td>Tailings waste</td><td>20+ million tons/year</td></tr>
+<tr><td>Success rate</td><td>&lt;1% of claims ever produce commercial gold</td></tr>
+</table>
+<p>A miner with a claim has two choices: spend $10M+ to develop a mine (90% chance of failure) or sell the claim for pennies. <strong>WayChain offers a third choice:</strong> prove the gold exists, transfer the rights, get paid — no mining required.</p>
+<h3>17.3 How It Works</h3>
+<p><strong>Phase 1: Claim Ownership Verification</strong></p>
+<ul>
+<li>Legal title deed (government-registered mining claim)</li>
+<li>Chain of ownership (unbroken from original staking)</li>
+<li>Proof of payments (claim maintenance fees paid)</li>
+<li>GPS boundaries (surveyed, georeferenced)</li>
+<li>Dox_Dev-verified lawyer, surveyor, and notary attest</li>
+</ul>
 
-### Phase 7: Multi-Node + Cross-Chain
-- Deploy 200+ validators on separate machines
-- Full consensus rounds with real round timeouts
-- P2P block/tx propagation in production
-- Cross-chain attestation layer (Ethereum, PulseChain, Solana)
-- Oracle attestation serving external chains
-- State rent implementation and pruning
+<p><strong>Phase 2: Reserve Verification</strong></p>
+<ul>
+<li>Independent assay lab tests core samples</li>
+<li>NI 43-101 or JORC compliant report</li>
+<li>Dox_Dev-verified geologist reviews and attests</li>
+<li>Second lab blind re-tests split samples</li>
+</ul>
 
-### Phase 8: Ecosystem + Binary Journal
-- Template Registry deployment
-- WayChainFactory/Pair DEX
-- Developer onboarding (Foundry, viem, ethers.js)
-- Hackathon / grants program
-- Binary Journal full deployment (Attestation, DeadMansSwitch, StorageEndowment)
-- Sanctuary app (Energy Tide) public release
-- Agora commons layer
+<p><strong>Phase 3: Mineral Rights Transfer</strong></p>
+<ul>
+<li>Claim owner transfers ALL mineral rights to WayChain Partner LLC</li>
+<li>NO mining allowed ever (covenant runs with the land)</li>
+<li>Claim owner receives tokenized equivalent</li>
+<li>Transfer deed hashed and attested on WayChain</li>
+</ul>
 
----
+<p><strong>Phase 4: Token Issuance</strong></p>
+<ul>
+<li>Mineral Rights Token (MRT) issued</li>
+<li>1 token = proportional share of verified in-ground reserves</li>
+<li>Trades freely on WayChain DEX</li>
+</ul>
 
-## 21. Conclusion
+<h3>17.4 Reserve Classification</h3>
+<table>
+<tr><th>Reserve Class</th><th>Confidence</th><th>Attesters Required</th><th>Tokenization Rate</th></tr>
+<tr><td>Measured</td><td>&gt;90%</td><td>3 (geologist + 2 labs)</td><td>80% of spot</td></tr>
+<tr><td>Indicated</td><td>&gt;70%</td><td>3 (geologist + assay lab)</td><td>60% of spot</td></tr>
+<tr><td>Inferred</td><td>&gt;50%</td><td>2 (geologist)</td><td>40% of spot</td></tr>
+</table>
+<p><strong>Example:</strong> A claim with 100,000 oz of Measured gold at $2,000/oz:</p>
+<ul>
+<li>Gross value: $200M</li>
+<li>Tokenization rate: 80%</li>
+<li>Protocol valuation: $160M</li>
+<li>Token supply: 80,000 tokens (each = 1 oz equivalent at 80%)</li>
+</ul>
 
-WayChain is the first blockchain where identity — not capital — determines power. The system is live, processing transactions, and open to anyone through waychain.org.
+<h3>17.5 Why This Only Works on WayChain</h3>
+<table>
+<tr><th>Requirement</th><th>Every Other L1</th><th>WayChain</th></tr>
+<tr><td>Identity verification</td><td>None</td><td>Dox_Dev badge</td></tr>
+<tr><td>Professional attestation</td><td>Anonymous oracles</td><td>Lawyers, geologists with badges</td></tr>
+<tr><td>Consequence for false attestation</td><td>Bond loss (re-enter)</td><td>Badge revocation + bond (permanent)</td></tr>
+<tr><td>Multi-profession verification</td><td>Complex, no standard</td><td>Template: lawyer + geologist + surveyor</td></tr>
+<tr><td>Real-world legal integration</td><td>None</td><td>Transfer deeds hashed + oracle attested</td></tr>
+<tr><th>Long-term monitoring</th><th>No incentive</th><th>Attesters earn from monitoring fees</th></tr>
+</table>
+<p><strong>The key insight:</strong> This doesn't work with anonymous oracles because the verifications are legal. A lawyer who falsely attests to a title deed can be disbarred in real life AND lose their Dox_Dev badge. The identity layer bridges on-chain and off-chain consequences.</p>
+<h3>17.6 Environmental Preservation Through Tokenization</h3>
+<p>Every MRT represents gold that will never be mined. The environmental benefit is the product:</p>
+<ul>
+<li>No land disturbance</li>
+<li>No cyanide in water tables</li>
+<li>No tailings ponds</li>
+<li>No CO2 from mining operations</li>
+<li>Annual satellite + water + ground monitoring confirms preservation</li>
+</ul>
 
-The combination of Dox_Dev identity, sqrt-weighted consensus, instant finality, multi-collateral stablecoins, privacy by default, native oracles, cross-chain attestations, and the Binary Journal self-sovereignty stack creates a platform that is:
+<p><strong>Comparison to existing gold tokens:</strong></p>
+<table>
+<tr><th>Solution</th><th>Backing</th><th>Mining Required?</th><th>Trust Model</th></tr>
+<tr><td>PAXG</td><td>Physical gold in vault</td><td>Yes (already mined)</td><td>Custodian (Paxos)</td></tr>
+<tr><td>XAUT</td><td>Physical gold in vault</td><td>Yes (already mined)</td><td>Custodian (Tether)</td></tr>
+<tr><td>GLD ETF</td><td>Physical gold</td><td>Yes (already mined)</td><td>Custodian (State Street)</td></tr>
+<tr><td><strong>MRT</strong></td><td><strong>In-ground reserves</strong></td><td><strong>No. Never.</strong></td><td><strong>Dox_Dev verified oracles + legal covenant</strong></td></tr>
+</table>
+<h3>17.7 MRT Registry Precompile — Implementation Details</h3>
+<p>The Mineral Rights Tokenization system is implemented in <code>mineral_rights.go</code> with the <strong>MRT Registry precompile</strong> at address <code>0x20</code>. It provides a complete on-chain lifecycle for mineral rights:</p>
+<p><strong>Full Lifecycle:</strong></p>
+<ol>
+<li><strong>Register</strong> — <code>registerClaim(claimId, gpsBoundary, legalTitleHash)</code> — A verified lawyer submits a mining claim with GPS coordinates and a hash of the legal title deed. Requires Dox_Dev Level 2+ badge.</li>
+</ol>
 
-- **Actually decentralized** (not just in marketing)
-- **Accountable** (validators are real humans with consequences)
-- **Cheap** (fixed fees, not market-auctioned)
-- **Private** (ZK selective disclosure by default)
-- **Connected** (native oracles + cross-chain attestations)
-- **Open** (anyone can verify, anyone can build)
-- **Sustainable** (state rent, progressive staking, no pre-mine)
+<ol>
+<li><strong>Verify</strong> — <code>verifyReserve(claimId, assayReportHash, geologistAttestation)</code> — An independent geologist attests to the reserve estimate. A second lab blind-tests split samples. Both attestations are stored on-chain.</li>
+</ol>
 
-2WAY extends this vision by opening WayChain to assets from every other blockchain. Mineral Rights Tokenization proves that WayChain can serve real-world use cases that no other chain can. Binary Journal demonstrates that individuals can achieve true self-sovereignty over their knowledge, identity, and legacy.
+<ol>
+<li><strong>Approve Reserves</strong> — <code>approveReserves(claimId, classification, confidenceScore)</code> — The protocol assigns a reserve classification (Measured/Indicated/Inferred) based on verification quorum. Emits <code>ReservesApproved</code> event.</li>
+</ol>
 
-**One human. One voice. One chain.**
+<ol>
+<li><strong>Issue Tokens</strong> — <code>issueTokens(claimId, tokenSupply)</code> — MRT tokens are minted proportional to verified reserves at the appropriate tokenization rate (80%/60%/40% of spot by class). Tokens are ERC-20 compatible.</li>
+</ol>
 
----
+<ol>
+<li><strong>Environmental Monitoring</strong> — <code>submitMonitoringReport(claimId, satelliteHash, waterSampleHash)</code> — Annual monitoring reports confirm environmental preservation. Attesters earn monitoring fees for ongoing verification.</li>
+</ol>
 
-*Version 3.1.2 — June 2026*
-*Launch Plan: All phases complete*
-*Specifications: 1WAY, 2WAY, Bitcoin Integration, Tokenomics, Consensus, UX, Privacy, Account Model, Oracle, Cross-Chain, Governance, Binary Journal, State Rent, Mineral Rights*
-*Code: 5,470+ lines Go, 11+ Solidity contracts, 60+ tests*
-*v3.1.2: HTML restored from v3.1.0 base + all v3.1.1 fixes applied; BIJO supply corrected to 369M*
+<ol>
+<li><strong>Rights Transfer</strong> — <code>transferRights(claimId, newOwner, legalDeedHash)</code> — Mineral rights can be transferred on-chain. The transfer deed is hashed and attested. New owner must hold a valid Dox_Dev badge.</li>
+</ol>
+
+<p><strong>Precompile Interface (0x20):</strong></p>
+<table>
+<tr><th>Function</th><th>Signature</th><th>Purpose</th></tr>
+<tr><td>registerClaim</td><td><code>(bytes32, bytes, bytes32)</code></td><td>Register new mineral claim</td></tr>
+<tr><td>verifyReserve</td><td><code>(bytes32, bytes32, bytes)</code></td><td>Submit reserve verification</td></tr>
+<tr><td>approveReserves</td><td><code>(bytes32, uint8, uint256)</code></td><td>Approve reserve classification</td></tr>
+<tr><td>issueTokens</td><td><code>(bytes32, uint256)</code></td><td>Mint MRT tokens</td></tr>
+<tr><td>submitMonitoringReport</td><td><code>(bytes32, bytes32, bytes32)</code></td><td>Environmental monitoring</td></tr>
+<tr><th>transferRights</th><th><code>(bytes32, address, bytes32)</code></th><th>Transfer mineral rights</th></tr>
+<tr><td>getClaimStatus</td><td><code>(bytes32) → (uint8, uint256, address)</code></td><td>Query claim status</td></tr>
+</table>
+<p><strong>12 tests pass</strong>, covering: full lifecycle (register → verify → approve → issue → monitor → transfer), access control (badge requirements), token minting accuracy, and edge cases.</p>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="18-network-status-live">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>18. Network Status (Live)</h2>
+          <div class="subtitle">Network Status (Live)</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>18.1 Deployment</h3>
+<table>
+<tr><th>Component</th><th>Status</th><th>URL</th></tr>
+<tr><td>Dashboard</td><td>Live</td><td>https://waychain.org</td></tr>
+<tr><td>Explorer</td><td>Live</td><td>https://waychain.org/explorer</td></tr>
+<tr><td>Badge</td><td>Live</td><td>https://waychain.org/badge</td></tr>
+<tr><td>RPC (HTTP)</td><td>Live</td><td>https://api.waychain.org/rpc</td></tr>
+<tr><td>RPC (WebSocket)</td><td>Live</td><td>wss://api.waychain.org</td></tr>
+<tr><th>Daemon</th><th>Running</th><th>systemd, auto-restart</th></tr>
+<tr><td>Tunnel</td><td>Running</td><td>cloudflared, auto-restart</td></tr>
+</table>
+<h3>18.2 Chain Statistics</h3>
+<table>
+<tr><td>Metric</td><td>Value</td></tr>
+<tr><th>Chain ID</th><th>10008</th></tr>
+<tr><td>Block time</td><td>1 second</td></tr>
+<tr><td>Finality</td><td>Instant</td></tr>
+<tr><td>Validators</td><td>3 (expandable to 200)</td></tr>
+<tr><td>Total blocks</td><td>80,000+</td></tr>
+<tr><td>Block gas limit</td><td>30,000,000</td></tr>
+<tr><th>Accounts</th><th>11+</th></tr>
+<tr><td>Precompiles</td><td>20 (0x0C-0x20)</td></tr>
+</table>
+<h3>18.3 Security</h3>
+<table>
+<tr><td>Feature</td><td>Status</td></tr>
+<tr><th>Deploy gate (3 layers)</th><th>Active</th></tr>
+<tr><td>Rate limiting (100/sec/IP)</td><td>Active</td></tr>
+<tr><td>Structured logging (slog)</td><td>Active</td></tr>
+<tr><td>Graceful shutdown</td><td>Active</td></tr>
+<tr><td>WebSocket subscriptions</td><td>Active</td></tr>
+<tr><td>P2P block/tx gossip</td><td>Active</td></tr>
+</table>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="19-risks-honest-assessment">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>19. Risks & Honest Assessment</h2>
+          <div class="subtitle">Risks</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>19.1 Technical Risks</h3>
+<table>
+<tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+<tr><td>Oracle manipulation</td><td>Low</td><td>Critical</td><td>7-oracle median, 2% deviation cap, TLS proofs</td></tr>
+<tr><td>Flash loan manipulation</td><td>Low</td><td>High</td><td>TWAP for collateral valuation</td></tr>
+<tr><td>Smart contract bug</td><td>Low</td><td>Critical</td><td>2 audits + formal verification</td></tr>
+<tr><td>Cross-chain bridge exploit</td><td>Low</td><td>High</td><td>Rate limits, daily caps, challenge window</td></tr>
+<tr><td>Privacy proof failure</td><td>Low</td><td>Critical</td><td>Multiple ZK implementations, fallback paths</td></tr>
+</table>
+<h3>19.2 Economic Risks</h3>
+<table>
+<tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+<tr><td>2WAY depeg below $0.95</td><td>Medium</td><td>High</td><td>Stability fee + Stability Pool</td></tr>
+<tr><td>Collateral death spiral</td><td>Low-Med</td><td>Critical</td><td>Global caps, insurance fund</td></tr>
+<tr><td>Insufficient liquidity</td><td>Medium</td><td>Medium</td><td>Protocol-owned liquidity (POL)</td></tr>
+<tr><td>State rent evasion</td><td>Medium</td><td>Low</td><td>Pruning + reactivation costs</td></tr>
+</table>
+<h3>19.3 What Could Go Wrong</h3>
+<p>If BTC/ETH drops 50%+ in a single day:</p>
+<ol>
+<li>Mass liquidations trigger → collateral dumped → further price drops</li>
+<li>Stability Pool absorbs first losses (target: 5-15% of TVL)</li>
+<li>Insurance fund covers next layer</li>
+<li>If both exhausted → recovery tokens issued (dilutive but survivable)</li>
+<li>2WAY may trade at $0.80-0.90 temporarily until collateral recovers</li>
+</ol>
+
+<p><strong>This is the same risk profile as MakerDAO, Liquity, and Synthetix. WayChain's advantage: 1s finality means faster liquidation processing.</strong></p>
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="20-roadmap">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>20. Roadmap</h2>
+          <div class="subtitle">Roadmap</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<h3>Phase 0-5: Foundation (COMPLETE)</h3>
+<ul>
+<li>Persistent state, tx lifecycle, multi-process node, CLI</li>
+<li>Deploy gate, Dox_Dev infrastructure, template registry</li>
+<li>waychain.org, public RPC, token infrastructure</li>
+<li>Explorer, dashboard, badge UI</li>
+<li>WebSocket RPC, real-time push</li>
+<li>Multi-validator, rate limiting, structured logging</li>
+</ul>
+
+<h3>Phase 6: 2WAY + Account Model + Privacy + Governance (CURRENT)</h3>
+<ul>
+<li>2WAY Vault precompile (0x18) implementation</li>
+<li>Stability Pool contract</li>
+<li>Oracle integration for 6+ collateral types</li>
+<li>3-stage account model (Onboarding → Standard → Self-Custody)</li>
+<li>Guardian recovery protocol</li>
+<li>Session keys and gas abstraction</li>
+<li>ZK selective disclosure implementation</li>
+<li>Governance 2.0 (Direct, Quadratic, Futarchy votes)</li>
+<li>Curator Council election and operations</li>
+<li>Human-readable transaction decoding</li>
+<li><strong>Progressive Staking</strong> — ✅ Live (<code>progressive_staking.go</code>, 5-tier APY)</li>
+<li><strong>Oracle VRF + Time Execution</strong> — ✅ Live (<code>oracle_scheduler.go</code>, RANDOM opcode 0xC4, 13 tests)</li>
+<li><strong>Mineral Rights Tokenization</strong> — ✅ Live (<code>mineral_rights.go</code>, Precompile 0x20, 12 tests)</li>
+</ul>
+
+<h3>Phase 7: Multi-Node + Cross-Chain</h3>
+<ul>
+<li>Deploy 200+ validators on separate machines</li>
+<li>Full consensus rounds with real round timeouts</li>
+<li>P2P block/tx propagation in production</li>
+<li>Cross-chain attestation layer (Ethereum, PulseChain, Solana)</li>
+<li>Oracle attestation serving external chains</li>
+<li>State rent implementation and pruning</li>
+</ul>
+
+<h3>Phase 8: Ecosystem + Binary Journal</h3>
+<ul>
+<li>Template Registry deployment</li>
+<li>WayChainFactory/Pair DEX</li>
+<li>Developer onboarding (Foundry, viem, ethers.js)</li>
+<li>Hackathon / grants program</li>
+<li>Binary Journal full deployment (Attestation, DeadMansSwitch, StorageEndowment)</li>
+<li>Sanctuary app (Energy Tide) public release</li>
+<li>Agora commons layer</li>
+</ul>
+
+<hr>
+        </div>
+      </div>
+    </div>
+    <div class="chapter" id="21-conclusion">
+      <div class="chapter-header" onclick="toggleChapter(this)">
+        <div>
+          <h2>21. Conclusion</h2>
+          <div class="subtitle">Conclusion</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="chapter-content">
+        <div class="content">
+<p>WayChain is the first blockchain where identity — not capital — determines power. The system is live, processing transactions, and open to anyone through waychain.org.</p>
+<p>The combination of Dox_Dev identity, sqrt-weighted consensus, instant finality, multi-collateral stablecoins, privacy by default, native oracles, cross-chain attestations, and the Binary Journal self-sovereignty stack creates a platform that is:</p>
+<ul>
+<li><strong>Actually decentralized</strong> (not just in marketing)</li>
+<li><strong>Accountable</strong> (validators are real humans with consequences)</li>
+<li><strong>Cheap</strong> (fixed fees, not market-auctioned)</li>
+<li><strong>Private</strong> (ZK selective disclosure by default)</li>
+<li><strong>Connected</strong> (native oracles + cross-chain attestations)</li>
+<li><strong>Open</strong> (anyone can verify, anyone can build)</li>
+<li><strong>Sustainable</strong> (state rent, progressive staking, no pre-mine)</li>
+</ul>
+
+<p>2WAY extends this vision by opening WayChain to assets from every other blockchain. Mineral Rights Tokenization proves that WayChain can serve real-world use cases that no other chain can. Binary Journal demonstrates that individuals can achieve true self-sovereignty over their knowledge, identity, and legacy.</p>
+<p><strong>One human. One voice. One chain.</strong></p>
+<hr>
+<p><em>Version 3.1.2 — June 2026</em></p>
+<p><em>Launch Plan: All phases complete</em></p>
+<p><em>Specifications: 1WAY, 2WAY, Bitcoin Integration, Tokenomics, Consensus, UX, Privacy, Account Model, Oracle, Cross-Chain, Governance, Binary Journal, State Rent, Mineral Rights</em></p>
+<p><em>Code: 5,470+ lines Go, 11+ Solidity contracts, 60+ tests</em></p>
+<p><em>v3.1.2: HTML restored from v3.1.0 base + all v3.1.1 fixes applied; BIJO supply corrected to 369M</em></p>
         </div>
       </div>
     </div>
 </div>
 
-<button class="skip-btn" onclick="toggleSkip()">Jump To ▾</button>
+<div class="footer">
+  <p>WayChain — Actually Decentralized. Chain ID 10008.</p>
+  <p style="margin-top:8px;"><a href="https://waychain.org">waychain.org</a></p>
+</div>
+
+<button class="skip-btn" id="skipBtn" onclick="toggleSkipMenu()">☰ Sections</button>
 <div class="skip-menu" id="skipMenu">
-        <a href="#architecture" onclick="jumpTo('architecture')">⚡ Architecture & Precompiles</a>
-        <a href="#protocol" onclick="jumpTo('protocol')">🔗 Protocol Layer</a>
-        <a href="#overview" onclick="jumpTo('overview')">📊 Tokenomics & Roadmap</a>
-        <a href="#status" onclick="jumpTo('status')">✅ Live Status</a>
+  <a onclick="toggleSkipMenu()" href="#abstract">Abstract</a>
+  <a onclick="toggleSkipMenu()" href="#status-what-is-live-vs-what-is-being-built">What Is Live vs What Is Being Built</a>
+  <a onclick="toggleSkipMenu()" href="#1-the-problem-cryptos-plutocracy">Crypto's Plutocracy</a>
+  <a onclick="toggleSkipMenu()" href="#2-anonymous-meets-accountability-the-human-in-the-loop-model">Anonymous Meets Accountability — Th</a>
+  <a onclick="toggleSkipMenu()" href="#10-security-infrastructure">Security Infrastructure</a>
+  <a onclick="toggleSkipMenu()" href="#11-native-oracle-consensus">Native Oracle Consensus</a>
+  <a onclick="toggleSkipMenu()" href="#12-cross-chain-native">Cross-Chain Native</a>
+  <a onclick="toggleSkipMenu()" href="#13-governance-20">Governance 2.0</a>
+  <a onclick="toggleSkipMenu()" href="#14-precompile-architecture">Precompile Architecture</a>
+  <a onclick="toggleSkipMenu()" href="#15-binary-journal-the-self-sovereignty-stack">Binary Journal — The Self-Sovereign</a>
+  <a onclick="toggleSkipMenu()" href="#16-state-rent-long-term-sustainability">State Rent</a>
+  <a onclick="toggleSkipMenu()" href="#17-mineral-rights-tokenization">Mineral Rights Tokenization</a>
+  <a onclick="toggleSkipMenu()" href="#18-network-status-live">Network Status (Live)</a>
+  <a onclick="toggleSkipMenu()" href="#19-risks-honest-assessment">Risks</a>
+  <a onclick="toggleSkipMenu()" href="#20-roadmap">Roadmap</a>
+  <a onclick="toggleSkipMenu()" href="#21-conclusion">Conclusion</a>
 </div>
-
-<div class="footer">WayChain v3.1.2 — "Actually Decentralized"<br>Chain ID 10008</div>
 
 <script>
-document.querySelector('.chapter').classList.add('open');
-
-function toggleChapter(header) {
-  if (window.innerWidth >= 1024) return;
-  header.parentElement.classList.toggle('open');
+function toggleChapter(el) {
+  el.parentElement.classList.toggle('open');
 }
-
-function toggleSkip() {
+function toggleSkipMenu() {
   document.getElementById('skipMenu').classList.toggle('open');
 }
-
-function jumpTo(id) {
-  document.querySelectorAll('.chapter').forEach(c => c.classList.remove('open'));
-  const target = document.getElementById(id);
-  target.classList.add('open');
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  document.getElementById('skipMenu').classList.remove('open');
-  document.querySelectorAll('.nav-scroll a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-  });
-}
-
-window.addEventListener('scroll', () => {
-  const chapters = document.querySelectorAll('.chapter');
-  let current = 'abstract';
-  chapters.forEach(ch => {
-    if (window.scrollY >= ch.offsetTop - 150) current = ch.id;
-  });
-  document.querySelectorAll('.nav-scroll a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-  });
-});
-
-document.addEventListener('click', (e) => {
+document.addEventListener('click', function(e) {
   if (!e.target.closest('.skip-btn') && !e.target.closest('.skip-menu')) {
     document.getElementById('skipMenu').classList.remove('open');
   }
 });
+// Open first chapter on mobile
+if (window.innerWidth < 1024) {
+  document.querySelector('.chapter')?.classList.add('open');
+}
+document.querySelectorAll('.nav-scroll a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.querySelectorAll('.nav-scroll a').forEach(function(l) { l.classList.remove('active'); });
+    this.classList.add('active');
+    var id = this.getAttribute('href').slice(1);
+    var ch = document.getElementById(id);
+    if (ch) ch.classList.add('open');
+  });
+});
 </script>
+
 </body>
 </html>
