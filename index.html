@@ -83,6 +83,9 @@ p{margin-bottom:12px}
 .badge-build{background:rgba(184,115,51,.12);color:var(--copper)}
 .chip-addr{font-size:.55em;color:var(--muted);font-family:'SF Mono',Menlo,monospace;margin-top:3px}
 
+.info-box{background:var(--slate2);border:1px solid var(--border);border-radius:8px;padding:20px;margin:16px 0}
+.info-box h4{color:var(--copper);margin-bottom:8px;font-family:'DM Serif Display',Georgia,serif}
+
 .modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal{background:var(--slate2);border:1px solid var(--border);border-radius:10px;padding:24px;max-width:440px;width:100%;max-height:80vh;overflow-y:auto}
@@ -139,6 +142,11 @@ p{margin-bottom:12px}
 .precompile-table .name{font-weight:600;font-size:.82em}
 .precompile-table .func{font-size:.75em;color:var(--muted)}
 .precompile-table .status{font-size:.72em;color:var(--green)}
+
+.cta{margin-top:40px;text-align:center}
+.cta a{color:var(--copper);font-size:.85em;font-weight:600;text-decoration:none}
+.cta a:hover{color:var(--warm)}
+.cta .sub{display:block;margin-top:6px;font-size:.65em;color:var(--muted)}
 
 .story{max-width:650px;margin:0 auto;padding:50px 24px}
 .story p{font-size:.95em;line-height:2;margin-bottom:16px;color:var(--fg)}
@@ -211,6 +219,7 @@ p{margin-bottom:12px}
     <a href="#" data-page="protocol">Protocol</a>
     <a href="#" data-page="usecases">Use Cases</a>
     <a href="#" data-page="developers">Developers</a>
+    <a href="/docs">Docs</a>
     <a href="#" data-page="about">About</a>
     <a href="/explorer">Explorer</a>
     <a href="/badge" class="nav-cta">Get Badge</a>
@@ -348,12 +357,18 @@ p{margin-bottom:12px}
     <div class="cta-row"><button class="btn-copper" onclick="openDapp()">Request Extinguishment</button><button class="btn-outline" id="walletBtn" onclick="connectWallet()">Connect Dox_Dev L2</button></div>
   </div>
   <section class="section">
-    <h2 style="font-size:1.4em">More Use Cases</h2>
+    <h2 style="font-size:1.4em">All Use Cases</h2>
     <div class="use-case-list">
-      <div class="use-case"><div class="uc-icon">📖</div><div><h4>Binary Journal</h4><p>Immutable truth anchoring. Attest any hash on-chain. Permanent, censorship-resistant records.</p></div></div>
-      <div class="use-case"><div class="uc-icon">💵</div><div><h4>2WAY Stablecoin</h4><p>Multi-collateral stablecoin with 1-second finality. Bitcoin-backed, not synthetic.</p></div></div>
-      <div class="use-case"><div class="uc-icon">🌉</div><div><h4>Cross-Chain Attestations</h4><p>Human-backed oracles serving external chains. Proof of reserve, proof of existence.</p></div></div>
-      <div class="use-case"><div class="uc-icon">⏰</div><div><h4>Dead Man's Switch</h4><p>Inheritance protocol with heartbeat. Set heirs, stay alive, release keys when you can't.</p></div></div>
+      <div class="use-case"><div class="uc-icon">📖</div><div><h4>Binary Journal</h4><p>Self-sovereign knowledge vault. Personal data you truly own, with graduated access and permanent truth anchoring.</p></div></div>
+      <div class="use-case"><div class="uc-icon">⏰</div><div><h4>Dead Man's Switch</h4><p>Trustless inheritance protocol. Set heirs, heartbeat periodically, release keys when you can't.</p></div></div>
+      <div class="use-case"><div class="uc-icon">🗼</div><div><h4>Dox_Dev Identity</h4><p>Verified deployer identity. No chain requires identity to deploy — every deployer is a verified human.</p></div></div>
+      <div class="use-case"><div class="uc-icon">🔒</div><div><h4>TrustlessLock</h4><p>Anti-rug infrastructure. Enforced liquidity locks at protocol level. No backdoor, no admin key.</p></div></div>
+      <div class="use-case"><div class="uc-icon">⛏️</div><div><h4>Mineral Rights</h4><p>Real-world assets on-chain. Environmental enforcement. Claims verified by professional geologists.</p></div></div>
+      <div class="use-case"><div class="uc-icon">₿</div><div><h4>1WAY Stablecoin</h4><p>Bitcoin-backed. Not USDC, not ETH-backed. Actually decentralized with multi-sig oracle vault.</p></div></div>
+      <div class="use-case"><div class="uc-icon">👩‍🔬</div><div><h4>Professional Oracles</h4><p>Experts paid directly by protocol. Geologists, lawyers, engineers, surveyors earn WAY for verified work.</p></div></div>
+      <div class="use-case"><div class="uc-icon">⚖️</div><div><h4>Court Disclosure Escrow</h4><p>Identity that releases only on verified legal request with on-chain community vote approval.</p></div></div>
+      <div class="use-case"><div class="uc-icon">🌐</div><div><h4>Cross-Chain Blacklist</h4><p>Bad actors flagged on all chains. Deployer blacklist enforced at protocol level.</p></div></div>
+      <div class="use-case"><div class="uc-icon">💵</div><div><h4>2WAY Multi-Collateral</h4><p>Multi-collateral stablecoin with 1-second finality. Bitcoin-backed, not synthetic.</p></div></div>
     </div>
   </section>
 </div>
@@ -362,6 +377,15 @@ p{margin-bottom:12px}
   <section class="section">
     <h2>Developers</h2>
     <div class="subtitle">Build on the lighthouse. Native Go precompiles. 1-second finality.</div>
+    
+    <h3 style="font-size:1.2em;margin-top:24px">Walkthrough for New Builders</h3>
+    <div class="pipeline">
+      <div class="pipe-step"><div class="pipe-icon">🔨</div><h4>1. Verify Identity</h4><p>Start at /badge. Get Dox_Dev Level 2 to deploy. Level 3 to curate.</p></div>
+      <div class="pipe-step"><div class="pipe-icon">📚</div><h4>2. Read the Book</h4><p>Whitepaper at /whitepaper. 22 chapters. All features documented.</p></div>
+      <div class="pipe-step"><div class="pipe-icon">🔌</div><h4>3. Connect RPC</h4><p>Use https://api.waychain.org. Standard eth_* methods + way_* extensions.</p></div>
+      <div class="pipe-step"><div class="pipe-icon">🚀</div><h4>4. Deploy Smart</h4><p>WayChain requires SHA256 selectors. Ed25519 signatures. See docs.</p></div>
+    </div>
+    
     <h3 style="font-size:1.2em;margin-top:24px">Quick Start</h3>
     <div class="code-block"><pre><span class="cm">// Connect to WayChain</span>
 client := waychain.Connect(<span class="str">"https://api.waychain.org"</span>)
@@ -374,12 +398,58 @@ level := client.Precompile(<span class="str">"0x13"</span>).Call(<span class="st
 
 <span class="cm">// Deploy contract (badge verified automatically)</span>
 tx := client.Deploy(contractCode, deployerAddr)</pre></div>
+    
+    <h3 style="font-size:1.2em;margin-top:24px">Key Differences</h3>
+    <div class="info-box">
+      <h4>WayChain uses SHA256, not keccak256</h4>
+      <p>All function selectors, storage keys, and transaction hashes use SHA256. Standard EVM tooling uses keccak256 — adapt your ABI selectors.</p>
+    </div>
+    <table style="width:100%;border-collapse:collapse;margin:16px 0">
+      <tr><th style="text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--copper)">Feature</th><th style="text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--copper)">WayChain</th><th style="text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--copper)">Standard EVM</th></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Hash function</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">SHA256</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">keccak256</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Signatures</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Ed25519</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">ECDSA (secp256k1)</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Tx format</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Binary (not RLP)</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">RLP-encoded</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Fees</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Fixed (0.001/0.005/0.01 WAY)</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">Auction-based</td></tr>
+      <tr><td style="padding:8px 12px">Precompiles</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">20 at 0x0C-0x20</td><td style="padding:8px 12px;border-bottom:1px solid var(--border)">0x01-0x0A</td></tr>
+    </table>
+    
     <h3 style="font-size:1.2em;margin-top:24px">RPC API</h3>
     <div class="code-block"><pre><span class="cm"># Current block</span>
 curl -X POST https://api.waychain.org   -H <span class="str">"Content-Type: application/json"</span>   -d <span class="str">'{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'</span>
 
+<span class="cm"># Check Dox_Dev level</span>
+curl -X POST https://api.waychain.org   -H <span class="str">"Content-Type: application/json"</span>   -d <span class="str">'{"jsonrpc":"2.0","method":"way_getDoxLevel","params":["0xYourAddress"],"id":1}'</span>
+
 <span class="cm"># WebSocket stream</span>
 wss://api.waychain.org/ws</pre></div>
+    
+    <h3 style="font-size:1.2em;margin-top:24px">Native Precompiles (0x0C-0x20)</h3>
+    <div class="precompile-table">
+      <div class="thead"><div>Address</div><div>Name</div><div>Function</div><div>Status</div></div>
+      <div class="row"><div class="addr">0x0C</div><div class="name">OracleAggregator</div><div class="func">Price aggregation</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x0D</div><div class="name">OracleScheduler</div><div class="func">Oracle scheduling</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x0E-0x12</div><div class="name">Privacy</div><div class="func">ZK selective disclosure</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x13</div><div class="name">DoxDevBadge</div><div class="func">Identity badge system</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x14</div><div class="name">BIJO</div><div class="func">Truth anchoring</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x15</div><div class="name">DeadMansSwitch</div><div class="func">Inheritance protocol</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x16</div><div class="name">BitcoinRegistry</div><div class="func">Bitcoin SPV</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x17</div><div class="name">StorageEndowment</div><div class="func">Perpetual storage</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x18</div><div class="name">2WAY</div><div class="func">Multi-collateral vault</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x19</div><div class="name">OracleBank</div><div class="func">Vault economics</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x1A</div><div class="name">TrustlessLock</div><div class="func">Liquidity locks</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x1B</div><div class="name">AccountManager</div><div class="func">3-stage custody</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x1C</div><div class="name">Privacy</div><div class="func">ZK selective disclosure</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x1D</div><div class="name">Governance</div><div class="func">Proposals & voting</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x1E</div><div class="name">StateRent</div><div class="func">Storage fees</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x1F</div><div class="name">CrossChain</div><div class="func">External attestations</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x20</div><div class="name">MRT Registry</div><div class="func">Mineral rights</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x21-0x25</div><div class="name">StakingAPY</div><div class="func">5-tier rewards</div><div class="status">✅ Live</div></div>
+    </div>
+    
+    <div class="cta" style="margin-top:40px">
+      <a href="/whitepaper">Read Full Specifications →</a>
+      <p class="sub">waychain.org/whitepaper — All 20 precompiles documented</p>
+    </div>
   </section>
 </div>
 
@@ -412,7 +482,7 @@ wss://api.waychain.org/ws</pre></div>
   <div class="footer-grid">
     <div><div class="footer-brand">⛓ WAYCHAIN</div><div class="footer-tagline">ILLUMINATE. NAVIGATE. ARRIVE.</div><div style="font-size:.65em;color:var(--muted);margin-top:6px">EST. MMXXIV</div></div>
     <div><h4>Protocol</h4><ul><li><a href="#protocol">Three Tiers</a></li><li><a href="#protocol">Deploy Gate</a></li><li><a href="#protocol">Precompiles</a></li></ul></div>
-    <div><h4>Use Cases</h4><ul><li><a href="#usecases">Mineral Rights</a></li><li><a href="#usecases">Binary Journal</a></li><li><a href="#usecases">2WAY Stablecoin</a></li></ul></div>
+    <div><h4>Use Cases</h4><ul><li><a href="#usecases">Binary Journal</a></li><li><a href="#usecases">Dead Man's Switch</a></li><li><a href="#usecases">Dox_Dev Identity</a></li><li><a href="#usecases">TrustlessLock</a></li><li><a href="#usecases">Mineral Rights</a></li><li><a href="#usecases">1WAY Stablecoin</a></li><li><a href="#usecases">Professional Oracles</a></li><li><a href="#usecases">Court Escrow</a></li><li><a href="#usecases">Cross-Chain Blacklist</a></li><li><a href="#usecases">2WAY Vault</a></li></ul></div>
     <div><h4>Connect</h4><ul><li><a href="/explorer">Explorer</a></li><li><a href="/badge">Get Your Badge</a></li><li><a href="https://api.waychain.org/rpc">RPC</a></li></ul></div>
   </div>
   <div class="footer-bottom"><p>🏛️ The light stays on. 40.7128° N  74.0060° W</p></div>

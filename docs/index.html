@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WayChain — Developer Docs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #2A2A2A;
+  --bg2: #1E1E1E;
+  --bg3: #333;
+  --fg: #E8E4DD;
+  --fg2: #9A9A9A;
+  --copper: #B87333;
+  --amber: #FFBF00;
+  --warm: #FFF8F0;
+  --green: #4CAF50;
+  --red: #E53935;
+  --border: #3A3A3A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.8; font-size: 18px; }
+a { color: var(--copper); text-decoration: none; }
+a:hover { color: var(--warm); }
+
+.header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 20px; background: rgba(42,42,42,0.95);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+}
+.header h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.2em; color: var(--warm); font-weight: 400; }
+.header h1 span { color: var(--copper); margin-left: 6px; }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a { font-size: 0.65em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+  padding: 10px 12px; color: var(--fg2); border-radius: 4px; transition: all 0.2s; text-decoration: none; }
+.nav-links a:hover { color: var(--warm); background: var(--bg3); }
+.nav-links a.active { color: var(--bg); background: var(--copper); }
+
+.doc-container { max-width: 700px; margin: 0 auto; padding: 40px 20px; }
+.doc-container h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 48px; color: var(--warm); margin: 36px 0 16px; font-weight: 400; line-height: 1.2; }
+.doc-container h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; color: var(--warm); margin: 36px 0 14px; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 8px; line-height: 1.2; }
+.doc-container h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; color: var(--copper); margin: 28px 0 10px; font-weight: 400; line-height: 1.3; }
+.doc-container p { margin-bottom: 16px; line-height: 1.8; font-size: 18px; }
+.doc-container ul, .doc-container ol { margin: 10px 0 18px 24px; }
+.doc-container li { margin-bottom: 8px; line-height: 1.8; font-size: 18px; }
+.code-block { background: var(--bg2); padding: 18px; border-radius: 6px; overflow-x: auto; margin: 18px 0; border: 1px solid var(--border); font-size: 0.85em; }
+.code-block pre { font-family: 'SF Mono', Menlo, monospace; color: var(--fg); }
+.code-block code { color: var(--copper); }
+
+.pipeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 800px; margin: 0 auto; }
+.pipe-step { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px 12px; text-align: center; transition: all 0.3s; }
+.pipe-step:hover { border-color: var(--copper); transform: translateY(-3px); }
+.pipe-icon { font-size: 1.8em; margin-bottom: 8px; }
+.pipe-step h4 { font-size: 0.85em; color: var(--warm); margin-bottom: 4px; }
+.pipe-step p { font-size: 0.68em; color: var(--fg2); line-height: 1.4; margin-bottom: 0; }
+
+.info-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.info-box h4 { color: var(--copper); margin-bottom: 8px; font-family: 'DM Serif Display', Georgia, serif; }
+
+pre { background: var(--bg2); padding: 18px; border-radius: 6px; overflow-x: auto; margin: 18px 0; border: 1px solid var(--border); }
+code { font-family: 'SF Mono', Menlo, monospace; color: var(--copper); }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin: 18px 0; }
+th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
+th { background: var(--bg2); color: var(--copper); font-weight: 700; }
+tr:nth-child(even) { background: var(--bg2); }
+
+.footer { text-align: center; padding: 40px 20px; color: var(--fg2); font-size: 0.75em; border-top: 1px solid var(--border); margin-top: 40px; }
+
+@media (max-width: 768px) {
+  body { line-height: 2.0; }
+  .doc-container { max-width: 100%; padding: 20px; }
+  .doc-container h1 { font-size: 32px; }
+  .doc-container h2 { font-size: 24px; }
+  .doc-container h3 { font-size: 20px; }
+  .pipeline { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>WayChain <span>Docs</span></h1>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/whitepaper">Whitepaper</a>
+    <a href="/explorer">Explorer</a>
+    <a href="/badge">Badge</a>
+  </div>
+</div>
+
+<div class="doc-container">
+  <h1>Developer Walkthrough</h1>
+  <p>Build on the lighthouse. Native Go precompiles. 1-second finality.</p>
+
+  <div class="pipeline">
+    <div class="pipe-step"><div class="pipe-icon">🔨</div><h4>1. Verify Identity</h4><p>Start at /badge. Get Dox_Dev Level 2 to deploy. Level 3 to curate.</p></div>
+    <div class="pipe-step"><div class="pipe-icon">📚</div><h4>2. Read the Book</h4><p>Whitepaper at /whitepaper. 22 chapters. All features documented.</p></div>
+    <div class="pipe-step"><div class="pipe-icon">🔌</div><h4>3. Connect RPC</h4><p>Use https://api.waychain.org. Standard eth_* methods + way_* extensions.</p></div>
+    <div class="pipe-step"><div class="pipe-icon">🚀</div><h4>4. Deploy Smart</h4><p>WayChain requires SHA256 selectors. Ed25519 signatures. See docs.</p></div>
+  </div>
+
+  <h2>Quick Start</h2>
+  <div class="code-block"><pre><code>// Connect to WayChain
+client := waychain.Connect("https://api.waychain.org")
+
+// Check Dox_Dev badge level
+level := client.Precompile("0x13").Call("checkLevel", deployerAddr)
+if level &lt; 2 {
+  return "Insufficient Dox_Dev level"
+}
+
+// Deploy contract (badge verified automatically)
+tx := client.Deploy(contractCode, deployerAddr)</code></pre></div>
+
+  <h2>Key Differences from Standard EVM</h2>
+  <div class="info-box">
+    <h4>WayChain uses SHA256, not keccak256</h4>
+    <p>All function selectors, storage keys, and transaction hashes use SHA256. Standard EVM tooling uses keccak256 — adapt your ABI selectors.</p>
+  </div>
+
+  <table>
+    <tr><th>Feature</th><th>WayChain</th><th>Standard EVM</th></tr>
+    <tr><td>Hash function</td><td>SHA256</td><td>keccak256</td></tr>
+    <tr><td>Signatures</td><td>Ed25519</td><td>ECDSA (secp256k1)</td></tr>
+    <tr><td>Tx format</td><td>Binary (not RLP)</td><td>RLP-encoded</td></tr>
+    <tr><td>Fees</td><td>Fixed (0.001/0.005/0.01 WAY)</td><td>Auction-based</td></tr>
+    <tr><td>Precompiles</td><td>20 at 0x0C-0x20</td><td>0x01-0x0A</td></tr>
+  </table>
+
+  <h2>RPC API</h2>
+  <div class="code-block"><pre><code># Current block
+curl -X POST https://api.waychain.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+
+# Check Dox_Dev level
+curl -X POST https://api.waychain.org \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"way_getDoxLevel","params":["0xYourAddress"],"id":1}'
+
+# WebSocket stream
+wss://api.waychain.org/ws</code></pre></div>
+
+  <h2>Native Precompiles (0x0C-0x20)</h2>
+  <table>
+    <tr><th>Address</th><th>Name</th><th>Function</th><th>Status</th></tr>
+    <tr><td><code>0x0C</code></td><td>OracleAggregator</td><td>Price aggregation</td><td>✅ Live</td></tr>
+    <tr><td><code>0x0D</code></td><td>OracleScheduler</td><td>Oracle scheduling</td><td>✅ Live</td></tr>
+    <tr><td><code>0x0E-0x12</code></td><td>Privacy</td><td>ZK selective disclosure</td><td>✅ Live</td></tr>
+    <tr><td><code>0x13</code></td><td>DoxDevBadge</td><td>Identity badge system</td><td>✅ Live</td></tr>
+    <tr><td><code>0x14</code></td><td>BIJO</td><td>Truth anchoring</td><td>✅ Live</td></tr>
+    <tr><td><code>0x15</code></td><td>DeadMansSwitch</td><td>Inheritance protocol</td><td>✅ Live</td></tr>
+    <tr><td><code>0x16</code></td><td>BitcoinRegistry</td><td>Bitcoin SPV</td><td>✅ Live</td></tr>
+    <tr><td><code>0x17</code></td><td>StorageEndowment</td><td>Perpetual storage</td><td>✅ Live</td></tr>
+    <tr><td><code>0x18</code></td><td>2WAY</td><td>Multi-collateral vault</td><td>✅ Live</td></tr>
+    <tr><td><code>0x19</code></td><td>OracleBank</td><td>Vault economics</td><td>✅ Live</td></tr>
+    <tr><td><code>0x1A</code></td><td>TrustlessLock</td><td>Liquidity locks</td><td>✅ Live</td></tr>
+    <tr><td><code>0x1B</code></td><td>AccountManager</td><td>3-stage custody</td><td>✅ Live</td></tr>
+    <tr><td><code>0x1C</code></td><td>Privacy</td><td>ZK selective disclosure</td><td>✅ Live</td></tr>
+    <tr><td><code>0x1D</code></td><td>Governance</td><td>Proposals & voting</td><td>✅ Live</td></tr>
+    <tr><td><code>0x1E</code></td><td>StateRent</td><td>Storage fees</td><td>✅ Live</td></tr>
+    <tr><td><code>0x1F</code></td><td>CrossChain</td><td>External attestations</td><td>✅ Live</td></tr>
+    <tr><td><code>0x20</code></td><td>MRT Registry</td><td>Mineral rights</td><td>✅ Live</td></tr>
+    <tr><td><code>0x21-0x25</code></td><td>StakingAPY</td><td>5-tier rewards</td><td>✅ Live</td></tr>
+  </table>
+
+  <h2>Dox_Dev Identity Requirements</h2>
+  <ul>
+    <li><strong>Level 1 (Lantern)</strong> — Verified human. Can hold tokens, receive/from transfers.</li>
+    <li><strong>Level 2 (Compass)</strong> — Can deploy contracts. SHA256 selector validation.</li>
+    <li><strong>Level 3 (Lighthouse)</strong> — Can verify others. Curator privileges.</li>
+  </ul>
+
+  <h2>Deploy Gate (3 Layers)</h2>
+  <ol>
+    <li><strong>RPC Layer</strong> — HTTP check before transaction enters pool.</li>
+    <li><strong>Block Production</strong> — Proposer verifies all transactions.</li>
+    <li><strong>EVM Opcode</strong> — Runtime enforcement in every contract call.</li>
+  </ol>
+
+  <div class="footer">
+    ⛓ WAYCHAIN — ILLUMINATE. NAVIGATE. ARRIVE.<br>
+    waychain.org · Chain ID 10008 · Actually Decentralized
+  </div>
+</div>
+
+</body>
+</html>

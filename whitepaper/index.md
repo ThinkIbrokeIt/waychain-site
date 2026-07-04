@@ -83,7 +83,7 @@ These are applications that should be obvious for blockchain but **no chain has 
 - **Mineral rights on-chain** — real-world assets with environmental enforcement (MRT 0x20)
 - **Bitcoin-backed stablecoin** — not USDC, not ETH-backed, actually decentralized (1WAY)
 - **Professional oracle attestations** — experts paid directly by the protocol (Professional Badges)
-- **Court-ordered disclosure escrow** — identity that releases only on verified legal request
+- **Court-ordered disclosure escrow** — identity that releases only on verified legal request with on-chain approval via community vote
 - **Cross-chain deployer blacklist** — bad actors flagged on all chains
 
 WayChain was built specifically to serve these use cases. Not through economic tinkering, but through **identity as a first-class protocol primitive** combined with **professional verification**, **native oracles**, **Bitcoin-native stablecoins**, and **mineral rights tokenization**.
@@ -344,7 +344,7 @@ A common misconception: "If I have to verify my identity, I'm doxxed." This is n
 **What happens off-chain (curator side):**
 - A curator privately verifies your identity through a secure channel
 - The verification data (ID, video, etc.) is stored encrypted
-- Disclosure only happens on verified court order + public act (progressive hardening)
+- Disclosure only happens on verified court order with on-chain approval via community vote (progressive hardening)
 
 **If you are verified, disclosure is possible but rare. If you are NOT verified, no data exists — there is nothing to disclose.**
 
@@ -433,7 +433,29 @@ Each precompile uses **SHA256-based selectors** (not keccak256) and has a fixed 
 
 ---
 
-## 10. Network Status (Live)
+## 10. Three Parallel Lanes — Plug-and-Play for Any Use Case
+
+Most blockchains force every transaction through the same execution path. Public transactions, private data, and oracle attestations all compete for the same blockspace.
+
+WayChain runs **three parallel execution lanes:**
+
+| Lane | Type | Purpose | Privacy |
+|------|------|---------|---------|
+| **ConsensusLane** (0) | Public | Standard transactions, DeFi, governance, token transfers | Public — visible to all |
+| **OracleLane** (1) | Semi-public | Oracle attestations, professional badge work, price feeds | Public — but attestation-specific |
+| **PrivateLane** (2) | Encrypted | Healthcare records, corporate data, identity, legal docs | Encrypted mempool — only visible to involved parties |
+
+**Why this matters:**
+- A hospital can run private health records on PrivateLane while the same chain handles public DeFi on ConsensusLane
+- Oracle attestations don't compete with user transactions for block space
+- Private transactions are encrypted in the mempool — no frontrunning, no MEV, no data leakage
+- All three lanes share the same state and security — no separate L2, no sidechain, no bridge
+
+**WayChain is a plug-and-play blockchain for any use case.** Public, private, or oracle — all on one chain. No separate network needed. No custom deployment. Just choose your lane.
+
+---
+
+## 11. Network Status (Live)
 
 | Component | URL | Status |
 |-----------|-----|--------|
@@ -456,7 +478,7 @@ Each precompile uses **SHA256-based selectors** (not keccak256) and has a fixed 
 
 ---
 
-## 11. Risks & Honest Assessment
+## 12. Risks & Honest Assessment
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|------------|
@@ -472,7 +494,7 @@ Each precompile uses **SHA256-based selectors** (not keccak256) and has a fixed 
 
 ---
 
-## 12. Conclusion & Call to Action
+## 13. Conclusion & Call to Action
 
 WayChain is the first blockchain where identity — not capital — determines power. The system is live, processing transactions, and open to anyone.
 
@@ -486,6 +508,12 @@ WayChain is the first blockchain where identity — not capital — determines p
 - **Native Oracles** — the chain IS the oracle. No separate trust assumption.
 - **Fixed Fees** — fiat-pegged, not market-auctioned.
 - **Progressive Staking** — smaller stakes earn higher returns.
+
+**No central exchanges. Treasury-governed distribution. 1WAY backs the community. The fuse is lit.**
+
+WayChain does not chase exchange listings. The treasury holds the supply. Governance votes on every distribution. When 1WAY brings Bitcoin liquidity into the ecosystem, every transaction needs WAY for fees. The value flows to the community — not to exchange order books. As Wink put it: *"They will need us when the Bitcoin starts rolling in."*
+
+*A closed loop with a bridge to close the gap.* 1WAY is the bridge. The internal economy is self-sustaining — validators, attesters, professionals, and token holders all exchange value within the chain. The bridge connects this economy to the largest, most decentralized asset in existence: Bitcoin. The loop is sealed. The bridge is open.
 
 **Go to waychain.org. See blocks being produced in real time. Check the Badge UI and start your Dox_Dev verification. If you're a builder, deploy through the template registry. If you're a professional — geologist, lawyer, surveyor, engineer — apply for your oracle badge and start earning WAY for your expertise.**
 
