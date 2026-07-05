@@ -312,6 +312,9 @@ cf022fd v3.2.0: Whitepaper rebuilt — innovations at center, professional badge
 
 ## 8. Brand Assets
 
+### Brand icons (pending — SVG replacement)
+The correct brand icon set is at `/home/wink/Downloads/wayIcons.png` (8 gold line-art maritime icons: Compass Rose, Ship's Bell, Anchor, Ship's Wheel, Lantern, Nautical Star, Crossed Tools, Buoy). These should replace the current inline SVG icons in the values grid and tier cards when tokens are available to process them.
+
 ### Color Palette
 
 ```css
