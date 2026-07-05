@@ -22,23 +22,25 @@ Live on-chain at precompile 0x20. Stores:
 
 ## Economic Model
 
-The calculator uses July 2026 spot prices:
-- **Gold**: $4,175/oz (industrial scale claims)
+July 2026 spot prices:
+- **Gold**: $4,175/oz
 - **Silver**: $62.50/oz
 - **Copper**: $4.30/lb
 - **Lithium**: $14.50/kg
-- **Rare Earth**: $85/kg
 
-For 100 tons of gold at 95% purity:
+100 tons gold at 95% purity:
 - Gross value: ~$12M
-- Extraction cost: $15,000
-- Transport cost: $750
 - Net payout: ~$11.9M in 1WAY
 
 ## Call to Action
 
-**Developers**: Build apps using MRT data
-**Validators**: Host the chain securing real-world assets
-**Oracles**: Verified humans verifying offchain data, attesting onchain, earning WAY
+**Oracles** (Level 2 geologists):
+- Verify offchain mineral data
+- Earn WAY for attestations
+- OracleAggregator (0x0C) accepts submissions
 
-[Mineral Rights Calculator](https://waychain.org/#usecases) | [Docs](https://waychain.org/docs)
+**Curators** (Level 3, 90-day terms):
+- Approve oracle submissions
+- Earn WAY for governance
+
+[Mineral Rights Calculator](https://waychain.org/#usecases) | [Badge registration](https://waychain.org/badge)

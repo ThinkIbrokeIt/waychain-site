@@ -27,26 +27,27 @@ This gives you:
 
 ## Call to Action
 
-**Developers** (Dox_Dev Level 2):
-- Deploy contracts with SHA256 selectors (native)
-- 0x21 precompile available for Keccak256 when needed  
-- 21 precompiles ready (0x0C-0x25)
-- Testnet: https://api.waychain.org/rpc
+**Oracles** (Professional geologists, Level 2):
+- Verify offchain mineral data, attest onchain
+- Earn WAY for MRT submissions
+- OracleAggregator (0x0C) accepts data
 
-**Validators** (Dox_Dev Level 2+):
+**Validators** (Level 2+):
 - 200 validator slots available
-- 1-second finality, fair rewards
-- Treasury distributes 1WAY
+- Earn WAY from treasury
+- Swap to 1WAY via DEX for stable value
 
-**Oracles** (Verified Humans):
-- Verify offchain data, attest onchain
-- Earn WAY for verified MRT submissions
-- OracleAggregator (0x0C) accepts attestations
-- Professional geologists, surveyors welcome
-
-**Curators** (Dox_Dev Level 3):
-- 90-day terms appointed from Level 3 badge holders
+**Curators** (Level 3, 90-day terms):
+- Appointed from Level 3 badge holders
 - Earn WAY for protocol governance
 - Curate attestations, approve validators
+
+**Influencers** (Professional communicators):
+- Verified accounts via /badge
+- Community growth rewards in 1WAY (via DEX swap)
+
+**Developers** (Level 2):
+- Deploy contracts with SHA256 selectors
+- Swap WAY → 1WAY via DEX
 
 [Get your badge at /badge](https://waychain.org/badge) | [Docs for developers](https://waychain.org/docs)

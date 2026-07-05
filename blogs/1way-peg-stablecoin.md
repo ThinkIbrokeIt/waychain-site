@@ -18,22 +18,33 @@ Most "decentralized" stablecoins are:
 1. **Oracle Vault** - Multi-sig with verified geologists/bankers
 2. **BTC Holdings** - Treasury holds actual Bitcoin
 3. **Protocol Credits** - WAY minted against verified BTC value
-4. **1 1WAY = $1** - Hard peg maintained by oracle consensus
+4. **1 1WAY = $1** - Hard peg via oracle consensus
 
 ## Real-World Use Case
 
-The Mineral Rights Calculator uses 1WAY pricing:
+The Mineral Rights Calculator shows real value:
 - Gold: $4,175/oz (July 2026 spot)
-- 100 tons = ~3.2M troy oz = ~$12M gross value
-- Net payout in 1WAY tokens
+- 100 tons = ~$12M gross value
+- Net payout in 1WAY
 
 No fiat rails. No bank. Just verified Bitcoin backing.
 
 ## Call to Action
 
-**Developers**: Build apps using 1WAY for stable payments
-**Validators**: Treasury distributes rewards in 1WAY
-**Users**: Verified work completion earns 1WAY
-**Oracles**: Verify offchain data, earn WAY for attestations
+**Oracles** (Level 2):
+- Verify offchain data, earn WAY
+- OracleAggregator (0x0C) accepts attestations
+
+**Validators** (Level 2+):
+- Earn WAY from treasury
+- Swap to 1WAY via DEX
+
+**Curators** (Level 3, 90-day terms):
+- Earn WAY for governance
+- Treasury pays in 1WAY via DEX
+
+**Influencers** (Professional communicators):
+- Verified via /badge
+- Community rewards in 1WAY (via DEX swap)
 
 [Explorer](https://waychain.org/explorer) | [Badge registration](https://waychain.org/badge)
