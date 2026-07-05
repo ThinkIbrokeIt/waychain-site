@@ -312,8 +312,14 @@ cf022fd v3.2.0: Whitepaper rebuilt — innovations at center, professional badge
 
 ## 8. Brand Assets
 
-### Brand icons (pending — SVG replacement)
-The correct brand icon set is at `/home/wink/Downloads/wayIcons.png` (8 gold line-art maritime icons: Compass Rose, Ship's Bell, Anchor, Ship's Wheel, Lantern, Nautical Star, Crossed Tools, Buoy). These should replace the current inline SVG icons in the values grid and tier cards when tokens are available to process them.
+### Brand icons (SVG sprites implemented)
+The 5 primary brand icons are implemented as SVG symbols inline in `<head>`:
+- `icon-lantern` — Wardenclyffe tower/lightbulb (Illuminate, RPC Layer)
+- `icon-anchor` — Traditional anchor (Immovable, Opcode Layer)
+- `icon-nautical-star` — Star (Tended, compass)
+- `icon-lighthouse` — Lighthouse tower (For All, Mineral Rights)
+- `icon-compass-rose` — 8-point compass rose (Deploy Gate)
+All icons use `currentColor` for stroke/fill, inheriting parent colors (copper/amber).
 
 ### Color Palette
 
