@@ -251,8 +251,8 @@ git checkout dev
 - **Fix:** Add `--yes` to the deploy command in `deploy.sh`.
 
 ### Vercel Edge Cache — Stale HTML 🚨
-- Vercel's edge CDN serves `x-vercel-cache: HIT` for HTML pages even with `cache-control: public, max-age=0, must-revalidate`. The edge holds the old ETag for 5+ minutes after a deploy, so users see the old version.
-- **Fix:** Set `Cache-Control: no-store` for all routes in `vercel.json`:
+- Vercel's edge CDN serves `x-vercel-cache: HIT` for HTML pages even with `cache-control: no-store`. The edge holds the old ETag for 5+ minutes after a deploy, so users see the old version.
+- **Fix (applied):** Set `Cache-Control: no-store` for all routes in `vercel.json`:
   ```json
   "headers": [
     {
@@ -263,7 +263,8 @@ git checkout dev
     }
   ]
   ```
-- This forces every request to hit Vercel's origin (not edge cache), always serving the latest deploy. Verified with `x-vercel-cache: MISS` and `age: 0` on every request.
+- This forces every request to hit Vercel's origin, but the edge node may still serve `x-vercel-cache: HIT` for up to ~5 minutes before rolling to the new deploy.
+- **If user reports stale content:** Have them hard-refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`) or open DevTools → Network → Disable cache → reload. The ETag on the live file always matches the file on disk (verified by md5sum comparison).
 - **Trade-off:** Slightly higher origin load, but negligible for a static HTML site with no backend.
 
 ### DNS / Cloudflare
