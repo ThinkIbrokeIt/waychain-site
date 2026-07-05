@@ -1,6 +1,6 @@
 # WayChain Site — AGENTS.md
 
-> **Last updated:** July 2, 2026  
+> **Last updated:** July 4, 2026  
 > **Purpose:** This file gives any AI agent (Claude, Codex, ChatGPT, etc.) everything needed to understand, modify, deploy, or troubleshoot the WayChain frontend website.
 
 ---
@@ -60,13 +60,18 @@ All routes are served as **static HTML** through Vercel rewrites defined in `ver
 
 | Route | File Served | Description |
 |---|---|---|
-| `/` | `index.html` | Dashboard / homepage |
-| `/whitepaper` | `whitepaper/index.html` | 16-section/22-chapter whitepaper |
-| `/whitepaper/*` | `whitepaper/index.html` | SPA catch-all for all whitepaper deep-links |
+| `/` | `index.html` | Dashboard / homepage — 10 use cases, developers walkthrough |
+| `/whitepaper` | `whitepaper/index.html` | 22-chapter whitepaper, accordion nav |
+| `/whitepaper/*` | `whitepaper/index.html` | SPA catch-all for deep-links |
 | `/explorer` | `explorer/index.html` | Block explorer |
-| `/badge` | `badge/index.html` | Badge/verification page |
-| `/plan` | `plan/index.html` | Roadmap/plan page |
+| `/badge` | `badge/index.html` | Dox_Dev badge lookup & apply |
+| `/plan` | `plan/index.html` | Roadmap / launch plan |
+| `/docs` | `docs/index.html` | Getting started — Step 1-5 walkthrough, Option C (BTC→1WAY) |
+| `/wallet` | `wallet/index.html` | Web wallet — Ed25519 keygen, faucet, send |
+| `/faucet` | `faucet/index.html` | Faucet — request 10 WAY test tokens |
 | `/version.json` | `version.json` | Version tracking (served directly, no rewrite) |
+
+> **Note:** Additional frontends (Declaration, Binary Journal, TrustlessLock, DEX) live in the **monorepo** at `/home/wink/projects/waychain/site/` — see that repo's AGENTS.md. This repo (`waychain-site`) mirrors the monorepo's `site/` subdirectory and is deployed independently.
 
 ### ⚠️ Legacy flat files (not rewired — coexist with directories)
 
@@ -98,6 +103,9 @@ These are **not** served by vercel.json rewrites but may still be accessible at 
     { "source": "/whitepaper/:path*", "destination": "/whitepaper/index.html" },
     { "source": "/explorer", "destination": "/explorer/index.html" },
     { "source": "/badge", "destination": "/badge/index.html" },
+    { "source": "/docs", "destination": "/docs/index.html" },
+    { "source": "/wallet", "destination": "/wallet/index.html" },
+    { "source": "/faucet", "destination": "/faucet/index.html" },
     { "source": "/plan", "destination": "/plan/index.html" }
   ]
 }
@@ -106,19 +114,22 @@ These are **not** served by vercel.json rewrites but may still be accessible at 
 - No framework (pure static HTML)
 - No build step (`buildCommand: ""`, `installCommand: ""`)
 - SPA-style rewrites for multi-page routes
+- Routes for `/docs`, `/wallet`, `/faucet` added in v4.0.1
+
+> ⚠️ The `/declaration`, `/independence`, `/journal`, `/locks`, `/dex` routes exist in the monorepo's `vercel.json` (`/home/wink/projects/waychain/site/vercel.json`) — NOT in this repo.
 
 ### `version.json`
 
-System version tracking file. Current values as of July 2, 2026:
+System version tracking file. Current values as of July 4, 2026 (v4.1.0):
 
 ```json
 {
-  "version": "3.1.4",
+  "version": "4.1.0",
   "chain_id": 10008,
   "chain_id_hex": "0x2718",
   "name": "WayChain",
   "tagline": "Actually Decentralized",
-  "deployed_at": "2026-07-02",
+  "deployed_at": "2026-07-04",
   "whitepaper_sections": 22,
   "live_features": 18,
   "spec_features": 6,
@@ -141,6 +152,8 @@ System version tracking file. Current values as of July 2, 2026:
   ]
 }
 ```
+
+> **Note:** The `version.json` file is **not auto-bumped** by `deploy.sh` across all files. After any manual version.json edits, run `./deploy.sh patch "description"` to commit and deploy.
 
 ### `deploy.sh`
 
@@ -187,6 +200,10 @@ Automated deployment script. Bumps version, commits, tags, and deploys to Vercel
 
 - `v3.1.3` — Lighthouse brand applied to dashboard, badge, explorer
 - `v3.1.4` — Whitepaper sections rebuilt from markdown (16 chapters, lighthouse brand)
+- `v3.2.0` — Whitepaper rebuilt with 14 sections, innovations centered
+- `v4.0.0` — Whitepaper rebuilt — 14 sections, innovations at center
+- `v4.0.1` — 10 use cases on homepage, walkthrough in developers section, /docs route
+- `v4.1.0` — CashApp onramp, wallet/faucet pages, Getting Started walkthrough for newbies
 
 ---
 
@@ -221,18 +238,19 @@ Automated deployment script. Bumps version, commits, tags, and deploys to Vercel
 | **v3.1.0–v3.1.2** | Jun 26–30 | Brand rebuild: Lighthouse identity applied end-to-end. 5-page site architecture. Brand fidelity passes. |
 | **v3.1.3** | Jul 1 | Lighthouse brand applied to dashboard, badge, explorer, and whitepaper pages. Exact brand fidelity achieved. |
 | **v3.1.4** | Jul 2 | Whitepaper sections rebuilt from markdown: 16→22 chapters, accordion navigation, lighthouse brand. Tunnel systemd service installed for persistent RPC access. |
+| **v4.0.0** | Jul 4 | Whitepaper rebuilt: 14 sections with innovations centered. Professional badges, mineral rights, 1WAY, Binary Journal as core thesis. |
+| **v4.0.1** | Jul 4 | **Use cases expanded** — homepage use cases section grew from 4 to 10 items matching whitepaper's "Use Cases No Chain Has Solved". Footer list went from 3 to 10. **Developers walkthrough** added — 4-step pipe flow (Verify → Read → Connect → Deploy). `/docs` route added for Getting Started guide. |
+| **v4.1.0** | Jul 4 | **New frontends**: `/wallet` (Ed25519 keygen + faucet + send), `/faucet` (10 WAY request). **Getting Started docs** rebuilt with Option A (CashApp BTC bridge), Option B (faucet), Option C (send BTC receive 1WAY). **Navigation links** for wallet, faucet, docs added to homepage footer. |
 
 ### Recent Notable Commits
 
 ```
+b729666 v4.1.0: Add CashApp onramp, wallet/faucet pages, Getting Started walkthrough
+ce4815a v4.0.1: Add 10 use cases, walkthrough to developers, /docs route
+1ef65c4 v4.0.0: Whitepaper rebuilt — 14 sections, innovations at center
+cf022fd v3.2.0: Whitepaper rebuilt — innovations at center, professional badges, mineral rights, 1WAY, BJ, CTA
 69cc877 v3.1.4: Whitepaper sections nav — 16 chapters, lighthouse brand
-2401089 v3.1.4: Whitepaper sections nav — 16 chapters, lighthouse brand, accordion layout
 43571fd v3.1.3: Updated dashboard, badge, explorer, and whitepaper pages
-5ee434d brand: Exact brand fidelity — System Two (Product/Web) applied
-f5b7c41 brand: Exact match to waychainbrand.png
-d8e947a brand: Exact match to waychainbrand.png
-601aafa brand: Corrected hex codes + exact brand text from guide
-e2dc8ef brand: Implement exact brand guide — colors, fonts, tiers, compass
 98f520c feat: 5-page site architecture — Illuminate. Navigate. Arrive.
 ```
 
@@ -307,24 +325,45 @@ cd /home/wink/projects/waychain-site && git log --oneline -20
 
 # Check current state
 cd /home/wink/projects/waychain-site && git status
+
+# Push to GitHub (note: deploy.sh handles commit+deploy but does NOT push)
+cd /home/wink/projects/waychain-site && git push origin master
 ```
 
 ### Project location on disk
 ```
 /home/wink/projects/waychain-site/
-├── index.html              # Dashboard / homepage
+├── index.html              # Dashboard / homepage (10 use cases, dev walkthrough)
 ├── explorer.html           # Legacy explorer (flat)
 ├── badge.html              # Legacy badge (flat)
-├── vercel.json             # Route config
-├── version.json            # Version tracking
+├── vercel.json             # Route config (8 routes)
+├── version.json            # Version tracking (v4.1.0)
 ├── deploy.sh               # Deploy script
 ├── AGENTS.md               # This file
 ├── explorer/
 │   └── index.html          # Canonical explorer
 ├── badge/
-│   └── index.html          # Canonical badge
+│   └── index.html          # Dox_Dev badge lookup + apply
 ├── plan/
 │   └── index.html          # Roadmap
+├── docs/
+│   └── index.html          # Getting Started (Step 1-5, Option A/B/C)
+├── wallet/
+│   └── index.html          # Web wallet (keygen, faucet, send)
+├── faucet/
+│   └── index.html          # Faucet (10 WAY request)
 └── whitepaper/
     └── index.html          # Whitepaper (22 chapters)
 ```
+
+### Related monorepo frontends (NOT in this repo)
+```
+/home/wink/projects/waychain/site/
+├── declaration/            # July 4th Independence Declaration
+├── binary-journal/         # Truth anchoring + Dead Man's Switch
+├── locks/                  # TrustlessLock UI
+├── dex/                    # Swap Route DEX
+├── wallet/                 # Web wallet (may differ from this repo's version)
+```
+
+> These routes are deployed from the monorepo at `ThinkIbrokeIt/waychain` via `./deploy.sh` in that repo's `site/` directory.

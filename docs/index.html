@@ -169,6 +169,16 @@ tr:nth-child(even) { background: var(--bg2); }
     <li>Check your balance in 1 second (links to explorer)</li>
   </ol>
 
+  <h3>Option C: Send Bitcoin, Receive 1WAY</h3>
+  <p>Send real BTC from any wallet and receive 1WAY — the Bitcoin-backed stablecoin — directly to your WayChain address.</p>
+  <ol>
+    <li>Send BTC to the 1WAY bridge address (shown on <a href="/bridge">/bridge</a>)</li>
+    <li>Wait for confirmations (6+ blocks, ~1 hour)</li>
+    <li>1WAY credits automatically at 1:1 peg to your WayChain address</li>
+    <li>Use 1WAY anywhere on WayChain — swap, send, hold in treasury</li>
+  </ol>
+  <p style="color:var(--copper);font-size:0.9em">1WAY = Bitcoin on WayChain. Fully backed. Send BTC, get 1WAY. Send 1WAY, get BTC. The bridge is the closed loop.</p>
+
   <div class="terminal">
 <span class="prompt">Balance check:</span> curl -X POST https://api.waychain.org \
   -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xYourAddress","latest"],"id":1}'
