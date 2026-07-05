@@ -176,6 +176,35 @@ Automated deployment script. Bumps version, commits, tags, and deploys to Vercel
 
 ## 5. Git Workflow
 
+### Branch Strategy
+
+| Branch | Purpose | Protected | Deployed to Vercel |
+|--------|---------|-----------|---------------------|
+| `main` | **Live production.** What users see at waychain.org. Only merged from `master` after testing. | ✅ enforce_admins | ✅ yes |
+| `master` | **Protected integration.** Clean merges only. Changes flow: `dev` → test → `master` → `main` | ✅ enforce_admins | ❌ no |
+| `dev` | **Development lane.** Break stuff here. Experiment. Fail fast. Push changes to `dev` first. | ❌ | ❌ no |
+
+**Workflow:**
+```bash
+# Start working (always on dev)
+git checkout dev
+
+# Make changes, commit
+git add -A && git commit -m "..."
+git push origin dev
+
+# When ready to go live:
+# 1. Merge dev into master
+git checkout master && git merge dev && git push origin master
+
+# 2. Merge master into main and deploy
+git checkout main && git merge master && git push origin main
+vercel deploy --prod --yes
+
+# 3. Go back to dev
+git checkout dev
+```
+
 ### Remote & Author
 
 | Property | Value |
@@ -187,14 +216,22 @@ Automated deployment script. Bumps version, commits, tags, and deploys to Vercel
 ### Deploy Flow
 
 ```bash
-# Typical deploy cycle:
-./deploy.sh patch "Fix typo in footer"
-# OR
-./deploy.sh minor "Add new section to dashboard"
+# The safe cycle — always use the branch strategy:
+cd /home/wink/projects/waychain-site
 
-# Script handles: bump → commit → vercel deploy --prod → tag
-# No manual vercel deploy needed
+# 1. Dev → Master → Main
+git checkout dev && git add -A && git commit -m "v4.1.2: Description"
+git checkout master && git merge dev && git push origin master
+git checkout main && git merge master && git push origin main
+
+# 2. Deploy from main
+vercel deploy --prod --yes
+
+# 3. Back to dev
+git checkout dev
 ```
+
+> **Note:** Vercel auto-deploys from GitHub when `main` is pushed. Use `vercel deploy --prod --yes` when you want to force an immediate deploy without waiting for the GitHub webhook.
 
 ### Tags
 
@@ -330,11 +367,14 @@ cat vercel.json
 # Read the deploy script
 cat deploy.sh
 
-# Deploy a patch
-cd /home/wink/projects/waychain-site && ./deploy.sh patch "description"
+# Start working (always on dev!)
+cd /home/wink/projects/waychain-site && git checkout dev
 
-# Deploy a minor version
-cd /home/wink/projects/waychain-site && ./deploy.sh minor "description"
+# Deploy to production (from main)
+cd /home/wink/projects/waychain-site
+git checkout main && git pull origin main
+vercel deploy --prod --yes
+git checkout dev
 
 # View git log
 cd /home/wink/projects/waychain-site && git log --oneline -20
@@ -342,8 +382,8 @@ cd /home/wink/projects/waychain-site && git log --oneline -20
 # Check current state
 cd /home/wink/projects/waychain-site && git status
 
-# Push to GitHub (note: deploy.sh handles commit+deploy but does NOT push)
-cd /home/wink/projects/waychain-site && git push origin master
+# Push to GitHub
+cd /home/wink/projects/waychain-site && git push origin dev
 ```
 
 ### Project location on disk
