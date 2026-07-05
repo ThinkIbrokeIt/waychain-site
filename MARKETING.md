@@ -13,8 +13,8 @@
 - SHA256 selectors + Ed25519 signatures
 - Testnet: https://api.waychain.org/rpc
 
-**For Validators (Level 3 curators)**:
-- Apply via /badge (Dox_Dev Level 3)
+**For Validators (Dox_Dev Level 2)**:
+- Apply via /badge (Dox_Dev Level 2+)
 - 200 validator slots available
 - 1-second finality, fair rewards
 - Treasury: 1WAY reward distribution
@@ -118,5 +118,5 @@ A: Bitcoin compatibility, better tooling maturity, auditable consensus.
 **Q: Can I use Solidity?**  
 A: Yes, via 0x21 precompile for EVM-compatible hashing. Native contracts use SHA256.
 
-**Q: How do I become a validator?**  
-A: Get Dox_Dev Level 3 via /badge. 200 slots available.
+**Q: How do I become a validator?**
+A: Get Dox_Dev Level 2 via /badge. 200 slots available.
