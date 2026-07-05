@@ -19,9 +19,14 @@
     { "source": "/whitepaper/:path*", "destination": "/whitepaper/index.html" },
     { "source": "/explorer", "destination": "/explorer/index.html" },
     { "source": "/badge", "destination": "/badge/index.html" },
+    { "source": "/plan", "destination": "/plan/index.html" },
     { "source": "/docs", "destination": "/docs/index.html" },
+    { "source": "/declaration", "destination": "/declaration/index.html" },
+    { "source": "/independence", "destination": "/declaration/index.html" },
     { "source": "/wallet", "destination": "/wallet/index.html" },
     { "source": "/faucet", "destination": "/faucet/index.html" },
-    { "source": "/plan", "destination": "/plan/index.html" }
+    { "source": "/journal", "destination": "/binary-journal/index.html" },
+    { "source": "/locks", "destination": "/locks/index.html" },
+    { "source": "/dex", "destination": "/dex/index.html" }
   ]
 }
