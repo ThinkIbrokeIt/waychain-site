@@ -5,6 +5,14 @@
   "buildCommand": "",
   "outputDirectory": ".",
   "installCommand": "",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/version.json", "destination": "/version.json" },
     { "source": "/whitepaper", "destination": "/whitepaper/index.html" },
