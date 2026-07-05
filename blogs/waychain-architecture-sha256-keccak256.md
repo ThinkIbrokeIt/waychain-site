@@ -44,4 +44,9 @@ This gives you:
 - OracleAggregator (0x0C) accepts attestations
 - Professional geologists, surveyors welcome
 
+**Curators** (Dox_Dev Level 3):
+- 90-day terms appointed from Level 3 badge holders
+- Earn WAY for protocol governance
+- Curate attestations, approve validators
+
 [Get your badge at /badge](https://waychain.org/badge) | [Docs for developers](https://waychain.org/docs)

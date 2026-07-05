@@ -25,6 +25,11 @@
 - OracleAggregator (0x0C) accepts attestations
 - Environmental data for mineral claims
 
+**For Curators (Dox_Dev Level 3)**:
+- 90-day terms appointed from Level 3 badge holders
+- Earn WAY for protocol governance
+- Curate Dox_Dev attestations, approve validators
+
 ## Core Narrative Positions
 
 ### 1. The Lighthouse Metaphor
