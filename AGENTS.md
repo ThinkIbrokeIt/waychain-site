@@ -213,6 +213,22 @@ Automated deployment script. Bumps version, commits, tags, and deploys to Vercel
 - `vercel deploy --prod` needs the **`--yes` flag** for fully automated (non-interactive) deploys. The current `deploy.sh` doesn't include `--yes` — if the CLI prompts for confirmation, the deploy will hang.
 - **Fix:** Add `--yes` to the deploy command in `deploy.sh`.
 
+### Vercel Edge Cache — Stale HTML 🚨
+- Vercel's edge CDN serves `x-vercel-cache: HIT` for HTML pages even with `cache-control: public, max-age=0, must-revalidate`. The edge holds the old ETag for 5+ minutes after a deploy, so users see the old version.
+- **Fix:** Set `Cache-Control: no-store` for all routes in `vercel.json`:
+  ```json
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
+  ```
+- This forces every request to hit Vercel's origin (not edge cache), always serving the latest deploy. Verified with `x-vercel-cache: MISS` and `age: 0` on every request.
+- **Trade-off:** Slightly higher origin load, but negligible for a static HTML site with no backend.
+
 ### DNS / Cloudflare
 - `waychain.org`'s A records point to Vercel IPs. As of the last known config, Cloudflare was set to **DNS only (gray cloud)** — NOT proxied. This may have changed and **needs verification**.
 - `api.waychain.org` uses **Cloudflare Tunnel** (proxied), NOT Vercel. Do NOT change this — the tunnel connects to a local Nginx proxy on the VPS.
