@@ -258,7 +258,7 @@ tx := client.Deploy(contractCode, deployerAddr)</code></pre></div>
     <tr><td>Signatures</td><td>Ed25519</td><td>ECDSA (secp256k1)</td></tr>
     <tr><td>Tx format</td><td>Binary (not RLP)</td><td>RLP-encoded</td></tr>
     <tr><td>Fees</td><td>Fixed (0.001/0.005/0.01 WAY)</td><td>Auction-based</td></tr>
-    <tr><td>Precompiles</td><td>20 at 0x0C-0x20</td><td>0x01-0x0A</td></tr>
+    <tr><td>Precompiles</td><td>21 at 0x0C-0x21</td><td>0x01-0x0A</td></tr>
   </table>
 
   <h2>RPC API</h2>
@@ -275,7 +275,7 @@ curl -X POST https://api.waychain.org \
 # WebSocket stream
 wss://api.waychain.org/ws</code></pre></div>
 
-  <h2>Native Precompiles (0x0C-0x20)</h2>
+  <h2>Native Precompiles (0x0C-0x21)</h2>
   <table>
     <tr><th>Address</th><th>Name</th><th>Function</th><th>Status</th></tr>
     <tr><td><code>0x0C</code></td><td>OracleAggregator</td><td>Price aggregation</td><td>✅ Live</td></tr>
@@ -295,7 +295,7 @@ wss://api.waychain.org/ws</code></pre></div>
     <tr><td><code>0x1E</code></td><td>StateRent</td><td>Storage fees</td><td>✅ Live</td></tr>
     <tr><td><code>0x1F</code></td><td>CrossChain</td><td>External attestations</td><td>✅ Live</td></tr>
     <tr><td><code>0x20</code></td><td>MRT Registry</td><td>Mineral rights</td><td>✅ Live</td></tr>
-    <tr><td><code>0x21-0x25</code></td><td>StakingAPY</td><td>5-tier rewards</td><td>✅ Live</td></tr>
+    <tr><td><strong><code>0x21</code></strong></td><td><strong>Keccak256</strong></td><td><strong>Ethereum-compatible hash</strong></td><td><strong>✅ Live</strong></td></tr>
   </table>
 
   <h2>Dox_Dev Identity Requirements</h2>
