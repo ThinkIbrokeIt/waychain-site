@@ -369,7 +369,7 @@ p{margin-bottom:12px}
       <div class="use-case"><div class="uc-icon">⚖️</div><div><h4>Court Disclosure Escrow</h4><p>Identity that releases only on verified legal request with on-chain community vote approval.</p></div></div>
       <div class="use-case"><div class="uc-icon">🌐</div><div><h4>Cross-Chain Blacklist</h4><p>Bad actors flagged on all chains. Deployer blacklist enforced at protocol level.</p></div></div>
       <div class="use-case"><div class="uc-icon">💵</div><div><h4>2WAY Multi-Collateral</h4><p>Multi-collateral stablecoin with 1-second finality. Bitcoin-backed, not synthetic.</p></div></div>
-      <div class="use-case"><div class="uc-icon">📦</div><div><h4>State Rent</h4><p>Pay once, store forever. Precompile 0x1E enforces continuous storage with 60% burn. $0.12/MB/year.</p></div></div>
+      <div class="use-case"><div class="uc-icon">📦</div><div><h4>State Rent</h4><p>Continuous storage funding. Precompile 0x1E collects rent at $0.12/MB/year with 60% burn. Abandoned data prunes naturally.</p></div></div>
     </div>
   </section>
 </div>
@@ -512,7 +512,7 @@ const FEATURES=[
   {name:"Progressive Staking",status:"live",addr:"0x21-0x25",desc:"5-tier marginal APY: 15% / 8% / 4% / 2% / 1%. Anti-whale by design.",link:"/whitepaper/#philosophy"},
   {name:"Oracle VRF + Time",status:"live",addr:"0x0D",desc:"Scheduled oracle triggers with RANDOM opcode (0xC4). 13 tests passing.",link:"/whitepaper/#architecture"},
   {name:"Mineral Rights (MRT)",status:"live",addr:"0x20",desc:"Tokenize mineral reserves. Full lifecycle: register → verify → approve → issue → monitor → transfer. 12 tests passing.",link:"/whitepaper/#overview"},
-  {name:"State Rent",status:"live",addr:"0x1E",desc:"State rent enforcement with 60% burn. Precompile live, pricing at $0.12/MB/year.",link:"/whitepaper/#status"},
+  {name:"State Rent",status:"live",addr:"0x1E",desc:"Continuous storage rent at $0.12/MB/year with 60% burn. Abandoned data prunes naturally.",link:"/whitepaper/#status"},
 ];
 const grid=document.getElementById('featuresGrid');
 FEATURES.forEach(f=>{const c=document.createElement('div');c.className='chip';c.innerHTML=`<div class="chip-name">${f.name}</div><span class="chip-badge badge-${f.status}">${f.status==='live'?'Live':'Building'}</span>${f.addr!=='—'?`<div class="chip-addr">${f.addr}</div>`:''}`;c.onclick=()=>openModal(f);grid.appendChild(c)});
