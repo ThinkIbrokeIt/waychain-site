@@ -44,10 +44,11 @@ This gives you:
 
 **Influencers** (Professional communicators):
 - Verified accounts via /badge
-- Community growth rewards in 1WAY (via DEX swap)
+- Earn WAY for community work
+- Swap to 1WAY via DEX, or any stable coin
 
 **Developers** (Level 2):
 - Deploy contracts with SHA256 selectors
-- Swap WAY → 1WAY via DEX
+- Earn WAY for platform work (any stable coin via DEX)
 
 [Get your badge at /badge](https://waychain.org/badge) | [Docs for developers](https://waychain.org/docs)

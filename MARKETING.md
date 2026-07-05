@@ -6,11 +6,12 @@
 
 ## Compensation Model
 
-**WAY** - Gold-backed token  
-Earned for: mineral claims, oracle work, curator duties, validator rewards
+**WAY** - Gold-backed token (native chain token)  
+Earned for: all platform duties, oracle work, validator rewards, curator duties
 
 **1WAY** - Bitcoin-backed stablecoin ($1 = 1 BTC value)  
-Get via DEX: swap WAY → 1WAY for stable value
+Earned for: Bitcoin or gold claims only  
+Everyone swaps via DEX for stable value
 
 ## Call to Action
 
@@ -32,8 +33,8 @@ Get via DEX: swap WAY → 1WAY for stable value
 
 **For Influencers (Professional communicators)**:
 - Verified accounts via /badge
-- Earn 1WAY via DEX swap from WAY rewards
-- Community growth bounties
+- Earn WAY for community work
+- Swap to 1WAY via DEX, or any stable coin
 
 **For Developers (Dox_Dev Level 2)**:
 - Deploy contracts with SHA256 selectors (native)

@@ -41,10 +41,11 @@ No fiat rails. No bank. Just verified Bitcoin backing.
 
 **Curators** (Level 3, 90-day terms):
 - Earn WAY for governance
-- Treasury pays in 1WAY via DEX
+- Swap to 1WAY via DEX
 
 **Influencers** (Professional communicators):
 - Verified via /badge
-- Community rewards in 1WAY (via DEX swap)
+- Earn WAY for community work
+- Swap to any stable coin via DEX
 
 [Explorer](https://waychain.org/explorer) | [Badge registration](https://waychain.org/badge)
