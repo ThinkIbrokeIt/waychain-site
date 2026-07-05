@@ -38,9 +38,10 @@ This gives you:
 - 1-second finality, fair rewards
 - Treasury distributes 1WAY
 
-**Oracles** (Professional geologists):
-- Get paid WAY for verified MRT submissions
-- OracleAggregator (0x0C) accepts data
-- Environmental impact work
+**Oracles** (Verified Humans):
+- Verify offchain data, attest onchain
+- Earn WAY for verified MRT submissions
+- OracleAggregator (0x0C) accepts attestations
+- Professional geologists, surveyors welcome
 
 [Get your badge at /badge](https://waychain.org/badge) | [Docs for developers](https://waychain.org/docs)

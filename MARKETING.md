@@ -20,10 +20,10 @@
 - Treasury: 1WAY reward distribution
 
 **For Oracles (Professional geologists, surveyors)**:
-- Get paid WAY for verified work
-- OracleAggregator (0x0C) accepts submissions
-- Environmental data for MRT Registry
-- Connect via /docs RPC endpoints
+- Verified humans verifying offchain data, attesting onchain
+- Earn WAY for verified MRT submissions
+- OracleAggregator (0x0C) accepts attestations
+- Environmental data for mineral claims
 
 ## Core Narrative Positions
 

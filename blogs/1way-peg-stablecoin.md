@@ -33,6 +33,7 @@ No fiat rails. No bank. Just verified Bitcoin backing.
 
 **Developers**: Build apps using 1WAY for stable payments
 **Validators**: Treasury distributes rewards in 1WAY
-**Users**: Claim 1WAY via verified work completion
+**Users**: Verified work completion earns 1WAY
+**Oracles**: Verify offchain data, earn WAY for attestations
 
 [Explorer](https://waychain.org/explorer) | [Badge registration](https://waychain.org/badge)

@@ -39,6 +39,6 @@ For 100 tons of gold at 95% purity:
 
 **Developers**: Build apps using MRT data
 **Validators**: Host the chain securing real-world assets
-**Oracles**: Submit geological surveys, earn WAY
+**Oracles**: Verified humans verifying offchain data, attesting onchain, earning WAY
 
 [Mineral Rights Calculator](https://waychain.org/#usecases) | [Docs](https://waychain.org/docs)
