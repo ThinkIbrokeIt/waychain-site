@@ -9,43 +9,43 @@ Most "decentralized" stablecoins are:
 
 1WAY is different:
 - **1:1 peg to USD** via multi-sig oracle vault
-- **BTC backing** (not fiat, not ETH volatility)
+- **BTC backing** (digital gold, immutable)
+- **Burn to redeem** - Burn 1WAY, get Bitcoin
 - **No admin keys** (renounced ownership)
-- **Protocol-controlled** (not governance-controlled)
 
-## How It Works
+## Economic Loop
 
-1. **Oracle Vault** - Multi-sig with verified geologists/bankers
-2. **BTC Holdings** - Treasury holds actual Bitcoin
-3. **Protocol Credits** - WAY minted against verified BTC value
-4. **1 1WAY = $1** - Hard peg via oracle consensus
+```
+BITCOIN (digital gold)
+    ↓ mint (Treasury)
+1WAY (stablecoin, $1 = 1 BTC)
+    ↓ burn
+BITCOIN
+
+REAL GOLD CLAIM
+    ↓ extinguish
+1WAY (payment)
+
+COMMUNITY WORK
+    ↓ earn
+WAY (community-backed token)
+    ↓ swap via DEX
+1WAY (stable value)
+```
 
 ## Real-World Use Case
 
-The Mineral Rights Calculator shows real value:
+Mineral Rights Calculator:
 - Gold: $4,175/oz (July 2026 spot)
-- 100 tons = ~$12M gross value
-- Net payout in 1WAY
+- Extinguish real gold → Get 1WAY
+- Burn 1WAY → Redeem Bitcoin
 
-No fiat rails. No bank. Just verified Bitcoin backing.
+No fiat rails. No bank. Verified Bitcoin backing.
 
 ## Call to Action
 
-**Oracles** (Level 2):
-- Verify offchain data, earn WAY
-- OracleAggregator (0x0C) accepts attestations
+**Oracles** → **Validators** → **Curators** → **Influencers** → **Developers**
 
-**Validators** (Level 2+):
-- Earn WAY from treasury
-- Swap to 1WAY via DEX
-
-**Curators** (Level 3, 90-day terms):
-- Earn WAY for governance
-- Swap to 1WAY via DEX
-
-**Influencers** (Professional communicators):
-- Verified via /badge
-- Earn WAY for community work
-- Swap to any stable coin via DEX
+All earn WAY through /badge. Swap to 1WAY via DEX.
 
 [Explorer](https://waychain.org/explorer) | [Badge registration](https://waychain.org/badge)

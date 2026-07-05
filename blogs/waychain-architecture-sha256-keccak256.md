@@ -20,35 +20,36 @@ const hash = sha256(data);
 const keccak = waychain.call('0x21', 'keccak256', data);
 ```
 
-This gives you:
-- **Native security** with SHA256 consensus
-- **EVM compatibility** when needed via 0x21
-- **No forced compromise** — you choose
+## Economic Loop
+
+```
+BITCOIN (digital gold)
+    ↓ mint (Treasury)
+1WAY (stablecoin, $1 = 1 BTC)
+    ↓ burn
+BITCOIN
+
+REAL GOLD CLAIM
+    ↓ extinguish
+1WAY (payment)
+
+COMMUNITY WORK
+    ↓ earn
+WAY (community-backed token)
+    ↓ swap via DEX
+1WAY (stable value)
+```
 
 ## Call to Action
 
-**Oracles** (Professional geologists, Level 2):
-- Verify offchain mineral data, attest onchain
-- Earn WAY for MRT submissions
-- OracleAggregator (0x0C) accepts data
+**Oracles** (Level 2 geologists): Verify data → Earn WAY → Swap to 1WAY
 
-**Validators** (Level 2+):
-- 200 validator slots available
-- Earn WAY from treasury
-- Swap to 1WAY via DEX for stable value
+**Validators** (Level 2+): Run node → Earn WAY → Swap to 1WAY via DEX
 
-**Curators** (Level 3, 90-day terms):
-- Appointed from Level 3 badge holders
-- Earn WAY for protocol governance
-- Curate attestations, approve validators
+**Curators** (Level 3, 90-day terms): Govern protocol → Earn WAY
 
-**Influencers** (Professional communicators):
-- Verified accounts via /badge
-- Earn WAY for community work
-- Swap to 1WAY via DEX, or any stable coin
+**Influencers** (Communicators): Build community → Earn WAY → Swap via DEX
 
-**Developers** (Level 2):
-- Deploy contracts with SHA256 selectors
-- Earn WAY for platform work (any stable coin via DEX)
+**Developers** (Level 2): Build apps → Earn WAY → Swap to any stable coin
 
-[Get your badge at /badge](https://waychain.org/badge) | [Docs for developers](https://waychain.org/docs)
+[Get badge at /badge](https://waychain.org/badge) | [Docs](https://waychain.org/docs)

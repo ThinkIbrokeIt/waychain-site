@@ -2,7 +2,7 @@
 
 ## Environmental Impact Through Economics
 
-Most environmental solutions ask you to stop using resources. We pay claim-holders to leave them in the ground forever.
+Most environmental solutions tell you to stop. We pay you to preserve.
 
 ## How It Works
 
@@ -12,25 +12,40 @@ Most environmental solutions ask you to stop using resources. We pay claim-holde
 4. **Escrow** - WAY locked, title NFT to Permanent Reserve
 5. **Extinguish** - Immutable certificate. Resource dead forever.
 
-## The MRT Registry (0x20)
+## Economic Loop
 
-Live on-chain at precompile 0x20. Stores:
+```
+REAL GOLD CLAIM
+    ↓ extinguish
+1WAY (payment)
+
+COMMUNITY WORK (oracles/validators/curators)
+    ↓ earn
+WAY (community-backed token)
+    ↓ swap via DEX
+1WAY (stable value)
+
+BITCOIN (treasury)
+    ↓ mint
+1WAY (backing)
+```
+
+## MRT Registry (0x20)
+
+Live precompile storing:
 - Claim boundaries (GPS polygons)
 - Mineral types and grades
 - Ownership chains
 - Extinguishment status
 
-## Economic Model
+## Real Numbers
 
 July 2026 spot prices:
-- **Gold**: $4,175/oz
-- **Silver**: $62.50/oz
-- **Copper**: $4.30/lb
-- **Lithium**: $14.50/kg
+- Gold: $4,175/oz
+- Silver: $62.50/oz
+- Copper: $4.30/lb
 
-100 tons gold at 95% purity:
-- Gross value: ~$12M
-- Net payout: ~$11.9M in 1WAY
+100 tons gold at 95% purity = ~$12M gross, paid in 1WAY
 
 ## Call to Action
 
@@ -38,9 +53,5 @@ July 2026 spot prices:
 - Verify offchain mineral data
 - Earn WAY for attestations
 - OracleAggregator (0x0C) accepts submissions
-
-**Curators** (Level 3, 90-day terms):
-- Approve oracle submissions
-- Earn WAY for governance
 
 [Mineral Rights Calculator](https://waychain.org/#usecases) | [Badge registration](https://waychain.org/badge)
