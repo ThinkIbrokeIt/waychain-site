@@ -7,9 +7,10 @@ Most environmental solutions ask you to stop using resources. We pay claim-holde
 ## How It Works
 
 1. **Prove** - Title deed + GPS hashed to Binary Journal
-2. **Price** - Oracle pulls spot prices, deducts fees
-3. **Escrow** - WAY locked, title NFT to Permanent Reserve
-4. **Extinguish** - Immutable certificate. Resource dead forever.
+2. **Verify** - Oracle validates proof, submits attestation
+3. **Price** - Oracle pulls spot prices, calculates payout
+4. **Escrow** - WAY locked, title NFT to Permanent Reserve
+5. **Extinguish** - Immutable certificate. Resource dead forever.
 
 ## The MRT Registry (0x20)
 
