@@ -15,8 +15,9 @@ h1,h2,h3{font-family:'Playfair Display',Georgia,serif}
 a{color:var(--copper);text-decoration:none}
 a:hover{color:var(--warm)}
 .nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 0;background:var(--slate);border-bottom:1px solid var(--border);margin-bottom:24px}
-.nav-logo{font-family:'Playfair Display',Georgia,serif;font-size:1.1em;color:var(--warm);letter-spacing:1px}
-.nav-logo span{color:var(--copper)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-img{height:48px;width:auto;display:block}
+.nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-size:1.4em;color:var(--warm);letter-spacing:1px}
 .nav-links{display:flex;gap:16px}
 .nav-links a{font-size:.7em;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
 .nav-links a:hover{color:var(--warm)}
@@ -43,7 +44,10 @@ h1{font-size:2.2em;color:var(--warm);margin-bottom:4px}
 <body>
 
 <nav class="nav">
-  <div class="nav-logo"><span>⬡</span> WayChain DEX</div>
+  <div class="nav-logo">
+    <img src="/assets/waylogo.png" alt="WayChain" class="nav-logo-img">
+    <div class="nav-logo-text">WayChain DEX</div>
+  </div>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/wallet">Wallet</a>
@@ -52,6 +56,10 @@ h1{font-size:2.2em;color:var(--warm);margin-bottom:4px}
     <a href="/locks">Locks</a>
   </div>
 </nav>
+
+<div style="text-align:center;padding:40px 0 30px;">
+  <img src="/assets/dex-hero.svg" alt="Swap Route — WayChain DEX" style="width:100%;max-width:1200px;height:auto;display:block;margin:0 auto">
+</div>
 
 <h1>Swap Route</h1>
 <p class="subhead">Decentralized exchange on WayChain. Trades settle in 1 second. Trustless by design.</p>
@@ -118,17 +126,27 @@ function buildSwapTx() {
 
   if (!tokenIn||!amount||!tokenOut) { show(s,'Fill in all fields','bad'); return; }
 
-  // Build a simple transfer instruction
-  const addr = tokenIn.replace('0x','').padStart(64,'0');
-  const amtHex = BigInt(parseFloat(amount) * 1e18).toString(16).padStart(64,'0');
-  const to = tokenOut.replace('0x','').padStart(64,'0');
-  const data = '0x' + 'a9059cbb' + addr + amtHex;
-
-  s.innerHTML = `<b>Swap transaction data (transfer tokenIn to pair):</b><br>
-  <code style="font-size:.7em;word-break:break-all">${data}</code><br><br>
-  <b>Send to:</b><br><code>${pair}</code><br><br>
-  Then from /wallet, send amount x2 to pair, then call swap on pair contract.`;
-  s.className = 'status-msg show info';
+  // Fetch reserves and quote swap via RPC
+  fetch(RPC, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      method: 'dex_quoteSwap',
+      params: [pair, '0x' + BigInt(parseFloat(amount) * 1e18).toString(16), 'in'],
+      id: Date.now()
+    })
+  })
+  .then(r => r.json()).then(d => {
+    if (d.error) { show(s, d.error.message || 'RPC error', 'bad'); return; }
+    s.innerHTML = `<b>Quoting swap:</b><br>
+    Input: ${amount} ${tokenIn}<br>
+    Output: ${BigInt(d.result).toString() / 1e18} ${tokenOut}<br><br>
+    <b>Send to:</b><br><code>${pair}</code><br><br>
+    Then use /wallet to submit the transaction.`;
+    s.className = 'status-msg show info';
+  })
+  .catch(e => show(s, e.message, 'bad'));
 }
 
 function buildLiqTx() {
