@@ -20,9 +20,11 @@ The fundamental promise of blockchain is trust without intermediaries. Every maj
 
 ## 1. The Rug Problem — $12 Billion Lost, Zero Recourse
 
-Between 2021 and 2026, over $12 billion was lost to anonymous rug-pulls and exit scams on smart-contract platforms. These were not sophisticated hacks. They were projects where the "team" vanished with user funds — and because no chain requires identity to deploy, they simply reappeared under a new name and did it again.
+A project launches. The website looks professional. The code is audited. The community grows. Then one day the liquidity is gone, the team wallet is empty, and the social accounts go dark. Between 2021 and 2026, over **$12 billion** was stolen this way.
 
-Every major chain enables this:
+Not through sophisticated hacks. Through people who were never who they said they were.
+
+Every major chain allows this because none of them require identity to deploy. An anonymous wallet creates a contract, raises funds, and vanishes. The same person reappears the next week under a new name and does it again.
 
 | Chain | Identity Required to Deploy? | Can a Rugged Team Reappear? |
 |-------|------------------------------|-----------------------------|
@@ -30,104 +32,119 @@ Every major chain enables this:
 | Solana | No | Yes — same pattern |
 | BNB Chain | No | Yes — highest concentration of rugs |
 | PulseChain | No | Yes |
-| WayChain | **Yes — Dox_Dev Level 2+** | **No — badge revoked, permanently excluded** |
+| WayChain | **Yes — Dox_Dev Level 2+** | **No — revoked badge, permanently excluded** |
 
-The cycle is mechanical: anonymous deployer → liquidity pulled → team disappears → 0xdead000000000000000000000000000000000000. Losses are never recovered because there is no one to hold accountable.
+The cycle is mechanical: deploy → raise → pull → 0xdead. Losses are never recovered because there is no one to hold accountable. The system is designed to protect anonymity, not victims.
 
-**If you have ever lost money to a project where the team vanished, you know exactly why this matters.**
+**If you have ever lost money to a project where the team vanished, you know exactly why this needs to change.**
 
 ---
 
 ## 2. The Credential Problem — Your License Is a PDF
 
-A geologist spends eight years earning a professional license. A lawyer passes the bar, maintains continuing education, and carries malpractice insurance. An engineer stamps structural plans that keep buildings from collapsing. A surveyor certifies property boundaries worth millions of dollars.
+The rug problem is about who you cannot trust. The credential problem is about who can prove they are trustworthy.
 
-Their credentials are pieces of paper — or PDFs on a government website that has no API, no blockchain integration, and no way to verify across borders.
+Consider four professions whose work underpins the real economy:
 
-Existing "solutions":
+A **geologist** spends eight years earning a license, then spends decades building a reputation for accurate reserve estimates. A **lawyer** passes the bar, maintains continuing education, and carries malpractice insurance. An **engineer** stamps structural plans that keep buildings from collapsing. A **surveyor** certifies property boundaries worth millions.
+
+Their credentials are pieces of paper — or PDFs on a government website that has no API, no blockchain integration, and no way to verify across borders. No chain has a mechanism for a professional to say "I am a licensed geologist, here is my proof" and be trusted.
+
+Existing "solutions" are worse than nothing:
 
 - **LinkedIn** — centralized, can censor, cannot be used on-chain
-- **Self-attestation** — zero trust, anyone can claim anything
-- **Legacy registries** — no chain integration, no programmatic access
+- **Self-attestation** — anyone can claim anything, trust is zero
+- **Legacy registries** — no programmatic access, no cross-border verification
 
 The result: professionals cannot monetize their expertise on any blockchain without going through a company that takes a cut and controls access.
 
-**If you are a licensed professional, your expertise is your most valuable asset — and you have no way to earn from it on any chain.**
+**If you are a licensed professional, your expertise is your most valuable asset — and no chain gives you a way to earn from it directly.**
 
 ---
 
 ## 3. The Asset Problem — Mineral Rights Cannot Trade On-Chain
 
-Mineral rights — gold, silver, copper, lithium, rare earths — are the oldest form of real wealth. They underpin civilization. They are also traded via paper filed with government offices, verified by lawyers paid by the hour, and transferred through systems designed before the internet existed.
+Mineral rights are the oldest form of real wealth. Gold, silver, copper, lithium, rare earths — they underpin everything. They are also traded through paper filed with government offices, verified by lawyers paid by the hour, and transferred through systems designed before the internet existed.
 
 No blockchain has a protocol for:
-- Verifying a mineral claim exists
+
+- Verifying that a mineral claim is real
 - Certifying a reserve estimate from a licensed geologist
 - Enforcing environmental compliance on-chain
 - Fractionalizing and trading mineral rights without intermediaries
 
-A single mineral rights transaction takes months and costs thousands in legal fees. The assets are illiquid, non-fractional, and locked in legacy systems. Meanwhile, the world needs lithium for batteries, copper for electrification, and rare earths for renewable energy — but the supply chain moves at the speed of paper.
+A single transaction takes months and costs thousands in legal fees. The assets are illiquid and locked in legacy systems. Meanwhile, the world needs lithium for batteries, copper for electrification, and rare earths for renewable energy — but the supply chain moves at the speed of paper.
 
-**If you own mineral rights, you own wealth you cannot move, cannot fractionalize, and cannot trade without layers of intermediaries.**
+**If you own mineral rights, you own wealth you cannot move, cannot trade, and cannot use — without paying layers of intermediaries every step of the way.**
 
 ---
 
 ## 4. The Truth Problem — You Cannot Prove What You Knew First
 
-You discover a fact. You write it down. Six months later, someone else claims they discovered it first — and because your timestamp is on a centralized server they control, your proof evaporates.
+Assets are not the only things locked in legacy systems. So is the truth.
 
-You want to leave your knowledge to your heirs — your research, your journals, your life's work. There is no trustless inheritance protocol on any chain.
+You discover a fact. You write it down. Six months later, someone else publishes the same finding and gets the credit. You have no way to prove you got there first — because your timestamp lives on a centralized server you do not control.
 
-Every existing solution has the same flaw: the timestamp is only as trustworthy as the entity that stores it.
+You want to leave your knowledge to your heirs. Your research. Your journals. Your life's work. There is no trustless inheritance protocol on any chain. Your digital legacy dies with you.
 
-**Every idea you have ever had, every fact you have ever uncovered — you have no permanent, immutable record that you owned it first.**
+Every existing solution has the same flaw: the proof is only as trustworthy as the entity that stores it.
+
+**Every idea you have ever had, every fact you have ever uncovered — you have no permanent, immutable record that you owned it first. And when you are gone, it goes with you.**
 
 ---
 
 ## 5. The Governance Problem — Plutocracy Everywhere
 
-Bitcoin: hashpower determines control. Ethereum: token weight determines votes. Solana: VC-funded validators dominate the set. Every chain gives more power to whoever has more capital.
+The problems above — rugs, locked assets, lost truth — are symptoms of a deeper one: no chain gives power to people instead of capital.
+
+Bitcoin: hashpower determines control. Ethereum: token weight determines votes. Solana: VC-funded validators dominate the set. Every chain gives more power to whoever has more money.
 
 This is not democracy. It is plutocracy with a blockchain wrapper.
 
-The consequences:
+The consequences are structural:
+
 - Validator sets dominated by a handful of entities
 - Governance proposals that benefit large holders at the expense of users
 - No mechanism for a passionate minority to win against an apathetic majority
-- No way to know who is voting — anonymous wallets cannot be held accountable
+- No way to know who is voting — anonymous wallets face no consequences
 
-*A system where the rich get richer votes is not a system worth participating in.*
+**A system where the rich get richer votes is not a system worth participating in.**
 
 ---
 
 ## 6. The Inheritance Problem — Your Crypto Dies With You
 
-Over $140 billion in Bitcoin is estimated to be lost or orphaned. A significant portion belongs to people who died without passing on their keys.
+Governance failures affect everyone. But there is a problem more personal, and it touches nearly every person who holds crypto.
 
-The problem is structural: self-custody means you are the only person who can move your assets. If you die, your assets die with you. There is no will that can unlock a private key. There is no probate court that can access a hardware wallet.
+Over **$140 billion** in Bitcoin is estimated to be lost or orphaned. A significant portion belongs to people who died without passing on their keys.
 
-Every existing "solution" involves either:
-- **A custodian** — which defeats the purpose of self-custody
-- **A lawyer with your seed phrase** — which creates a single point of failure and trust
+The problem is structural: self-custody means you are the only person who can move your assets. If you die, your assets die with you. No will can unlock a private key. No probate court can access a hardware wallet.
+
+Every existing "solution" involves a compromise:
+
+- **A custodian** — defeats the purpose of self-custody
+- **A lawyer with your seed phrase** — creates a single point of failure and trust
 - **Nothing** — which is where most people are
 
 **If you died tomorrow, what happens to your digital assets?**
 
 ---
 
-## 7. The Stablecoin Problem — $170 Billion with No Decentralized Option
+## 7. The Stablecoin Problem — $170 Billion Trapped
 
-Every stablecoin today has a fatal flaw:
+Every problem above — rugs, credentials, assets, truth, governance, inheritance — needs an economy to function. An economy needs a stable medium of exchange. Every stablecoin today fails at being one:
 
 | Stablecoin | Problem |
 |------------|---------|
-| USDC / USDT | Centralized. Issuer can freeze any address. Funds can be seized. |
-| DAI | Backed by ETH. When ETH drops 30%, DAI's collateral drops with it. |
-| FRAX | Algorithmic. UST proved this can go to zero. |
+| USDC / USDT | Centralized. The issuer can freeze any address. Your funds can be seized with no recourse. |
+| DAI | Backed by ETH. When ETH drops, your collateral drops with it. A 30% crash triggers mass liquidations. |
+| FRAX | Algorithmic. Terra proved this can go to zero in 48 hours. |
 
-There is no decentralized stablecoin backed by the largest, most decentralized, most valuable crypto asset in existence: Bitcoin.
+There is no decentralized stablecoin backed by the largest, most decentralized, most valuable crypto asset in existence: **Bitcoin**.
 
-The result: every application that needs a stable unit of account — DEX trading, lending, payments, payroll — must either trust a centralized issuer or accept volatility risk.
+Over $1 trillion in Bitcoin exists. It is the most secure, most liquid, most widely held asset in crypto. And it has no native stablecoin. Every application that needs a stable unit of account — DEX trading, lending, payments, payroll — must either trust a centralized issuer (USDC/USDT) or accept volatility risk (everything else).
+
+This is the capstone problem. Because without a stable Bitcoin-backed currency, no blockchain can power a real economy. Not Ethereum. Not Solana. Not WayChain — unless we solve it.
 
 **You hold Bitcoin. You want to use it — trade it, lend it, earn on it. You cannot — not without giving it to someone who can freeze your funds.**
 
@@ -139,211 +156,169 @@ The result: every application that needs a stable unit of account — DEX tradin
 
 Each solution maps to one problem from Act I. The first six build the infrastructure and use cases. The seventh — Section 14, 1WAY / Bitcoin — is the economic engine that powers them all. Without Bitcoin, WayChain cannot live.
 
----# ACT II — THE BUILDING
-
-*Here is what we built. Here is how it solves each problem. Here is proof it works.*
-
-Each solution maps to one problem from Act I. The first six build the infrastructure and use cases. The seventh — Section 14, 1WAY / Bitcoin — is the economic engine that powers them all. Without Bitcoin, WayChain cannot live.
-
 ---
 
 ## 8. Dox_Dev — Identity at the Protocol Level
 
-*Solves: The Rug Problem*
+*Solves: Section 1 — The Rug Problem*
 
-### The Solution
+### The Principle
 
-Dox_Dev is a non-transferable soulbound badge. Every deployer on WayChain is a verified human with a permanent on-chain identity. Rugging means losing your badge forever — and a revoked badge cannot be re-issued.
+Every deployer on WayChain is a verified human with a permanent on-chain identity. Bad actors cannot come back. Rugging means losing your badge forever, and a revoked badge cannot be re-issued.
 
-Three levels:
+This principle is enforced at three levels — RPC, block production, and the EVM itself. An attacker must compromise all three simultaneously. This is defense-in-depth, and it is built into the protocol, not an overlay.
 
-| Level | Requirement | Grants Access To |
-|-------|-------------|-----------------|
+### Three Levels
+
+| Level | Requirement | Access |
+|-------|-------------|--------|
 | **Level 1** | Basic human verification | Wallets, explorers, oracle monitoring |
-| **Level 2** | Verified identity + bonding | Class B contract deployment, validator seat, oracle attestation |
-| **Level 3** | Elected curator (90-day term) | Badge issuance, governance proposals, emergency controls |
-
-### The Deploy Gate — Three Layers
-
-WayChain enforces identity at every layer where a contract can be deployed:
-
-```
-Layer 1 — RPC: eth_sendRawTransaction rejects deploy txs from
-         unverified addresses. They never enter the mempool.
-
-Layer 2 — Block Production: ProduceBlock re-checks deployer level.
-         Even a malicious proposer cannot include a bad deploy.
-
-Layer 3 — EVM Opcode: CREATE/CREATE2 call Dox_Dev precompile directly.
-         The EVM itself rejects unverified deployers.
-```
-
-An attacker must compromise all three simultaneously. This is the same defense-in-depth principle used in nuclear facilities.
+| **Level 2** | Verified identity + bonding | Contract deployment, validator seat, oracle attestation |
+| **Level 3** | Elected curator (90-day term) | Badge issuance, governance, emergency controls |
 
 ### Accountability Through Identity
 
 | Anonymous Chain | WayChain |
 |-----------------|----------|
-| Slash stake → spin up new validator | Slash stake → badge revoked → **cannot re-verify** |
+| Slash stake → spin up new validator | Slash stake → badge revoked → cannot re-verify |
 | Cost of cheating = bond | Cost of cheating = bond + identity + reputation |
-| No permanent record | Permanent revocation on-chain |
 | Can return tomorrow | **Permanently excluded** |
 
 ### Evidence
 
-Precompile **0x13 (DoxDevBadge)** live on mainnet. 3 genesis curators. Badge UI at **waychain.org/badge**. Deploy gate enforced at all three layers — verified on-chain.
+Precompile **0x13** live on mainnet. Three genesis curators. Badge UI at **waychain.org/badge**. Deploy gate verified at all three layers.
 
-**Why this solves rugs:** Every deployer is a verified human with a permanent on-chain identity. Rugging means losing your badge forever. No anonymous deployers. No ghost teams. No relaunch.
+**Why this solves rugs:** Every deployer is a known human. Rugging means permanent exclusion. Anonymous deployers cannot exist.
 
 ---
 
-## 9. Professional Oracle Badges — Verified Experts, Not Anonymous Nodes
+## 9. Professional Oracle Badges — Verified Experts
 
-*Solves: The Credential Problem*
+*Solves: Section 2 — The Credential Problem*
 
-### The Solution
+### The Principle
 
-Every oracle network today is a company. Chainlink has employees, a board, and a profit motive. Pyth has a foundation. They are trusted third parties — the very thing blockchains were supposed to eliminate.
+Every oracle network today is a company. Chainlink has employees and a board. Pyth has a foundation. They are trusted third parties — the very thing blockchains were supposed to eliminate.
 
-WayChain replaces them with **Professional Oracle Badges**. Verified professionals earn WAY tokens directly from the protocol for their attestation work. No company. No KYC vendor. No external permission.
+WayChain replaces them with professionals. A geologist who spent years earning their license can now attest to a mineral reserve estimate and earn WAY directly from the protocol. No company in the middle. No KYC vendor. No external permission.
 
 | Profession | Verifies | Reward Per Attestation |
 |------------|----------|----------------------|
 | **Geologist** | Mineral reserves, land value, resource estimates | 100 WAY wei |
-| **Lawyer** | Legal standing, court admissibility, compliance | 80 WAY wei |
+| **Lawyer** | Legal standing, compliance, court admissibility | 80 WAY wei |
 | **Engineer** | Structural integrity, technical standards | 70 WAY wei |
 | **Surveyor** | Property boundaries, land use, geographic data | 60 WAY wei |
 
 ### How It Works
 
-```
-Level 3 Curator verifies professional credentials
-  → Professional badge stored on-chain (Precompile 0x0D)
-  → Professional submits attestation data
-  → Protocol verifies Dox_Dev badge + professional license
-  → Challenge window opens (100 blocks)
-  → If unchallenged: reward automatically distributed in WAY
-  → Attestation becomes immutable on-chain truth
-```
+A Level 3 curator verifies the professional's credentials. A soulbound badge is minted. When the professional submits an attestation, the protocol verifies their Dox_Dev level and license hash. A 100-block challenge window opens. If no one challenges, the reward is distributed automatically.
 
-Three layers of verification:
+Three layers of accountability:
 1. **Dox_Dev Level 2+** — must be a verified human
-2. **Professional license verification** — license hash stored on-chain, verified by curators
-3. **Attestation quality** — challenge period allows disputes
+2. **License on-chain** — credential hash stored immutably
+3. **Challenge window** — anyone can dispute with a bond
 
-### Why This Is Different
+### Why This Matters
 
 | Property | Chainlink / Pyth | WayChain |
 |----------|-----------------|----------|
-| Who attests | Anonymous node operators | Dox_Dev-verified professionals |
-| Identity requirement | None | Permanent soulbound badge |
-| Slashing for lying | Economic only | Economic + badge revocation + **permanent exclusion** |
-| Fee model | Market-driven | Fixed, fiat-pegged |
-| Who controls | Company board | The protocol (immutable) |
-| Geographic distribution | Centralized | 5 jurisdictions for 1WAY multi-sig |
-
-### The Self-Sustaining Economy
-
-1. **Curators** (elected by badge holders) verify professionals
-2. **Professionals** attest to real-world data
-3. **Protocol** pays professionals in WAY
-4. **WAY** is earned by doing actual verified work — not by staking capital
-5. **No external authority** can control, censor, or pause the system
-
-This is the first time a blockchain has built a professional services marketplace **at the protocol level**.
+| Who attests | Anonymous node operators | Verified professionals |
+| Slashing for lying | Economic only | Economic + badge revocation — permanent exclusion |
+| Fee model | Market-driven (expensive) | Fixed, fiat-pegged (predictable) |
+| Who controls | A company | The protocol — immutable |
+| Can they return after cheating? | Yes — new node, same network | No — badge gone forever |
 
 ### Evidence
 
-Precompile **0x0D (OracleScheduler)** live on mainnet. 4 professions registered with fixed reward rates on-chain. Badge issuance UI at waychain.org/badge.
+Precompile **0x0D** live on mainnet. Four professions registered with fixed reward rates. Badge issuance at waychain.org/badge.
 
-**Why this solves credential verification:** Your professional license becomes an on-chain attestation that earns you money directly. No employer, no platform, no intermediary. The protocol pays you for your expertise.
+**Why this solves the credential problem:** Your professional license becomes an on-chain asset that earns you money directly. No employer. No platform. No intermediary. The protocol pays you for your expertise.
 
 ---
 
-## 10. Mineral Rights Tokenization — The First On-Chain Registry
+## 10. Mineral Rights Tokenization
 
-*Solves: The Asset Problem*
+*Solves: Section 3 — The Asset Problem*
 
-### The Solution
+### The Principle
 
-WayChain's **Mineral Rights Registry Precompile (0x20)** is the first blockchain primitive for mineral rights.
+The same geologist who earns a professional badge in Section 9 now has something to attest: mineral rights.
+
+WayChain's **Mineral Rights Registry (Precompile 0x20)** allows anyone to file a claim, verify it with a licensed geologist, and trade it as a token.
 
 | Function | What It Does |
 |----------|-------------|
-| `claimMineralRight` | File a claim on a parcel with GPS coordinates |
-| `verifyReserves` | Submit geologist-attested reserve estimate |
-| `classifyReserve` | Proven (measured) / Probable (indicated) / Possible (inferred) |
-| `extinguishMineralRight` | Trade or retire a mineral right as a token |
-| `submitEnvironmentalReport` | Mandatory environmental impact filing |
+| `claimMineralRight` | File a claim with GPS coordinates |
+| `verifyReserves` | Submit a geologist-attested reserve estimate |
+| `classifyReserve` | Proven, probable, or possible |
+| `extinguishMineralRight` | Trade or retire a right as a token |
+| `submitEnvironmentalReport` | Mandatory environmental filing |
 
-### Why Only WayChain Can Do This
+### Why Only WayChain
 
-1. **Professional Oracle Badges** — geologists attest to reserve estimates. Their badge is their professional license on-chain.
-2. **Dox_Dev Identity** — claimants are verified humans, not anonymous wallets.
-3. **State rent** — abandoned claims expire, preventing land speculation.
-4. **Fixed fees** — filing a mineral claim costs 0.01 WAY, not market-auctioned gas.
+| Requirement | Other Chains | WayChain |
+|-------------|-------------|----------|
+| Geologist to verify reserves | No mechanism | Professional Oracle Badge (Section 9) |
+| Claimant identity | Anonymous wallets | Dox_Dev Level 2+ (Section 8) |
+| Abandoned claims | No expiration | State rent expires unused claims |
+| Filing cost | Market-driven gas ($$$) | Fixed 0.01 WAY |
 
 No other chain has all four.
 
-**Environmental preservation built in:** Every mineral claim requires an environmental report. A portion of every transaction fee funds environmental restoration. Claims without current environmental filings are frozen.
-
 ### Evidence
 
-Precompile **0x20 (MineralRightsRegistry)** live on mainnet. Full lifecycle tested — claim, verify, classify, extinguish. 12 tests passing.
+Precompile **0x20** live on mainnet. Full lifecycle tested. 12 tests passing.
 
-**Why this solves mineral rights:** For the first time, mineral rights can be fractionalized, traded, and verified on-chain — with professional attestations from licensed geologists and built-in environmental enforcement.
+**Why this solves the asset problem:** Mineral rights can now be fractionalized, traded, and verified on-chain — with professional attestations and built-in environmental enforcement.
 
 ---
 
-## 11. Binary Journal + Dead Man's Switch — Self-Sovereign Truth
+## 11. Binary Journal + Dead Man's Switch
 
-*Solves: The Truth Problem and The Inheritance Problem*
+*Solves: Sections 4 and 6 — The Truth Problem and The Inheritance Problem*
 
-### The Solution
+### The Principle
 
-**Binary Journal** is Tesla's 3·6·9 protocol rebuilt for the digital age — a self-sovereign knowledge vault where individuals own their truths, timestamp them immutably, and control exactly who can access them.
+You should be able to timestamp a fact and prove you knew it first. You should be able to leave your knowledge — and your assets — to your heirs without a lawyer or a custodian. No chain gives you either. WayChain gives you both.
 
-| Layer | Name | What It Does |
-|-------|------|-------------|
-| **3** | The Spark | The idea that knowledge should be self-sovereign |
-| **6** | Sanctuary | Biometric-locked, encrypted mobile journal |
-| **9** | The Ledger | Smart contracts: Attestation + DeadMansSwitch + StorageEndowment + BIJO |
+**Binary Journal** is a self-sovereign knowledge vault. Three layers:
 
-**Sanctuary (bijo-app):** A mobile app where you write your truths. Biometric locked. AES-256 encrypted. Backed by WayChain's StorageEndowment precompile — your data persists as long as the chain lives.
+| Layer | What It Does |
+|-------|-------------|
+| **Sanctuary** | A mobile app. Biometric-locked. AES-256 encrypted. Your truths, your control. |
+| **Attestation (0x14)** | Timestamp a fact. Prove you knew something before anyone else. Immutable. |
+| **DeadMansSwitch (0x15)** | If you stop proving you are alive, your designated inheritors receive your assets. No lawyer. No probate. No middleman. |
 
-**The Ledger (on-chain):**
+**StorageEndowment (0x17)** ensures your data persists as long as the chain lives. Pay once, store forever.
 
-- **Attestation (Precompile 0x14):** Timestamp a fact. Prove you knew something before anyone else. Immutable. Verifiable. Permanent.
-- **DeadMansSwitch (Precompile 0x15):** If you stop proving you're alive, your designated inheritors receive your assets. Trustless inheritance at the protocol level. No lawyer. No probate. No middleman.
-- **StorageEndowment (Precompile 0x17):** Perpetual storage funding. Pay once, your data lives forever.
-- **BIJO (0x14):** The ecosystem token. 369M supply. 70% to node operators, 10% philanthropic, 20% ecosystem.
+### The Immutable Launch
 
-### The Launch Sequence
+The BIJO token (369M supply) launches through a six-step sequence designed so that no human can alter the protocol afterward:
 
-1. **Verification Period (3-6 months):** Real users attest truths, node operators pin files. No tokens move.
-2. **Retroactive Airdrop:** 10% of supply distributed based on verifiable on-chain actions.
-3. **Fund the Endowment:** 70% of supply to StorageEndowment — pays node operators via decay curve.
-4. **Philanthropic Liquidity:** 0.5% BIJO + founder-donated PLS → DEX pool. LP tokens locked and burned.
-5. **Enable Transfers:** One-time irreversible call. BIJO becomes transferable.
-6. **Burn Ownership:** `renounceOwnership()` on every contract that has it.
+1. Users attest truths, node operators pin files — no tokens move
+2. Retroactive airdrop based on verifiable on-chain actions
+3. 70% of supply funds the StorageEndowment
+4. DEX pool seeded, LP tokens locked and burned
+5. Transfers enabled — one-time irreversible call
+6. **Ownership renounced** on every contract
 
-After step 6, the protocol becomes immutable natural law. No human can alter, censor, or pause it.
+After step 6, the protocol is immutable. No human can alter, censor, or pause it.
 
 ### Evidence
 
-Precompiles **0x14 (BinaryJournal)**, **0x15 (DeadMansSwitch)**, **0x17 (StorageEndowment)** live on mainnet. BIJO token specified (369M supply). Launch sequence documented.
+Precompiles **0x14, 0x15, 0x17** live on mainnet. BIJO token specified. Launch sequence documented.
 
-**Why this solves truth and inheritance:** Your knowledge is your property. Your assets should pass to your heirs without intermediaries. This is the first time both are built into a blockchain's protocol layer.
+**Why this solves truth and inheritance:** Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.
 
 ---
 
 ## 12. Anti-Plutocracy Governance
 
-*Solves: The Governance Problem*
+*Solves: Section 5 — The Governance Problem*
 
-### The Solution
+### The Principle
 
-In every other chain, governance is token-weighted. More tokens = more votes. WayChain's rule is absolute: **one verified human = one vote.** Token weight does not touch governance.
+In every other chain, more tokens = more votes. WayChain has one rule that overrides everything: **one verified human = one vote.** Token weight does not touch governance.
 
 ### Three Voting Mechanisms
 
@@ -351,160 +326,126 @@ In every other chain, governance is token-weighted. More tokens = more votes. Wa
 |------|--------|-----------|----------|
 | **Direct** | 20% | >50% | Routine proposals, parameter adjustments |
 | **Quadratic** | 30% | >60% | Significant changes, treasury allocations |
-| **Futarchy** | 40% | >66% | Core protocol changes, amendment proposals |
+| **Futarchy** | 40% | >66% | Core protocol changes, amendments |
 
-**Quadratic voting** gives each badge holder 9 credits per 90-day period. Cost to vote = square of issues voted on. Passionate minorities can concentrate their credits on their priority issue and win against a diffuse majority.
+**Quadratic voting** gives each badge holder 9 credits per 90-day period. Cost to vote = square of issues. A passionate minority can concentrate their credits on one priority and win against a diffuse majority.
 
-**Futarchy:** Before voting on high-impact changes, a prediction market runs: "If this passes, will WAY price be higher in 90 days?" The market informs but does not dictate the vote.
+**Futarchy** runs a prediction market before high-impact votes: "If this passes, will WAY price be higher in 90 days?" The market informs the vote but does not dictate it.
 
-### Sqrt-Weighted Validator Lottery
+### Economic Anti-Plutocracy
 
-Validator proposer selection uses a square-root weighted lottery. A validator with **4x the stake** does NOT get 4x the proposals — they get **2x**. This compresses the advantage of large stakeholders.
+Two additional mechanisms prevent capital from concentrating power:
 
-### Progressive Staking
+- **Sqrt-weighted validator lottery:** A validator with 4x the stake gets 2x the proposals, not 4x. The advantage of large stakeholders is compressed.
+- **Progressive staking:** Smaller stakes earn higher returns:
 
-Smaller stakes earn higher returns:
-
-| WAY Staked | Marginal APY |
-|------------|-------------|
+| WAY Staked | APY |
+|------------|-----|
 | 1 – 1,000 | 15% |
 | 1,001 – 10,000 | 8% |
 | 10,001 – 100,000 | 4% |
 | 100,001 – 1,000,000 | 2% |
 | 1,000,000+ | 1% |
 
-This is the opposite of Ethereum, where larger stakes earn proportionally more. WayChain actively encourages smaller participants and discourages whale concentration.
+This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration.
 
 ### Evidence
 
-Governance precompile **0x1D (Governance)** live on mainnet. Sqrt-weighted lottery in consensus engine. Progressive staking implemented and on-chain.
+Governance precompile **0x1D** live on mainnet. Sqrt-weighted lottery in consensus engine. Progressive staking on-chain.
 
-**Why this solves plutocracy:** Capital cannot buy power. One verified human = one voice. The smallest staker earns proportionally more than the largest.
+**Why this solves plutocracy:** Capital cannot buy power. The smallest staker earns proportionally more than the largest. One human, one vote.
 
 ---
 
-## 13. Native Oracle Consensus — The Chain Is The Oracle
+## 13. Native Oracle Consensus
 
-*Foundational infrastructure that enables every solution above*
+*Foundational infrastructure — enables every solution above*
 
-### The Architecture
+### The Principle
 
-| Role | Primary Job | Stake | Slash For |
-|------|-------------|-------|-----------|
-| **Validator** | Consensus (ordering, finality) | 32,000+ WAY | Double-sign, downtime |
-| **Attester** | Data (fetching, attesting) | 5,000+ WAY | Wrong data, no-show, collusion |
-| **Challenger** | Dispute false attestations | Challenge bond | — |
+In every other chain, oracles are external companies that the chain relies on but cannot control. WayChain makes oracles part of the chain itself.
 
-**Critical design:** A validator CAN also be an attester by posting an additional oracle bond. But the oracle bond is separate from the validator stake. An attester slashed for bad data loses only their oracle bond — their validator stake is untouched.
+| Role | Job | Stake | Slash For |
+|------|-----|-------|-----------|
+| **Validator** | Ordering and finality | 32,000+ WAY | Double-sign, downtime |
+| **Attester** | Data fetching and attesting | 5,000+ WAY | Wrong data, collusion |
+| **Challenger** | Dispute false attestations | Bond | False challenge |
 
-### TLS Proof Verification (Precompile 0x0F)
+**Critical:** A validator can also be an attester by posting an additional oracle bond. But the two are separate. An attester slashed for bad data loses only their oracle bond — their validator stake is untouched.
 
-Attesters don't just fetch data — they prove it came from a trusted source. WayChain verifies TLS notary proofs, meaning an attester can prove "this data came from the SEC's EDGAR system" — not "I downloaded a PDF and here is what it says."
+### How Attestations Are Verified
 
-### The Challenge Game
+**TLS proofs (Precompile 0x0F):** Attesters prove data came from a trusted source — "this data came from the SEC's EDGAR system" — not "I downloaded a PDF and here is what it says."
 
-Every attestation enters a 100-block challenge window (~100 seconds):
+**The challenge game:** Every attestation enters a 100-block window. Anyone can challenge with a bond. If the attestation was false, the challenger earns 50% of the attester's slashed stake. If the challenge was false, the challenger loses their bond. False attestations are economically irrational.
 
-1. Attestation submitted → challenge window opens
-2. Any staked participant can challenge with a bond
-3. If the attestation was false → challenger earns 50% of attester's slashed stake
-4. If the challenge was false → challenger loses their bond to the attester
+**VRF (Opcode 0xC4):** Verifiable randomness at the opcode level. No Chainlink subscription, no callback, no separate oracle call.
 
-This ensures that false attestations are economically irrational — there is always someone watching who can profit by catching a lie.
-
-### VRF at Protocol Level (Opcode 0xC4)
-
-Verifiable randomness is built into the EVM at the opcode level. Any contract can request unbiased randomness with a single opcode. No Chainlink VRF subscription, no callback, no separate oracle call.
-
-### Time-Based Execution (Precompile 0x0D)
-
-Contracts can schedule future execution without external keepers. Recurring oracle updates, scheduled liquidations, timed unlocks — all executed by the protocol itself.
+**Time-based execution (Precompile 0x0D):** Contracts schedule future execution — recurring updates, liquidations, unlocks — all executed by the protocol.
 
 ### Three Parallel Lanes
 
-Most blockchains force every transaction through the same execution path. WayChain runs three parallel lanes:
+Most chains force every transaction through the same path. WayChain runs three:
 
-| Lane | Type | Purpose | Privacy |
-|------|------|---------|---------|
-| **ConsensusLane** (0) | Public | Standard transactions, DeFi, governance, token transfers | Public |
-| **OracleLane** (1) | Semi-public | Oracle attestations, professional badge work, price feeds | Attestation-specific |
-| **PrivateLane** (2) | Encrypted | Healthcare records, corporate data, identity, legal docs | Encrypted mempool |
+| Lane | Type | Use |
+|------|------|-----|
+| **ConsensusLane** | Public | DeFi, transfers, governance |
+| **OracleLane** | Semi-public | Oracle attestations, price feeds |
+| **PrivateLane** | Encrypted | Healthcare, legal, corporate data |
 
-A hospital can run private health records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations do not compete with user transactions for block space.
+A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space.
 
 ### Evidence
 
-Precompiles **0x0C–0x0F** (oracle stack) live on mainnet. VRF opcode **0xC4** implemented. Three parallel lanes operational. 1-second block time with instant finality.
+Precompiles **0x0C–0x0F** live on mainnet. VRF opcode **0xC4** implemented. Three parallel lanes operational. 1-second block time, instant finality.
 
 ---
 
 ## 14. 1WAY — Bitcoin as the Economic Engine
 
-*Solves: The Stablecoin Problem — and powers everything else*
+*Solves: Section 7 — The Stablecoin Problem. And powers everything else.*
 
-Every solution above — validator rewards, oracle payments, DEX liquidity, professional attestations, mineral rights trading — needs an economy. That economy needs fuel. Bitcoin is that fuel.
+### The Principle
 
-### The Solution
+Every solution in this section — validator rewards, oracle payments, DEX liquidity, professional attestations, mineral rights — needs an economy. That economy needs fuel. Bitcoin is that fuel.
 
-1WAY is a 1:1 Bitcoin-backed stablecoin secured by a **3-of-5 Dox_Dev oracle multi-sig** spanning 5 jurisdictions.
+1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a **3-of-5 Dox_Dev oracle multi-sig** spanning 5 jurisdictions. Receive 1WAY on WayChain. Use it everywhere on the chain. Burn it to get your BTC back.
 
-| Key Holder | Jurisdiction | Dox_Dev Level | Can Move BTC Alone? |
-|------------|-------------|--------------|---------------------|
-| Oracle A | United States | Level 3 | No — needs 2 more keys |
-| Oracle B | European Union | Level 3 | No — needs 2 more keys |
-| Oracle C | Asia | Level 3 | No — needs 2 more keys |
-| Oracle D | Brazil | Level 3 | No — needs 2 more keys |
-| Oracle E | Australia | Level 3 | No — needs 2 more keys |
+| Key Holder | Jurisdiction | Can Move BTC Alone? |
+|------------|-------------|---------------------|
+| Oracle A | United States | No — needs 2 more keys |
+| Oracle B | European Union | No — needs 2 more keys |
+| Oracle C | Asia | No — needs 2 more keys |
+| Oracle D | Brazil | No — needs 2 more keys |
+| Oracle E | Australia | No — needs 2 more keys |
 
-No single human can move the BTC. No two can. Three can — but all three would need to collude, each losing their Dox_Dev Level 3 badge permanently. Badge revocation is permanent. There is no re-apply.
+No single human can move the BTC. No two can. Three can — but all three would need to collude and each would lose their Dox_Dev Level 3 badge permanently. Revocation is permanent.
 
-### The Mint/Burn Flow
+### How It Works
 
-```
-Mint (BTC → 1WAY):
-User sends 1 BTC to 3-of-5 oracle multi-sig
-  → BTC locked. No one moves it without 3 of 5 oracle keys.
-  → WayChain oracles witness the transaction on Bitcoin
-  → BitcoinSPV precompile verifies (6+ confirmations)
-  → 1WAY contract mints ~70,000 1WAY (143% collateralization)
-  → User receives 1WAY on WayChain
+**Mint:** Send BTC to the multi-sig → oracles witness it → BitcoinSPV verifies (6+ confirmations) → 1WAY minted at 143% collateralization.
 
-Burn (1WAY → BTC):
-User burns 70,000 1WAY
-  → Contract emits Burned event
-  → Oracles witness the burn
-  → 3 of 5 oracles sign a Bitcoin transaction
-  → BTC released from multi-sig to user's Bitcoin address
-  → 1WAY supply reduced. Peg intact.
-```
+**Burn:** Return 1WAY → oracles witness the burn → 3 of 5 sign a Bitcoin transaction → BTC released to your address.
 
 ### Why This Powers Everything
 
-| Component | Needs Bitcoin Because |
-|-----------|----------------------|
-| **Validator rewards** | Paid in WAY → WAY value backed by 1WAY liquidity → Bitcoin demand |
-| **Oracle attestations** | Professionals earn WAY → WAY has a Bitcoin exit ramp → professionals join |
-| **DEX** | Swap Route pairs WAY/1WAY → Bitcoin liquidity flows into every pool |
-| **Mineral rights** | Rights tokenized → traded for 1WAY → priced in the world's most liquid asset |
-| **Binary Journal** | Storage paid in WAY → backed by 1WAY → perpetual storage funded by Bitcoin |
+| Component | Because |
+|-----------|---------|
+| Validator rewards | Paid in WAY → backed by 1WAY liquidity |
+| Oracle attestations | Professionals earn WAY with a Bitcoin exit ramp |
+| DEX | WAY/1WAY pairs bring Bitcoin into every pool |
+| Mineral rights | Rights priced in the world's most liquid asset |
+| Binary Journal | Perpetual storage funded by Bitcoin-backed WAY |
 
 ### Comparison
 
-| Property | USDC-backed | ETH-backed (DAI) | BTC-backed (1WAY) |
-|----------|------------|------------------|-------------------|
-| Freezable by issuer? | Yes | No | No |
-| Collateral volatility | None | High (ETH) | Medium (BTC) |
+| Property | USDC | DAI | 1WAY |
+|----------|------|-----|------|
+| Freezable? | Yes | No | No |
+| Collateral | USD reserves | ETH | Bitcoin |
 | Decentralization | Centralized | Semi | Most decentralized asset |
-| Market cap of collateral | $35B | $300B | $1T+ |
-| Liquidation mechanism | N/A | Smart contract | Oracle multi-sig + Dox_Dev |
 
-1WAY is the only stablecoin that combines **Bitcoin's decentralization** with **Dox_Dev's accountability**.
-
-**Without Bitcoin, WayChain is a closed loop. With Bitcoin, WayChain is a bridge between human identity and the most decentralized asset in existence.**
-
-### Evidence
-
-1WAY token economics specified. BitcoinSPV precompile (0x16) implemented. 5-jurisdiction oracle network planned. 143% overcollateralization target.
+**Without Bitcoin, WayChain is a closed loop. With Bitcoin, WayChain is a bridge between human identity and the largest, most decentralized asset in existence.**
 
 ---
 
@@ -518,49 +459,40 @@ The audience is ordered by impact. Bitcoin holders come first — without them t
 
 ## 15. You Power the Engine — Bitcoin Holders
 
-You hold Bitcoin, the most decentralized, most valuable asset ever created. You want to use it — trade it, lend it, earn on it — without giving it to a custodian who can freeze your funds.
+You hold Bitcoin. You want to use it — trade it, lend it, earn on it — without giving it to a custodian who can freeze your funds.
 
-WayChain solves this.
+WayChain solves this. 1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a 3-of-5 Dox_Dev multi-sig spanning 5 jurisdictions. No single human can move it. No government can freeze it. No company can censor it.
 
-1WAY is a 1:1 Bitcoin-backed stablecoin minted when you lock BTC into a 3-of-5 Dox_Dev oracle multi-sig spanning 5 jurisdictions. No single human can move your BTC. No government can freeze it. No company can censor it.
+- **Mint:** Lock BTC → receive 1WAY → use it everywhere on the chain
+- **Burn:** Return 1WAY → BTC released back to you
 
-- **Mint 1WAY:** Lock BTC → receive 1WAY on WayChain → use it in DEX pools, validator staking, oracle payments, and every other protocol function
-- **Burn 1WAY:** Return 1WAY → oracles witness → BTC released back to you
-- **The result:** Your Bitcoin gains utility — without leaving your control
-
-**Without Bitcoin holders, WayChain never lives.** You are not a passive investor. You are the fuel. Every validator reward, every oracle attestation, every DEX trade, every mineral rights transaction — they all depend on the liquidity you bring. The chain runs on WAY. WAY runs on 1WAY. 1WAY runs on Bitcoin. **You are the foundation.**
+**Without Bitcoin holders, WayChain never lives.** Every validator reward, every oracle attestation, every trade, every transaction depends on the liquidity you bring. The chain runs on WAY. WAY runs on 1WAY. 1WAY runs on Bitcoin. **You are the foundation.**
 
 ---
 
 ## 16. You Build the Infrastructure — Specialized Users
 
-Genesis cannot happen without a base of users who bring expertise. The chain needs validators to produce blocks, developers to build on it, oracles to attest truth, and professionals to anchor real-world data. If you already understand this space, your role is clear:
+Genesis cannot happen without a base of users who bring expertise. The chain needs validators, developers, oracles, and professionals. If you already understand this space, your role is clear:
 
-- **Validators:** Run a node. Earn progressive rewards (15% APY for small stakers, 1% for whales — the opposite of every other chain). Minimum stake: 32,000 WAY. Requires Dox_Dev Level 2+. Install: `curl -sSL waychain.org/install.sh | bash`
-- **Developers:** Deploy through the Template Registry. Zero rug risk — liquidity locks enforced at the protocol level (TrustlessLock 0x1A). Class A templates (no Dox needed for data contracts). Class B custom bytecode (Dox Level 2+).
-- **Professionals (Geologists, Lawyers, Engineers, Surveyors):** Get your Dox_Dev badge. Apply for your professional oracle badge. Start earning WAY for your attestation work — no company in the middle, no KYC vendor, no gatekeeper.
-- **Curators:** Get elected. Verify identity for your jurisdiction. Shape the governance of the first human-verified network. You are the gatekeepers of identity — the most important job on the chain.
+- **Validators:** Run a node. Progressive rewards (15% APY for small stakers, 1% for whales). 32,000 WAY minimum stake. Dox_Dev Level 2+ required. Install: `curl -sSL waychain.org/install.sh | bash`
+- **Developers:** Deploy through the Template Registry. Zero rug risk — protocol-enforced liquidity locks. Class A templates (no Dox needed). Class B custom bytecode (Dox Level 2+).
+- **Professionals (Geologists, Lawyers, Engineers, Surveyors):** Get your Dox_Dev badge. Apply for your oracle badge. Earn WAY for your attestation work — no company in the middle.
+- **Curators:** Get elected. Verify identity for your jurisdiction. You are the gatekeepers of the network.
 
 ---
 
 ## 17. You Join the Economy — Everyone
 
-When the fuel is flowing (Bitcoin holders) and the infrastructure is running (specialized users), the economy opens to everyone.
+When the fuel is flowing (Bitcoin) and the infrastructure is running (specialized users), the economy opens to everyone.
 
-- **Check the explorer** at waychain.org/explorer — see blocks being produced in real time. Verify every claim in this paper against the live chain.
-- **Get your Dox_Dev badge** at waychain.org/badge. Level 1 is basic human verification — no personal data stored on-chain.
-- **Use the wallet** at waychain.org/wallet. Create a WayChain address, request test tokens from the faucet, send transactions.
-- **Trade on the DEX** when 1WAY launches. Swap WAY for 1WAY. Provide liquidity. Earn swap fees.
-- **Anchor your truth** through Binary Journal. Timestamp a fact. Prove you knew something first. Leave your knowledge to your heirs.
-
----
+- **Check the explorer** at waychain.org/explorer — see blocks produced in real time
+- **Get your Dox_Dev badge** at waychain.org/badge. Level 1 is basic human verification, no personal data on-chain
+- **Use the wallet** at waychain.org/wallet — create an address, request test tokens, send transactions
+- **Anchor your truth** through Binary Journal — timestamp a fact, leave your knowledge to your heirs
 
 ## 18. The Ask
 
-- WayChain is live. Not a testnet. Not a whitepaper chain. Blocks every second at waychain.org.
-- Every claim in this paper can be verified on-chain or by running your own node.
-- This document is not a promise. It is a specification of what is already running.
-- The code is open source. The chain is permissionless (Dox Level 2+ for validators, Level 1+ for oracle monitoring, Level 0 for wallets and explorers).
+WayChain is live. Not a testnet. Not a whitepaper chain. Blocks every second at waychain.org. Every claim in this paper can be verified on-chain or by running your own node. This is not a promise — it is a specification of what is already running.
 
 ---
 
