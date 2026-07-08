@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIFR — WayChain Is Free Receipt</title>
+<style>
+:root { --warm:#FFF8F0; --slate:#2A2A2A; --copper:#B87333; --amber:#FFBF00; --green:#4CAF50; }
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+body { 
+  background: var(--slate); 
+  color: var(--warm); 
+  padding: 40px 20px;
+}
+.container { max-width: 700px; margin: 0 auto; }
+.receipt { 
+  background: #1e1e1e; 
+  border: 1px solid var(--copper); 
+  border-radius: 8px; 
+  padding: 30px; 
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.receipt::before {
+  content: "";
+  position: absolute;
+  top: 10px; right: 10px; bottom: 10px; left: 10px;
+  border: 1px dashed var(--amber);
+  border-radius: 4px;
+  opacity: 0.3;
+}
+.title { 
+  color: var(--copper); 
+  font-size: 1.5em; 
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+.subtitle { color: #9A9A9A; font-size: 14px; margin-bottom: 20px; }
+.qr { 
+  width: 80px; height: 80px; 
+  background: var(--warm); 
+  margin: 20px auto;
+  border-radius: 4px;
+}
+.amount { 
+  font-size: 2em; 
+  color: var(--green); 
+  font-weight: 700;
+  margin: 15px 0;
+}
+.badge { 
+  background: var(--amber); 
+  color: var(--slate); 
+  padding: 3px 10px; 
+  border-radius: 3px; 
+  font-size: 12px; 
+  font-weight: 600;
+}
+.btn { 
+  background: var(--copper); 
+  color: var(--slate); 
+  border: none; 
+  padding: 12px 24px; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: 600;
+  margin: 20px 0;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <div class="receipt">
+    <div style="font-size:10px;letter-spacing:3px;color:#9A9A9A;margin-bottom:5px">WAYCHAIN</div>
+    <div class="title">WAYCHAIN IS FREE</div>
+    <div class="subtitle">RECEIPT TOKEN • NO EXPECTED VALUE</div>
+    <div class="qr"></div>
+    <div style="font-size:12px;color:#9A9A9A;margin-bottom:10px">WAIT FOR INSTRUCTIONS</div>
+    <div class="amount">$WIFR</div>
+    <div style="font-size:12px;color:#9A9A9A">1,000 WIFR = 1 WAY</div>
+    <div style="margin-top:15px">
+      <span class="badge">LOCKED 1M WAY</span>
+    </div>
+    <a href="/wifr/bridge" class="btn" style="margin-top:20px">Burn & Claim</a>
+  </div>
+  
+  <p style="text-align:center;margin-top:30px;font-size:12px;color:#9A9A9A">
+    1,000,000 WAY locked in immutable pool.<br>
+    First 10,000 claimers get 2x bonus (100k WAY pool).
+  </p>
+</div>
+</body>
+</html>

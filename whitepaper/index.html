@@ -8,197 +8,92 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #2A2A2A;
-  --bg2: #1E1E1E;
-  --bg3: #333;
-  --fg: #E8E4DD;
-  --fg2: #9A9A9A;
-  --copper: #B87333;
-  --amber: #FFBF00;
-  --warm: #FFF8F0;
-  --green: #4CAF50;
-  --red: #E53935;
-  --border: #3A3A3A;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.8; font-size: 18px; }
-a { color: var(--copper); text-decoration: none; }
-a:hover { color: var(--warm); }
-
-.header {
-  position: sticky; top: 0; z-index: 100;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px 20px; background: rgba(42,42,42,0.95);
-  backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
-}
-.header h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.2em; color: var(--warm); font-weight: 400; }
-.header h1 span { color: var(--copper); margin-left: 6px; }
-
-.nav-scroll {
-  display: flex; gap: 4px; overflow-x: auto; white-space: nowrap;
-  -webkit-overflow-scrolling: touch; scrollbar-width: none;
-  padding: 0 20px; background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-}
-.nav-scroll::-webkit-scrollbar { display: none; }
-.nav-scroll a {
-  flex-shrink: 0; font-size: 0.65em; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  padding: 10px 12px; color: var(--fg2); border-radius: 4px;
-  transition: all 0.2s;
-}
-.nav-scroll a:hover { color: var(--warm); background: var(--bg3); text-decoration: none; }
-.nav-scroll a.active { color: var(--bg); background: var(--copper); }
-
-.whitepaper { max-width: 700px; margin: 0 auto; padding: 0 20px; }
-
-.chapter { border-bottom: 1px solid var(--border); }
-.chapter-header {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 20px 20px; cursor: pointer; transition: background 0.2s;
-  user-select: none;
-}
-.chapter-header:hover { background: var(--bg2); }
-.chapter-header h2 {
-  font-family: 'DM Serif Display', Georgia, serif;
-  font-size: 28px; font-weight: 400; color: var(--warm);
-  margin: 0; border: none; padding: 0;
-}
-.chapter-header .arrow {
-  font-size: 0.7em; color: var(--fg2); transition: transform 0.3s;
-  flex-shrink: 0; margin-left: 16px;
-}
-.chapter-header .subtitle {
-  font-size: 0.75em; color: var(--fg2); font-weight: 400;
-  display: none;
-}
-.chapter.open .chapter-header .arrow { transform: rotate(180deg); }
-.chapter-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.chapter.open .chapter-content { max-height: 100000px; }
-
-.content { padding: 20px 20px 60px; }
-.content h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 48px; color: var(--warm); margin: 36px 0 16px; font-weight: 400; line-height: 1.2; }
-.content h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; color: var(--warm); margin: 36px 0 14px; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 8px; line-height: 1.2; }
-.content h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 24px; color: var(--copper); margin: 28px 0 10px; font-weight: 400; line-height: 1.3; }
-.content h4 { font-size: 20px; color: var(--fg); margin: 20px 0 8px; font-weight: 600; }
-.content p { margin-bottom: 16px; line-height: 1.8; font-size: 18px; }
-.content ul, .content ol { margin: 10px 0 18px 24px; }
-.content li { margin-bottom: 8px; line-height: 1.8; font-size: 18px; }
-.content blockquote { border-left: 3px solid var(--copper); padding-left: 18px; margin: 18px 0; color: var(--fg2); font-style: italic; }
-.content hr { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
-.content code { background: var(--bg2); padding: 2px 6px; border-radius: 3px; font-size: 0.9em; font-family: 'SF Mono', Menlo, monospace; color: var(--copper); }
-.content pre { background: var(--bg2); padding: 18px; border-radius: 6px; overflow-x: auto; margin: 18px 0; border: 1px solid var(--border); }
-.content strong { color: var(--warm); }
-
-.content table { width: 100%; border-collapse: collapse; font-size: 0.85em; display: block; overflow-x: auto; margin: 18px 0; }
-.content th, .content td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; }
-.content th { background: var(--bg2); color: var(--copper); font-weight: 700; }
-.content tr:nth-child(even) { background: var(--bg2); }
-
-.skip-btn {
-  position: fixed; bottom: 24px; right: 24px; z-index: 200;
-  background: var(--copper); color: var(--warm); font-weight: 700;
-  font-size: 0.85em; padding: 14px 20px; border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(184,115,51,0.3);
-  cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px;
-  transition: transform 0.2s;
-}
-.skip-btn:hover { transform: scale(1.05); text-decoration: none; }
-.skip-btn:active { transform: scale(0.95); }
-.skip-menu {
-  position: fixed; bottom: 80px; right: 24px; z-index: 200;
-  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
-  padding: 8px 0; min-width: 220px; display: none;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-}
-.skip-menu.open { display: block; }
-.skip-menu a {
-  display: block; padding: 12px 18px; font-size: 0.9em; color: var(--fg);
-  border-left: 3px solid transparent; transition: all 0.15s;
-}
-.skip-menu a:hover { background: var(--bg3); border-left-color: var(--copper); color: var(--copper); text-decoration: none; }
-
-.footer { text-align: center; padding: 40px 20px; color: var(--fg2); font-size: 0.75em; border-top: 1px solid var(--border); margin-top: 40px; }
-
-@media (min-width: 1024px) {
-  .chapter-content { max-height: none !important; }
-  .chapter-header { pointer-events: none; }
-  .chapter-header .arrow { display: none; }
-  .chapter-header .subtitle { display: block; }
-  .skip-btn, .skip-menu { display: none !important; }
-}
-
-@media (max-width: 768px) {
-  body { line-height: 2.0; }
-  .whitepaper { max-width: 100%; padding: 0 20px; }
-  .chapter-header h2 { font-size: 22px; }
-  .content h1 { font-size: 32px; }
-  .content h2 { font-size: 24px; }
-  .content h3 { font-size: 20px; }
-  .content h4 { font-size: 18px; }
-}
-</style>
-</head>
+:root{--bg:#2A2A2A;--bg2:#1E1E1E;--bg3:#333;--fg:#E8E4DD;--fg2:#9A9A9A;--copper:#B87333;--amber:#FFBF00;--warm:#FFF8F0;--border:#3A3A3A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.8;font-size:18px}
+a{color:var(--copper);text-decoration:none} a:hover{color:var(--warm)}
+.header{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(42,42,42,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.header h1{font-family:'DM Serif Display',Georgia,serif;font-size:1.2em;color:var(--warm);font-weight:400}
+.header h1 span{color:var(--copper);margin-left:6px}
+.nav-scroll{display:flex;gap:4px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 20px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-scroll a{flex-shrink:0;font-size:.65em;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;color:var(--fg2);border-radius:4px;transition:all .2s}
+.nav-scroll a:hover{color:var(--warm);background:var(--bg3);text-decoration:none}
+.nav-scroll a.active{color:var(--bg);background:var(--copper)}
+.whitepaper{max-width:700px;margin:0 auto;padding:0 20px}
+.chapter{border-bottom:1px solid var(--border)}
+.chapter-header{display:flex;justify-content:space-between;align-items:center;padding:20px 20px;cursor:pointer;transition:background .2s;user-select:none}
+.chapter-header:hover{background:var(--bg2)}
+.chapter-header h2{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;color:var(--warm);margin:0;border:none;padding:0}
+.chapter-header .arrow{font-size:.7em;color:var(--fg2);transition:transform .3s;flex-shrink:0;margin-left:16px}
+.chapter-header .subtitle{font-size:.75em;color:var(--fg2);font-weight:400;display:none}
+.chapter.open .chapter-header .arrow{transform:rotate(180deg)}
+.chapter-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.chapter.open .chapter-content{max-height:100000px}
+.content{padding:20px 20px 60px}
+.content h1{font-family:'DM Serif Display',Georgia,serif;font-size:48px;color:var(--warm);margin:36px 0 16px;font-weight:400;line-height:1.2}
+.content h2{font-family:'DM Serif Display',Georgia,serif;font-size:32px;color:var(--warm);margin:36px 0 14px;font-weight:400;border-bottom:1px solid var(--border);padding-bottom:8px;line-height:1.2}
+.content h3{font-family:'DM Serif Display',Georgia,serif;font-size:24px;color:var(--copper);margin:28px 0 10px;font-weight:400;line-height:1.3}
+.content h4{font-size:20px;color:var(--fg);margin:20px 0 8px;font-weight:600}
+.content p{margin-bottom:16px;line-height:1.8;font-size:18px}
+.content ul,.content ol{margin:10px 0 18px 24px}
+.content li{margin-bottom:8px;line-height:1.8;font-size:18px}
+.content blockquote{border-left:3px solid var(--copper);padding-left:18px;margin:18px 0;color:var(--fg2);font-style:italic}
+.content hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+.content code{background:var(--bg2);padding:2px 6px;border-radius:3px;font-size:.9em;font-family:'SF Mono',Menlo,monospace;color:var(--copper)}
+.content pre{background:var(--bg2);padding:18px;border-radius:6px;overflow-x:auto;margin:18px 0;border:1px solid var(--border)}
+.content strong{color:var(--warm)}
+.content table{width:100%;border-collapse:collapse;font-size:.85em;display:block;overflow-x:auto;margin:18px 0}
+.content th,.content td{border:1px solid var(--border);padding:10px 12px;text-align:left}
+.content th{background:var(--bg2);color:var(--copper);font-weight:700}
+.content tr:nth-child(even){background:var(--bg2)}
+.skip-btn{position:fixed;bottom:24px;right:24px;z-index:200;background:var(--copper);color:var(--warm);font-weight:700;font-size:.85em;padding:14px 20px;border-radius:50px;box-shadow:0 4px 20px rgba(184,115,51,.3);cursor:pointer;border:none;text-transform:uppercase;letter-spacing:.5px;transition:transform .2s}
+.skip-btn:hover{transform:scale(1.05);text-decoration:none}
+.skip-menu{position:fixed;bottom:80px;right:24px;z-index:200;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 0;min-width:220px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.skip-menu.open{display:block}
+.skip-menu a{display:block;padding:12px 18px;font-size:.9em;color:var(--fg);border-left:3px solid transparent;transition:all .15s}
+.skip-menu a:hover{background:var(--bg3);border-left-color:var(--copper);color:var(--copper);text-decoration:none}
+.footer{text-align:center;padding:40px 20px;color:var(--fg2);font-size:.75em;border-top:1px solid var(--border);margin-top:40px}
+@media(min-width:1024px){.chapter-content{max-height:none!important}.chapter-header{pointer-events:none}.chapter-header .arrow{display:none}.chapter-header .subtitle{display:block}.skip-btn,.skip-menu{display:none!important}}
+@media(max-width:768px){body{line-height:2.0}.whitepaper{max-width:100%;padding:0 20px}.chapter-header h2{font-size:22px}.content h1{font-size:32px}.content h2{font-size:24px}.content h3{font-size:20px}.content h4{font-size:18px}}
+</style></head>
 <body>
-
-<div class="header">
-  <h1>WayChain <span>Whitepaper</span></h1>
-  <span style="font-size:0.75em;color:var(--fg2)">v3.1.2 — June 2026</span>
-</div>
-
-<div style="padding:40px 20px 20px;border-bottom:1px solid var(--border);margin-bottom:0">
-  <h1 style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;margin-bottom:8px;color:var(--warm);font-weight:400;line-height:1.1">WayChain</h1>
-  <p style="font-size:20px;color:var(--copper);margin-bottom:20px;font-weight:400">A Layer 1 Blockchain Where Human Identity Replaces Token Plutocracy</p>
-</div>
-
+<div class="header"><h1>WayChain <span>Whitepaper</span></h1><span style="font-size:.75em;color:var(--fg2)">v3.2 — July 2026</span></div>
+<div style="padding:40px 20px 20px;border-bottom:1px solid var(--border)"><h1 style="font-family:'DM Serif Display',Georgia,serif;font-size:48px;margin-bottom:8px;color:var(--warm);font-weight:400;line-height:1.1">WayChain</h1><p style="font-size:20px;color:var(--copper);margin-bottom:20px;font-weight:400">A Layer 1 Blockchain Where Human Identity Replaces Token Plutocracy</p></div>
 <div class="nav-scroll">
   <a href="#abstract">Abstract</a>
   <a href="#status-what-is-live-vs-what-is-being-built">What Is Live vs What Is Being Built</a>
   <a href="#1-the-problem-the-use-cases-no-chain-has-solved">The Use Cases No Chain Has Solved</a>
-  <a href="#2-professional-oracle-badges-the-core-innovation">Professional Oracle Badges — The Co</a>
-  <a href="#3-native-oracle-consensus">Native Oracle Consensus</a>
-  <a href="#4-mineral-rights-tokenization-mrt-precompile-0x20">Mineral Rights Tokenization (MRT Pr</a>
-  <a href="#5-1way-trustless-bitcoin-backed-stablecoin">WAY — Trustless Bitcoin-Backed Stab</a>
-  <a href="#6-binary-journal-the-369-self-sovereignty-protocol">Binary Journal — The 3·6·9 Self-Sov</a>
-  <a href="#7-dox-dev-identity-system">Dox_Dev Identity System</a>
-  <a href="#8-governance-without-plutocracy">Governance Without Plutocracy</a>
-  <a href="#9-precompile-architecture">Precompile Architecture</a>
-  <a href="#10-three-parallel-lanes-plug-and-play-for-any-use-case">Three Parallel Lanes — Plug-and-Pla</a>
-  <a href="#11-network-status-live">Network Status (Live)</a>
-  <a href="#12-risks-honest-assessment">Risks</a>
-  <a href="#13-conclusion-call-to-action">Conclusion</a>
+  <a href="#2-professional-oracle-badges-the-core-innovation">2. Professional Oracle Badges — The</a>
+  <a href="#3-native-oracle-consensus">3. Native Oracle Consensus</a>
+  <a href="#4-mineral-rights-tokenization-mrt-precompile-0x20">4. Mineral Rights Tokenization (MRT</a>
+  <a href="#5-1way-trustless-bitcoin-backed-stablecoin">5. 1WAY — Trustless Bitcoin-Backed </a>
+  <a href="#6-binary-journal-the-369-self-sovereignty-protocol">6. Binary Journal — The 3·6·9 Self-</a>
+  <a href="#7-dox-dev-identity-system">7. Dox_Dev Identity System</a>
+  <a href="#8-governance-without-plutocracy">8. Governance Without Plutocracy</a>
+  <a href="#9-precompile-architecture">9. Precompile Architecture</a>
+  <a href="#10-three-parallel-lanes-plug-and-play-for-any-use-case">10. Three Parallel Lanes — Plug-and</a>
+  <a href="#11-network-status-live">11. Network Status (Live)</a>
+  <a href="#12-honest-risk-assessment">12. Honest Risk Assessment</a>
+  <a href="#13-conclusion-call-to-action">13. Conclusion & Call to Action</a>
 </div>
-
 <div class="whitepaper">
     <div class="chapter" id="abstract">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>Abstract</h2>
-          <div class="subtitle">Abstract</div>
-        </div>
+        <div><h2>Abstract</h2><div class="subtitle">Abstract</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<p>Every major blockchain claims to be decentralized. None are. Bitcoin concentrates mining power in industrial facilities. Ethereum's proof-of-stake gives the wealthy proportional control. Solana's validator set is dominated by venture capital. Oracles are centralized companies. Stablecoins depend on USDC. Real-world assets need trusted third parties. Professional attestations go through centralized firms. In every case, <strong>capital determines power</strong> and <strong>trust requires a middleman</strong>.</p>
+      <div class="chapter-content"><div class="content"><p>Every major blockchain claims to be decentralized. None are. Bitcoin concentrates mining power in industrial facilities. Ethereum's proof-of-stake gives the wealthy proportional control. Solana's validator set is dominated by venture capital. Oracles are centralized companies. Stablecoins depend on USDC. Real-world assets need trusted third parties. Professional attestations go through centralized firms. In every case, <strong>capital determines power</strong> and <strong>trust requires a middleman</strong>.</p>
 <p>WayChain is the first blockchain where <strong>one verified human equals one voice</strong> and <strong>professionals earn directly from the protocol</strong> — no company, no KYC vendor, no external gatekeeper.</p>
 <p>This paper presents WayChain's complete architecture and live deployment. <strong>20 core features are live and running at waychain.org.</strong> 6 additional features are fully specified. We distinguish clearly between what is built and what is being built.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="status-what-is-live-vs-what-is-being-built">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>Status: What Is Live vs What Is Being Built</h2>
-          <div class="subtitle">What Is Live vs What Is Being Built</div>
-        </div>
+        <div><h2>Status: What Is Live vs What Is Being Built</h2><div class="subtitle">What Is Live vs What Is Being Built</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>✅ Live at waychain.org (Verified July 2026)</h3>
+      <div class="chapter-content"><div class="content"><h3>✅ Live at waychain.org (Verified July 2026)</h3>
 <table>
 <tr><th>Feature</th><th>Evidence</th></tr>
 <tr><td>Chain ID 10008</td><td><code>eth_chainId</code> returns <code>0x2718</code></td></tr>
@@ -234,21 +129,14 @@ a:hover { color: var(--warm); }
 <tr><td>Scale to 200 validators</td><td>Consensus engine done, production deployment pending</td></tr>
 <tr><th>Binary Journal launch sequence</th><th>Full spec in 10-binary-journal/</th></tr>
 </table>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="1-the-problem-the-use-cases-no-chain-has-solved">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>1. The Problem: The Use Cases No Chain Has Solved</h2>
-          <div class="subtitle">The Use Cases No Chain Has Solved</div>
-        </div>
+        <div><h2>1. The Problem: The Use Cases No Chain Has Solved</h2><div class="subtitle">The Use Cases No Chain Has Solved</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>1.1 The Five Failures of Every Blockchain</h3>
+      <div class="chapter-content"><div class="content"><h3>1.1 The Five Failures of Every Blockchain</h3>
 <p>Every major blockchain has the same five failures:</p>
 <table>
 <tr><th>Failure</th><th>Symptom</th></tr>
@@ -271,23 +159,15 @@ a:hover { color: var(--warm); }
 <li><strong>Court-ordered disclosure escrow</strong> — identity that releases only on verified legal request with on-chain approval via community vote</li>
 <li><strong>Cross-chain deployer blacklist</strong> — bad actors flagged on all chains</li>
 </ul>
-
 <p>WayChain was built specifically to serve these use cases. Not through economic tinkering, but through <strong>identity as a first-class protocol primitive</strong> combined with <strong>professional verification</strong>, <strong>native oracles</strong>, <strong>Bitcoin-native stablecoins</strong>, and <strong>mineral rights tokenization</strong>.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="2-professional-oracle-badges-the-core-innovation">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>2. Professional Oracle Badges — The Core Innovation</h2>
-          <div class="subtitle">Professional Oracle Badges — The Co</div>
-        </div>
+        <div><h2>2. Professional Oracle Badges — The Core Innovation</h2><div class="subtitle">2. Professional Oracle Badges — The</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>2.1 The Idea</h3>
+      <div class="chapter-content"><div class="content"><h3>2.1 The Idea</h3>
 <p>Every oracle network today is a company. Chainlink has employees, a board, and a profit motive. Pyth has a foundation. They are trusted third parties — the very thing blockchains were supposed to eliminate.</p>
 <p>WayChain replaces them with <strong>Professional Oracle Badges</strong>. Verified professionals earn WAY tokens directly from the protocol for their attestation work. No company. No KYC vendor. No external permission.</p>
 <table>
@@ -312,7 +192,6 @@ a:hover { color: var(--warm); }
 <li><strong>Professional license verification</strong> — license hash stored on-chain, verified by curators</li>
 <li><strong>Attestation quality</strong> — challenge period allows disputes</li>
 </ol>
-
 <h3>2.3 Why This Is Different</h3>
 <table>
 <tr><th>Property</th><th>Chainlink / Pyth</th><th>WayChain</th></tr>
@@ -332,23 +211,15 @@ a:hover { color: var(--warm); }
 <li><strong>WAY</strong> is earned by doing actual verified work — not by staking capital</li>
 <li><strong>No external authority</strong> can control, censor, or pause the system</li>
 </ol>
-
 <p>This is the first time a blockchain has built a professional services marketplace <strong>at the protocol level</strong>. No chain has done this before.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="3-native-oracle-consensus">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>3. Native Oracle Consensus</h2>
-          <div class="subtitle">Native Oracle Consensus</div>
-        </div>
+        <div><h2>3. Native Oracle Consensus</h2><div class="subtitle">3. Native Oracle Consensus</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>3.1 Attesters Are Not Third Parties</h3>
+      <div class="chapter-content"><div class="content"><h3>3.1 Attesters Are Not Third Parties</h3>
 <p>In every other chain, oracles are external. WayChain makes oracles part of the chain itself.</p>
 <table>
 <tr><th>Role</th><th>Primary Job</th><th>Stake</th><th>Slash For</th></tr>
@@ -367,27 +238,19 @@ a:hover { color: var(--warm); }
 <li>If the attestation was false → challenger earns 50% of attester's slashed stake</li>
 <li>If the challenge was false → challenger loses their bond to the attester</li>
 </ol>
-
 <p>This ensures that false attestations are economically irrational — there is always someone watching who can profit by catching a lie.</p>
 <h3>3.4 VRF at Protocol Level (Opcode 0xC4)</h3>
 <p>Verifiable randomness is built into the EVM at the opcode level. Any contract can request unbiased randomness with a single opcode. No Chainlink VRF subscription, no callback, no separate oracle call.</p>
 <h3>3.5 Time-Based Execution</h3>
 <p>Contracts can schedule future execution without external keepers. Precompile 0x0D handles time-based triggers — recurring oracle updates, scheduled liquidations, timed unlocks — all executed by the protocol itself.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="4-mineral-rights-tokenization-mrt-precompile-0x20">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>4. Mineral Rights Tokenization (MRT Precompile 0x20)</h2>
-          <div class="subtitle">Mineral Rights Tokenization (MRT Pr</div>
-        </div>
+        <div><h2>4. Mineral Rights Tokenization (MRT Precompile 0x20)</h2><div class="subtitle">4. Mineral Rights Tokenization (MRT</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>4.1 The Problem</h3>
+      <div class="chapter-content"><div class="content"><h3>4.1 The Problem</h3>
 <p>Mineral rights are the oldest form of real-world wealth. Gold, silver, copper, lithium, rare earths — these are the assets that underpin civilization. But they cannot be traded on-chain because no chain has a protocol for verifying mineral claims.</p>
 <p><strong>Current state:</strong> A geologist's report is a PDF. A mineral claim is a paper filed with a government office. A mining company's reserves are a spreadsheet. These cannot be verified, cannot be fractionalized, and cannot be traded without lawyers, brokers, and regulators between every transaction.</p>
 <h3>4.2 What WayChain Does</h3>
@@ -408,23 +271,15 @@ a:hover { color: var(--warm); }
 <li><strong>State rent</strong> — abandoned claims expire, preventing land speculation.</li>
 <li><strong>Fixed fees</strong> — filing a mineral claim costs 0.01 WAY, not market-auctioned gas.</li>
 </ol>
-
 <p>No other chain has all four.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="5-1way-trustless-bitcoin-backed-stablecoin">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>5. 1WAY — Trustless Bitcoin-Backed Stablecoin</h2>
-          <div class="subtitle">WAY — Trustless Bitcoin-Backed Stab</div>
-        </div>
+        <div><h2>5. 1WAY — Trustless Bitcoin-Backed Stablecoin</h2><div class="subtitle">5. 1WAY — Trustless Bitcoin-Backed </div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>5.1 The Problem</h3>
+      <div class="chapter-content"><div class="content"><h3>5.1 The Problem</h3>
 <p>Every stablecoin today is either centralized (USDC/USDT — can freeze your funds) or over-collateralized in a volatile asset (DAI — ETH can crash, taking your collateral with it).</p>
 <p><strong>There is no decentralized stablecoin backed by Bitcoin.</strong> The largest, most decentralized, most valuable crypto asset has no native stablecoin.</p>
 <h3>5.2 What WayChain Does</h3>
@@ -465,21 +320,14 @@ a:hover { color: var(--warm); }
 <tr><td>Liquidation mechanism</td><td>N/A</td><td>Smart contract</td><td>Oracle multi-sig + Dox_Dev</td></tr>
 </table>
 <p>1WAY is the only stablecoin that combines <strong>Bitcoin's decentralization</strong> with <strong>Dox_Dev's accountability</strong>.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="6-binary-journal-the-369-self-sovereignty-protocol">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>6. Binary Journal — The 3·6·9 Self-Sovereignty Protocol</h2>
-          <div class="subtitle">Binary Journal — The 3·6·9 Self-Sov</div>
-        </div>
+        <div><h2>6. Binary Journal — The 3·6·9 Self-Sovereignty Protocol</h2><div class="subtitle">6. Binary Journal — The 3·6·9 Self-</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>6.1 The Vision</h3>
+      <div class="chapter-content"><div class="content"><h3>6.1 The Vision</h3>
 <p>Nikola Tesla said: "If you only knew the magnificence of the 3, 6 and 9, then you would have the key to the universe."</p>
 <p>Binary Journal is that key — rebuilt for the digital age. It is a <strong>self-sovereign knowledge vault</strong>: a protocol where individuals own their truths, time-stamp them immutably, and control exactly who can access them.</p>
 <h3>6.2 The Three Layers</h3>
@@ -497,7 +345,6 @@ a:hover { color: var(--warm); }
 <li><strong>StorageEndowment (0x17):</strong> Perpetual storage funding. Pay once, your data lives forever.</li>
 <li><strong>BIJO (0x14):</strong> The ecosystem token. 369M supply. 70% to node operators, 10% philanthropic, 20% ecosystem.</li>
 </ul>
-
 <h3>6.3 The Launch Sequence</h3>
 <ol>
 <li><strong>Verification Period (3-6 months):</strong> Real users attest truths, node operators pin files. No tokens move.</li>
@@ -507,23 +354,15 @@ a:hover { color: var(--warm); }
 <li><strong>Enable Transfers:</strong> One-time irreversible call. BIJO becomes transferable.</li>
 <li><strong>Burn Ownership:</strong> <code>renounceOwnership()</code> on every contract that has it.</li>
 </ol>
-
 <p>After step 6, the protocol becomes immutable natural law. No human can alter, censor, or pause it. The truth belongs to everyone.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="7-dox-dev-identity-system">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>7. Dox_Dev Identity System</h2>
-          <div class="subtitle">Dox_Dev Identity System</div>
-        </div>
+        <div><h2>7. Dox_Dev Identity System</h2><div class="subtitle">7. Dox_Dev Identity System</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>7.1 The Soulbound Badge</h3>
+      <div class="chapter-content"><div class="content"><h3>7.1 The Soulbound Badge</h3>
 <p>Dox_Dev is a non-transferable soulbound badge. Each badge represents a verified human with real-world identity. Three levels:</p>
 <table>
 <tr><th>Level</th><th>Requirements</th><th>Grants Access To</th></tr>
@@ -538,7 +377,6 @@ a:hover { color: var(--warm); }
 <li><strong>Block Production Layer:</strong> <code>ProduceBlock</code> re-checks deployer level — even a malicious proposer can't include a bad deploy.</li>
 <li><strong>EVM Opcode Layer:</strong> <code>CREATE</code>/<code>CREATE2</code> opcodes call the Dox_Dev precompile directly — the EVM itself rejects unverified deployers.</li>
 </ol>
-
 <p>An attacker must compromise all three simultaneously. This is the same defense-in-depth principle used in nuclear facilities.</p>
 <h3>7.3 Privacy-Preserving Verification</h3>
 <p>A common misconception: "If I have to verify my identity, I'm doxxed." This is not true.</p>
@@ -547,14 +385,12 @@ a:hover { color: var(--warm); }
 <li>A soulbound badge is minted to your address</li>
 <li>The badge contains a cryptographic commitment — no personal data</li>
 </ul>
-
 <p><strong>What happens off-chain (curator side):</strong></p>
 <ul>
 <li>A curator privately verifies your identity through a secure channel</li>
 <li>The verification data (ID, video, etc.) is stored encrypted</li>
 <li>Disclosure only happens on verified court order with on-chain approval via community vote (progressive hardening)</li>
 </ul>
-
 <p><strong>If you are verified, disclosure is possible but rare. If you are NOT verified, no data exists — there is nothing to disclose.</strong></p>
 <h3>7.4 Accountability Through Identity</h3>
 <table>
@@ -565,21 +401,14 @@ a:hover { color: var(--warm); }
 <tr><td>Can return tomorrow</td><td><strong>Permanently excluded</strong></td></tr>
 </table>
 <p>This is the key insight: <strong>economic penalties are bounded, but identity penalties are permanent.</strong> A verified human cannot mint a new identity.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="8-governance-without-plutocracy">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>8. Governance Without Plutocracy</h2>
-          <div class="subtitle">Governance Without Plutocracy</div>
-        </div>
+        <div><h2>8. Governance Without Plutocracy</h2><div class="subtitle">8. Governance Without Plutocracy</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<h3>8.1 Token Weight Touches Nothing</h3>
+      <div class="chapter-content"><div class="content"><h3>8.1 Token Weight Touches Nothing</h3>
 <p>In every other chain, governance is token-weighted. More tokens = more votes. This is not democracy — it's plutocracy with a blockchain wrapper.</p>
 <p>WayChain's rule is absolute: <strong>one verified human = one vote.</strong> Token weight does not touch governance. Validator seats are capped at 200, each held by a uniquely identified person.</p>
 <h3>8.2 Three Voting Mechanisms</h3>
@@ -604,21 +433,14 @@ a:hover { color: var(--warm); }
 <tr><td>1,000,000+</td><td>1%</td></tr>
 </table>
 <p>This is the opposite of Ethereum, where larger stakes earn proportionally more. WayChain actively encourages smaller participants and discourages whale concentration.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="9-precompile-architecture">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>9. Precompile Architecture</h2>
-          <div class="subtitle">Precompile Architecture</div>
-        </div>
+        <div><h2>9. Precompile Architecture</h2><div class="subtitle">9. Precompile Architecture</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<p>WayChain has <strong>20 native precompiles</strong> (0x0C-0x20):</p>
+      <div class="chapter-content"><div class="content"><p>WayChain has <strong>20 native precompiles</strong> (0x0C-0x20):</p>
 <table>
 <tr><th>Addr</th><th>Name</th><th>Purpose</th></tr>
 <tr><td>0x0C</td><td>OracleAggregator</td><td>Multi-oracle price aggregation</td></tr>
@@ -642,24 +464,16 @@ a:hover { color: var(--warm); }
 <tr><td>0x1E</td><td>StateRent</td><td>Rent collection and eviction</td></tr>
 <tr><td>0x1F</td><td>CrossChainAttestation</td><td>Cross-chain proof verification</td></tr>
 <tr><td>0x20</td><td>MineralRightsRegistry</td><td>Tokenized mineral rights</td></tr>
-<tr><td>0x21</td><td>Keccak256</td><td>Ethereum-compatible hash (app layer choice)</td></tr>
 </table>
 <p>Each precompile uses <strong>SHA256-based selectors</strong> (not keccak256) and has a fixed gas cost.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="10-three-parallel-lanes-plug-and-play-for-any-use-case">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>10. Three Parallel Lanes — Plug-and-Play for Any Use Case</h2>
-          <div class="subtitle">Three Parallel Lanes — Plug-and-Pla</div>
-        </div>
+        <div><h2>10. Three Parallel Lanes — Plug-and-Play for Any Use Case</h2><div class="subtitle">10. Three Parallel Lanes — Plug-and</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<p>Most blockchains force every transaction through the same execution path. Public transactions, private data, and oracle attestations all compete for the same blockspace.</p>
+      <div class="chapter-content"><div class="content"><p>Most blockchains force every transaction through the same execution path. Public transactions, private data, and oracle attestations all compete for the same blockspace.</p>
 <p>WayChain runs <strong>three parallel execution lanes:</strong></p>
 <table>
 <tr><th>Lane</th><th>Type</th><th>Purpose</th><th>Privacy</th></tr>
@@ -674,23 +488,15 @@ a:hover { color: var(--warm); }
 <li>Private transactions are encrypted in the mempool — no frontrunning, no MEV, no data leakage</li>
 <li>All three lanes share the same state and security — no separate L2, no sidechain, no bridge</li>
 </ul>
-
 <p><strong>WayChain is a plug-and-play blockchain for any use case.</strong> Public, private, or oracle — all on one chain. No separate network needed. No custom deployment. Just choose your lane.</p>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
     <div class="chapter" id="11-network-status-live">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>11. Network Status (Live)</h2>
-          <div class="subtitle">Network Status (Live)</div>
-        </div>
+        <div><h2>11. Network Status (Live)</h2><div class="subtitle">11. Network Status (Live)</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<table>
+      <div class="chapter-content"><div class="content"><table>
 <tr><th>Component</th><th>URL</th><th>Status</th></tr>
 <tr><td>Dashboard</td><td>https://waychain.org</td><td>✅ Live</td></tr>
 <tr><td>Explorer</td><td>https://waychain.org/explorer</td><td>✅ Live</td></tr>
@@ -709,46 +515,37 @@ a:hover { color: var(--warm); }
 <tr><td>Live features</td><td>20</td></tr>
 <tr><td>Spec'd features</td><td>6</td></tr>
 </table>
-<hr>
-        </div>
-      </div>
+<hr></div></div>
     </div>
-    <div class="chapter" id="12-risks-honest-assessment">
+    <div class="chapter" id="12-honest-risk-assessment">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>12. Risks & Honest Assessment</h2>
-          <div class="subtitle">Risks</div>
-        </div>
+        <div><h2>12. Honest Risk Assessment</h2><div class="subtitle">12. Honest Risk Assessment</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
+      <div class="chapter-content"><div class="content"><p>Every ship has leaks. We name ours plainly.</p>
 <table>
-<tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
-<tr><td>Oracle manipulation</td><td>Low</td><td>Critical</td><td>7-oracle median, 2% deviation cap, TLS proofs</td></tr>
-<tr><td>Flash loan manipulation</td><td>Low</td><td>High</td><td>TWAP for collateral valuation</td></tr>
-<tr><td>Smart contract bug</td><td>Low</td><td>Critical</td><td>Canonical implementation is Go precompiles (not Solidity)</td></tr>
-<tr><td>Cross-chain bridge exploit</td><td>Low</td><td>High</td><td>Rate limits, daily caps, challenge window</td></tr>
-<tr><td>1WAY depeg below $0.95</td><td>Medium</td><td>High</td><td>Overcollateralization (143%), liquidation engine, Stability Pool</td></tr>
-<tr><th>Collateral death spiral</th><th>Low-Med</th><th>Critical</th><th>Global caps, insurance fund, recovery tokens</th></tr>
-<tr><td>Insufficient validator adoption</td><td>Medium</td><td>Medium</td><td>Permissionless validator entry (any Dox_Dev Level 2+)</td></tr>
+<tr><th>Risk</th><th>Description</th></tr>
+<tr><td><strong>Identity becomes the attack surface</strong></td><td>Instead of stealing funds, attackers target identity. Fake credentials, forged documents, social engineering — these become the exploits. A compromised identity is worse than a hacked wallet: you cannot simply rotate to a new address and move on. This is permanent.</td></tr>
+<tr><td><strong>Validator collusion despite identity</strong></td><td>Three validators must collude to freeze 1WAY BTC. All are verified, incentivized to behave. But humans can still choose malice. The Dox_Dev revocation is irreversible, but collusion before detection still burns. We accept this risk because anonymity has already burned everyone.</td></tr>
+<tr><td><strong>Professional oracle capture</strong></td><td>A geologist with a badge earns for verifying claims. What if they verify false reserves for personal gain? The challenge period catches this, but not instantly. Reputation takes years to build and seconds to lose.</td></tr>
+<tr><td><strong>Badge issuance centralization</strong></td><td>Level 3 curators issue badges. Currently, these are trusted humans. If they gatekeep unfairly, they gatekeep unfairly. The 90-day election cycle helps, but does not eliminate the reality: identity needs gatekeepers. We trade one centralization for another.</td></tr>
+<tr><td><strong>1WAY depeg cascade</strong></td><td>Bitcoin drops 50% in a day. Liquidations dump BTC. Further drops trigger more liquidations. The Stability Pool (funded by 10% of mint fee) absorbs initial losses. If exhausted, insurance fund covers next. Exhausted again, recovery tokens dilute. Survivable, but holders lose.</td></tr>
+<tr><td><strong>Oracle multi-sig jurisdiction risk</strong></td><td>Five oracles across five jurisdictions. But jurisdiction is not decentralization — it is distribution of a central point. Legal pressure in one jurisdiction can compromise one oracle. Three must collude, but what if legal frameworks align them?</td></tr>
+<tr><td><strong>State rent abandonment</strong></td><td>State rent prevents infinite chain bloat. But abandonment is a feature, not a bug. Users forget, die, or disappear. Their contracts and data vanish. This is honest — we do not promise permanence for everything.</td></tr>
+<tr><td><strong>Growth ceiling from identity requirement</strong></td><td>You cannot deploy without verification. You cannot verify anonymously. This limits adoption. It is intentional. WayChain will not scale to thousands of validators this year. Maybe never. We choose truth over growth.</td></tr>
 </table>
-<p><strong>What could go wrong:</strong> If BTC/ETH drops 50%+ in a single day, mass liquidations trigger → collateral dumped → further price drops. The Stability Pool absorbs first losses. The insurance fund covers the next layer. If both are exhausted, recovery tokens are issued — dilutive but survivable. This is the same risk profile as MakerDAO, Liquity, and Synthetix. WayChain's advantage: <strong>1s finality means faster liquidation processing.</strong></p>
-<hr>
-        </div>
-      </div>
+<p><strong>What we accept:</strong> These risks are real. They are not bugs to fix but trade-offs to acknowledge. We do not paper over them with “security audits” that promise impossible safety. </p>
+<p><strong>What we mitigate:</strong> The 100-block challenge window for oracle data, the irreversible badge revocation, the square-root weighted lottery preventing validator centralization, the fixed fee model that keeps costs predictable regardless of market chaos.</p>
+<p><strong>What we cannot:</strong> We cannot eliminate human malice. We cannot remove all centralization points. We cannot promise your identity will never be forged, or that oracles will never collude. Honest blockchains acknowledge their leaks; they do not pretend to be watertight.</p>
+<p>WayChain is not safer than other chains. It is <strong>differently vulnerable</strong>. Where other chains fail by anonymous rug pulls and infinite scalability, we may fail by identity capture and limited growth. Both are real costs. We pay ours knowing what we trade for what we gain.</p>
+<hr></div></div>
     </div>
     <div class="chapter" id="13-conclusion-call-to-action">
       <div class="chapter-header" onclick="toggleChapter(this)">
-        <div>
-          <h2>13. Conclusion & Call to Action</h2>
-          <div class="subtitle">Conclusion</div>
-        </div>
+        <div><h2>13. Conclusion & Call to Action</h2><div class="subtitle">13. Conclusion & Call to Action</div></div>
         <span class="arrow">▼</span>
       </div>
-      <div class="chapter-content">
-        <div class="content">
-<p>WayChain is the first blockchain where identity — not capital — determines power. The system is live, processing transactions, and open to anyone.</p>
+      <div class="chapter-content"><div class="content"><p>WayChain is the first blockchain where identity — not capital — determines power. The system is live, processing transactions, and open to anyone.</p>
 <p><strong>What makes WayChain different from every other chain:</strong></p>
 <ul>
 <li><strong>Professional Oracle Badges</strong> — geologists, lawyers, surveyors, engineers earn WAY directly from the protocol. No company in the middle.</li>
@@ -760,67 +557,38 @@ a:hover { color: var(--warm); }
 <li><strong>Fixed Fees</strong> — fiat-pegged, not market-auctioned.</li>
 <li><strong>Progressive Staking</strong> — smaller stakes earn higher returns.</li>
 </ul>
-
 <p><strong>No central exchanges. Treasury-governed distribution. 1WAY backs the community. The fuse is lit.</strong></p>
 <p>WayChain does not chase exchange listings. The treasury holds the supply. Governance votes on every distribution. When 1WAY brings Bitcoin liquidity into the ecosystem, every transaction needs WAY for fees. The value flows to the community — not to exchange order books. As Wink put it: <em>"They will need us when the Bitcoin starts rolling in."</em></p>
 <p><em>A closed loop with a bridge to close the gap.</em> 1WAY is the bridge. The internal economy is self-sustaining — validators, attesters, professionals, and token holders all exchange value within the chain. The bridge connects this economy to the largest, most decentralized asset in existence: Bitcoin. The loop is sealed. The bridge is open.</p>
 <p><strong>Go to waychain.org. See blocks being produced in real time. Check the Badge UI and start your Dox_Dev verification. If you're a builder, deploy through the template registry. If you're a professional — geologist, lawyer, surveyor, engineer — apply for your oracle badge and start earning WAY for your expertise.</strong></p>
-<p><strong>One human. One voice. One way.</strong></p>
-        </div>
-      </div>
+<p><strong>One human. One voice. One way.</strong></p></div></div>
     </div>
 </div>
-
-<div class="footer">
-  <p>WayChain — Actually Decentralized. Chain ID 10008.</p>
-  <p style="margin-top:8px;"><a href="https://waychain.org">waychain.org</a></p>
-</div>
-
-<button class="skip-btn" id="skipBtn" onclick="toggleSkipMenu()">☰ Sections</button>
+<div class="footer"><p>WayChain — Actually Decentralized. Chain ID 10008.</p><p style="margin-top:8px"><a href="https://waychain.org">waychain.org</a></div>
+<button class="skip-btn" id="skipBtn" onclick="toggleSkipMenu()">Sections</button>
 <div class="skip-menu" id="skipMenu">
   <a onclick="toggleSkipMenu()" href="#abstract">Abstract</a>
   <a onclick="toggleSkipMenu()" href="#status-what-is-live-vs-what-is-being-built">What Is Live vs What Is Being Built</a>
   <a onclick="toggleSkipMenu()" href="#1-the-problem-the-use-cases-no-chain-has-solved">The Use Cases No Chain Has Solved</a>
-  <a onclick="toggleSkipMenu()" href="#2-professional-oracle-badges-the-core-innovation">Professional Oracle Badges — The Co</a>
-  <a onclick="toggleSkipMenu()" href="#3-native-oracle-consensus">Native Oracle Consensus</a>
-  <a onclick="toggleSkipMenu()" href="#4-mineral-rights-tokenization-mrt-precompile-0x20">Mineral Rights Tokenization (MRT Pr</a>
-  <a onclick="toggleSkipMenu()" href="#5-1way-trustless-bitcoin-backed-stablecoin">WAY — Trustless Bitcoin-Backed Stab</a>
-  <a onclick="toggleSkipMenu()" href="#6-binary-journal-the-369-self-sovereignty-protocol">Binary Journal — The 3·6·9 Self-Sov</a>
-  <a onclick="toggleSkipMenu()" href="#7-dox-dev-identity-system">Dox_Dev Identity System</a>
-  <a onclick="toggleSkipMenu()" href="#8-governance-without-plutocracy">Governance Without Plutocracy</a>
-  <a onclick="toggleSkipMenu()" href="#9-precompile-architecture">Precompile Architecture</a>
-  <a onclick="toggleSkipMenu()" href="#10-three-parallel-lanes-plug-and-play-for-any-use-case">Three Parallel Lanes — Plug-and-Pla</a>
-  <a onclick="toggleSkipMenu()" href="#11-network-status-live">Network Status (Live)</a>
-  <a onclick="toggleSkipMenu()" href="#12-risks-honest-assessment">Risks</a>
-  <a onclick="toggleSkipMenu()" href="#13-conclusion-call-to-action">Conclusion</a>
+  <a onclick="toggleSkipMenu()" href="#2-professional-oracle-badges-the-core-innovation">2. Professional Oracle Badges — The</a>
+  <a onclick="toggleSkipMenu()" href="#3-native-oracle-consensus">3. Native Oracle Consensus</a>
+  <a onclick="toggleSkipMenu()" href="#4-mineral-rights-tokenization-mrt-precompile-0x20">4. Mineral Rights Tokenization (MRT</a>
+  <a onclick="toggleSkipMenu()" href="#5-1way-trustless-bitcoin-backed-stablecoin">5. 1WAY — Trustless Bitcoin-Backed </a>
+  <a onclick="toggleSkipMenu()" href="#6-binary-journal-the-369-self-sovereignty-protocol">6. Binary Journal — The 3·6·9 Self-</a>
+  <a onclick="toggleSkipMenu()" href="#7-dox-dev-identity-system">7. Dox_Dev Identity System</a>
+  <a onclick="toggleSkipMenu()" href="#8-governance-without-plutocracy">8. Governance Without Plutocracy</a>
+  <a onclick="toggleSkipMenu()" href="#9-precompile-architecture">9. Precompile Architecture</a>
+  <a onclick="toggleSkipMenu()" href="#10-three-parallel-lanes-plug-and-play-for-any-use-case">10. Three Parallel Lanes — Plug-and</a>
+  <a onclick="toggleSkipMenu()" href="#11-network-status-live">11. Network Status (Live)</a>
+  <a onclick="toggleSkipMenu()" href="#12-honest-risk-assessment">12. Honest Risk Assessment</a>
+  <a onclick="toggleSkipMenu()" href="#13-conclusion-call-to-action">13. Conclusion & Call to Action</a>
 </div>
-
 <script>
-function toggleChapter(el) {
-  el.parentElement.classList.toggle('open');
-}
-function toggleSkipMenu() {
-  document.getElementById('skipMenu').classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.skip-btn') && !e.target.closest('.skip-menu')) {
-    document.getElementById('skipMenu').classList.remove('open');
-  }
-});
-// Open first chapter on mobile
-if (window.innerWidth < 1024) {
-  document.querySelector('.chapter')?.classList.add('open');
-}
-document.querySelectorAll('.nav-scroll a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    document.querySelectorAll('.nav-scroll a').forEach(function(l) { l.classList.remove('active'); });
-    this.classList.add('active');
-    var id = this.getAttribute('href').slice(1);
-    var ch = document.getElementById(id);
-    if (ch) ch.classList.add('open');
-  });
-});
+function toggleChapter(e){e.parentElement.classList.toggle('open')}
+function toggleSkipMenu(){document.getElementById('skipMenu').classList.toggle('open')}
+document.addEventListener('click',function(e){if(!e.target.closest('.skip-btn')&&!e.target.closest('.skip-menu'))document.getElementById('skipMenu').classList.remove('open')})
+if(window.innerWidth<1024)document.querySelector('.chapter')?.classList.add('open')
+document.querySelectorAll('.nav-scroll a').forEach(function(a){a.addEventListener('click',function(){document.querySelectorAll('.nav-scroll a').forEach(function(l){l.classList.remove('active')});this.classList.add('active');var e=document.getElementById(this.getAttribute('href').slice(1));if(e)e.classList.add('open')})})
 </script>
-
 </body>
 </html>

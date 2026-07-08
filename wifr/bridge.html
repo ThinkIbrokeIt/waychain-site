@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIFR Bridge — Burn & Claim</title>
+<style>
+:root { --warm:#FFF8F0; --slate:#2A2A2A; --copper:#B87333; --amber:#FFBF00; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  font-family: 'Inter', sans-serif; 
+  background: var(--slate); 
+  color: var(--warm); 
+  padding: 40px 20px;
+}
+.container { max-width: 600px; margin: 0 auto; }
+h1 { color: var(--copper); margin-bottom: 20px; }
+.btn { 
+  background: var(--copper); 
+  color: var(--slate); 
+  border: none; 
+  padding: 12px 24px; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: 600;
+  margin: 10px 0;
+}
+.btn:disabled { opacity: 0.5; }
+.input { 
+  width: 100%; 
+  background: #1e1e1e; 
+  border: 1px solid var(--copper); 
+  color: var(--warm); 
+  padding: 12px; 
+  border-radius: 6px; 
+  margin: 10px 0;
+}
+.step { 
+  background: #1e1e1e; 
+  border-left: 3px solid var(--amber); 
+  padding: 15px; 
+  margin: 15px 0;
+}
+.step h3 { color: var(--amber); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>WIFR Bridge — WayChain Is Free Receipt</h1>
+  
+  <div class="step">
+    <h3>Step 1: Connect Wallet</h3>
+    <button class="btn" onclick="connectSolana()">Connect Solana Wallet</button>
+  </div>
+  
+  <div class="step">
+    <h3>Step 2: Burn WIFR</h3>
+    <input class="input" id="wifrAmount" placeholder="WIFR to burn (multiples of 1000)" value="1000">
+    <button class="btn" onclick="burnWIFR()">Burn WIFR</button>
+  </div>
+  
+  <div class="step">
+    <h3>Step 3: Claim WAY</h3>
+    <button class="btn" onclick="claimWAY()">Claim WAY via Bridge</button>
+    <p style="font-size:12px;color:#9A9A9A;margin-top:10px;">CrossChainAttestation verifies burn → WAY released</p>
+  </div>
+  
+  <div id="status" style="margin-top:20px;padding:15px;background:#1a1a1a;border-radius:6px;display:none;"></div>
+</div>
+<script>
+function connectSolana() { alert('Connect Phantom/Solflare wallet in production'); }
+function burnWIFR() { alert('Burn WIFR to get burn proof'); }
+function claimWAY() { alert('Submit burn proof to claim WAY from pool'); }
+</script>
+</body>
+</html>

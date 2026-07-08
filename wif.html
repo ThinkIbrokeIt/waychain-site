@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIF — WayChain Is Free</title>
+<style>
+:root { --warm:#FFF8F0; --slate:#2A2A2A; --copper:#B87333; --amber:#FFBF00; --green:#4CAF50; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  font-family: 'Inter', -apple-system, sans-serif; 
+  background: var(--slate); 
+  color: var(--warm); 
+  line-height: 1.6; 
+  padding: 40px 20px;
+}
+.container { max-width: 700px; margin: 0 auto; }
+h1 { color: var(--copper); font-size: 2.5em; margin-bottom: 10px; }
+h2 { color: var(--amber); font-size: 1.3em; margin: 30px 0 15px; }
+p { margin-bottom: 15px; }
+.code { 
+  background: #1a1a1a; 
+  padding: 3px 8px; 
+  border-radius: 4px;
+  font-family: monospace;
+  color: var(--copper);
+}
+.btn { 
+  display: inline-block;
+  background: var(--copper);
+  color: var(--slate);
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 20px 0;
+}
+.btn:hover { background: var(--amber); }
+.badge { 
+  display: inline-block;
+  background: var(--amber);
+  color: var(--slate);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.claim-box {
+  background: #1e1e1e;
+  border: 1px solid var(--copper);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 30px 0;
+}
+.stat { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #333; }
+.stat:last-child { border-bottom: none; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <h1>WIF <span style="font-size:0.4em;color:var(--amber)">WayChain Is Free</span></h1>
+  
+  <p><strong>WIF is not a promise. It's a receipt.</strong></p>
+  
+  <p>1,000,000 WAY locked. 1,000,000,000 WIF circulating. Burn WIF, claim WAY.</p>
+  
+  <a href="/wif/bridge" class="btn">Burn & Claim</a>
+  
+  <div class="claim-box">
+    <h2>Claim Stats</h2>
+    <div class="stat"><span>Early Worm Bonus:</span> <span style="color:var(--green)">ACTIVE</span></div>
+    <div class="stat"><span>Claims Filled:</span> <span id="claims">0/10,000</span></div>
+    <div class="stat"><span>Pool Balance:</span> <span id="pool">1,000,000 WAY</span></div>
+    <div class="stat"><span>Conversion Rate:</span> <span>1,000 WIF = 1 WAY <span class="badge">IMMUTABLE</span></span></div>
+  </div>
+  
+  <h2>How to Get WIF (Free)</h2>
+  <ul>
+    <li>Testnet stress tests</li>
+    <li>Bridge tinkering quests</li>
+    <li>Meme contests</li>
+    <li>Early adopter NFTs</li>
+  </ul>
+  
+  <h2>The Spin</h2>
+  <p>We didn't ask you to buy a promise. We just left a pile of WAY on the other side of a bridge and handed out the keys for free.</p>
+  
+  <p style="font-size:12px;color:#9A9A9A">Proof-of-meme. Stress test with rewards. The rug you can't find.</p>
+</div>
+</body>
+</html>

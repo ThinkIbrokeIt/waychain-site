@@ -478,19 +478,28 @@ WayChain runs **three parallel execution lanes:**
 
 ---
 
-## 12. Risks & Honest Assessment
+## 12. Honest Risk Assessment
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|------------|
-| Oracle manipulation | Low | Critical | 7-oracle median, 2% deviation cap, TLS proofs |
-| Flash loan manipulation | Low | High | TWAP for collateral valuation |
-| Smart contract bug | Low | Critical | Canonical implementation is Go precompiles (not Solidity) |
-| Cross-chain bridge exploit | Low | High | Rate limits, daily caps, challenge window |
-| 1WAY depeg below $0.95 | Medium | High | Overcollateralization (143%), liquidation engine, Stability Pool |
-| Collateral death spiral | Low-Med | Critical | Global caps, insurance fund, recovery tokens |
-| Insufficient validator adoption | Medium | Medium | Permissionless validator entry (any Dox_Dev Level 2+) |
+Every ship has leaks. We name ours plainly.
 
-**What could go wrong:** If BTC/ETH drops 50%+ in a single day, mass liquidations trigger → collateral dumped → further price drops. The Stability Pool absorbs first losses. The insurance fund covers the next layer. If both are exhausted, recovery tokens are issued — dilutive but survivable. This is the same risk profile as MakerDAO, Liquity, and Synthetix. WayChain's advantage: **1s finality means faster liquidation processing.**
+| Risk | Description |
+|------|-------------|
+| **Identity becomes the attack surface** | Instead of stealing funds, attackers target identity. Fake credentials, forged documents, social engineering — these become the exploits. A compromised identity is worse than a hacked wallet: you cannot simply rotate to a new address and move on. This is permanent. |
+| **Validator collusion despite identity** | Three validators must collude to freeze 1WAY BTC. All are verified, incentivized to behave. But humans can still choose malice. The Dox_Dev revocation is irreversible, but collusion before detection still burns. We accept this risk because anonymity has already burned everyone. |
+| **Professional oracle capture** | A geologist with a badge earns for verifying claims. What if they verify false reserves for personal gain? The challenge period catches this, but not instantly. Reputation takes years to build and seconds to lose. |
+| **Badge issuance centralization** | Level 3 curators issue badges. Currently, these are trusted humans. If they gatekeep unfairly, they gatekeep unfairly. The 90-day election cycle helps, but does not eliminate the reality: identity needs gatekeepers. We trade one centralization for another. |
+| **1WAY depeg cascade** | Bitcoin drops 50% in a day. Liquidations dump BTC. Further drops trigger more liquidations. The Stability Pool (funded by 10% of mint fee) absorbs initial losses. If exhausted, insurance fund covers next. Exhausted again, recovery tokens dilute. Survivable, but holders lose. |
+| **Oracle multi-sig jurisdiction risk** | Five oracles across five jurisdictions. But jurisdiction is not decentralization — it is distribution of a central point. Legal pressure in one jurisdiction can compromise one oracle. Three must collude, but what if legal frameworks align them? |
+| **State rent abandonment** | State rent prevents infinite chain bloat. But abandonment is a feature, not a bug. Users forget, die, or disappear. Their contracts and data vanish. This is honest — we do not promise permanence for everything. |
+| **Growth ceiling from identity requirement** | You cannot deploy without verification. You cannot verify anonymously. This limits adoption. It is intentional. WayChain will not scale to thousands of validators this year. Maybe never. We choose truth over growth. |
+
+**What we accept:** These risks are real. They are not bugs to fix but trade-offs to acknowledge. We do not paper over them with “security audits” that promise impossible safety. 
+
+**What we mitigate:** The 100-block challenge window for oracle data, the irreversible badge revocation, the square-root weighted lottery preventing validator centralization, the fixed fee model that keeps costs predictable regardless of market chaos.
+
+**What we cannot:** We cannot eliminate human malice. We cannot remove all centralization points. We cannot promise your identity will never be forged, or that oracles will never collude. Honest blockchains acknowledge their leaks; they do not pretend to be watertight.
+
+WayChain is not safer than other chains. It is **differently vulnerable**. Where other chains fail by anonymous rug pulls and infinite scalability, we may fail by identity capture and limited growth. Both are real costs. We pay ours knowing what we trade for what we gain.
 
 ---
 
