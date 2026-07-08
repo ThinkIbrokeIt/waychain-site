@@ -4,55 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WayChain — Launch Plan</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a1a; --bg2: #12122a; --bg3: #1a1a3a;
-  --fg: #e0e0f0; --fg2: #8888bb; --accent: #00d4ff;
-  --green: #00ff88; --red: #ff3355; --border: #2a2a5a;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Courier New', monospace; background: var(--bg); color: var(--fg); line-height: 1.7; }
-.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.header { border-bottom: 1px solid var(--border); padding: 20px 0; margin-bottom: 30px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.header-logo-img{height:40px;width:auto;display:block}
-.header h1 { color: var(--accent); font-size: 1.4em; }
-.nav { margin-top: 8px; }
-.nav a { font-size: 0.8em; color: var(--fg2); margin-right: 20px; text-transform: uppercase; letter-spacing: 1px; }
-.nav a:hover { color: var(--accent); }
-h2 { color: var(--accent); font-size: 1.2em; margin: 30px 0 15px; }
-h3 { color: var(--accent); font-size: 1em; margin: 25px 0 10px; }
-p { margin: 10px 0; font-size: 0.9em; }
-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-th, td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.8em; }
-th { color: var(--fg2); text-transform: uppercase; font-size: 0.7em; }
-tr:hover td { background: var(--bg3); }
-code { background: var(--bg3); padding: 2px 6px; border-radius: 3px; font-size: 0.85em; }
-.status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
-.status-dot.online { background: var(--green); }
-.status-dot.offline { background: var(--red); }
-.badge-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.7em; background: rgba(0,212,255,0.2); color: var(--accent); margin-right: 5px; }
-ul { padding-left: 20px; }
-li { margin: 4px 0; font-size: 0.9em; }
-.completed { color: var(--green); }
-.footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 50px; color: var(--fg2); font-size: 0.7em; text-align: center; }
+:root{--warm:#FFF8F0;--slate:#2A2A2A;--slate2:#1E1E1E;--slate3:#333;--fg:#E8E4DD;--muted:#9A9A9A;--copper:#B87333;--amber:#FFBF00;--green:#4CAF50;--red:#E53935;--border:#3A3A3A}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--slate);color:var(--fg);line-height:1.8;font-size:16px}
+a{color:var(--copper);text-decoration:none}
+a:hover{color:var(--warm)}
+.nav{position:sticky;top:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:rgba(42,42,42,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-img{height:48px;width:auto;display:block}
+.nav-logo-text{font-family:'Playfair Display',Georgia,serif;font-size:1.4em;color:var(--warm);letter-spacing:1px}
+.nav-logo-text span{color:var(--copper)}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:.75em;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.nav-links a:hover{color:var(--warm)}
+.container{max-width:900px;margin:0 auto;padding:40px 24px}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:2.2em;color:var(--warm);margin-bottom:8px}
+.subhead{color:var(--muted);font-size:.9em;margin-bottom:32px}
+h2{font-family:'Playfair Display',Georgia,serif;font-size:1.3em;color:var(--copper);margin:32px 0 16px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:.95em;color:var(--amber);margin:24px 0 10px}
+p{margin:10px 0;font-size:.9em;color:var(--fg)}
+table{width:100%;border-collapse:collapse;margin:15px 0}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:.85em}
+th{color:var(--muted);text-transform:uppercase;font-size:.7em;letter-spacing:1px}
+tr:hover td{background:var(--slate2)}
+code{background:var(--slate3);padding:2px 6px;border-radius:3px;font-size:.85em;color:var(--amber)}
+pre{background:var(--slate2);border:1px solid var(--border);border-radius:6px;padding:16px;overflow-x:auto;margin:12px 0;font-size:.82em;color:var(--muted);line-height:1.5}
+pre code{background:transparent;padding:0;color:var(--fg)}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.status-dot.online{background:var(--green)}
+.status-dot.offline{background:var(--red)}
+.badge-tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:.7em;background:rgba(184,115,51,.2);color:var(--copper);margin-right:5px}
+ul{padding-left:20px}
+li{margin:6px 0;font-size:.9em}
+.completed{color:var(--green)}
+.in-progress{color:var(--amber)}
+.footer{border-top:1px solid var(--border);padding:30px 0;margin-top:50px;color:var(--muted);font-size:.75em;text-align:center}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<img src="/assets/waylogo.png" alt="WayChain" class="header-logo-img">
-<h1>⬡ WayChain Launch Plan</h1>
 <div class="nav">
-<a href="https://waychain.org">Dashboard</a>
+<div class="nav-logo">
+<img src="/assets/waylogo.png" alt="WayChain" class="nav-logo-img">
+<div class="nav-logo-text">WAYCHAIN <span>⚓</span></div>
+</div>
+<div class="nav-links">
+<a href="/">Dashboard</a>
 <a href="/whitepaper">Whitepaper</a>
-<a href="https://waychain.org/explorer">Explorer</a>
+<a href="/explorer">Explorer</a>
+<a href="/badge">Badge</a>
 </div>
 </div>
+<div class="container">
 
-<h2>Status: <span class="completed">All 5 Phases Complete</span></h2>
+<h1>⚓ Launch Plan</h1>
+<div class="subhead">All 5 phases complete · Chain live at waychain.org</div>
 
+<h2>Status: <span class="completed">✅ Complete</span></h2>
 <p>Chain is live at <strong>waychain.org</strong>. 80,000+ blocks at 1/sec, 3 validators, BoltDB persistence.</p>
 
 <h2>Phase 0: Foundation ✅</h2>
@@ -112,13 +125,13 @@ li { margin: 4px 0; font-size: 0.9em; }
   ├── /badge → Badge
   └── api.waychain.org → Cloudflare Tunnel → Daemon
         ├── Blockchain (BFT + EVM)
-        ├── 13 Precompiles (0x0C-0x17)
+        ├── 27 Precompiles (0x0C-0x26)
         ├── BoltDB persistence
         ├── Tx Pool + P2P Network
         ├── WebSocket subscriptions
         └── Rate limiter + structured logging</code></pre>
 
-<h2>Pre verified</h2>
+<h2>Verified</h2>
 <table>
 <tr><th>Test</th><th>Status</th></tr>
 <tr><td>Real tx pipeline</td><td>✅ eth_sendRawTransaction → block → receipt 0x1</td></tr>
@@ -141,8 +154,8 @@ li { margin: 4px 0; font-size: 0.9em; }
 </ul>
 
 <div class="footer">
-WayChain v2.0 — Launch Plan Complete<br>
-waychain.org · Chain ID 10008 · Actually Decentralized
+WayChain · Chain ID 10008 · Actually Decentralized<br>
+waychain.org
 </div>
 </div>
 </body>
