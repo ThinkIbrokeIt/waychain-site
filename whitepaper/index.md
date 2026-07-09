@@ -166,13 +166,7 @@ Every deployer on WayChain is a verified human with a permanent on-chain identit
 
 This is enforced at three levels — RPC, block production, and the EVM itself. An attacker must compromise all three simultaneously. Defense-in-depth, built into the protocol, not an overlay.
 
-### Three Levels
-
-| Level | Requirement | Access |
-|-------|-------------|--------|
-| **Level 1** | Basic human verification | Wallets, explorers, oracle monitoring |
-| **Level 2** | Verified identity + bonding | Contract deployment, validator seat, oracle attestation |
-| **Level 3** | Elected curator (90-day term) | Badge issuance, governance, emergency controls |
+The badge system has three tiers. Level 1 is basic human verification — enough for wallets, explorers, and oracle monitoring. Level 2 adds identity bonding, unlocking contract deployment, validator seats, and oracle attestation. Level 3 is an elected curator with a 90-day term, responsible for badge issuance, governance, and emergency controls. Each level progressively increases what a verified human can do on the network.
 
 ### Accountability Through Identity
 
@@ -202,24 +196,9 @@ Precompile 0x0D is live on mainnet with four professions registered and fixed re
 
 The same geologist who earns a professional badge in Section 9 now has something to attest: mineral rights.
 
-WayChain's **Mineral Rights Registry (Precompile 0x20)** allows anyone to file a claim, verify it with a licensed geologist, and trade it as a token.
+WayChain's **Mineral Rights Registry (Precompile 0x20)** allows anyone to file a claim with GPS coordinates, verify it with a geologist-attested reserve estimate, classify it as proven, probable, or possible, and trade or retire it as a token — all while submitting mandatory environmental reports that freeze non-compliant claims.
 
-| Function | What It Does |
-|----------|-------------|
-| `claimMineralRight` | File a claim with GPS coordinates |
-| `verifyReserves` | Submit a geologist-attested reserve estimate |
-| `classifyReserve` | Proven, probable, or possible |
-| `extinguishMineralRight` | Trade or retire a right as a token |
-| `submitEnvironmentalReport` | Mandatory environmental filing |
-
-### Why Only WayChain
-
-| Requirement | Other Chains | WayChain |
-|-------------|-------------|----------|
-| Geologist to verify reserves | No mechanism | Professional Oracle Badge (Section 9) |
-| Claimant identity | Anonymous wallets | Dox_Dev Level 2+ (Section 8) |
-| Abandoned claims | No expiration | State rent expires unused claims |
-| Filing cost | Market-driven gas ($$$) | Fixed 0.01 WAY |
+No other chain can do this because no other chain has the building blocks. Professional oracle badges provide the geologists who verify reserves. Dox_Dev identity ensures claimants are real humans, not anonymous wallets. State rent expires abandoned claims, preventing land speculation. And fixed fees keep filing costs predictable at 0.01 WAY — not market-driven gas that can spike during a rush.
 
 No other chain has all four. Precompile 0x20 is live on mainnet with the full claim-to-extinguish lifecycle tested end to end. Mineral rights can now be traded on-chain — with professional attestations and built-in environmental enforcement.
 
@@ -231,28 +210,9 @@ No other chain has all four. Precompile 0x20 is live on mainnet with the full cl
 
 You should be able to timestamp a fact and prove you knew it first. You should be able to leave your knowledge — and your assets — to your heirs without a lawyer or a custodian. No chain gives you either. WayChain gives you both.
 
-**Binary Journal** is a self-sovereign knowledge vault. Three layers:
+**Binary Journal** is a self-sovereign knowledge vault. A biometric-locked mobile app (Sanctuary) encrypts your truths with AES-256. Precompile 0x14 timestamps them immutably — prove you knew something before anyone else. Precompile 0x15 (DeadMansSwitch) ensures your designated inheritors receive your assets if you stop proving you are alive — no lawyer, no probate, no middleman. Precompile 0x17 (StorageEndowment) pays once and stores your data as long as the chain lives.
 
-| Layer | What It Does |
-|-------|-------------|
-| **Sanctuary** | A mobile app. Biometric-locked. AES-256 encrypted. Your truths, your control. |
-| **Attestation (0x14)** | Timestamp a fact. Prove you knew something before anyone else. Immutable. |
-| **DeadMansSwitch (0x15)** | If you stop proving you are alive, your designated inheritors receive your assets. No lawyer. No probate. No middleman. |
-
-**StorageEndowment (0x17)** ensures your data persists as long as the chain lives. Pay once, store forever.
-
-### The Immutable Launch
-
-The BIJO token (369M supply) launches through a six-step sequence designed so that no human can alter the protocol afterward:
-
-1. Users attest truths, node operators pin files — no tokens move
-2. Retroactive airdrop based on verifiable on-chain actions
-3. 70% of supply funds the StorageEndowment
-4. DEX pool seeded, LP tokens locked and burned
-5. Transfers enabled — one-time irreversible call
-6. **Ownership renounced** on every contract
-
-After step 6, the protocol is immutable. No human can alter, censor, or pause it. Precompiles 0x14, 0x15, and 0x17 are live on mainnet with the launch sequence documented and ready. Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.
+The BIJO token (369M supply) launches through a six-step sequence engineered so that no human can alter the protocol afterward. First, users attest truths and node operators pin files — no tokens move. Then a retroactive airdrop distributes based on verifiable on-chain actions. Next, 70% of the supply funds the StorageEndowment, the DEX pool is seeded with LP tokens locked and burned, transfers are enabled through a one-time irreversible call, and finally ownership is renounced on every contract. After the last step, the protocol is immutable — no human can alter, censor, or pause it. Precompiles 0x14, 0x15, and 0x17 are live on mainnet with the launch sequence documented and ready. Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.
 
 ---
 
@@ -262,34 +222,9 @@ After step 6, the protocol is immutable. No human can alter, censor, or pause it
 
 In every other chain, more tokens = more votes. WayChain has one rule that overrides everything: **one verified human = one vote.** Token weight does not touch governance.
 
-### Three Voting Mechanisms
+Voting happens through three mechanisms depending on the stakes. Direct voting with 20% quorum and a simple majority handles routine parameter adjustments. Quadratic voting with 30% quorum and a 60% threshold lets passionate minorities concentrate their influence — each badge holder gets 9 credits per 90-day period, and the cost to vote grows with the square of the number of issues they vote on. Futarchy with 40% quorum and a 66% threshold runs a prediction market before high-impact changes: "If this passes, will WAY price be higher in 90 days?" The market informs the vote but does not dictate it.
 
-| Type | Quorum | Threshold | Use Case |
-|------|--------|-----------|----------|
-| **Direct** | 20% | >50% | Routine proposals, parameter adjustments |
-| **Quadratic** | 30% | >60% | Significant changes, treasury allocations |
-| **Futarchy** | 40% | >66% | Core protocol changes, amendments |
-
-**Quadratic voting** gives each badge holder 9 credits per 90-day period. Cost to vote = square of issues. A passionate minority can concentrate their credits on one priority and win against a diffuse majority.
-
-**Futarchy** runs a prediction market before high-impact votes: "If this passes, will WAY price be higher in 90 days?" The market informs the vote but does not dictate it.
-
-### Economic Anti-Plutocracy
-
-Two additional mechanisms prevent capital from concentrating power:
-
-- **Sqrt-weighted validator lottery:** A validator with 4x the stake gets 2x the proposals, not 4x. The advantage of large stakeholders is compressed.
-- **Progressive staking:** Smaller stakes earn higher returns:
-
-| WAY Staked | APY |
-|------------|-----|
-| 1 – 1,000 | 15% |
-| 1,001 – 10,000 | 8% |
-| 10,001 – 100,000 | 4% |
-| 100,001 – 1,000,000 | 2% |
-| 1,000,000+ | 1% |
-
-This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration. Governance precompile 0x1D enforces this on mainnet, with the sqrt-weighted lottery running in the consensus engine and progressive staking distributing rewards on-chain. Capital cannot buy power here. The smallest staker earns proportionally more than the largest. One human, one vote.
+Two additional mechanisms prevent capital from concentrating power. The sqrt-weighted validator lottery ensures that a validator with 4x the stake gets 2x the proposals, not 4x — compressing the advantage of large stakeholders. Progressive staking actively rewards smaller participants: a staker with 1,000 WAY earns 15% APY, while a whale with 1,000,000+ WAY earns only 1%. This is the opposite of every other chain. Governance precompile 0x1D enforces all of this on mainnet, with the sqrt-weighted lottery running in the consensus engine and progressive staking distributing rewards on-chain. Capital cannot buy power here. The smallest staker earns proportionally more than the largest. One human, one vote.
 
 ---
 
@@ -299,35 +234,11 @@ This is the opposite of every other chain. WayChain actively encourages small pa
 
 In every other chain, oracles are external companies that the chain relies on but cannot control. WayChain makes oracles part of the chain itself.
 
-| Role | Job | Stake | Slash For |
-|------|-----|-------|-----------|
-| **Validator** | Ordering and finality | 32,000+ WAY | Double-sign, downtime |
-| **Attester** | Data fetching and attesting | 5,000+ WAY | Wrong data, collusion |
-| **Challenger** | Dispute false attestations | Bond | False challenge |
+Three participant roles power the system. Validators stake 32,000+ WAY and handle ordering and finality — they are slashed for double-signing or downtime. Attesters stake 5,000+ WAY and handle data fetching and attestation — they are slashed for wrong data or collusion. Challengers post a bond and dispute false attestations — they lose their bond if the challenge is false. A validator can also be an attester by posting an additional oracle bond, but the two are separate: an attester slashed for bad data loses only their oracle bond, leaving their validator stake untouched.
 
-**Critical:** A validator can also be an attester by posting an additional oracle bond. But the two are separate. An attester slashed for bad data loses only their oracle bond — their validator stake is untouched.
+Attestations are verified through multiple layers. TLS proofs (Precompile 0x0F) let attesters prove data came from a trusted source — "this came from the SEC's EDGAR system" — not "I downloaded a PDF and here is what it says." The challenge game opens a 100-block window where anyone can dispute an attestation with a bond; if the attestation was false, the challenger earns 50% of the slashed stake, making false attestations economically irrational. VRF at the opcode level (0xC4) provides verifiable randomness without a Chainlink subscription, callback, or separate oracle call. And time-based execution (Precompile 0x0D) lets contracts schedule future execution — recurring updates, liquidations, unlocks — all handled by the protocol itself.
 
-### How Attestations Are Verified
-
-**TLS proofs (Precompile 0x0F):** Attesters prove data came from a trusted source — "this data came from the SEC's EDGAR system" — not "I downloaded a PDF and here is what it says."
-
-**The challenge game:** Every attestation enters a 100-block window. Anyone can challenge with a bond. If the attestation was false, the challenger earns 50% of the attester's slashed stake. If the challenge was false, the challenger loses their bond. False attestations are economically irrational.
-
-**VRF (Opcode 0xC4):** Verifiable randomness at the opcode level. No Chainlink subscription, no callback, no separate oracle call.
-
-**Time-based execution (Precompile 0x0D):** Contracts schedule future execution — recurring updates, liquidations, unlocks — all executed by the protocol.
-
-### Three Parallel Lanes
-
-Most chains force every transaction through the same path. WayChain runs three:
-
-| Lane | Type | Use |
-|------|------|-----|
-| **ConsensusLane** | Public | DeFi, transfers, governance |
-| **OracleLane** | Semi-public | Oracle attestations, price feeds |
-| **PrivateLane** | Encrypted | Healthcare, legal, corporate data |
-
-A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space. Precompiles 0x0C through 0x0F are live, the VRF opcode 0xC4 is implemented, and all three lanes are operational — producing blocks every second with instant finality.
+Most chains force every transaction through the same path. WayChain runs three parallel lanes. The ConsensusLane handles public transactions — DeFi, transfers, and governance. The OracleLane handles semi-public attestations and price feeds without competing with user transactions. The PrivateLane handles encrypted data — healthcare records, corporate information, and legal documents — in an encrypted mempool visible only to involved parties. A hospital can run private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Precompiles 0x0C through 0x0F are live, the VRF opcode 0xC4 is implemented, and all three lanes are operational — producing blocks every second with instant finality.
 
 ---
 
@@ -337,39 +248,13 @@ A hospital runs private records on PrivateLane while the same chain handles publ
 
 Every solution in this section — validator rewards, oracle payments, DEX liquidity, professional attestations, mineral rights — needs an economy. That economy needs fuel. Bitcoin is that fuel.
 
-1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a **3-of-5 Dox_Dev oracle multi-sig** spanning 5 jurisdictions. Receive 1WAY on WayChain. Use it everywhere on the chain. Burn it to get your BTC back.
+1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a **3-of-5 Dox_Dev oracle multi-sig** with one key holder in each of five jurisdictions — United States, European Union, Asia, Brazil, and Australia. No single human can move the BTC. No two can. Three can — but all three would need to collude and each would lose their Dox_Dev Level 3 badge permanently. Revocation is permanent.
 
-| Key Holder | Jurisdiction | Can Move BTC Alone? |
-|------------|-------------|---------------------|
-| Oracle A | United States | No — needs 2 more keys |
-| Oracle B | European Union | No — needs 2 more keys |
-| Oracle C | Asia | No — needs 2 more keys |
-| Oracle D | Brazil | No — needs 2 more keys |
-| Oracle E | Australia | No — needs 2 more keys |
+To mint, send BTC to the multi-sig, oracles witness it, BitcoinSPV verifies with 6+ confirmations, and 1WAY is minted at 143% collateralization. To burn, return 1WAY, oracles witness the burn, 3 of 5 sign a Bitcoin transaction, and BTC is released to your address.
 
-No single human can move the BTC. No two can. Three can — but all three would need to collude and each would lose their Dox_Dev Level 3 badge permanently. Revocation is permanent.
+This liquidity powers everything on the chain. Validator rewards are paid in WAY backed by 1WAY, giving them real value. Professionals earn WAY with a Bitcoin exit ramp, giving them a reason to join. The DEX pairs WAY with 1WAY, bringing Bitcoin into every pool. Mineral rights are priced in the world's most liquid asset. And Binary Journal's perpetual storage is funded by Bitcoin-backed WAY.
 
-### How It Works
-
-**Mint:** Send BTC to the multi-sig → oracles witness it → BitcoinSPV verifies (6+ confirmations) → 1WAY minted at 143% collateralization.
-
-**Burn:** Return 1WAY → oracles witness the burn → 3 of 5 sign a Bitcoin transaction → BTC released to your address.
-
-### Why This Powers Everything
-
-| Component | Because |
-|-----------|---------|
-| Validator rewards | Paid in WAY → backed by 1WAY liquidity |
-| Oracle attestations | Professionals earn WAY with a Bitcoin exit ramp |
-| DEX | WAY/1WAY pairs bring Bitcoin into every pool |
-| Mineral rights | Rights priced in the world's most liquid asset |
-| Binary Journal | Perpetual storage funded by Bitcoin-backed WAY |
-
-| Property | USDC | DAI | 1WAY |
-|----------|------|-----|------|
-| Freezable? | Yes | No | No |
-| Collateral | USD reserves | ETH | Bitcoin |
-| Decentralization | Centralized | Semi | Most decentralized asset |
+The comparison with existing stablecoins makes the case. USDC is centralized and freezable. DAI is backed by volatile ETH. 1WAY is backed by Bitcoin — the most decentralized, most valuable asset in existence — secured by human identity across five jurisdictions.
 
 **Without Bitcoin, WayChain is a closed loop. With Bitcoin, WayChain is a bridge between human identity and the largest, most decentralized asset in existence.**
 
