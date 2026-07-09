@@ -178,17 +178,9 @@ This principle is enforced at three levels — RPC, block production, and the EV
 
 ### Accountability Through Identity
 
-| Anonymous Chain | WayChain |
-|-----------------|----------|
-| Slash stake → spin up new validator | Slash stake → badge revoked → cannot re-verify |
-| Cost of cheating = bond | Cost of cheating = bond + identity + reputation |
-| Can return tomorrow | **Permanently excluded** |
+On an anonymous chain, cheating costs you your bond. On WayChain, it costs you your badge — and a revoked badge cannot be re-issued. Precompile 0x13 enforces this on mainnet today. Three genesis curators operate the badge system at waychain.org/badge, and the deploy gate has been verified at all three layers — RPC, block production, and the EVM itself.
 
-### Evidence
-
-Precompile **0x13** live on mainnet. Three genesis curators. Badge UI at **waychain.org/badge**. Deploy gate verified at all three layers.
-
-**Why this solves rugs:** Every deployer is a known human. Rugging means permanent exclusion. Anonymous deployers cannot exist.
+**Why this solves rugs:** Every deployer is a known human. Rugging means permanent exclusion. No anonymous deployers. No ghost teams. No relaunch.
 
 ---
 
@@ -228,9 +220,7 @@ Three layers of accountability:
 | Who controls | A company | The protocol — immutable |
 | Can they return after cheating? | Yes — new node, same network | No — badge gone forever |
 
-### Evidence
-
-Precompile **0x0D** live on mainnet. Four professions registered with fixed reward rates. Badge issuance at waychain.org/badge.
+Precompile 0x0D is live on mainnet with four professions registered and fixed reward rates on-chain. Badge issuance runs through waychain.org/badge.
 
 **Why this solves the credential problem:** Your professional license becomes an on-chain asset that earns you money directly. No employer. No platform. No intermediary. The protocol pays you for your expertise.
 
@@ -263,11 +253,7 @@ WayChain's **Mineral Rights Registry (Precompile 0x20)** allows anyone to file a
 | Abandoned claims | No expiration | State rent expires unused claims |
 | Filing cost | Market-driven gas ($$$) | Fixed 0.01 WAY |
 
-No other chain has all four.
-
-### Evidence
-
-Precompile **0x20** live on mainnet. Full lifecycle tested. 12 tests passing.
+No other chain has all four. Precompile 0x20 is live on mainnet with the full claim-to-extinguish lifecycle tested end to end.
 
 **Why this solves the asset problem:** Mineral rights can now be fractionalized, traded, and verified on-chain — with professional attestations and built-in environmental enforcement.
 
@@ -302,11 +288,7 @@ The BIJO token (369M supply) launches through a six-step sequence designed so th
 5. Transfers enabled — one-time irreversible call
 6. **Ownership renounced** on every contract
 
-After step 6, the protocol is immutable. No human can alter, censor, or pause it.
-
-### Evidence
-
-Precompiles **0x14, 0x15, 0x17** live on mainnet. BIJO token specified. Launch sequence documented.
+After step 6, the protocol is immutable. No human can alter, censor, or pause it. Precompiles 0x14, 0x15, and 0x17 are live on mainnet with the launch sequence documented and ready.
 
 **Why this solves truth and inheritance:** Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.
 
@@ -347,11 +329,7 @@ Two additional mechanisms prevent capital from concentrating power:
 | 100,001 – 1,000,000 | 2% |
 | 1,000,000+ | 1% |
 
-This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration.
-
-### Evidence
-
-Governance precompile **0x1D** live on mainnet. Sqrt-weighted lottery in consensus engine. Progressive staking on-chain.
+This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration. Governance precompile 0x1D enforces this on mainnet, with the sqrt-weighted lottery running in the consensus engine and progressive staking distributing rewards on-chain.
 
 **Why this solves plutocracy:** Capital cannot buy power. The smallest staker earns proportionally more than the largest. One human, one vote.
 
@@ -393,11 +371,7 @@ Most chains force every transaction through the same path. WayChain runs three:
 | **OracleLane** | Semi-public | Oracle attestations, price feeds |
 | **PrivateLane** | Encrypted | Healthcare, legal, corporate data |
 
-A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space.
-
-### Evidence
-
-Precompiles **0x0C–0x0F** live on mainnet. VRF opcode **0xC4** implemented. Three parallel lanes operational. 1-second block time, instant finality.
+A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space. Precompiles 0x0C through 0x0F are live, the VRF opcode 0xC4 is implemented, and all three lanes are operational — producing blocks every second with instant finality.
 
 ---
 

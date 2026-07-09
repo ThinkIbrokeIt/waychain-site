@@ -145,7 +145,7 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p><em>Here is what we built. Here is how it solves each problem. Here is proof it works.</em></p>
 <p>Each solution maps to one problem from Act I. The first six build the infrastructure and use cases. The seventh — Section 14, 1WAY / Bitcoin — is the economic engine that powers them all. Without Bitcoin, WayChain cannot live.</p>
 <hr></div></div>
-<div class="chapter" id="8-dox-dev-identity-at-the-protocol-level"><div class="chapter-header"><h2>8. Dox_Dev — Identity at the Protocol Level <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 1 — The Rug Problem</em></p>
+<div class="chapter" id="8-dox-dev-identity-at-the-protocol-level"><div class="chapter-header"><h2>8. Dox_Dev — Identity at the Protocol Level <span class="subtitle">Accountability Through Identity</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 1 — The Rug Problem</em></p>
 <p>Every deployer on WayChain is a verified human with a permanent on-chain identity. Bad actors cannot come back. Rugging means losing your badge forever, and a revoked badge cannot be re-issued.</p>
 <p>This principle is enforced at three levels — RPC, block production, and the EVM itself. An attacker must compromise all three simultaneously. This is defense-in-depth, and it is built into the protocol, not an overlay.</p>
 <table>
@@ -154,16 +154,10 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <tr><th></th><th<strong>Level 2</strong>>Verified identity + bonding>Contract deployment, validator seat, oracle attestation</th></tr>
 <tr><th></th><th<strong>Level 3</strong>>Elected curator (90-day term)>Badge issuance, governance, emergency controls</th></tr>
 </table>
-<table>
-<tr><th></th><thAnonymous Chain>WayChain</th></tr>
-<tr><th></th><thSlash stake → spin up new validator>Slash stake → badge revoked → cannot re-verify</th></tr>
-<tr><th></th><thCost of cheating = bond>Cost of cheating = bond + identity + reputation</th></tr>
-<tr><th></th><thCan return tomorrow><strong>Permanently excluded</strong></th></tr>
-</table>
-<p>Precompile <strong>0x13</strong> live on mainnet. Three genesis curators. Badge UI at <strong>waychain.org/badge</strong>. Deploy gate verified at all three layers.</p>
-<p><strong>Why this solves rugs:</strong> Every deployer is a known human. Rugging means permanent exclusion. Anonymous deployers cannot exist.</p>
+<p>On an anonymous chain, cheating costs you your bond. On WayChain, it costs you your badge — and a revoked badge cannot be re-issued. Precompile 0x13 enforces this on mainnet today. Three genesis curators operate the badge system at waychain.org/badge, and the deploy gate has been verified at all three layers — RPC, block production, and the EVM itself.</p>
+<p><strong>Why this solves rugs:</strong> Every deployer is a known human. Rugging means permanent exclusion. No anonymous deployers. No ghost teams. No relaunch.</p>
 <hr></div></div>
-<div class="chapter" id="9-professional-oracle-badges-verified-experts"><div class="chapter-header"><h2>9. Professional Oracle Badges — Verified Experts <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 2 — The Credential Problem</em></p>
+<div class="chapter" id="9-professional-oracle-badges-verified-experts"><div class="chapter-header"><h2>9. Professional Oracle Badges — Verified Experts <span class="subtitle">Why This Matters</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 2 — The Credential Problem</em></p>
 <p>Every oracle network today is a company. Chainlink has employees and a board. Pyth has a foundation. They are trusted third parties — the very thing blockchains were supposed to eliminate.</p>
 <p>WayChain replaces them with professionals. A geologist who spent years earning their license can now attest to a mineral reserve estimate and earn WAY directly from the protocol. No company in the middle. No KYC vendor. No external permission.</p>
 <table>
@@ -186,10 +180,10 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <tr><th></th><thWho controls>A company>The protocol — immutable</th></tr>
 <tr><th></th><thCan they return after cheating?>Yes — new node, same network>No — badge gone forever</th></tr>
 </table>
-<p>Precompile <strong>0x0D</strong> live on mainnet. Four professions registered with fixed reward rates. Badge issuance at waychain.org/badge.</p>
+<p>Precompile 0x0D is live on mainnet with four professions registered and fixed reward rates on-chain. Badge issuance runs through waychain.org/badge.</p>
 <p><strong>Why this solves the credential problem:</strong> Your professional license becomes an on-chain asset that earns you money directly. No employer. No platform. No intermediary. The protocol pays you for your expertise.</p>
 <hr></div></div>
-<div class="chapter" id="10-mineral-rights-tokenization"><div class="chapter-header"><h2>10. Mineral Rights Tokenization <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 3 — The Asset Problem</em></p>
+<div class="chapter" id="10-mineral-rights-tokenization"><div class="chapter-header"><h2>10. Mineral Rights Tokenization <span class="subtitle">Why Only WayChain</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 3 — The Asset Problem</em></p>
 <p>The same geologist who earns a professional badge in Section 9 now has something to attest: mineral rights.</p>
 <p>WayChain's <strong>Mineral Rights Registry (Precompile 0x20)</strong> allows anyone to file a claim, verify it with a licensed geologist, and trade it as a token.</p>
 <table>
@@ -207,11 +201,10 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <tr><th></th><thAbandoned claims>No expiration>State rent expires unused claims</th></tr>
 <tr><th></th><thFiling cost>Market-driven gas ($$$)>Fixed 0.01 WAY</th></tr>
 </table>
-<p>No other chain has all four.</p>
-<p>Precompile <strong>0x20</strong> live on mainnet. Full lifecycle tested. 12 tests passing.</p>
+<p>No other chain has all four. Precompile 0x20 is live on mainnet with the full claim-to-extinguish lifecycle tested end to end.</p>
 <p><strong>Why this solves the asset problem:</strong> Mineral rights can now be fractionalized, traded, and verified on-chain — with professional attestations and built-in environmental enforcement.</p>
 <hr></div></div>
-<div class="chapter" id="11-binary-journal-dead-man-s-switch"><div class="chapter-header"><h2>11. Binary Journal + Dead Man's Switch <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Sections 4 and 6 — The Truth Problem and The Inheritance Problem</em></p>
+<div class="chapter" id="11-binary-journal-dead-man-s-switch"><div class="chapter-header"><h2>11. Binary Journal + Dead Man's Switch <span class="subtitle">The Immutable Launch</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Sections 4 and 6 — The Truth Problem and The Inheritance Problem</em></p>
 <p>You should be able to timestamp a fact and prove you knew it first. You should be able to leave your knowledge — and your assets — to your heirs without a lawyer or a custodian. No chain gives you either. WayChain gives you both.</p>
 <p><strong>Binary Journal</strong> is a self-sovereign knowledge vault. Three layers:</p>
 <table>
@@ -228,11 +221,10 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p>4. DEX pool seeded, LP tokens locked and burned</p>
 <p>5. Transfers enabled — one-time irreversible call</p>
 <p>6. <strong>Ownership renounced</strong> on every contract</p>
-<p>After step 6, the protocol is immutable. No human can alter, censor, or pause it.</p>
-<p>Precompiles <strong>0x14, 0x15, 0x17</strong> live on mainnet. BIJO token specified. Launch sequence documented.</p>
+<p>After step 6, the protocol is immutable. No human can alter, censor, or pause it. Precompiles 0x14, 0x15, and 0x17 are live on mainnet with the launch sequence documented and ready.</p>
 <p><strong>Why this solves truth and inheritance:</strong> Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.</p>
 <hr></div></div>
-<div class="chapter" id="12-anti-plutocracy-governance"><div class="chapter-header"><h2>12. Anti-Plutocracy Governance <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 5 — The Governance Problem</em></p>
+<div class="chapter" id="12-anti-plutocracy-governance"><div class="chapter-header"><h2>12. Anti-Plutocracy Governance <span class="subtitle">Economic Anti-Plutocracy</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 5 — The Governance Problem</em></p>
 <p>In every other chain, more tokens = more votes. WayChain has one rule that overrides everything: <strong>one verified human = one vote.</strong> Token weight does not touch governance.</p>
 <table>
 <tr><td></td><tdType>Quorum>Threshold>Use Case</td></tr>
@@ -255,11 +247,10 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <tr><th></th><th100,001 – 1,000,000>2%</th></tr>
 <tr><th></th><th1,000,000+>1%</th></tr>
 </table>
-<p>This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration.</p>
-<p>Governance precompile <strong>0x1D</strong> live on mainnet. Sqrt-weighted lottery in consensus engine. Progressive staking on-chain.</p>
+<p>This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration. Governance precompile 0x1D enforces this on mainnet, with the sqrt-weighted lottery running in the consensus engine and progressive staking distributing rewards on-chain.</p>
 <p><strong>Why this solves plutocracy:</strong> Capital cannot buy power. The smallest staker earns proportionally more than the largest. One human, one vote.</p>
 <hr></div></div>
-<div class="chapter" id="13-native-oracle-consensus"><div class="chapter-header"><h2>13. Native Oracle Consensus <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Foundational infrastructure — enables every solution above</em></p>
+<div class="chapter" id="13-native-oracle-consensus"><div class="chapter-header"><h2>13. Native Oracle Consensus <span class="subtitle">Three Parallel Lanes</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Foundational infrastructure — enables every solution above</em></p>
 <p>In every other chain, oracles are external companies that the chain relies on but cannot control. WayChain makes oracles part of the chain itself.</p>
 <table>
 <tr><td></td><tdRole>Job>Stake>Slash For</td></tr>
@@ -279,8 +270,7 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <tr><th></th><th<strong>OracleLane</strong>>Semi-public>Oracle attestations, price feeds</th></tr>
 <tr><th></th><th<strong>PrivateLane</strong>>Encrypted>Healthcare, legal, corporate data</th></tr>
 </table>
-<p>A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space.</p>
-<p>Precompiles <strong>0x0C–0x0F</strong> live on mainnet. VRF opcode <strong>0xC4</strong> implemented. Three parallel lanes operational. 1-second block time, instant finality.</p>
+<p>A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space. Precompiles 0x0C through 0x0F are live, the VRF opcode 0xC4 is implemented, and all three lanes are operational — producing blocks every second with instant finality.</p>
 <hr></div></div>
 <div class="chapter" id="14-1way-bitcoin-as-the-economic-engine"><div class="chapter-header"><h2>14. 1WAY — Bitcoin as the Economic Engine <span class="subtitle">Comparison</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 7 — The Stablecoin Problem. And powers everything else.</em></p>
 <p>Every solution in this section — validator rewards, oracle payments, DEX liquidity, professional attestations, mineral rights — needs an economy. That economy needs fuel. Bitcoin is that fuel.</p>
