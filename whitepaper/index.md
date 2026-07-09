@@ -186,7 +186,7 @@ A Level 3 curator verifies the professional's credentials, then a soulbound badg
 
 The difference from existing oracle networks is stark. Chainlink and Pyth use anonymous node operators who face only economic penalties — they can lose their stake and return as a new node the next day. WayChain uses verified professionals with soulbound badges. Lying costs them not just their stake but their professional identity permanently. The fee model is fixed and predictable, not market-driven and expensive. And the protocol itself is the authority — not a company that can be pressured, acquired, or shut down.
 
-Precompile 0x0D is live on mainnet with four professions registered and fixed reward rates on-chain. Badge issuance runs through waychain.org/badge. Your professional license becomes an on-chain asset that earns you money directly — no employer, no platform, no intermediary.
+Precompile 0x0D is live on mainnet with four profession types defined in the protocol and fixed reward rates on-chain. Badge issuance runs through waychain.org/badge. The infrastructure is ready — real professionals are the next step.
 
 ---
 
@@ -200,7 +200,7 @@ WayChain's **Mineral Rights Registry (Precompile 0x20)** allows anyone to file a
 
 No other chain can do this because no other chain has the building blocks. Professional oracle badges provide the geologists who verify reserves. Dox_Dev identity ensures claimants are real humans, not anonymous wallets. State rent expires abandoned claims, preventing land speculation. And fixed fees keep filing costs predictable at 0.01 WAY — not market-driven gas that can spike during a rush.
 
-No other chain has all four. Precompile 0x20 is live on mainnet with the full claim-to-extinguish lifecycle tested end to end. Mineral rights can now be traded on-chain — with professional attestations and built-in environmental enforcement.
+No other chain has all four. Precompile 0x20 is live on mainnet — the code for the full claim-to-extinguish lifecycle is implemented and passing integration tests. Mineral rights are the one remaining piece that requires real-world adoption to complete the picture. The protocol is ready. The professionals and claimants must now use it.
 
 ---
 
@@ -210,9 +210,7 @@ No other chain has all four. Precompile 0x20 is live on mainnet with the full cl
 
 You should be able to timestamp a fact and prove you knew it first. You should be able to leave your knowledge — and your assets — to your heirs without a lawyer or a custodian. No chain gives you either. WayChain gives you both.
 
-**Binary Journal** is a self-sovereign knowledge vault. A biometric-locked mobile app (Sanctuary) encrypts your truths with AES-256. Precompile 0x14 timestamps them immutably — prove you knew something before anyone else. Precompile 0x15 (DeadMansSwitch) ensures your designated inheritors receive your assets if you stop proving you are alive — no lawyer, no probate, no middleman. Precompile 0x17 (StorageEndowment) pays once and stores your data as long as the chain lives.
-
-The BIJO token (369M supply) launches through a six-step sequence engineered so that no human can alter the protocol afterward. First, users attest truths and node operators pin files — no tokens move. Then a retroactive airdrop distributes based on verifiable on-chain actions. Next, 70% of the supply funds the StorageEndowment, the DEX pool is seeded with LP tokens locked and burned, transfers are enabled through a one-time irreversible call, and finally ownership is renounced on every contract. After the last step, the protocol is immutable — no human can alter, censor, or pause it. Precompiles 0x14, 0x15, and 0x17 are live on mainnet with the launch sequence documented and ready. Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.
+**Binary Journal** is a self-sovereign knowledge vault. A biometric-locked mobile app (Sanctuary) encrypts your truths with AES-256. Precompile 0x14 timestamps them immutably — prove you knew something before anyone else. Precompile 0x15 (DeadMansSwitch) ensures your designated inheritors receive your assets if you stop proving you are alive — no lawyer, no probate, no middleman. Precompile 0x17 (StorageEndowment) pays once and stores your data as long as the chain lives. All three precompiles are live on mainnet. The BIJO token launch sequence is documented and ready to execute when the ecosystem is ready to adopt it.
 
 ---
 
@@ -238,7 +236,7 @@ Three participant roles power the system. Validators stake 32,000+ WAY and handl
 
 Attestations are verified through multiple layers. TLS proofs (Precompile 0x0F) let attesters prove data came from a trusted source — "this came from the SEC's EDGAR system" — not "I downloaded a PDF and here is what it says." The challenge game opens a 100-block window where anyone can dispute an attestation with a bond; if the attestation was false, the challenger earns 50% of the slashed stake, making false attestations economically irrational. VRF at the opcode level (0xC4) provides verifiable randomness without a Chainlink subscription, callback, or separate oracle call. And time-based execution (Precompile 0x0D) lets contracts schedule future execution — recurring updates, liquidations, unlocks — all handled by the protocol itself.
 
-Most chains force every transaction through the same path. WayChain runs three parallel lanes. The ConsensusLane handles public transactions — DeFi, transfers, and governance. The OracleLane handles semi-public attestations and price feeds without competing with user transactions. The PrivateLane handles encrypted data — healthcare records, corporate information, and legal documents — in an encrypted mempool visible only to involved parties. A hospital can run private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Precompiles 0x0C through 0x0F are live, the VRF opcode 0xC4 is implemented, and all three lanes are operational — producing blocks every second with instant finality.
+Most chains force every transaction through the same path. WayChain runs three parallel lanes. The ConsensusLane handles public transactions — DeFi, transfers, and governance, live on mainnet. The OracleLane handles semi-public attestations and price feeds without competing with user transactions, also live. The PrivateLane is implemented and tested but awaits real-world use with encrypted data — healthcare records, corporate information, and legal documents — in an encrypted mempool visible only to involved parties. Once adopted, a hospital can run private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Precompiles 0x0C through 0x0F are live, the VRF opcode 0xC4 is implemented — producing blocks every second with instant finality.
 
 ---
 
@@ -248,11 +246,11 @@ Most chains force every transaction through the same path. WayChain runs three p
 
 Every solution in this section — validator rewards, oracle payments, DEX liquidity, professional attestations, mineral rights — needs an economy. That economy needs fuel. Bitcoin is that fuel.
 
-1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a **3-of-5 Dox_Dev oracle multi-sig** with one key holder in each of five jurisdictions — United States, European Union, Asia, Brazil, and Australia. No single human can move the BTC. No two can. Three can — but all three would need to collude and each would lose their Dox_Dev Level 3 badge permanently. Revocation is permanent.
+1WAY is a 1:1 Bitcoin-backed stablecoin designed to be locked into a **3-of-5 Dox_Dev oracle multi-sig** with one key holder in each of five jurisdictions — United States, European Union, Asia, Brazil, and Australia. No single human would be able to move the BTC. No two could. Three could — but all three would need to collude and each would lose their Dox_Dev Level 3 badge permanently.
 
-To mint, send BTC to the multi-sig, oracles witness it, BitcoinSPV verifies with 6+ confirmations, and 1WAY is minted at 143% collateralization. To burn, return 1WAY, oracles witness the burn, 3 of 5 sign a Bitcoin transaction, and BTC is released to your address.
+The architecture is fully specified. The BitcoinSPV precompile is implemented. What remains is establishing the oracle network across five jurisdictions — the last piece before 1WAY can go live. Once active, minting works by sending BTC to the multi-sig, oracles witnessing it, and BitcoinSPV verifying with 6+ confirmations before 1WAY is minted at 143% collateralization. Burning returns 1WAY, oracles witness the burn, 3 of 5 sign a Bitcoin transaction, and BTC is released to your address.
 
-This liquidity powers everything on the chain. Validator rewards are paid in WAY backed by 1WAY, giving them real value. Professionals earn WAY with a Bitcoin exit ramp, giving them a reason to join. The DEX pairs WAY with 1WAY, bringing Bitcoin into every pool. Mineral rights are priced in the world's most liquid asset. And Binary Journal's perpetual storage is funded by Bitcoin-backed WAY.
+When live, this liquidity will power everything on the chain. Validator rewards paid in WAY backed by 1WAY. Professionals earning WAY with a Bitcoin exit ramp. The DEX pairing WAY with 1WAY. Mineral rights priced in the world's most liquid asset. Binary Journal's perpetual storage funded by Bitcoin-backed WAY.
 
 The comparison with existing stablecoins makes the case. USDC is centralized and freezable. DAI is backed by volatile ETH. 1WAY is backed by Bitcoin — the most decentralized, most valuable asset in existence — secured by human identity across five jurisdictions.
 
@@ -303,7 +301,7 @@ When the fuel is flowing (Bitcoin) and the infrastructure is running (specialize
 
 ## 18. The Ask
 
-WayChain is live. Not a testnet. Not a whitepaper chain. Blocks every second at waychain.org. Every claim in this paper can be verified on-chain or by running your own node. This is not a promise — it is a specification of what is already running.
+WayChain is live. Not a testnet. Not a whitepaper chain. Blocks every second at waychain.org. Every claim about what is running on mainnet can be verified on-chain or by running your own node. Claims about features awaiting real-world adoption are clearly marked as such. This document distinguishes what is built from what is being adopted.
 
 ---
 
