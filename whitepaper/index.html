@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>WayChain Whitepaper — Actually Decentralized</title>
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,28 +57,26 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <h2>Actually Decentralized</h2>
 <div id="ver">v4.0 — July 2026</div>
 <div class="abstract"></div>
-<div class="chapter" id="the-first-blockchain-where-one-verified-human-equals-one-voice-and-bitcoin-powers-the-engine"><div class="chapter-header" onclick="toggleChapter(this)"><h2>The first blockchain where one verified human equals one voice — and Bitcoin powers the engine</h2><span class="arrow">▼</span></div><div class="chapter-body"><p><strong>Version 4.0 — July 2026</strong></p>
-<hr></div></div>
-<div class="chapter" id="abstract"><div class="chapter-header" onclick="toggleChapter(this)"><h2>Abstract</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The fundamental promise of blockchain is trust without intermediaries. Every major chain has broken that promise: capital determines power, anonymity enables rugs, and real-world assets require middlemen on every transaction. WayChain is the first blockchain rebuilt from first principles around verified human identity — not capital — with Bitcoin as the economic engine that powers the entire system. Bitcoin holders provide the fuel. Specialized users — developers, validators, oracles, professionals — build the infrastructure. The public joins when both are ready. This paper documents a live mainnet producing blocks every second with 27 native precompiles, the first protocol-level professional oracle marketplace, and the first truly decentralized Bitcoin-backed stablecoin.</p>
+<div class="chapter" id="abstract"><div class="chapter-header"><h2>Abstract</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The fundamental promise of blockchain is trust without intermediaries. Every major chain has broken that promise: capital determines power, anonymity enables rugs, and real-world assets require middlemen on every transaction. WayChain is the first blockchain rebuilt from first principles around verified human identity — not capital — with Bitcoin as the economic engine that powers the entire system. Bitcoin holders provide the fuel. Specialized users — developers, validators, oracles, professionals — build the infrastructure. The public joins when both are ready. This paper documents a live mainnet producing blocks every second with 27 native precompiles, the first protocol-level professional oracle marketplace, and the first truly decentralized Bitcoin-backed stablecoin.</p>
 <hr>
 <p># ACT I — THE BROKEN WORLD</p>
 <p><em>This is the world you live in. Here is why it does not work.</em></p>
 <hr></div></div>
-<div class="chapter" id="1-the-rug-problem-12-billion-lost-zero-recourse"><div class="chapter-header" onclick="toggleChapter(this)"><h2>1. The Rug Problem — $12 Billion Lost, Zero Recourse</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>A project launches. The website looks professional. The code is audited. The community grows. Then one day the liquidity is gone, the team wallet is empty, and the social accounts go dark. Between 2021 and 2026, over <strong>$12 billion</strong> was stolen this way.</p>
+<div class="chapter" id="1-the-rug-problem-12-billion-lost-zero-recourse"><div class="chapter-header"><h2>1. The Rug Problem — $12 Billion Lost, Zero Recourse</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>A project launches. The website looks professional. The code is audited. The community grows. Then one day the liquidity is gone, the team wallet is empty, and the social accounts go dark. Between 2021 and 2026, over <strong>$12 billion</strong> was stolen this way.</p>
 <p>Not through sophisticated hacks. Through people who were never who they said they were.</p>
 <p>Every major chain allows this because none of them require identity to deploy. An anonymous wallet creates a contract, raises funds, and vanishes. The same person reappears the next week under a new name and does it again.</p>
 <table>
-<tr><td>Chain</td><td>Identity Required to Deploy?</td><td>Can a Rugged Team Reappear?</td></tr>
-<tr><th>Ethereum</th><th>No</th><th>Yes — fresh wallet, fresh project</th></tr>
-<tr><th>Solana</th><th>No</th><th>Yes — same pattern</th></tr>
-<tr><th>BNB Chain</th><th>No</th><th>Yes — highest concentration of rugs</th></tr>
-<tr><th>PulseChain</th><th>No</th><th>Yes</th></tr>
-<tr><th>WayChain</th><th><strong>Yes — Dox_Dev Level 2+</strong></th><th><strong>No — revoked badge, permanently excluded</strong></th></tr>
+<tr><td></td><tdChain>Identity Required to Deploy?>Can a Rugged Team Reappear?</td></tr>
+<tr><th></th><thEthereum>No>Yes — fresh wallet, fresh project</th></tr>
+<tr><th></th><thSolana>No>Yes — same pattern</th></tr>
+<tr><th></th><thBNB Chain>No>Yes — highest concentration of rugs</th></tr>
+<tr><th></th><thPulseChain>No>Yes</th></tr>
+<tr><th></th><thWayChain><strong>Yes — Dox_Dev Level 2+</strong>><strong>No — revoked badge, permanently excluded</strong></th></tr>
 </table>
 <p>The cycle is mechanical: deploy → raise → pull → 0xdead. Losses are never recovered because there is no one to hold accountable. The system is designed to protect anonymity, not victims.</p>
 <p><strong>If you have ever lost money to a project where the team vanished, you know exactly why this needs to change.</strong></p>
 <hr></div></div>
-<div class="chapter" id="2-the-credential-problem-your-license-is-a-pdf"><div class="chapter-header" onclick="toggleChapter(this)"><h2>2. The Credential Problem — Your License Is a PDF</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The rug problem is about who you cannot trust. The credential problem is about who can prove they are trustworthy.</p>
+<div class="chapter" id="2-the-credential-problem-your-license-is-a-pdf"><div class="chapter-header"><h2>2. The Credential Problem — Your License Is a PDF</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The rug problem is about who you cannot trust. The credential problem is about who can prove they are trustworthy.</p>
 <p>Consider four professions whose work underpins the real economy:</p>
 <p>A <strong>geologist</strong> spends eight years earning a license, then spends decades building a reputation for accurate reserve estimates. A <strong>lawyer</strong> passes the bar, maintains continuing education, and carries malpractice insurance. An <strong>engineer</strong> stamps structural plans that keep buildings from collapsing. A <strong>surveyor</strong> certifies property boundaries worth millions.</p>
 <p>Their credentials are pieces of paper — or PDFs on a government website that has no API, no blockchain integration, and no way to verify across borders. No chain has a mechanism for a professional to say "I am a licensed geologist, here is my proof" and be trusted.</p>
@@ -91,7 +89,7 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p>The result: professionals cannot monetize their expertise on any blockchain without going through a company that takes a cut and controls access.</p>
 <p><strong>If you are a licensed professional, your expertise is your most valuable asset — and no chain gives you a way to earn from it directly.</strong></p>
 <hr></div></div>
-<div class="chapter" id="3-the-asset-problem-mineral-rights-cannot-trade-on-chain"><div class="chapter-header" onclick="toggleChapter(this)"><h2>3. The Asset Problem — Mineral Rights Cannot Trade On-Chain</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Mineral rights are the oldest form of real wealth. Gold, silver, copper, lithium, rare earths — they underpin everything. They are also traded through paper filed with government offices, verified by lawyers paid by the hour, and transferred through systems designed before the internet existed.</p>
+<div class="chapter" id="3-the-asset-problem-mineral-rights-cannot-trade-on-chain"><div class="chapter-header"><h2>3. The Asset Problem — Mineral Rights Cannot Trade On-Chain</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Mineral rights are the oldest form of real wealth. Gold, silver, copper, lithium, rare earths — they underpin everything. They are also traded through paper filed with government offices, verified by lawyers paid by the hour, and transferred through systems designed before the internet existed.</p>
 <p>No blockchain has a protocol for:</p>
 <ul>
 <li>Verifying that a mineral claim is real</li>
@@ -102,13 +100,13 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p>A single transaction takes months and costs thousands in legal fees. The assets are illiquid and locked in legacy systems. Meanwhile, the world needs lithium for batteries, copper for electrification, and rare earths for renewable energy — but the supply chain moves at the speed of paper.</p>
 <p><strong>If you own mineral rights, you own wealth you cannot move, cannot trade, and cannot use — without paying layers of intermediaries every step of the way.</strong></p>
 <hr></div></div>
-<div class="chapter" id="4-the-truth-problem-you-cannot-prove-what-you-knew-first"><div class="chapter-header" onclick="toggleChapter(this)"><h2>4. The Truth Problem — You Cannot Prove What You Knew First</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Assets are not the only things locked in legacy systems. So is the truth.</p>
+<div class="chapter" id="4-the-truth-problem-you-cannot-prove-what-you-knew-first"><div class="chapter-header"><h2>4. The Truth Problem — You Cannot Prove What You Knew First</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Assets are not the only things locked in legacy systems. So is the truth.</p>
 <p>You discover a fact. You write it down. Six months later, someone else publishes the same finding and gets the credit. You have no way to prove you got there first — because your timestamp lives on a centralized server you do not control.</p>
 <p>You want to leave your knowledge to your heirs. Your research. Your journals. Your life's work. There is no trustless inheritance protocol on any chain. Your digital legacy dies with you.</p>
 <p>Every existing solution has the same flaw: the proof is only as trustworthy as the entity that stores it.</p>
 <p><strong>Every idea you have ever had, every fact you have ever uncovered — you have no permanent, immutable record that you owned it first. And when you are gone, it goes with you.</strong></p>
 <hr></div></div>
-<div class="chapter" id="5-the-governance-problem-plutocracy-everywhere"><div class="chapter-header" onclick="toggleChapter(this)"><h2>5. The Governance Problem — Plutocracy Everywhere</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The problems above — rugs, locked assets, lost truth — are symptoms of a deeper one: no chain gives power to people instead of capital.</p>
+<div class="chapter" id="5-the-governance-problem-plutocracy-everywhere"><div class="chapter-header"><h2>5. The Governance Problem — Plutocracy Everywhere</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The problems above — rugs, locked assets, lost truth — are symptoms of a deeper one: no chain gives power to people instead of capital.</p>
 <p>Bitcoin: hashpower determines control. Ethereum: token weight determines votes. Solana: VC-funded validators dominate the set. Every chain gives more power to whoever has more money.</p>
 <p>This is not democracy. It is plutocracy with a blockchain wrapper.</p>
 <p>The consequences are structural:</p>
@@ -120,7 +118,7 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 </ul>
 <p><strong>A system where the rich get richer votes is not a system worth participating in.</strong></p>
 <hr></div></div>
-<div class="chapter" id="6-the-inheritance-problem-your-crypto-dies-with-you"><div class="chapter-header" onclick="toggleChapter(this)"><h2>6. The Inheritance Problem — Your Crypto Dies With You</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Governance failures affect everyone. But there is a problem more personal, and it touches nearly every person who holds crypto.</p>
+<div class="chapter" id="6-the-inheritance-problem-your-crypto-dies-with-you"><div class="chapter-header"><h2>6. The Inheritance Problem — Your Crypto Dies With You</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Governance failures affect everyone. But there is a problem more personal, and it touches nearly every person who holds crypto.</p>
 <p>Over <strong>$140 billion</strong> in Bitcoin is estimated to be lost or orphaned. A significant portion belongs to people who died without passing on their keys.</p>
 <p>The problem is structural: self-custody means you are the only person who can move your assets. If you die, your assets die with you. No will can unlock a private key. No probate court can access a hardware wallet.</p>
 <p>Every existing "solution" involves a compromise:</p>
@@ -131,12 +129,12 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 </ul>
 <p><strong>If you died tomorrow, what happens to your digital assets?</strong></p>
 <hr></div></div>
-<div class="chapter" id="7-the-stablecoin-problem-170-billion-trapped"><div class="chapter-header" onclick="toggleChapter(this)"><h2>7. The Stablecoin Problem — $170 Billion Trapped</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Every problem above — rugs, credentials, assets, truth, governance, inheritance — needs an economy to function. An economy needs a stable medium of exchange. Every stablecoin today fails at being one:</p>
+<div class="chapter" id="7-the-stablecoin-problem-170-billion-trapped"><div class="chapter-header"><h2>7. The Stablecoin Problem — $170 Billion Trapped</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Every problem above — rugs, credentials, assets, truth, governance, inheritance — needs an economy to function. An economy needs a stable medium of exchange. Every stablecoin today fails at being one:</p>
 <table>
-<tr><td>Stablecoin</td><td>Problem</td></tr>
-<tr><th>USDC / USDT</th><th>Centralized. The issuer can freeze any address. Your funds can be seized with no recourse.</th></tr>
-<tr><th>DAI</th><th>Backed by ETH. When ETH drops, your collateral drops with it. A 30% crash triggers mass liquidations.</th></tr>
-<tr><th>FRAX</th><th>Algorithmic. Terra proved this can go to zero in 48 hours.</th></tr>
+<tr><td></td><tdStablecoin>Problem</td></tr>
+<tr><th></th><thUSDC / USDT>Centralized. The issuer can freeze any address. Your funds can be seized with no recourse.</th></tr>
+<tr><th></th><thDAI>Backed by ETH. When ETH drops, your collateral drops with it. A 30% crash triggers mass liquidations.</th></tr>
+<tr><th></th><thFRAX>Algorithmic. Terra proved this can go to zero in 48 hours.</th></tr>
 </table>
 <p>There is no decentralized stablecoin backed by the largest, most decentralized, most valuable crypto asset in existence: <strong>Bitcoin</strong>.</p>
 <p>Over $1 trillion in Bitcoin exists. It is the most secure, most liquid, most widely held asset in crypto. And it has no native stablecoin. Every application that needs a stable unit of account — DEX trading, lending, payments, payroll — must either trust a centralized issuer (USDC/USDT) or accept volatility risk (everything else).</p>
@@ -147,33 +145,33 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p><em>Here is what we built. Here is how it solves each problem. Here is proof it works.</em></p>
 <p>Each solution maps to one problem from Act I. The first six build the infrastructure and use cases. The seventh — Section 14, 1WAY / Bitcoin — is the economic engine that powers them all. Without Bitcoin, WayChain cannot live.</p>
 <hr></div></div>
-<div class="chapter" id="8-dox-dev-identity-at-the-protocol-level"><div class="chapter-header" onclick="toggleChapter(this)"><h2>8. Dox_Dev — Identity at the Protocol Level <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 1 — The Rug Problem</em></p>
+<div class="chapter" id="8-dox-dev-identity-at-the-protocol-level"><div class="chapter-header"><h2>8. Dox_Dev — Identity at the Protocol Level <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 1 — The Rug Problem</em></p>
 <p>Every deployer on WayChain is a verified human with a permanent on-chain identity. Bad actors cannot come back. Rugging means losing your badge forever, and a revoked badge cannot be re-issued.</p>
 <p>This principle is enforced at three levels — RPC, block production, and the EVM itself. An attacker must compromise all three simultaneously. This is defense-in-depth, and it is built into the protocol, not an overlay.</p>
 <table>
-<tr><td>Level</td><td>Requirement</td><td>Access</td></tr>
-<tr><th><strong>Level 1</strong></th><th>Basic human verification</th><th>Wallets, explorers, oracle monitoring</th></tr>
-<tr><th><strong>Level 2</strong></th><th>Verified identity + bonding</th><th>Contract deployment, validator seat, oracle attestation</th></tr>
-<tr><th><strong>Level 3</strong></th><th>Elected curator (90-day term)</th><th>Badge issuance, governance, emergency controls</th></tr>
+<tr><td></td><tdLevel>Requirement>Access</td></tr>
+<tr><th></th><th<strong>Level 1</strong>>Basic human verification>Wallets, explorers, oracle monitoring</th></tr>
+<tr><th></th><th<strong>Level 2</strong>>Verified identity + bonding>Contract deployment, validator seat, oracle attestation</th></tr>
+<tr><th></th><th<strong>Level 3</strong>>Elected curator (90-day term)>Badge issuance, governance, emergency controls</th></tr>
 </table>
 <table>
-<tr><th>Anonymous Chain</th><th>WayChain</th></tr>
-<tr><th>Slash stake → spin up new validator</th><th>Slash stake → badge revoked → cannot re-verify</th></tr>
-<tr><th>Cost of cheating = bond</th><th>Cost of cheating = bond + identity + reputation</th></tr>
-<tr><th>Can return tomorrow</th><th><strong>Permanently excluded</strong></th></tr>
+<tr><th></th><thAnonymous Chain>WayChain</th></tr>
+<tr><th></th><thSlash stake → spin up new validator>Slash stake → badge revoked → cannot re-verify</th></tr>
+<tr><th></th><thCost of cheating = bond>Cost of cheating = bond + identity + reputation</th></tr>
+<tr><th></th><thCan return tomorrow><strong>Permanently excluded</strong></th></tr>
 </table>
 <p>Precompile <strong>0x13</strong> live on mainnet. Three genesis curators. Badge UI at <strong>waychain.org/badge</strong>. Deploy gate verified at all three layers.</p>
 <p><strong>Why this solves rugs:</strong> Every deployer is a known human. Rugging means permanent exclusion. Anonymous deployers cannot exist.</p>
 <hr></div></div>
-<div class="chapter" id="9-professional-oracle-badges-verified-experts"><div class="chapter-header" onclick="toggleChapter(this)"><h2>9. Professional Oracle Badges — Verified Experts <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 2 — The Credential Problem</em></p>
+<div class="chapter" id="9-professional-oracle-badges-verified-experts"><div class="chapter-header"><h2>9. Professional Oracle Badges — Verified Experts <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 2 — The Credential Problem</em></p>
 <p>Every oracle network today is a company. Chainlink has employees and a board. Pyth has a foundation. They are trusted third parties — the very thing blockchains were supposed to eliminate.</p>
 <p>WayChain replaces them with professionals. A geologist who spent years earning their license can now attest to a mineral reserve estimate and earn WAY directly from the protocol. No company in the middle. No KYC vendor. No external permission.</p>
 <table>
-<tr><td>Profession</td><td>Verifies</td><td>Reward Per Attestation</td></tr>
-<tr><th><strong>Geologist</strong></th><th>Mineral reserves, land value, resource estimates</th><th>100 WAY wei</th></tr>
-<tr><th><strong>Lawyer</strong></th><th>Legal standing, compliance, court admissibility</th><th>80 WAY wei</th></tr>
-<tr><th><strong>Engineer</strong></th><th>Structural integrity, technical standards</th><th>70 WAY wei</th></tr>
-<tr><th><strong>Surveyor</strong></th><th>Property boundaries, land use, geographic data</th><th>60 WAY wei</th></tr>
+<tr><td></td><tdProfession>Verifies>Reward Per Attestation</td></tr>
+<tr><th></th><th<strong>Geologist</strong>>Mineral reserves, land value, resource estimates>100 WAY wei</th></tr>
+<tr><th></th><th<strong>Lawyer</strong>>Legal standing, compliance, court admissibility>80 WAY wei</th></tr>
+<tr><th></th><th<strong>Engineer</strong>>Structural integrity, technical standards>70 WAY wei</th></tr>
+<tr><th></th><th<strong>Surveyor</strong>>Property boundaries, land use, geographic data>60 WAY wei</th></tr>
 </table>
 <p>A Level 3 curator verifies the professional's credentials. A soulbound badge is minted. When the professional submits an attestation, the protocol verifies their Dox_Dev level and license hash. A 100-block challenge window opens. If no one challenges, the reward is distributed automatically.</p>
 <p>Three layers of accountability:</p>
@@ -181,46 +179,46 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p>2. <strong>License on-chain</strong> — credential hash stored immutably</p>
 <p>3. <strong>Challenge window</strong> — anyone can dispute with a bond</p>
 <table>
-<tr><td>Property</td><td>Chainlink / Pyth</td><td>WayChain</td></tr>
-<tr><th>Who attests</th><th>Anonymous node operators</th><th>Verified professionals</th></tr>
-<tr><th>Slashing for lying</th><th>Economic only</th><th>Economic + badge revocation — permanent exclusion</th></tr>
-<tr><th>Fee model</th><th>Market-driven (expensive)</th><th>Fixed, fiat-pegged (predictable)</th></tr>
-<tr><th>Who controls</th><th>A company</th><th>The protocol — immutable</th></tr>
-<tr><th>Can they return after cheating?</th><th>Yes — new node, same network</th><th>No — badge gone forever</th></tr>
+<tr><td></td><tdProperty>Chainlink / Pyth>WayChain</td></tr>
+<tr><th></th><thWho attests>Anonymous node operators>Verified professionals</th></tr>
+<tr><th></th><thSlashing for lying>Economic only>Economic + badge revocation — permanent exclusion</th></tr>
+<tr><th></th><thFee model>Market-driven (expensive)>Fixed, fiat-pegged (predictable)</th></tr>
+<tr><th></th><thWho controls>A company>The protocol — immutable</th></tr>
+<tr><th></th><thCan they return after cheating?>Yes — new node, same network>No — badge gone forever</th></tr>
 </table>
 <p>Precompile <strong>0x0D</strong> live on mainnet. Four professions registered with fixed reward rates. Badge issuance at waychain.org/badge.</p>
 <p><strong>Why this solves the credential problem:</strong> Your professional license becomes an on-chain asset that earns you money directly. No employer. No platform. No intermediary. The protocol pays you for your expertise.</p>
 <hr></div></div>
-<div class="chapter" id="10-mineral-rights-tokenization"><div class="chapter-header" onclick="toggleChapter(this)"><h2>10. Mineral Rights Tokenization <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 3 — The Asset Problem</em></p>
+<div class="chapter" id="10-mineral-rights-tokenization"><div class="chapter-header"><h2>10. Mineral Rights Tokenization <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 3 — The Asset Problem</em></p>
 <p>The same geologist who earns a professional badge in Section 9 now has something to attest: mineral rights.</p>
 <p>WayChain's <strong>Mineral Rights Registry (Precompile 0x20)</strong> allows anyone to file a claim, verify it with a licensed geologist, and trade it as a token.</p>
 <table>
-<tr><td>Function</td><td>What It Does</td></tr>
-<tr><th><code>claimMineralRight</code></th><th>File a claim with GPS coordinates</th></tr>
-<tr><th><code>verifyReserves</code></th><th>Submit a geologist-attested reserve estimate</th></tr>
-<tr><th><code>classifyReserve</code></th><th>Proven, probable, or possible</th></tr>
-<tr><th><code>extinguishMineralRight</code></th><th>Trade or retire a right as a token</th></tr>
-<tr><th><code>submitEnvironmentalReport</code></th><th>Mandatory environmental filing</th></tr>
+<tr><td></td><tdFunction>What It Does</td></tr>
+<tr><th></th><th<code>claimMineralRight</code>>File a claim with GPS coordinates</th></tr>
+<tr><th></th><th<code>verifyReserves</code>>Submit a geologist-attested reserve estimate</th></tr>
+<tr><th></th><th<code>classifyReserve</code>>Proven, probable, or possible</th></tr>
+<tr><th></th><th<code>extinguishMineralRight</code>>Trade or retire a right as a token</th></tr>
+<tr><th></th><th<code>submitEnvironmentalReport</code>>Mandatory environmental filing</th></tr>
 </table>
 <table>
-<tr><th>Requirement</th><th>Other Chains</th><th>WayChain</th></tr>
-<tr><th>Geologist to verify reserves</th><th>No mechanism</th><th>Professional Oracle Badge (Section 9)</th></tr>
-<tr><th>Claimant identity</th><th>Anonymous wallets</th><th>Dox_Dev Level 2+ (Section 8)</th></tr>
-<tr><th>Abandoned claims</th><th>No expiration</th><th>State rent expires unused claims</th></tr>
-<tr><th>Filing cost</th><th>Market-driven gas ($$$)</th><th>Fixed 0.01 WAY</th></tr>
+<tr><th></th><thRequirement>Other Chains>WayChain</th></tr>
+<tr><th></th><thGeologist to verify reserves>No mechanism>Professional Oracle Badge (Section 9)</th></tr>
+<tr><th></th><thClaimant identity>Anonymous wallets>Dox_Dev Level 2+ (Section 8)</th></tr>
+<tr><th></th><thAbandoned claims>No expiration>State rent expires unused claims</th></tr>
+<tr><th></th><thFiling cost>Market-driven gas ($$$)>Fixed 0.01 WAY</th></tr>
 </table>
 <p>No other chain has all four.</p>
 <p>Precompile <strong>0x20</strong> live on mainnet. Full lifecycle tested. 12 tests passing.</p>
 <p><strong>Why this solves the asset problem:</strong> Mineral rights can now be fractionalized, traded, and verified on-chain — with professional attestations and built-in environmental enforcement.</p>
 <hr></div></div>
-<div class="chapter" id="11-binary-journal-dead-man-s-switch"><div class="chapter-header" onclick="toggleChapter(this)"><h2>11. Binary Journal + Dead Man's Switch <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Sections 4 and 6 — The Truth Problem and The Inheritance Problem</em></p>
+<div class="chapter" id="11-binary-journal-dead-man-s-switch"><div class="chapter-header"><h2>11. Binary Journal + Dead Man's Switch <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Sections 4 and 6 — The Truth Problem and The Inheritance Problem</em></p>
 <p>You should be able to timestamp a fact and prove you knew it first. You should be able to leave your knowledge — and your assets — to your heirs without a lawyer or a custodian. No chain gives you either. WayChain gives you both.</p>
 <p><strong>Binary Journal</strong> is a self-sovereign knowledge vault. Three layers:</p>
 <table>
-<tr><td>Layer</td><td>What It Does</td></tr>
-<tr><th><strong>Sanctuary</strong></th><th>A mobile app. Biometric-locked. AES-256 encrypted. Your truths, your control.</th></tr>
-<tr><th><strong>Attestation (0x14)</strong></th><th>Timestamp a fact. Prove you knew something before anyone else. Immutable.</th></tr>
-<tr><th><strong>DeadMansSwitch (0x15)</strong></th><th>If you stop proving you are alive, your designated inheritors receive your assets. No lawyer. No probate. No middleman.</th></tr>
+<tr><td></td><tdLayer>What It Does</td></tr>
+<tr><th></th><th<strong>Sanctuary</strong>>A mobile app. Biometric-locked. AES-256 encrypted. Your truths, your control.</th></tr>
+<tr><th></th><th<strong>Attestation (0x14)</strong>>Timestamp a fact. Prove you knew something before anyone else. Immutable.</th></tr>
+<tr><th></th><th<strong>DeadMansSwitch (0x15)</strong>>If you stop proving you are alive, your designated inheritors receive your assets. No lawyer. No probate. No middleman.</th></tr>
 </table>
 <p><strong>StorageEndowment (0x17)</strong> ensures your data persists as long as the chain lives. Pay once, store forever.</p>
 <p>The BIJO token (369M supply) launches through a six-step sequence designed so that no human can alter the protocol afterward:</p>
@@ -234,13 +232,13 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p>Precompiles <strong>0x14, 0x15, 0x17</strong> live on mainnet. BIJO token specified. Launch sequence documented.</p>
 <p><strong>Why this solves truth and inheritance:</strong> Your knowledge is timestamped immutably. Your assets pass to your heirs without intermediaries. Both are built into the protocol — not a third-party app or a legal document.</p>
 <hr></div></div>
-<div class="chapter" id="12-anti-plutocracy-governance"><div class="chapter-header" onclick="toggleChapter(this)"><h2>12. Anti-Plutocracy Governance <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 5 — The Governance Problem</em></p>
+<div class="chapter" id="12-anti-plutocracy-governance"><div class="chapter-header"><h2>12. Anti-Plutocracy Governance <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 5 — The Governance Problem</em></p>
 <p>In every other chain, more tokens = more votes. WayChain has one rule that overrides everything: <strong>one verified human = one vote.</strong> Token weight does not touch governance.</p>
 <table>
-<tr><td>Type</td><td>Quorum</td><td>Threshold</td><td>Use Case</td></tr>
-<tr><th><strong>Direct</strong></th><th>20%</th><th>>50%</th><th>Routine proposals, parameter adjustments</th></tr>
-<tr><th><strong>Quadratic</strong></th><th>30%</th><th>>60%</th><th>Significant changes, treasury allocations</th></tr>
-<tr><th><strong>Futarchy</strong></th><th>40%</th><th>>66%</th><th>Core protocol changes, amendments</th></tr>
+<tr><td></td><tdType>Quorum>Threshold>Use Case</td></tr>
+<tr><th></th><th<strong>Direct</strong>>20%>>50%>Routine proposals, parameter adjustments</th></tr>
+<tr><th></th><th<strong>Quadratic</strong>>30%>>60%>Significant changes, treasury allocations</th></tr>
+<tr><th></th><th<strong>Futarchy</strong>>40%>>66%>Core protocol changes, amendments</th></tr>
 </table>
 <p><strong>Quadratic voting</strong> gives each badge holder 9 credits per 90-day period. Cost to vote = square of issues. A passionate minority can concentrate their credits on one priority and win against a diffuse majority.</p>
 <p><strong>Futarchy</strong> runs a prediction market before high-impact votes: "If this passes, will WAY price be higher in 90 days?" The market informs the vote but does not dictate it.</p>
@@ -250,24 +248,24 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <li><strong>Progressive staking:</strong> Smaller stakes earn higher returns:</li>
 </ul>
 <table>
-<tr><td>WAY Staked</td><td>APY</td></tr>
-<tr><th>1 – 1,000</th><th>15%</th></tr>
-<tr><th>1,001 – 10,000</th><th>8%</th></tr>
-<tr><th>10,001 – 100,000</th><th>4%</th></tr>
-<tr><th>100,001 – 1,000,000</th><th>2%</th></tr>
-<tr><th>1,000,000+</th><th>1%</th></tr>
+<tr><td></td><tdWAY Staked>APY</td></tr>
+<tr><th></th><th1 – 1,000>15%</th></tr>
+<tr><th></th><th1,001 – 10,000>8%</th></tr>
+<tr><th></th><th10,001 – 100,000>4%</th></tr>
+<tr><th></th><th100,001 – 1,000,000>2%</th></tr>
+<tr><th></th><th1,000,000+>1%</th></tr>
 </table>
 <p>This is the opposite of every other chain. WayChain actively encourages small participants and discourages whale concentration.</p>
 <p>Governance precompile <strong>0x1D</strong> live on mainnet. Sqrt-weighted lottery in consensus engine. Progressive staking on-chain.</p>
 <p><strong>Why this solves plutocracy:</strong> Capital cannot buy power. The smallest staker earns proportionally more than the largest. One human, one vote.</p>
 <hr></div></div>
-<div class="chapter" id="13-native-oracle-consensus"><div class="chapter-header" onclick="toggleChapter(this)"><h2>13. Native Oracle Consensus <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Foundational infrastructure — enables every solution above</em></p>
+<div class="chapter" id="13-native-oracle-consensus"><div class="chapter-header"><h2>13. Native Oracle Consensus <span class="subtitle">Evidence</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Foundational infrastructure — enables every solution above</em></p>
 <p>In every other chain, oracles are external companies that the chain relies on but cannot control. WayChain makes oracles part of the chain itself.</p>
 <table>
-<tr><td>Role</td><td>Job</td><td>Stake</td><td>Slash For</td></tr>
-<tr><th><strong>Validator</strong></th><th>Ordering and finality</th><th>32,000+ WAY</th><th>Double-sign, downtime</th></tr>
-<tr><th><strong>Attester</strong></th><th>Data fetching and attesting</th><th>5,000+ WAY</th><th>Wrong data, collusion</th></tr>
-<tr><th><strong>Challenger</strong></th><th>Dispute false attestations</th><th>Bond</th><th>False challenge</th></tr>
+<tr><td></td><tdRole>Job>Stake>Slash For</td></tr>
+<tr><th></th><th<strong>Validator</strong>>Ordering and finality>32,000+ WAY>Double-sign, downtime</th></tr>
+<tr><th></th><th<strong>Attester</strong>>Data fetching and attesting>5,000+ WAY>Wrong data, collusion</th></tr>
+<tr><th></th><th<strong>Challenger</strong>>Dispute false attestations>Bond>False challenge</th></tr>
 </table>
 <p><strong>Critical:</strong> A validator can also be an attester by posting an additional oracle bond. But the two are separate. An attester slashed for bad data loses only their oracle bond — their validator stake is untouched.</p>
 <p><strong>TLS proofs (Precompile 0x0F):</strong> Attesters prove data came from a trusted source — "this data came from the SEC's EDGAR system" — not "I downloaded a PDF and here is what it says."</p>
@@ -276,41 +274,41 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p><strong>Time-based execution (Precompile 0x0D):</strong> Contracts schedule future execution — recurring updates, liquidations, unlocks — all executed by the protocol.</p>
 <p>Most chains force every transaction through the same path. WayChain runs three:</p>
 <table>
-<tr><td>Lane</td><td>Type</td><td>Use</td></tr>
-<tr><th><strong>ConsensusLane</strong></th><th>Public</th><th>DeFi, transfers, governance</th></tr>
-<tr><th><strong>OracleLane</strong></th><th>Semi-public</th><th>Oracle attestations, price feeds</th></tr>
-<tr><th><strong>PrivateLane</strong></th><th>Encrypted</th><th>Healthcare, legal, corporate data</th></tr>
+<tr><td></td><tdLane>Type>Use</td></tr>
+<tr><th></th><th<strong>ConsensusLane</strong>>Public>DeFi, transfers, governance</th></tr>
+<tr><th></th><th<strong>OracleLane</strong>>Semi-public>Oracle attestations, price feeds</th></tr>
+<tr><th></th><th<strong>PrivateLane</strong>>Encrypted>Healthcare, legal, corporate data</th></tr>
 </table>
 <p>A hospital runs private records on PrivateLane while the same chain handles public DeFi on ConsensusLane. Oracle attestations never compete with user transactions for block space.</p>
 <p>Precompiles <strong>0x0C–0x0F</strong> live on mainnet. VRF opcode <strong>0xC4</strong> implemented. Three parallel lanes operational. 1-second block time, instant finality.</p>
 <hr></div></div>
-<div class="chapter" id="14-1way-bitcoin-as-the-economic-engine"><div class="chapter-header" onclick="toggleChapter(this)"><h2>14. 1WAY — Bitcoin as the Economic Engine <span class="subtitle">Comparison</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 7 — The Stablecoin Problem. And powers everything else.</em></p>
+<div class="chapter" id="14-1way-bitcoin-as-the-economic-engine"><div class="chapter-header"><h2>14. 1WAY — Bitcoin as the Economic Engine <span class="subtitle">Comparison</span></h2><span class="arrow">▼</span></div><div class="chapter-body"><p><em>Solves: Section 7 — The Stablecoin Problem. And powers everything else.</em></p>
 <p>Every solution in this section — validator rewards, oracle payments, DEX liquidity, professional attestations, mineral rights — needs an economy. That economy needs fuel. Bitcoin is that fuel.</p>
 <p>1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a <strong>3-of-5 Dox_Dev oracle multi-sig</strong> spanning 5 jurisdictions. Receive 1WAY on WayChain. Use it everywhere on the chain. Burn it to get your BTC back.</p>
 <table>
-<tr><td>Key Holder</td><td>Jurisdiction</td><td>Can Move BTC Alone?</td></tr>
-<tr><th>Oracle A</th><th>United States</th><th>No — needs 2 more keys</th></tr>
-<tr><th>Oracle B</th><th>European Union</th><th>No — needs 2 more keys</th></tr>
-<tr><th>Oracle C</th><th>Asia</th><th>No — needs 2 more keys</th></tr>
-<tr><th>Oracle D</th><th>Brazil</th><th>No — needs 2 more keys</th></tr>
-<tr><th>Oracle E</th><th>Australia</th><th>No — needs 2 more keys</th></tr>
+<tr><td></td><tdKey Holder>Jurisdiction>Can Move BTC Alone?</td></tr>
+<tr><th></th><thOracle A>United States>No — needs 2 more keys</th></tr>
+<tr><th></th><thOracle B>European Union>No — needs 2 more keys</th></tr>
+<tr><th></th><thOracle C>Asia>No — needs 2 more keys</th></tr>
+<tr><th></th><thOracle D>Brazil>No — needs 2 more keys</th></tr>
+<tr><th></th><thOracle E>Australia>No — needs 2 more keys</th></tr>
 </table>
 <p>No single human can move the BTC. No two can. Three can — but all three would need to collude and each would lose their Dox_Dev Level 3 badge permanently. Revocation is permanent.</p>
 <p><strong>Mint:</strong> Send BTC to the multi-sig → oracles witness it → BitcoinSPV verifies (6+ confirmations) → 1WAY minted at 143% collateralization.</p>
 <p><strong>Burn:</strong> Return 1WAY → oracles witness the burn → 3 of 5 sign a Bitcoin transaction → BTC released to your address.</p>
 <table>
-<tr><td>Component</td><td>Because</td></tr>
-<tr><th>Validator rewards</th><th>Paid in WAY → backed by 1WAY liquidity</th></tr>
-<tr><th>Oracle attestations</th><th>Professionals earn WAY with a Bitcoin exit ramp</th></tr>
-<tr><th>DEX</th><th>WAY/1WAY pairs bring Bitcoin into every pool</th></tr>
-<tr><th>Mineral rights</th><th>Rights priced in the world's most liquid asset</th></tr>
-<tr><th>Binary Journal</th><th>Perpetual storage funded by Bitcoin-backed WAY</th></tr>
+<tr><td></td><tdComponent>Because</td></tr>
+<tr><th></th><thValidator rewards>Paid in WAY → backed by 1WAY liquidity</th></tr>
+<tr><th></th><thOracle attestations>Professionals earn WAY with a Bitcoin exit ramp</th></tr>
+<tr><th></th><thDEX>WAY/1WAY pairs bring Bitcoin into every pool</th></tr>
+<tr><th></th><thMineral rights>Rights priced in the world's most liquid asset</th></tr>
+<tr><th></th><thBinary Journal>Perpetual storage funded by Bitcoin-backed WAY</th></tr>
 </table>
 <table>
-<tr><th>Property</th><th>USDC</th><th>DAI</th><th>1WAY</th></tr>
-<tr><th>Freezable?</th><th>Yes</th><th>No</th><th>No</th></tr>
-<tr><th>Collateral</th><th>USD reserves</th><th>ETH</th><th>Bitcoin</th></tr>
-<tr><th>Decentralization</th><th>Centralized</th><th>Semi</th><th>Most decentralized asset</th></tr>
+<tr><th></th><thProperty>USDC>DAI>1WAY</th></tr>
+<tr><th></th><thFreezable?>Yes>No>No</th></tr>
+<tr><th></th><thCollateral>USD reserves>ETH>Bitcoin</th></tr>
+<tr><th></th><thDecentralization>Centralized>Semi>Most decentralized asset</th></tr>
 </table>
 <p><strong>Without Bitcoin, WayChain is a closed loop. With Bitcoin, WayChain is a bridge between human identity and the largest, most decentralized asset in existence.</strong></p>
 <hr>
@@ -318,7 +316,7 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <p><em>Here is what you can do. Here is why now.</em></p>
 <p>The audience is ordered by impact. Bitcoin holders come first — without them the engine has no fuel. Specialized users come second — without them the infrastructure has no operators. The public comes third — they join when the foundation is laid.</p>
 <hr></div></div>
-<div class="chapter" id="15-you-power-the-engine-bitcoin-holders"><div class="chapter-header" onclick="toggleChapter(this)"><h2>15. You Power the Engine — Bitcoin Holders</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>You hold Bitcoin. You want to use it — trade it, lend it, earn on it — without giving it to a custodian who can freeze your funds.</p>
+<div class="chapter" id="15-you-power-the-engine-bitcoin-holders"><div class="chapter-header"><h2>15. You Power the Engine — Bitcoin Holders</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>You hold Bitcoin. You want to use it — trade it, lend it, earn on it — without giving it to a custodian who can freeze your funds.</p>
 <p>WayChain solves this. 1WAY is a 1:1 Bitcoin-backed stablecoin. Lock your BTC into a 3-of-5 Dox_Dev multi-sig spanning 5 jurisdictions. No single human can move it. No government can freeze it. No company can censor it.</p>
 <ul>
 <li><strong>Mint:</strong> Lock BTC → receive 1WAY → use it everywhere on the chain</li>
@@ -326,7 +324,7 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 </ul>
 <p><strong>Without Bitcoin holders, WayChain never lives.</strong> Every validator reward, every oracle attestation, every trade, every transaction depends on the liquidity you bring. The chain runs on WAY. WAY runs on 1WAY. 1WAY runs on Bitcoin. <strong>You are the foundation.</strong></p>
 <hr></div></div>
-<div class="chapter" id="16-you-build-the-infrastructure-specialized-users"><div class="chapter-header" onclick="toggleChapter(this)"><h2>16. You Build the Infrastructure — Specialized Users</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Genesis cannot happen without a base of users who bring expertise. The chain needs validators, developers, oracles, and professionals. If you already understand this space, your role is clear:</p>
+<div class="chapter" id="16-you-build-the-infrastructure-specialized-users"><div class="chapter-header"><h2>16. You Build the Infrastructure — Specialized Users</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>Genesis cannot happen without a base of users who bring expertise. The chain needs validators, developers, oracles, and professionals. If you already understand this space, your role is clear:</p>
 <ul>
 <li><strong>Validators:</strong> Run a node. Progressive rewards (15% APY for small stakers, 1% for whales). 32,000 WAY minimum stake. Dox_Dev Level 2+ required. Install: <code>curl -sSL waychain.org/install.sh | bash</code></li>
 <li><strong>Developers:</strong> Deploy through the Template Registry. Zero rug risk — protocol-enforced liquidity locks. Class A templates (no Dox needed). Class B custom bytecode (Dox Level 2+).</li>
@@ -334,16 +332,16 @@ h1+h2{font-size:.95em;color:var(--muted);text-align:center;margin-bottom:24px;bo
 <li><strong>Curators:</strong> Get elected. Verify identity for your jurisdiction. You are the gatekeepers of the network.</li>
 </ul>
 <hr></div></div>
-<div class="chapter" id="17-you-join-the-economy-everyone"><div class="chapter-header" onclick="toggleChapter(this)"><h2>17. You Join the Economy — Everyone</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>When the fuel is flowing (Bitcoin) and the infrastructure is running (specialized users), the economy opens to everyone.</p>
+<div class="chapter" id="17-you-join-the-economy-everyone"><div class="chapter-header"><h2>17. You Join the Economy — Everyone</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>When the fuel is flowing (Bitcoin) and the infrastructure is running (specialized users), the economy opens to everyone.</p>
 <ul>
 <li><strong>Check the explorer</strong> at waychain.org/explorer — see blocks produced in real time</li>
 <li><strong>Get your Dox_Dev badge</strong> at waychain.org/badge. Level 1 is basic human verification, no personal data on-chain</li>
 <li><strong>Use the wallet</strong> at waychain.org/wallet — create an address, request test tokens, send transactions</li>
 <li><strong>Anchor your truth</strong> through Binary Journal — timestamp a fact, leave your knowledge to your heirs</li>
 </ul></div></div>
-<div class="chapter" id="18-the-ask"><div class="chapter-header" onclick="toggleChapter(this)"><h2>18. The Ask</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>WayChain is live. Not a testnet. Not a whitepaper chain. Blocks every second at waychain.org. Every claim in this paper can be verified on-chain or by running your own node. This is not a promise — it is a specification of what is already running.</p>
+<div class="chapter" id="18-the-ask"><div class="chapter-header"><h2>18. The Ask</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>WayChain is live. Not a testnet. Not a whitepaper chain. Blocks every second at waychain.org. Every claim in this paper can be verified on-chain or by running your own node. This is not a promise — it is a specification of what is already running.</p>
 <hr></div></div>
-<div class="chapter" id="closing"><div class="chapter-header" onclick="toggleChapter(this)"><h2>Closing</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The internet was supposed to democratize information. Blockchain was supposed to democratize value. But every chain built so far replicated the same problem: capital concentrates power, and anonymity eliminates accountability.</p>
+<div class="chapter" id="closing"><div class="chapter-header"><h2>Closing</h2><span class="arrow">▼</span></div><div class="chapter-body"><p>The internet was supposed to democratize information. Blockchain was supposed to democratize value. But every chain built so far replicated the same problem: capital concentrates power, and anonymity eliminates accountability.</p>
 <p>WayChain is the first chain where being human is enough. Not how much you hold. Not where you live. Not who you know.</p>
 <p>One human. One voice. One way.</p>
 <p>And it runs on Bitcoin.</p></div></div>
@@ -352,7 +350,6 @@ WayChain · Chain ID 10008 · <a href="https://waychain.org">waychain.org</a><br
 One human. One voice. One way.
 </div>
 <script>
-function toggleChapter(e){e.parentElement.classList.toggle('open')}
 document.querySelectorAll('.chapter-header').forEach(function(h){
 h.addEventListener('click',function(){this.parentElement.classList.toggle('open')})
 })

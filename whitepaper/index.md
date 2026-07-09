@@ -1,6 +1,6 @@
 # WayChain: Actually Decentralized
 
-## The first blockchain where one verified human equals one voice — and Bitcoin powers the engine
+**The first blockchain where one verified human equals one voice — and Bitcoin powers the engine**
 
 **Version 4.0 — July 2026**
 
