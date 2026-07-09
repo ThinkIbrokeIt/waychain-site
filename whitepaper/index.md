@@ -186,33 +186,11 @@ On an anonymous chain, cheating costs you your bond. On WayChain, it costs you y
 
 Every oracle network today is a company. Chainlink has employees and a board. Pyth has a foundation. They are trusted third parties — the very thing blockchains were supposed to eliminate.
 
-WayChain replaces them with professionals. A geologist who spent years earning their license can now attest to a mineral reserve estimate and earn WAY directly from the protocol. No company in the middle. No KYC vendor. No external permission.
+WayChain replaces them with professionals. A geologist who spent years earning their license can now attest to a mineral reserve estimate and earn WAY directly from the protocol — no company in the middle, no KYC vendor, no external permission. The protocol pays 100 WAY wei per attestation. A lawyer verifying regulatory compliance earns 80. An engineer certifying structural standards earns 70. A surveyor mapping property boundaries earns 60. Every profession gets a fixed rate, not a market auction.
 
-| Profession | Verifies | Reward Per Attestation |
-|------------|----------|----------------------|
-| **Geologist** | Mineral reserves, land value, resource estimates | 100 WAY wei |
-| **Lawyer** | Legal standing, compliance, court admissibility | 80 WAY wei |
-| **Engineer** | Structural integrity, technical standards | 70 WAY wei |
-| **Surveyor** | Property boundaries, land use, geographic data | 60 WAY wei |
+A Level 3 curator verifies the professional's credentials, then a soulbound badge is minted. When the professional submits an attestation, the protocol checks their Dox_Dev level and license hash, opens a 100-block challenge window, and distributes the reward automatically if no one disputes it. Three layers of accountability — a verified human, an immutable credential on-chain, and a bond-backed challenge period — ensure that false attestations are economically irrational.
 
-### How It Works
-
-A Level 3 curator verifies the professional's credentials. A soulbound badge is minted. When the professional submits an attestation, the protocol verifies their Dox_Dev level and license hash. A 100-block challenge window opens. If no one challenges, the reward is distributed automatically.
-
-Three layers of accountability:
-1. **Dox_Dev Level 2+** — must be a verified human
-2. **License on-chain** — credential hash stored immutably
-3. **Challenge window** — anyone can dispute with a bond
-
-### Why This Matters
-
-| Property | Chainlink / Pyth | WayChain |
-|----------|-----------------|----------|
-| Who attests | Anonymous node operators | Verified professionals |
-| Slashing for lying | Economic only | Economic + badge revocation — permanent exclusion |
-| Fee model | Market-driven (expensive) | Fixed, fiat-pegged (predictable) |
-| Who controls | A company | The protocol — immutable |
-| Can they return after cheating? | Yes — new node, same network | No — badge gone forever |
+The difference from existing oracle networks is stark. Chainlink and Pyth use anonymous node operators who face only economic penalties — they can lose their stake and return as a new node the next day. WayChain uses verified professionals with soulbound badges. Lying costs them not just their stake but their professional identity permanently. The fee model is fixed and predictable, not market-driven and expensive. And the protocol itself is the authority — not a company that can be pressured, acquired, or shut down.
 
 Precompile 0x0D is live on mainnet with four professions registered and fixed reward rates on-chain. Badge issuance runs through waychain.org/badge. Your professional license becomes an on-chain asset that earns you money directly — no employer, no platform, no intermediary.
 
