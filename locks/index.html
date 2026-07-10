@@ -71,6 +71,17 @@ a:hover{color:var(--warm)}
 </div>
 <div class="container">
 
+<!-- Wallet Connection -->
+<div class="card" style="margin-top:-8px">
+  <h3 style="display:flex;justify-content:space-between;align-items:center">
+    <span>WayChain Wallet</span>
+    <button class="btn btn-secondary" style="width:auto;font-size:.7em;padding:6px 12px" onclick="connectWallet()">Connect</button>
+  </h3>
+  <div id="wallet-status" style="font-size:.75em;color:var(--muted);margin-top:8px;display:none">
+    Connected: <code id="lock-wallet-address" style="color:var(--amber)"></code>
+  </div>
+</div>
+
 <div class="card">
   <h3>⏱ Create Time Lock</h3>
   <p class="desc">Lock tokens until a specific timestamp. Beneficiary releases after unlock.</p>
@@ -205,8 +216,15 @@ a:hover{color:var(--warm)}
 </div>
 
 <script>
-const RPC='https://api.waychain.org',LOCK_ADDR='0x000000000000000000000000000000000000001A';
-const SEL={createTimeLock:'0xa1b2c3d4',createVestingLock:'0xb2c3d4e5',createMultiSigLock:'0xc3d4e5f6',getLock:'0xd4e5f6a7',releasableAmount:'0xe5f6a7b8',release:'0xf6a7b8c9',extend:'0xa7b8c9d0'};
+const RPC='https://api.waychain.org',LOCK_ADDR='0x000000000000000000000000000000000000001A',USER_ADDR='waychain_user';
+
+function connectWallet(){
+  const w=localStorage.getItem(USER_ADDR);
+  if(w){document.getElementById('wallet-status').style.display='block';document.getElementById('lock-wallet-address').textContent=w}
+  else{window.location.href='/wallet'}
+}
+
+const SEL={createTimeLock:'0xa1b2c3d4',createVestingLock:'0xb2c3d4e5',createMultiSigLock:'0xc3d4e5f6',getLock:'0xd4e5f6a7',releasableAmount:'0xe5f6a7b8',release:'0xf6a7b8c9',extend:'0xa7b8c9d0',claimRewards:'0xb8c9d0e1'};
 function p2h(s,b){s=s.replace('0x','');if(s.length>b*2)s=s.slice(0,b*2);return s.padStart(b*2,'0')}
 function n2h(n,b){let h=BigInt(n).toString(16);if(h.length>b*2)h=h.slice(h.length-b*2);return h.padStart(b*2,'0')}
 function show(el,m,t,h){el.className='msg show '+t;el.innerHTML=h?m:m;el.style.display='block'}

@@ -1,14 +1,14 @@
 {
-  "version": "4.1.24",
+  "version": "4.1.25",
   "chain_id": 10008,
   "chain_id_hex": "0x2718",
   "name": "WayChain",
   "tagline": "Actually Decentralized",
-  "deployed_at": "2026-07-08",
+  "deployed_at": "2026-07-09",
   "whitepaper_sections": 22,
   "live_features": 24,
   "spec_features": 6,
-  "precompiles": 20,
+  "precompiles": 27,
   "state_rent_pricing": "cloud-benchmarked ($0.12/MB/year)",
   "blueprint_files": 29,
   "blueprint_lines": 11947,
@@ -25,6 +25,7 @@
     "Whitepaper HTML restored (was broken/regressed in v3.1.1)",
     "Version consistency: all sources now say 4.0.0",
     "CHANGELOG backfilled v3.0.2–v3.1.1",
-    "Navigation links for Binary Journal, TrustlessLock, DEX, Declaration now visible in header and footer"
+    "Navigation links for Binary Journal, TrustlessLock, DEX, Declaration now visible in header and footer",
+    "Precompile count updated from 20 to 27 (added 0x0E-0x12, 0x22-0x26)"
   ]
 }

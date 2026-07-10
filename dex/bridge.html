@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AirSwap — WayChain DEX</title>
+<title>AirBridge — WayChain Stablecoin Bridge</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,6 @@ body{
 h1,h2,h3{font-family:'Space Grotesk',-apple-system,sans-serif}
 a{color:var(--aurora);text-decoration:none}
 a:hover{color:var(--comet)}
-.container{max-width:700px;margin:0 auto;padding:24px}
 .nav{
   display:flex;justify-content:space-between;align-items:center;
   padding:20px 0;position:sticky;top:0;z-index:100;
@@ -41,18 +40,18 @@ a:hover{color:var(--comet)}
 }
 .nav-links a:hover{color:var(--star);background:var(--nebula-edge)}
 .hero{
-  text-align:center;padding:60px 20px 40px;
+  text-align:center;padding:50px 20px 30px;
   background:linear-gradient(180deg,rgba(129,140,248,.1) 0%,transparent 100%);
 }
 .hero h1{
-  font-size:2.4em;color:var(--star);margin-bottom:6px;letter-spacing:1px;
-  text-shadow:0 0 20px rgba(129,140,248,.3);
+  font-size:2.2em;color:var(--star);margin-bottom:6px;letter-spacing:1px;
 }
 .hero .tagline{
   font-size:.8em;color:var(--aurora);letter-spacing:4px;text-transform:uppercase;
-  margin-bottom:16px;
+  margin-bottom:12px;
 }
 .hero p{color:var(--dusk);font-size:.85em;max-width:480px;margin:0 auto}
+.container{max-width:700px;margin:0 auto;padding:24px}
 .card{
   background:rgba(26,34,56,.5);border:1px solid var(--nebula-edge);
   border-radius:12px;padding:24px;margin:20px 0;backdrop-filter:blur(10px);
@@ -85,8 +84,8 @@ a:hover{color:var(--comet)}
 }
 .btn:hover{background:var(--comet);transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.arrow{
-  text-align:center;font-size:1.8em;color:var(--launch);margin:10px 0;
+.btn-secondary{
+  background:var(--launch);color:var(--star);width:auto;font-size:.7em;padding:8px 16px;
 }
 .status{
   padding:14px 18px;border-radius:8px;margin:10px 0;font-size:.78em;display:none;
@@ -95,6 +94,11 @@ a:hover{color:var(--comet)}
 .status.good{background:rgba(76,175,80,.15);border:1px solid #4CAF50;color:#4CAF50}
 .status.bad{background:rgba(251,113,133,.15);border:1px solid var(--comet);color:var(--comet)}
 .status.info{background:rgba(99,102,241,.1);border:1px solid var(--aurora);color:var(--aurora)}
+.reward-row{
+  display:flex;justify-content:space-between;margin:8px 0;font-size:.85em;
+}
+.reward-label{color:var(--dusk)}
+.reward-value{color:var(--comet)}
 .footer{
   text-align:center;padding:40px 24px;color:var(--dusk);font-size:.72em;
   border-top:1px solid var(--nebula-edge);margin-top:40px;
@@ -106,21 +110,20 @@ a:hover{color:var(--comet)}
 <nav class="nav">
   <div class="nav-logo">
     <img src="/assets/waylogo.png" alt="WayChain" class="nav-logo-img">
-    <div class="nav-logo-text">AirSwap</div>
+    <div class="nav-logo-text">AirBridge</div>
   </div>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/wallet">Wallet</a>
+    <a href="/dex">DEX</a>
     <a href="/locks">Locks</a>
-    <a href="/journal">Binary Journal</a>
-    <a href="/bridge">Bridge</a>
   </div>
 </nav>
 
 <div class="hero">
-  <h1>AirSwap</h1>
-  <div class="tagline">WayChain DEX • 1-Second Settlement</div>
-  <p>Trade with precision. Your swaps settle before the next heartbeat. No intermediaries, no waiting.</p>
+  <h1>AirBridge</h1>
+  <div class="tagline">Stablecoin • WayChain 0x22</div>
+  <p>Bridge external stablecoins to 1WAY. Stake for 2WAY and earn WAY + SWAY rewards.</p>
 </div>
 
 <div class="container">
@@ -128,77 +131,79 @@ a:hover{color:var(--comet)}
   <!-- Wallet Connect -->
   <div class="wallet-bar">
     <span id="wallet-display" style="display:none" class="wallet-addr">
-      Connected: <code id="dex-wallet"></code>
+      Connected: <code id="bridge-wallet"></code>
     </span>
     <button class="btn" style="width:auto;font-size:.7em;padding:6px 14px" onclick="connectWallet()">Connect Wallet</button>
   </div>
 
-  <!-- Swap -->
+  <!-- Stablecoin Bridge -->
   <div class="card">
-    <h3>Swap Tokens</h3>
-    <div class="input-row">
-      <input type="text" id="tokenIn" placeholder="Token to sell (address)" value="0x0000000000000000000000000000000000000001">
-      <select id="tokenInList" onchange="document.getElementById('tokenIn').value=this.value" style="max-width:120px">
-        <option value="">WAY</option>
-        <option value="0x0000000000000000000000000000000000000014">BIJO</option>
-        <option value="0x0000000000000000000000000000000000000022">1WAY</option>
-      </select>
-    </div>
-    <div class="input-row"><input type="text" id="amountIn" placeholder="Amount" value="10"></div>
-    <div class="arrow">⇅</div>
-    <div class="input-row"><input type="text" id="tokenOut" placeholder="Token to buy" value="0x0000000000000000000000000000000000000014"></div>
-    <button class="btn" onclick="buildSwap()">Launch Swap</button>
-    <div id="swapStatus" class="status"></div>
+    <h3>🌉 Bridge to 1WAY</h3>
+    <p style="font-size:.8em;color:var(--dusk);margin-bottom:14px">Cross-chain stablecoins → 1WAY (precompile 0x22). Attestation required.</p>
+    <div class="input-row"><input type="text" id="stableAmt" placeholder="USDT/USDC amount" value="1000"></div>
+    <button class="btn" onclick="bridgeStable()">Launch Bridge</button>
+    <div id="bridgeStatus" class="status"></div>
   </div>
 
-  <!-- Liquidity -->
+  <!-- Stake for 2WAY -->
   <div class="card">
-    <h3>Add Liquidity</h3>
-    <div class="input-row"><input type="text" id="liqA" placeholder="Token A" value="0x0000000000000000000000000000000000000001"></div>
-    <div class="input-row"><input type="text" id="amtA" placeholder="Amount A" value="100"></div>
-    <div class="input-row"><input type="text" id="liqB" placeholder="Token B" value="0x0000000000000000000000000000000000000014"></div>
-    <div class="input-row"><input type="text" id="amtB" placeholder="Amount B" value="50"></div>
-    <button class="btn" onclick="buildLiq()">Launch Liquidity</button>
-    <div id="liqStatus" class="status"></div>
+    <h3>🪙 Stake for 2WAY</h3>
+    <p style="font-size:.8em;color:var(--dusk);margin-bottom:14px">Stake 1WAY → mint 2WAY CDP (precompile 0x18). Earn WAY + SWAY.</p>
+    <div class="input-row"><input type="text" id="stakeAmt" placeholder="1WAY amount to stake" value="500"></div>
+    <button class="btn" onclick="stake2way()">Launch Stake</button>
+    <div id="stakeStatus" class="status"></div>
+  </div>
+
+  <!-- Rewards -->
+  <div class="card">
+    <h3>🎁 Rewards Dashboard</h3>
+    <div class="reward-row">
+      <span class="reward-label">WAY Rewards</span>
+      <span id="wayRewards" class="reward-value">—</span>
+    </div>
+    <div class="reward-row">
+      <span class="reward-label">SWAY Rewards</span>
+      <span id="swayRewards" class="reward-value">—</span>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn btn-secondary" onclick="claimAll()">Claim All Rewards</button>
+    </div>
+    <div id="claimStatus" class="status" style="margin-top:10px"></div>
   </div>
 
 </div>
 
 <div class="footer">
-  Swap Route • WayChain DEX (0x25). Chain ID 10008. Trades settle in 1 second.
+  AirBridge • 1WAY Stablecoin (0x22) + 2WAY CDP (0x18). Chain ID 10008.
 </div>
 
 <script>
-const RPC='https://api.waychain.org';
-
 function connectWallet(){
   const w=localStorage.getItem('waychain_a');
   if(w){
     document.getElementById('wallet-display').style.display='inline';
-    document.getElementById('dex-wallet').textContent=w;
+    document.getElementById('bridge-wallet').textContent=w;
   }else{
     window.location.href='/wallet';
   }
 }
-
 function show(el,msg,type){
   el.className='status show '+type;
   el.textContent=msg;
 }
-
-function buildSwap(){
-  const inTok=document.getElementById('tokenIn').value.trim();
-  const outTok=document.getElementById('tokenOut').value.trim();
-  const amt=document.getElementById('amountIn').value.trim();
-  const s=document.getElementById('swapStatus');
-  if(!inTok||!amt||!outTok){show(s,'Fill all fields','bad');return}
-  show(s,`Launching swap: ${amt} ${inTok} → ${outTok}. Use /wallet to sign.`,'info');
+function bridgeStable(){
+  const s=document.getElementById('bridgeStatus');
+  show(s,'Launch bridge: approve USDT → call mintStablecoin(0x22) via /wallet.','info');
 }
-
-function buildLiq(){
-  const s=document.getElementById('liqStatus');
-  show(s,'Launching liquidity provision. Approve both tokens, then call addLiquidity via /wallet.','info');
+function stake2way(){
+  const s=document.getElementById('stakeStatus');
+  show(s,'Launch stake: call stakeAndMint(0x18) via /wallet.','info');
 }
+function claimAll(){
+  const s=document.getElementById('claimStatus');
+  show(s,'Claim tx ready. Use /wallet to submit.','good');
+}
+document.addEventListener('DOMContentLoaded',connectWallet);
 </script>
 </body>
 </html>

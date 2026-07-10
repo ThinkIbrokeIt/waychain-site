@@ -27,6 +27,16 @@
     { "source": "/faucet", "destination": "/faucet/index.html" },
     { "source": "/journal", "destination": "/binary-journal/index.html" },
     { "source": "/locks", "destination": "/locks/index.html" },
-    { "source": "/dex", "destination": "/dex/index.html" }
+    { "source": "/dex", "destination": "/dex/index.html" },
+    { "source": "/bridge", "destination": "/dex/bridge.html" },
+    { "source": "/dex/bridge", "destination": "/dex/bridge.html" },
+    { "source": "/wifr", "destination": "/wifr.html" },
+    { "source": "/wifr/bridge", "destination": "/wifr/bridge.html" },
+    { "source": "/wifr/pool", "destination": "/wifr/pool.html" },
+    { "source": "/wifr/leaderboard", "destination": "/wifr/leaderboard.html" },
+    { "source": "/wifr/quests", "destination": "/wifr/quests.html" },
+    { "source": "/wifr/quest", "destination": "/wifr/quests.html" },
+    { "source": "/wif", "destination": "/wif.html" },
+    { "source": "/docs/run-a-node", "destination": "/docs/run-a-node.html" }
   ]
 }

@@ -63,6 +63,17 @@ a:hover{color:var(--warm)}
   </div>
 </nav>
 
+<!-- Wallet Connection -->
+<div class="card" style="margin-top:-24px">
+  <h3 style="display:flex;justify-content:space-between;align-items:center">
+    <span>WayChain Wallet</span>
+    <button class="btn" style="width:auto;font-size:.7em;padding:6px 12px;background:var(--slate);color:var(--fg);border:1px solid var(--border)" onclick="connectWallet()">Connect</button>
+  </h3>
+  <div id="wallet-status" style="font-size:.75em;color:var(--muted);margin-top:8px;display:none">
+    Connected: <code id="bj-wallet-address" style="color:var(--amber)"></code>
+  </div>
+</div>
+
 <div class="hero">
   <h1>Binary Journal</h1>
   <p class="tagline">3 · 6 · 9 — The Key to the Universe</p>
@@ -161,6 +172,12 @@ a:hover{color:var(--warm)}
 
 <script>
 const RPC = 'https://api.waychain.org';
+function connectWallet(){
+  const w=localStorage.getItem('waychain_a');
+  if(w){document.getElementById('wallet-status').style.display='block';document.getElementById('bj-wallet-address').textContent=w}
+  else{window.location.href='/wallet'}
+}
+
 async function rpc(m, p) {
   const r = await fetch(RPC, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',method:m,params:p,id:1})});
   const d = await r.json();

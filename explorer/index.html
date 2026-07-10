@@ -152,6 +152,10 @@ tr:hover td { background: var(--bg3); }
     </div>
     <div class="nav">
       <span id="statusSpan"><span class="status-dot offline" id="statusDot"></span><span id="statusText">Connecting...</span></span>
+      <span id="wallet-span" style="display:none;font-size:.7em;color:var(--accent3)">
+        Connected: <code id="explorer-wallet-address" style="font-size:.85em"></code>
+      </span>
+      <button onclick="connectWallet()" style="background:var(--accent);color:var(--bg);border:none;padding:6px 12px;border-radius:6px;font-size:.7em;cursor:pointer;margin-left:10px">Connect</button>
       <a href="https://waychain.org">Dashboard</a>
       <a href="/badge">Badge</a>
     </div>
@@ -231,6 +235,16 @@ function log(msg, cls = 'info') {
 function setStatus(online) {
   document.getElementById('statusDot').className = online ? 'status-dot online' : 'status-dot offline';
   document.getElementById('statusText').textContent = online ? 'Connected' : 'Offline';
+}
+
+function connectWallet() {
+  const w = localStorage.getItem('waychain_a');
+  if (w) {
+    document.getElementById('wallet-span').style.display = 'inline';
+    document.getElementById('explorer-wallet-address').textContent = w;
+  } else {
+    window.location.href = '/wallet';
+  }
 }
 
 async function rpc(method, params = []) {

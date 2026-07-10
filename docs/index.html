@@ -99,6 +99,10 @@ tr:nth-child(even) { background: var(--bg2); }
     <a href="/whitepaper">Whitepaper</a>
     <a href="/explorer">Explorer</a>
     <a href="/badge">Badge</a>
+    <a href="/wallet">Wallet</a>
+    <a href="/faucet">Faucet</a>
+    <a href="/locks">TrustlessLock</a>
+    <a href="/dex">DEX</a>
   </div>
 </div>
 
@@ -127,15 +131,10 @@ tr:nth-child(even) { background: var(--bg2); }
 
   <h2>Step 1: Get Your Wallet</h2>
   <p>A blockchain wallet is like a bank account, but you hold the keys. WayChain uses <strong>Ed25519</strong> signatures — different from Bitcoin/Ethereum.</p>
-
-  <h3>Generate Keys (Command Line)</h3>
-  <div class="terminal">
-<span class="prompt">$</span> curl -X POST https://api.waychain.org \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc":"2.0","method":"way_generateWallet","params":[],"id":1}'
-  </div>
-
-  <p>Or use the web wallet at <a href="/wallet">/wallet</a>:</p>
+  
+  <p>Use the web wallet at <a href="/wallet">/wallet</a> for key generation. All operations happen client-side — your seed phrase never touches the network.</p>
+  
+  <p>Or use any Ed25519-compatible library in your preferred language to generate keys locally.</p>
   <ul>
     <li>Your <strong>seed phrase</strong> (12 words) — write this down. Never share it.</li>
     <li>Your <strong>public address</strong> (0x...) — this is like your account number.</li>
@@ -143,21 +142,21 @@ tr:nth-child(even) { background: var(--bg2); }
   </ul>
 
   <div class="info-box">
-    <h4>⚠️ Save your seed phrase</h4>
-    <p>If you lose it, you lose your tokens. There's no "forgot password" on the blockchain. No customer support. You are your own bank.</p>
+    <h4>WayChain uses Ed25519 signatures</h4>
+    <p>Generate keys in the <a href="/wallet">web wallet</a> (private key) or <a href="https://github.com/ThinkIbrokeIt/waychain-mobile">mobile wallet</a> (12-word recovery phrase). Both use Ed25519 — different from Bitcoin/Ethereum's secp256k1. Your keys, your custody.</p>
   </div>
 
   <h2>Step 2: Get Test Tokens</h2>
   <p>Two ways to get WAY tokens:</p>
 
-  <h3>Option A: CashApp Bitcoin Bridge (Real Route)</h3>
+  <h3>Option A: CashApp Bitcoin Bridge</h3>
+  <p><small><em>Spec'd — operational infrastructure in development</em></small></p>
   <ol>
-    <li>Open CashApp → Send Bitcoin</li>
-    <li>Send $1 BTC to the WayChain treasury address</li>
-    <li>Your TXID proves the send (6+ confirmations)</li>
-    <li>Receive ~100 WAY deposited to your WayChain address</li>
+    <li>Send $1 BTC to the WayChain treasury address (shown on <a href="/badge">Dox_Dev Badge</a> page)</li>
+    <li>Your TXID proves the send (6+ confirmations on Bitcoin)</li>
+    <li>~100 WAY will credit to your WayChain address</li>
   </ol>
-  <p style="color:var(--copper);font-size:0.9em">This is the bridge. Treasury holds the BTC. Protocol credits your address.</p>
+  <p style="color:var(--copper);font-size:0.9em">Treasury holds the BTC. Protocol credits your address.</p>
 
   <h3>Option B: Request from Faucet</h3>
   <p>Go to <a href="/faucet">/faucet</a>. Paste your address. Click "Request 10 WAY". Get tokens in 1 second.</p>
@@ -169,15 +168,16 @@ tr:nth-child(even) { background: var(--bg2); }
     <li>Check your balance in 1 second (links to explorer)</li>
   </ol>
 
-  <h3>Option C: Send Bitcoin, Receive 1WAY</h3>
-  <p>Send real BTC from any wallet and receive 1WAY — the Bitcoin-backed stablecoin — directly to your WayChain address.</p>
+  <h3>Option C: Send Bitcoin, Receive 1WAY Stablecoin</h3>
+  <p><small><em>Spec'd — Coming soon. Precompile 0x22 is live in code.</em></small></p>
+  <p>Send real BTC and receive 1WAY — the Bitcoin-backed stablecoin — at 1:1 peg.</p>
   <ol>
-    <li>Send BTC to the 1WAY bridge address (shown on <a href="/bridge">/bridge</a>)</li>
-    <li>Wait for confirmations (6+ blocks, ~1 hour)</li>
-    <li>1WAY credits automatically at 1:1 peg to your WayChain address</li>
-    <li>Use 1WAY anywhere on WayChain — swap, send, hold in treasury</li>
+    <li>Send BTC to the 1WAY bridge address (details on <a href="/badge">badge page</a>)</li>
+    <li>Wait for 6+ confirmations (~1 hour on Bitcoin)</li>
+    <li>1WAY credits automatically to your WayChain address</li>
+    <li>Use 1WAY anywhere on WayChain — swap, send, hold</li>
   </ol>
-  <p style="color:var(--copper);font-size:0.9em">1WAY = Bitcoin on WayChain. Fully backed. Send BTC, get 1WAY. Send 1WAY, get BTC. The bridge is the closed loop.</p>
+  <p style="color:var(--copper);font-size:0.9em">1WAY = Bitcoin on WayChain. Fully backed 1:1. Send 1WAY, get BTC back.</p>
 
   <div class="terminal">
 <span class="prompt">Balance check:</span> curl -X POST https://api.waychain.org \
@@ -217,7 +217,7 @@ tr:nth-child(even) { background: var(--bg2); }
     <tr><th>Traditional Bank</th><th>WayChain</th></tr>
     <tr><td>Bank holds your data</td><td>You hold your data</td></tr>
     <tr><td>Bank can freeze/be frozen</td><td>No one can freeze it</td></tr>
-    <tr><td>Bank sets fees</td><td>Fixed fees (0.001 WAY)</td></tr>
+    <tr><td>Bank sets fees</td><td>Gas-based fees (min 1 wei/gas)</td></tr>
     <tr><td>Takes days to settle</td><td>Final in 1 second</td></tr>
   </table>
 
@@ -234,17 +234,15 @@ tr:nth-child(even) { background: var(--bg2); }
   </div>
 
   <h2>Quick Start (Code)</h2>
-  <div class="code-block"><pre><code>// Connect to WayChain
-client := waychain.Connect("https://api.waychain.org")
+  <p><small><em>Example: Using the WayChain Client</em></small></p>
+  <div class="code-block"><pre><code># Install the WayChain client
+curl -sSL https://raw.githubusercontent.com/ThinkIbrokeIt/waychain-client/main/scripts/install.sh | bash
 
-// Check Dox_Dev badge level
-level := client.Precompile("0x13").Call("checkLevel", deployerAddr)
-if level &lt; 2 {
-  return "Insufficient Dox_Dev level"
-}
+# Check Dox_Dev badge level for an address
+waychain rpc call way_getDoxLevel 0xYourAddress
 
-// Deploy contract (badge verified automatically)
-tx := client.Deploy(contractCode, deployerAddr)</code></pre></div>
+# Check balance
+waychain rpc call eth_getBalance 0xYourAddress latest</code></pre></div>
 
   <h2>Key Differences from Standard EVM</h2>
   <div class="info-box">
@@ -254,11 +252,11 @@ tx := client.Deploy(contractCode, deployerAddr)</code></pre></div>
 
   <table>
     <tr><th>Feature</th><th>WayChain</th><th>Standard EVM</th></tr>
-    <tr><td>Hash function</td><td>SHA256</td><td>keccak256</td></tr>
+    <tr><td>Hash function</td><td>SHA256 / Keccak-256 via 0x21</td><td>keccak256</td></tr>
     <tr><td>Signatures</td><td>Ed25519</td><td>ECDSA (secp256k1)</td></tr>
     <tr><td>Tx format</td><td>Binary (not RLP)</td><td>RLP-encoded</td></tr>
-    <tr><td>Fees</td><td>Fixed (0.001/0.005/0.01 WAY)</td><td>Auction-based</td></tr>
-    <tr><td>Precompiles</td><td>21 at 0x0C-0x21</td><td>0x01-0x0A</td></tr>
+    <tr><td>Fees</td><td>Gas-based (min 1 wei/gas) / fixed costs for specific ops</td><td>Auction-based</td></tr>
+    <tr><td>Precompiles</td><td>27 at 0x0C-0x26</td><td>0x01-0x0A</td></tr>
   </table>
 
   <h2>RPC API</h2>
@@ -275,19 +273,23 @@ curl -X POST https://api.waychain.org \
 # WebSocket stream
 wss://api.waychain.org/ws</code></pre></div>
 
-  <h2>Native Precompiles (0x0C-0x21)</h2>
+  <h2>Native Precompiles (0x0C-0x26)</h2>
   <table>
     <tr><th>Address</th><th>Name</th><th>Function</th><th>Status</th></tr>
     <tr><td><code>0x0C</code></td><td>OracleAggregator</td><td>Price aggregation</td><td>✅ Live</td></tr>
     <tr><td><code>0x0D</code></td><td>OracleScheduler</td><td>Oracle scheduling</td><td>✅ Live</td></tr>
-    <tr><td><code>0x0E-0x12</code></td><td>Privacy</td><td>ZK selective disclosure</td><td>✅ Live</td></tr>
+    <tr><td><code>0x0E</code></td><td>OracleVerifier</td><td>Single oracle verification</td><td>✅ Live</td></tr>
+    <tr><td><code>0x0F</code></td><td>TLSVerifier</td><td>TLS notary proofs</td><td>✅ Live</td></tr>
+    <tr><td><code>0x10</code></td><td>BLSVerify</td><td>BLS12-381 signatures</td><td>✅ Live</td></tr>
+    <tr><td><code>0x11</code></td><td>AccountRecovery</td><td>3-of-5 guardian recovery</td><td>✅ Live</td></tr>
+    <tr><td><code>0x12</code></td><td>StateRentCalc</td><td>Rent calculation</td><td>✅ Live</td></tr>
     <tr><td><code>0x13</code></td><td>DoxDevBadge</td><td>Identity badge system</td><td>✅ Live</td></tr>
-    <tr><td><code>0x14</code></td><td>BIJO</td><td>Truth anchoring</td><td>✅ Live</td></tr>
+    <tr><td><code>0x14</code></td><td>BinaryJournal (BIJO)</td><td>Truth anchoring</td><td>✅ Live</td></tr>
     <tr><td><code>0x15</code></td><td>DeadMansSwitch</td><td>Inheritance protocol</td><td>✅ Live</td></tr>
-    <tr><td><code>0x16</code></td><td>BitcoinRegistry</td><td>Bitcoin SPV</td><td>✅ Live</td></tr>
-    <tr><td><code>0x17</code></td><td>StorageEndowment</td><td>Perpetual storage</td><td>✅ Live</td></tr>
-    <tr><td><code>0x18</code></td><td>2WAY</td><td>Multi-collateral vault</td><td>✅ Live</td></tr>
-    <tr><td><code>0x19</code></td><td>OracleBank</td><td>Vault economics</td><td>✅ Live</td></tr>
+    <tr><td><code>0x16</code></td><td>BitcoinRegistry</td><td>BTC address ↔ WayChain mapping</td><td>✅ Live</td></tr>
+    <tr><td><code>0x17</code></td><td>StorageEndowment</td><td>Perpetual storage funding</td><td>✅ Live</td></tr>
+    <tr><td><code>0x18</code></td><td>TwoWayVault</td><td>Multi-collateral CDP vault</td><td>✅ Live</td></tr>
+    <tr><td><code>0x19</code></td><td>StabilityPool</td><td>Protocol economics</td><td>✅ Live</td></tr>
     <tr><td><code>0x1A</code></td><td>TrustlessLock</td><td>Liquidity locks</td><td>✅ Live</td></tr>
     <tr><td><code>0x1B</code></td><td>AccountManager</td><td>3-stage custody</td><td>✅ Live</td></tr>
     <tr><td><code>0x1C</code></td><td>Privacy</td><td>ZK selective disclosure</td><td>✅ Live</td></tr>
@@ -295,7 +297,12 @@ wss://api.waychain.org/ws</code></pre></div>
     <tr><td><code>0x1E</code></td><td>StateRent</td><td>Storage fees</td><td>✅ Live</td></tr>
     <tr><td><code>0x1F</code></td><td>CrossChain</td><td>External attestations</td><td>✅ Live</td></tr>
     <tr><td><code>0x20</code></td><td>MRT Registry</td><td>Mineral rights</td><td>✅ Live</td></tr>
-    <tr><td><strong><code>0x21</code></strong></td><td><strong>Keccak256</strong></td><td><strong>Ethereum-compatible hash (app layer choice)</strong></td><td><strong>✅ Live</strong></td></tr>
+    <tr><td><strong><code>0x21</code></strong></td><td><strong>Keccak256</strong></td><td><strong>Ethereum-compatible hash</strong><br><small>30 gas + 6 per 32-byte word</small></td><td><strong>✅ Live</strong></td></tr>
+    <tr><td><strong><code>0x22</code></strong></td><td><strong>WayStablecoin (1WAY)</strong></td><td><strong>BTC-backed stablecoin</strong><br><small>1:1 peg via 3-of-5 multisig</small></td><td><strong>✅ Live (spec'd)</strong></td></tr>
+    <tr><td><strong><code>0x23</code></strong></td><td><strong>TaskRegistry</strong></td><td><strong>Professional oracle tasks</strong><br><small>Bounties for geologists, lawyers, surveyors, engineers</small></td><td><strong>✅ Live (spec'd)</strong></td></tr>
+    <tr><td><strong><code>0x24</code></strong></td><td><strong>SWAY Token</strong></td><td><strong>DEX LP incentive</strong><br><small>Minted on 1WAY+ swaps</small></td><td><strong>✅ Live (spec'd)</strong></td></tr>
+    <tr><td><strong><code>0x25</code></strong></td><td><strong>SwapRoute (DEX)</strong></td><td><strong>Native DEX</strong><br><small>0.3% fee, SWAY rewards to LPs</small></td><td><strong>✅ Live (spec'd)</strong></td></tr>
+    <tr><td><strong><code>0x26</code></strong></td><td><strong>TemplateRegistry</strong></td><td><strong>Safe contract templates</strong><br><small>Class A deployment for Level 2+</small></td><td><strong>✅ Live (spec'd)</strong></td></tr>
   </table>
 
   <h2>Dox_Dev Identity Requirements</h2>

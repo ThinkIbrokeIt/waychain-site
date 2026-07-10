@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>WayChain Wallet</title>
   <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -284,10 +285,10 @@
       <div class="guide">
         <h3><img src="/assets/wayIconslantern.png" alt="Illuminate" width="20" height="20"> For New Users</h3>
         <ol>
-          <li><strong>Generate a new wallet:</strong> Click the "Create New Wallet" button below. This generates a new cryptographic key pair directly in your browser.</li>
-          <li><strong>Save your private key:</strong> Your private key is shown only once. Copy it and store it securely offline (paper, hardware wallet, encrypted USB). <em>Never share this with anyone.</em></li>
-          <li><strong>Your address:</strong> Your WayChain address (starting with 0x) is your public identifier for receiving funds.</li>
-          <li><strong>Fund your wallet:</strong> Use the faucet button to get test WAY, or receive from another wallet.</li>
+          <li><strong>Generate a new wallet:</strong> Click "Create New Wallet" below. This generates Ed25519 keys in your browser.</li>
+          <li><strong>Save your recovery phrase:</strong> Your 12-word phrase appears once. Write it down and store offline. Never share it.</li>
+          <li><strong>Your address:</strong> Your WayChain address (starting with 0x) receives tokens.</li>
+          <li><strong>Fund your wallet:</strong> Use the faucet button for test WAY.</li>
         </ol>
         <div class="tip">
           <h4><img src="/assets/wayIconsanchor.png" alt="Immovable" width="20" height="20"> Important</h4>
@@ -309,7 +310,10 @@
           <div class="label">Your WayChain Address</div>
           <div class="addr" id="ad"></div>
           <button class="btn btn-outline" onclick="copyAddr()">📋 Copy Address</button>
-          <div class="label: Private Key (Keep Secret!)</label>
+          <div class="label">Recovery Phrase (Keep Secret!)</div>
+          <div class="addr" id="mnemonic-display" style="font-family: monospace; font-size: 14px; word-break: break-all; color: var(--amber); display: none;"></div>
+          <button class="btn btn-outline" onclick="toggleMnemonic()" style="margin-top: 8px; font-size: 12px; padding: 6px 12px;">👁️ Show Recovery Phrase</button>
+          <div class="label">Private Key (hex)</div>
           <div class="addr" id="pkd" style="font-family: monospace; font-size: 12px; word-break: break-all;"></div>
           <button class="btn btn-outline" onclick="togglePk()" style="margin-top: 8px; font-size: 12px; padding: 6px 12px;">👁️ Show Private Key</button>
         </div>
@@ -370,7 +374,20 @@
           <div class="tip">
             <p><strong>To restore:</strong> Paste your private key exactly as you saved it. It must be 64 bytes (128 hex characters). Leading "0x" is optional.</p>
           </div>
-          <button class="btn btn-success" onclick="impWallet()" style="margin-top: 8px;">Import Wallet</button>
+          <button class="btn btn-success" onclick="impWallet()" style="margin-top: 8px;">Import with Private Key</button>
+        </div>
+        <div id="imp-mnemonic" class="hide" style="margin-top: 12px;">
+          <div class="label">Recovery Phrase (12 words)</div>
+          <input type="text" id="imn" placeholder="word1 word2 word3 ... word12" autocomplete="off">
+          <div class="tip">
+            <p><strong>To restore:</strong> Paste your 12-word recovery phrase. Case-insensitive.</p>
+          </div>
+          <button class="btn btn-success" onclick="impMnemonic()" style="margin-top: 8px;">Restore Wallet</button>
+        </div>
+        <div id="mnemonic-box" class="hide" style="margin-top: 16px;">
+          <div class="label">Your 12-Word Recovery Phrase</div>
+          <div class="addr" id="mnemonic-display" style="font-family: monospace; font-size: 14px; word-break: break-all; color: var(--amber);"></div>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 8px;">Write this down. Never share it. It recovers your wallet.</p>
         </div>
         <div class="btn-group">
           <button class="btn btn-danger" onclick="clearWallet()">🗑️ Clear Wallet</button>
@@ -393,6 +410,25 @@
           LA = 'waychain_a',
           LT = 'waychain_tx',
           FU = RPC + '/faucet';
+
+    // BIP39 Mnemonic functions for wallet recovery
+    function genMnemonic() {
+      // Generate 12-word BIP39 mnemonic (via entropy)
+      const entropy = crypto.getRandomValues(new Uint8Array(16));
+      return bip39.entropyToMnemonic(toH(entropy));
+    }
+    function mnemonicToSeed(mnemonic) {
+      // PBKDF2 derive seed: BIP39_STRAW_SHI + password
+      return bip39.mnemonicToSeed(mnemonic, '');
+    }
+    async function seedToKeyPair(seed) {
+      // SHA256 the seed to get 32 bytes for Ed25519
+      const h = await crypto.subtle.digest('SHA-256', seed);
+      const seedBytes = new Uint8Array(h);
+      return nacl.sign.keyPair.fromSeed(seedBytes.slice(0, 32));
+    }
+    function svM(m) { localStorage.setItem('waychain_mnemonic', m); }
+    function ldM() { return localStorage.getItem('waychain_mnemonic'); }
 
     // Utility functions (unchanged from original)
     function toH(a) { return Array.from(a).map(b => b.toString(16).padStart(2, '0')).join(''); }
@@ -552,6 +588,13 @@
         wi.classList.remove('hide');
         ad.textContent = w.address;
         pk.textContent = '0x' + toH(w.secretKey);
+        // Show mnemonic if available
+        const mnemonic = localStorage.getItem('waychain_mnemonic');
+        const mnEl = document.getElementById('mnemonic-display');
+        if (mnemonic && mnEl) {
+          mnEl.textContent = mnemonic;
+          mnEl.style.display = 'none'; // Hidden by default, click to show
+        }
       } else {
         wi.classList.add('hide');
       }
@@ -568,11 +611,23 @@
       btn.disabled = true;
       btn.textContent = '⏳ Creating...';
       try {
-        const k = genK(),
-              a = await p2a(k.p);
-        svW(k.p, k.s, a);
+        // Generate mnemonic-based wallet
+        const mnemonic = genMnemonic();
+        const seed = await mnemonicToSeed(mnemonic);
+        const seedArr = new Uint8Array(seed);
+        const k = await seedToKeyPair(seedArr);
+        const a = await p2a(k.publicKey);
+        svW(k.publicKey, k.secretKey, a);
+        svM(mnemonic); // Save recovery phrase to localStorage
         upUI();
-        setStatus('manage-status', '✅ Wallet created: ' + a, 'ok');
+        // Show mnemonic for backup
+        const mnEl = document.getElementById('mnemonic-display');
+        const mnBox = document.getElementById('mnemonic-box');
+        if (mnEl && mnBox) {
+          mnEl.textContent = mnemonic;
+          mnBox.classList.remove('hide');
+        }
+        setStatus('manage-status', '✅ Wallet created: ' + a + '. Save your recovery phrase!', 'ok');
         refreshBal();
       } catch (e) {
         setStatus('manage-status', '❌ ' + e.message, 'error');
@@ -583,8 +638,12 @@
     }
 
     function showImp() {
-      document.getElementById('imp').classList.toggle('hide');
+      const imp = document.getElementById('imp');
+      const impMnemonic = document.getElementById('imp-mnemonic');
+      imp.classList.toggle('hide');
+      impMnemonic.classList.toggle('hide');
       document.getElementById('ik').value = '';
+      document.getElementById('imn').value = '';
       document.getElementById('ik').focus();
     }
 
@@ -740,6 +799,42 @@
       }
       btn.disabled = false;
       btn.textContent = '🚰 Get Test WAY';
+    }
+
+    // Import from Recovery Phrase
+    async function impMnemonic() {
+      const raw = document.getElementById('imn').value.trim();
+      if (!raw || raw.split(' ').length !== 12) {
+        setStatus('manage-status', '⚠️ Enter 12 words', 'error');
+        return;
+      }
+      try {
+        const seed = mnemonicToSeed(raw);
+        const seedArr = new Uint8Array(seed);
+        const k = await seedToKeyPair(seedArr);
+        const a = await p2a(k.publicKey);
+        svW(k.publicKey, k.secretKey, a);
+        upUI();
+        document.getElementById('imn').value = '';
+        document.getElementById('imp-mnemonic').classList.add('hide');
+        setStatus('manage-status', '✅ Wallet restored: ' + a, 'ok');
+        refreshBal();
+      } catch (e) {
+        setStatus('manage-status', '❌ Import failed: ' + e.message, 'error');
+      }
+    }
+
+    // Toggle visibility of mnemonic/private key
+    function toggleMnemonic() {
+      const el = document.getElementById('mnemonic-display');
+      const btn = event.target;
+      if (el.style.display === 'none' || !el.style.display) {
+        el.style.display = 'block';
+        btn.textContent = '🙈 Hide Recovery Phrase';
+      } else {
+        el.style.display = 'none';
+        btn.textContent = '👁️ Show Recovery Phrase';
+      }
     }
 
     // Transaction History
