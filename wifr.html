@@ -37,12 +37,7 @@ body {
   margin-bottom: 5px;
 }
 .subtitle { color: #9A9A9A; font-size: 14px; margin-bottom: 20px; }
-.qr { 
-  width: 80px; height: 80px;
-  background: var(--warm);
-  margin: 20px auto;
-  border-radius: 4px;
-}
+.receipt-img { max-width:100%;border-radius:4px;margin-bottom:15px; }
 .amount { 
   font-size: 2em;
   color: var(--green);
@@ -102,11 +97,7 @@ body {
 <body>
 <div class="container">
   <div class="receipt">
-    <div style="font-size:10px;letter-spacing:3px;color:#9A9A9A;margin-bottom:5px">WAYCHAIN</div>
-    <div class="title">WAYCHAIN IS FREE</div>
-    <div class="subtitle">RECEIPT TOKEN • NO EXPECTED VALUE</div>
-    <div class="qr"></div>
-    <div style="font-size:12px;color:#9A9A9A;margin-bottom:10px">WAIT FOR INSTRUCTIONS</div>
+    <img src="/assets/wifr-receipt.png" alt="WIFR Receipt" style="max-width:100%;border-radius:4px;margin-bottom:15px">
     <div class="amount">$WIFR</div>
     <div style="margin-top:15px">
       <span class="badge">LOCKED 1M WAY</span>
