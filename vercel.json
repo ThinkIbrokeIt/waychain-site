@@ -41,6 +41,7 @@
     { "source": "/gauntlet", "destination": "/gauntlet/index.html" },
     { "source": "/gauntlet/", "destination": "/gauntlet/index.html" },
     { "source": "/gauntlet/leaderboard", "destination": "/gauntlet/leaderboard/index.html" },
-    { "source": "/gauntlet/start", "destination": "/gauntlet/start/index.html" }
+    { "source": "/gauntlet/start", "destination": "/gauntlet/start/index.html" },
+    { "source": "/gauntlet/pools", "destination": "/gauntlet/pools/index.html" }
   ]
 }
