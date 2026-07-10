@@ -23,6 +23,7 @@ body {
 }
 .hero h2 { color: var(--amber); margin-bottom: 10px; }
 .hero .pool { color: var(--green); font-size: 1.5em; }
+.hero .cta { margin-top: 15px; }
 
 .quest { 
   background: #1e1e1e;
@@ -69,6 +70,15 @@ body {
   margin: 20px 0;
   color: var(--amber);
 }
+.gauntlet {
+  background: #1e1e1e;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  padding: 25px;
+  margin: 25px 0;
+  text-align: center;
+}
+.gauntlet h3 { color: var(--green); margin-bottom: 10px; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -78,46 +88,56 @@ body {
     <h2>WAY Quest Pool</h2>
     <div class="pool">1,000,000+ WAY</div>
     <p style="margin-top:10px;font-size:14px">Complete quests to claim WAY. Keep your WIFR.</p>
+    <div class="cta">
+      <a href="/gauntlet" class="btn" style="background:var(--green)">Enter the Gauntlet</a>
+      <a href="/gauntlet/leaderboard" class="btn secondary">View Leaderboard</a>
+    </div>
   </div>
-  
+
+  <div class="gauntlet">
+    <h3>🥇 The Certification Gauntlet</h3>
+    <p>3 tiers. Soulbound badges. First 20 Grandmasters earn 5,000 WAY + revenue share.</p>
+    <a href="/gauntlet" class="btn">Start Certification</a>
+  </div>
+
   <div class="quest">
     <h3>Bridge Builder <span class="badge">1,000 WAY</span></h3>
     <p>Use the burn bridge. Prove you burned WIFR to claim WAY. No purchase needed.</p>
     <a href="/wifr/bridge" class="btn">Use Burn Bridge</a>
     <p class="note">You only burn what you need for this quest. Keep the rest of your WIFR.</p>
   </div>
-  
+
   <div class="quest">
     <h3>Testnet Warrior <span class="badge">1,000 WAY</span></h3>
     <p>Deploy on WayChain testnet. Submit transaction hash.</p>
     <button class="btn secondary">Submit Proof</button>
   </div>
-  
+
   <div class="quest">
     <h3>Oracle Attester <span class="badge">500 WAY</span></h3>
     <p>Submit first oracle attestation on mainnet. Requires Dox_Dev L2+.</p>
     <button class="btn secondary">Verify Badge</button>
     <p class="note">Badge verification required before starting.</p>
   </div>
-  
+
   <div class="quest">
     <h3>Meme Captain <span class="badge">2,000 WAY</span></h3>
     <p>Best WIFR meme posted. Tag @waychain. No NSFW. Monthly cap 5.</p>
     <button class="btn secondary">Submit Meme</button>
   </div>
-  
+
   <div class="quest">
     <h3>Social Signal <span class="badge">100 WAY</span></h3>
     <p>Retweet WIFR reveal. DM proof on X. Monthly cap 10.</p>
     <button class="btn secondary">Verify</button>
   </div>
-  
+
   <div class="quest">
     <h3>Early Worm <span class="badge">2x Bonus</span></h3>
     <p>First 10,000 to claim WAY get 2x from bonus pool (100k WAY).</p>
     <p class="note">Automatic bonus on first quest completion.</p>
   </div>
-  
+
   <div class="total-reward">
     Total Pool: 1,000,000 WAY (guaranteed) + bonus for early worms
   </div>

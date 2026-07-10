@@ -74,6 +74,10 @@ body {
   border: 1px solid var(--copper);
   color: var(--copper);
 }
+.btn.gauntlet {
+  background: var(--green);
+  color: var(--slate);
+}
 .highlight {
   background: #1a1a1a;
   border: 1px solid var(--amber);
@@ -83,6 +87,15 @@ body {
   text-align: center;
 }
 .highlight h3 { color: var(--amber); margin-bottom: 10px; }
+.legend { 
+  background: #1e1e1e;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+.legend h3 { color: var(--green); margin-bottom: 10px; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -101,11 +114,11 @@ body {
     <a href="/wifr/bridge" class="btn">Burn & Claim</a>
     <a href="/wifr/quests" class="btn outline">View Quests</a>
   </div>
-  
-  <div class="highlight">
-    <h3>Complete Quests. Keep WIFR.</h3>
-    <p>Earn WAY from the 1M+ quest pool. Each quest completed guarantees more WAY. The burn bridge is just one way to claim.</p>
-    <a href="/wifr/quests" class="btn">See All Quests</a>
+
+  <div class="legend">
+    <h3>🥇 The Certification Gauntlet</h3>
+    <p>3 tiers. Soulbound badges. First 20 Grandmasters: 5,000 WAY + revenue share.</p>
+    <a href="/gauntlet" class="btn gauntlet">Enter Gauntlet</a>
   </div>
   
   <p style="text-align:center;margin-top:30px;font-size:12px;color:#9A9A9A">
