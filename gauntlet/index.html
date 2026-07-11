@@ -70,6 +70,19 @@ body { background: var(--slate); color: var(--warm); padding: 40px 20px; }
 .legend { background: #1a1a1a; padding: 15px; border-radius: 6px; margin-top: 20px; }
 .legend h4 { color: var(--amber); margin-bottom: 8px; }
 .legend p { font-size: 13px; color: #9A9A9A; }
+
+.audit-status {
+  background: #1a1a18;
+  border: 1px solid var(--amber);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.audit-status p:first-child {
+  color: var(--amber);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -84,31 +97,18 @@ body { background: var(--slate); color: var(--warm); padding: 40px 20px; }
   </div>
 
   <!-- Reveal Video -->
-  <div id="reveal-section" style="max-width:720px;margin:0 auto 30px;display:none">
+  <div id="reveal-section" style="max-width:720px;margin:0 auto 30px">
     <video id="reveal-video" controls poster="/gauntlet/wifr-reveal-thumb.jpg" style="width:100%;border-radius:8px;border:1px solid var(--copper)" preload="metadata">
       <source src="/gauntlet/wifr-reveal.mp4" type="video/mp4">
     </video>
     <p style="text-align:center;margin-top:8px;font-size:14px;color:var(--copper)">🎬 WIFR Reveal — 1,200,000 WAY locked in public pools</p>
   </div>
-  <div id="countdown-section" style="text-align:center;margin-bottom:30px">
-    <p style="color:var(--amber);font-size:1.1em;margin-bottom:10px">⏳ Reveal in:</p>
-    <div id="countdown" style="font-size:2.5em;font-weight:700;color:var(--green);font-family:monospace">--:--:--</div>
+
+  <!-- Audit Status -->
+  <div class="audit-status">
+    <p>⏳ Auditing Final Systems</p>
+    <p>The Gauntlet quests are live, but reward contracts are in final verification. Pioneer challenges accepted now — rewards distributed within 24 hours of reveal audit completion.</p>
   </div>
-  <script>
-  var REVEAL = new Date('2026-07-11T22:39:00Z').getTime();
-  (function tick(){
-    var now = Date.now(), d = REVEAL - now;
-    if(d <= 0){
-      document.getElementById('reveal-section').style.display = 'block';
-      document.getElementById('countdown-section').style.display = 'none';
-      return;
-    }
-    var h=Math.floor(d/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
-    document.getElementById('countdown').textContent = 
-      String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-    setTimeout(tick,1000);
-  })();
-  </script>
 
   <div class="tier">
     <h3>🥇 Tier 1: Pioneer</h3>

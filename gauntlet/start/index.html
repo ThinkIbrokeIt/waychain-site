@@ -52,6 +52,11 @@ h1 { color: var(--copper); margin-bottom: 20px; }
 <div class="container">
   <h1>Start the Gauntlet</h1>
   
+  <div class="step" style="background:#1a1a18;border-left:3px solid var(--amber)">
+    <h4>Status: Audition Phase</h4>
+    <p style="font-size:14px;color:#9A9A9A">Challenge submissions accepted now. Reward contracts in final audit. Claims will process within 24 hours of audit completion.</p>
+  </div>
+  
   <div class="prereq">
     <h3>Requirements</h3>
     <ul>
@@ -115,27 +120,29 @@ function connectWayChain() {
 
 function verifyTier1() {
   const hash = document.getElementById('attestationHash').value;
-  show(document.getElementById('tier1Status'), 
-    hash ? 'Tier 1 verified. Badge minted.' : 'Enter attestation hash', 
-    hash ? 'success' : 'error');
+  if (!hash) {
+    show(document.getElementById('tier1Status'), 'Enter attestation hash', 'error');
+    return;
+  }
+  show(document.getElementById('tier1Status'), 'Proof received. Challenge recorded. Rewards process within 24 hours of audit completion.', 'success');
 }
 
 function verifyTier2() {
   const hash = document.getElementById('deployHash').value;
   show(document.getElementById('tier2Status'), 
-    hash ? 'Tier 2 verified. Specialist badge upgraded.' : 'Enter deployment hash', 
+    hash ? 'Proof received. Challenge recorded.' : 'Enter deployment hash', 
     hash ? 'success' : 'error');
 }
 
 function downloadReporter() {
-  show(document.getElementById('tier3Status'), 
-    'Reporter script downloading... (script not yet deployed)', 'info');
+  show(document.getElementById('tier3Status'),
+    'Reporter script will be available after audit completion.', 'info');
 }
 
 function verifyTier3() {
   const hash = document.getElementById('uptimeProof').value;
   show(document.getElementById('tier3Status'), 
-    hash ? 'Tier 3 verified. Oracle Professional badge minted.' : 'Enter uptime proof', 
+    hash ? 'Proof received. Challenge recorded.' : 'Enter uptime proof', 
     hash ? 'success' : 'error');
 }
 </script>
