@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WIFR Gauntlet — Certification Bootcamp</title>
+<meta property="og:title" content="WIFR Gauntlet — WayChain Certification Bootcamp">
+<meta property="og:description" content="1,200,000 WAY locked in public pools. Every 1,000 WIFR = 1 WAY. Fixed ratio. Immutable.">
+<meta property="og:image" content="https://waychain.org/gauntlet/wifr-reveal-thumb.jpg">
+<meta property="og:video" content="https://waychain.org/gauntlet/wifr-reveal.mp4">
+<meta property="og:video:width" content="1920">
+<meta property="og:video:height" content="1080">
+<meta name="twitter:card" content="player">
+<meta name="twitter:title" content="WIFR Gauntlet Reveal">
+<meta name="twitter:description" content="We issued a boring receipt. Turns out it's a claim ticket.">
+<meta name="twitter:player" content="https://waychain.org/gauntlet/wifr-reveal.mp4">
 <style>
 :root { --warm:#FFF8F0; --slate:#2A2A2A; --copper:#B87333; --amber:#FFBF00; --green:#4CAF50; }
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
@@ -72,6 +82,33 @@ body { background: var(--slate); color: var(--warm); padding: 40px 20px; }
     <a href="/gauntlet/leaderboard" class="btn">View Leaderboard</a>
     <a href="/gauntlet/start" class="btn outline">Start Gauntlet</a>
   </div>
+
+  <!-- Reveal Video -->
+  <div id="reveal-section" style="max-width:720px;margin:0 auto 30px;display:none">
+    <video id="reveal-video" controls poster="/gauntlet/wifr-reveal-thumb.jpg" style="width:100%;border-radius:8px;border:1px solid var(--copper)" preload="metadata">
+      <source src="/gauntlet/wifr-reveal.mp4" type="video/mp4">
+    </video>
+    <p style="text-align:center;margin-top:8px;font-size:14px;color:var(--copper)">🎬 WIFR Reveal — 1,200,000 WAY locked in public pools</p>
+  </div>
+  <div id="countdown-section" style="text-align:center;margin-bottom:30px">
+    <p style="color:var(--amber);font-size:1.1em;margin-bottom:10px">⏳ Reveal in:</p>
+    <div id="countdown" style="font-size:2.5em;font-weight:700;color:var(--green);font-family:monospace">--:--:--</div>
+  </div>
+  <script>
+  var REVEAL = new Date('2026-07-11T22:39:00Z').getTime();
+  (function tick(){
+    var now = Date.now(), d = REVEAL - now;
+    if(d <= 0){
+      document.getElementById('reveal-section').style.display = 'block';
+      document.getElementById('countdown-section').style.display = 'none';
+      return;
+    }
+    var h=Math.floor(d/3600000), m=Math.floor((d%3600000)/60000), s=Math.floor((d%60000)/1000);
+    document.getElementById('countdown').textContent = 
+      String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    setTimeout(tick,1000);
+  })();
+  </script>
 
   <div class="tier">
     <h3>🥇 Tier 1: Pioneer</h3>
