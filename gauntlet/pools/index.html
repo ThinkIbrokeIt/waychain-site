@@ -24,15 +24,14 @@ body { background: var(--slate); color: var(--warm); padding: 40px 20px; }
   <h2 style="text-align:center;color:var(--amber);margin-bottom:20px">🔐 WIFR Gauntlet Reward Pools</h2>
 
   <div style="text-align:center;margin-bottom:20px">
-    <p style="font-size:14px">Three immutable pools locked before WIFR existed. Total: 1,200,000 WAY.</p>
+    <p style="font-size:14px">Reward pools are resolved by the live WayChain runtime. Check RPC for current state before assuming totals are static.</p>
   </div>
 
   <div class="pool">
     <h3>Main Pool <span class="badge">1,000,000 WAY</span></h3>
     <div class="amount">Pioneer (50) + Specialist (200) + Oracle Pro (1,000/5,000)</div>
     <p class="note">Funds distributed as users complete certification tiers.</p>
-    <div class="code">// Source: waychain-contracts/src/wifr-gauntlet/WIFRGantletRewards.sol<br>
-// Immutable upon deployment • Viewable on WayChain explorer</div>
+    <div class="code">// Source: WayChain precompile 0x21 (WIFRGantletRewards) • Immutable upon initialization<br>// Viewable on WayChain explorer</div>
   </div>
 
   <div class="pool">
@@ -57,7 +56,7 @@ body { background: var(--slate); color: var(--warm); padding: 40px 20px; }
   </div>
 
   <p style="text-align:center;margin-top:20px;font-size:12px;color:#9A9A9A">
-    Source: <a href="https://github.com/waychain/waychain-contracts/tree/main/src/wifr-gauntlet" style="color:var(--copper)">github.com/waychain/waychain-contracts</a>
+    Source: WayChain live runtime; legacy Solidity reference remains in contracts repo
   </p>
 </div>
 </body>
