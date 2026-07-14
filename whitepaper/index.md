@@ -8,7 +8,7 @@
 
 ## Abstract
 
-The fundamental promise of blockchain is trust without intermediaries. Every major chain has broken that promise: capital determines power, anonymity enables rugs, and real-world assets require middlemen on every transaction. WayChain is the first blockchain rebuilt from first principles around verified human identity — not capital — with Bitcoin as the economic engine that powers the entire system. Bitcoin holders provide the fuel. Specialized users — developers, validators, oracles, professionals — build the infrastructure. The public joins when both are ready. This paper documents a live mainnet producing blocks every second with 27 native precompiles, the first protocol-level professional oracle marketplace, and the first truly decentralized Bitcoin-backed stablecoin.
+The fundamental promise of blockchain is trust without intermediaries. Every major chain has broken that promise: capital determines power, anonymity enables rugs, and real-world assets require middlemen on every transaction. WayChain is the first blockchain rebuilt from first principles around verified human identity — not capital — with Bitcoin as the economic engine that powers the entire system. Bitcoin holders provide the fuel. Specialized users — developers, validators, oracles, professionals — build the infrastructure. The public joins when both are ready. This paper documents a live mainnet producing blocks every second with 22 native precompiles, the first protocol-level professional oracle marketplace, and the first truly decentralized Bitcoin-backed stablecoin.
 
 ---
 
