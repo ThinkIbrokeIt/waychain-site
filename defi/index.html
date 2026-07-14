@@ -39,7 +39,7 @@
         <div class="stat"><div class="k">Vault Count</div><div class="v" id="tw-count">—</div></div>
         <div class="stat"><div class="k">1WAY Price (dummy)</div><div class="v" id="tw-price">—</div></div>
       </div>
-      <div class="note">The BTC-pegged stability engine. Minting 1WAY requires a vault + BTC deposit. Write ops (deposit/mint/withdraw) require a connected wallet signer.</div>
+      <div class="note">The 2WAY mint + LP engine. When a user chooses a vault, the protocol mints them <strong>2WAY</strong> and LPs it into the Stability Pool, earning the fees. (1WAY — the BTC-pegged stablecoin — is minted separately by BTC deposit via the Bitcoin bridge, 0x16.) Write ops (deposit/mint/withdraw) require a connected wallet signer.</div>
     </div>
 
     <!-- StabilityPool 0x19 -->
