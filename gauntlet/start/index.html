@@ -61,21 +61,21 @@ h1 { color: var(--copper); margin-bottom: 20px; }
     <h3>Requirements</h3>
     <ul>
       <li>WayChain wallet (Ed25519) — <a href="/wallet" style="color:var(--copper)">Create one</a></li>
-      <li>WIFR tokens on Solana (from pump.fun)</li>
+      <li>WIFR tokens on WayChain (legacy Solana phrasing removed)</li>
       <li>Discord account for role assignment</li>
     </ul>
   </div>
 
   <div class="step">
     <h4>Step 1: Connect Wallets</h4>
-    <button class="btn" onclick="connectSolana()">Connect Solana (WIFR)</button>
+    <button class="btn" onclick="connectSolana()">Connect WIFR</button>
     <button class="btn outline" onclick="connectWayChain()">Connect WayChain</button>
     <div id="walletStatus" class="status"></div>
   </div>
 
   <div class="step">
     <h4>Step 2: Tier 1 — Pioneer Challenge</h4>
-    <input class="input" id="attestationHash" placeholder="Paste Solana burn attestation hash">
+    <input class="input" id="attestationHash" placeholder="Paste burn attestation hash">
     <button class="btn" onclick="verifyTier1()">Submit Tier 1 Proof</button>
     <div id="tier1Status" class="status"></div>
   </div>
