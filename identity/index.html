@@ -48,10 +48,18 @@
       <div class="tok"><h2>Governance</h2><span class="addr">0x0000…001D</span></div>
       <div class="row">
         <div class="stat"><div class="k">Your Credits</div><div class="v" id="gov-credits">—</div></div>
-      </div>
+      <div class="note">Proposals/votes are Dox_Dev-weighted (Direct / Quadratic / Futarchy). Write ops (createProposal, vote, finalize) require an unlocked wallet — you'll see a confirm modal before broadcasting.</div>
       <div class="gate">
         <input id="gov-pid" placeholder="proposal ID (32-byte hex)" style="width:360px">
         <button id="gov-get" onclick="loadProposal()">Get Proposal</button>
+        <button id="gov-vote" disabled onclick="voteProposal()">Vote (connect)</button>
+      </div>
+      <div class="gate" style="margin-top:8px">
+        <input id="gov-title" placeholder="proposal title (hashed on-chain)" style="width:300px">
+        <select id="gov-vtype" style="padding:7px;border-radius:8px;border:1px solid #ccc">
+          <option value="0">Direct</option><option value="1">Quadratic</option><option value="2">Futarchy</option>
+        </select>
+        <button id="gov-create" disabled onclick="createProposal()">Create Proposal (connect)</button>
       </div>
       <div class="row" id="gov-proposal" style="display:none">
         <div class="stat"><div class="k">Proposal Status</div><div class="v" id="gov-status">—</div></div>
@@ -129,25 +137,68 @@
       const a = window.waychainAccount; if (!a) return alert('Connect wallet first');
       const tid = document.getElementById('task-id').value.trim().replace(/^0x/, '');
       if (tid.length !== 64) return alert('Enter a 32-byte task ID');
-      try { await RPC.precompileCall('0x23', 'taskClaim', ABI.pad32(tid), { write: true }); }
-      catch (e) { alert('Web write not implemented yet (signer port pending): ' + e.message); }
+      try {
+        await window.WayChainWallet.unlock();
+        await RPC.precompileCall('0x23', 'taskClaim', ABI.pad32(tid), { write: true });
+        alert('Task claimed. Check the TaskRegistry on-chain.');
+      } catch (e) { alert('Claim failed: ' + e.message); }
     }
     async function verifyTask() {
       const a = window.waychainAccount; if (!a) return alert('Connect wallet first');
       const tid = document.getElementById('task-id').value.trim().replace(/^0x/, '');
       if (tid.length !== 64) return alert('Enter a 32-byte task ID');
-      const arg = ABI.pad32(tid) + ABI.encodeAddress(a.address);
-      try { await RPC.precompileCall('0x23', 'taskVerify', arg, { write: true }); }
-      catch (e) { alert('Web write not implemented yet (signer port pending): ' + e.message); }
+      const arg = ABI.pad32(tid) + ABI.rawAddress20(a.address);
+      try {
+        await window.WayChainWallet.unlock();
+        await RPC.precompileCall('0x23', 'taskVerify', arg, { write: true });
+        alert('Task verified. WAY earned by claimant.');
+      } catch (e) { alert('Verify failed: ' + e.message); }
+    }
+
+    // Governance write ops. Unlock ephemeral seed, then the registry write path signs + confirms.
+    async function govUnlockFirst() {
+      if (!window.waychainAccount) { alert('Connect wallet first'); return false; }
+      if (!window.WayChainWallet.isUnlocked()) {
+        try { await window.WayChainWallet.unlock(); } catch (e) { alert('Unlock failed: ' + e.message); return false; }
+      }
+      return true;
+    }
+    async function voteProposal() {
+      if (!(await govUnlockFirst())) return;
+      const pid = document.getElementById('gov-pid').value.trim().replace(/^0x/, '');
+      if (pid.length !== 64) return alert('Enter a 32-byte proposal ID');
+      const dir = prompt('Vote direction:\n1 = for\n0 = against', '1');
+      if (dir === null) return;
+      try {
+        const args = ABI.govVoteArgs({ proposalID: pid, voteDirection: Number(dir) || 0, credits: 1 });
+        const r = await RPC.precompileCall('0x1D', 'vote', args.replace(/^0x/, ''), { write: true });
+        alert('Vote submitted. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+      } catch (e) { alert('Vote failed: ' + e.message); }
+    }
+    async function createProposal() {
+      if (!(await govUnlockFirst())) return;
+      const title = document.getElementById('gov-title').value.trim();
+      if (!title) return alert('Enter a proposal title');
+      const vtype = Number(document.getElementById('gov-vtype').value) || 0;
+      try {
+        // title/desc hashed (sha256) — browser crypto.subtle available on https.
+        const toHash = async (s) => { const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join(''); };
+        const titleHash = await toHash(title);
+        const descHash = await toHash(title + ' — created via WayChain web wallet');
+        const args = ABI.govCreateProposalArgs({ voteType: vtype, titleHash, descHash, target: window.waychainAccount.address });
+        const r = await RPC.precompileCall('0x1D', 'createProposal', args.replace(/^0x/, ''), { write: true });
+        alert('Proposal created. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+      } catch (e) { alert('Create failed: ' + e.message); }
     }
 
     const origConnect = window.WayChainWallet && window.WayChainWallet.connect;
     if (origConnect) {
       window.WayChainWallet.connect = async function () {
         const acc = await origConnect.apply(this, arguments);
-        document.getElementById('task-claim').disabled = false;
-        document.getElementById('task-verify').disabled = false;
-        document.getElementById('task-claim').textContent = 'Claim Task';
+        ['task-claim', 'task-verify', 'gov-vote', 'gov-create'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) { el.disabled = false; el.textContent = el.textContent.replace(' (connect)', ''); }
+        });
         await readIdentity(acc.address);
         return acc;
       };
