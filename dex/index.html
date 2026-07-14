@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AirSwap — WayChain DEX</title>
+<title>WayChain DEX — AirSwap</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -106,19 +106,19 @@ a:hover{color:var(--comet)}
 <nav class="nav">
   <div class="nav-logo">
     <img src="/assets/waylogo.png" alt="WayChain" class="nav-logo-img">
-    <div class="nav-logo-text">AirSwap</div>
+    <div class="nav-logo-text">WayChain DEX</div>
   </div>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/wallet">Wallet</a>
     <a href="/locks">Locks</a>
     <a href="/journal">Binary Journal</a>
-    <a href="/bridge">Bridge</a>
+    <a href="/wifr/bridge">Bridge</a>
   </div>
 </nav>
 
 <div class="hero">
-  <h1>AirSwap</h1>
+  <h1>WayChain DEX</h1>
   <div class="tagline">WayChain DEX • 1-Second Settlement</div>
   <p>Trade with precision. Your swaps settle before the next heartbeat. No intermediaries, no waiting.</p>
 </div>
@@ -172,13 +172,12 @@ a:hover{color:var(--comet)}
 const RPC='https://api.waychain.org';
 
 function connectWallet(){
-  const w=localStorage.getItem('waychain_a');
-  if(w){
+  if(!window.WayChainWallet){window.location.href='/wallet';return;}
+  WayChainWallet.connect().then(acc=>{
     document.getElementById('wallet-display').style.display='inline';
-    document.getElementById('dex-wallet').textContent=w;
-  }else{
-    window.location.href='/wallet';
-  }
+    document.getElementById('dex-wallet').textContent=acc.address;
+  }).catch(()=>window.location.href='/wallet');
+}
 }
 
 function show(el,msg,type){
@@ -200,5 +199,11 @@ function buildLiq(){
   show(s,'Launching liquidity provision. Approve both tokens, then call addLiquidity via /wallet.','info');
 }
 </script>
+<!-- Real wallet + RPC (issue #10) -->
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+<script src="/js/precompiles.js"></script>
+<script src="/js/wallet.js"></script>
+<script src="/js/rpc.js"></script>
 </body>
 </html>

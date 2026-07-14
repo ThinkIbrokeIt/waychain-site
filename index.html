@@ -297,7 +297,8 @@ p{margin-bottom:12px}
       <div class="row"><div class="addr">0x0C</div><div class="name">OracleAggregator</div><div class="func">Price aggregation</div><div class="status">✅ Live</div></div>
       <div class="row"><div class="addr">0x0D</div><div class="name">OracleScheduler</div><div class="func">Oracle scheduling</div><div class="status">✅ Live</div></div>
       <div class="row"><div class="addr">0x20</div><div class="name">MRT Registry</div><div class="func">Mineral rights</div><div class="status">✅ Live</div></div>
-      <div class="row"><div class="addr">0x21-25</div><div class="name">StakingAPY</div><div class="func">Progressive staking</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x18</div><div class="name">2WAY Vault</div><div class="func">Stablecoin CDP / stability layer</div><div class="status">✅ Live</div></div>
+      <div class="row"><div class="addr">0x19</div><div class="name">2WAY Stability Pool</div><div class="func">LP rewards + liquidation absorption</div><div class="status">✅ Live</div></div>
       <div class="row"><div class="addr">0x12</div><div class="name">StateRent</div><div class="func">State rent</div><div class="status">🔧 Building</div></div>
     </div>
   </section>
@@ -417,6 +418,13 @@ wss://api.waychain.org/ws</pre></div>
 </div>
 </footer>
 
+<!-- Real Ed25519 wallet + RPC (issue #10). Replaces the fake connectWallet(). -->
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+<script src="/js/precompiles.js"></script>
+<script src="/js/wallet.js"></script>
+<script src="/js/rpc.js"></script>
+
 <script>
 const pages=['home','protocol','usecases','developers','about'];
 function showPage(id){pages.forEach(p=>{document.getElementById(p).classList.toggle('active',p===id);document.querySelector(`.nav-links a[data-page="${p}"]`)?.classList.toggle('active',p===id)});window.scrollTo(0,0)}
@@ -429,6 +437,7 @@ const FEATURES=[
   {name:"Binary Journal (BIJO)",status:"live",addr:"0x14",desc:"Immutable truth anchoring. Attest hashes on-chain. Permanent, censorship-resistant.",link:"/whitepaper/#architecture"},
   {name:"Dead Man's Switch",status:"live",addr:"0x15",desc:"Inheritance protocol. Set heirs, heartbeat periodically, release keys when heartbeat stops.",link:"/whitepaper/#overview"},
   {name:"Progressive Staking",status:"live",addr:"0x21-0x25",desc:"5-tier marginal APY: 15% / 8% / 4% / 2% / 1%. Anti-whale by design.",link:"/whitepaper/#philosophy"},
+  {name:"TaskRegistry",status:"live",addr:"0x23",desc:"Claimable WAY for verified professional work — geologists, lawyers, surveyors, engineers earn for oracle attestations and bug bounties.",link:"/docs/#0x23"},
 ];
 const grid=document.getElementById('featuresGrid');
 FEATURES.forEach(f=>{const c=document.createElement('div');c.className='chip';c.innerHTML=`<div class="chip-name">${f.name}</div><span class="chip-badge badge-${f.status}">${f.status==='live'?'Live':'Building'}</span>${f.addr!=='—'?`<div class="chip-addr">${f.addr}</div>`:''}`;c.onclick=()=>openModal(f);grid.appendChild(c)});
@@ -445,7 +454,19 @@ const UNITS={gold:'oz t',silver:'oz t',copper:'lb',lithium:'kg','rare-earth':'kg
 const EXTRACTION={gold:450,silver:35,copper:8,lithium:120,'rare-earth':200};
 async function updateCalc(){const m=document.getElementById('mineral').value;const vol=+document.getElementById('volume').value||0;const p=(+document.getElementById('purity').value||0)/100;const d=+document.getElementById('distance').value||0;const spot=PRICES[m];const u=(m==='gold'||m==='silver')?vol*32150.7*p:(m==='copper'?vol*p:vol*1000*p);const gross=u*spot;const fee=gross*0.005;const ex=vol*(EXTRACTION[m]||100);const tr=vol*d*0.15;const net=gross-fee-ex-tr;document.getElementById('spotPrice').textContent=`$${spot.toLocaleString()}/${UNITS[m]}`;document.getElementById('grossValue').textContent=`$${gross.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('fee').textContent=`-$${fee.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('extraction').textContent=`-$${ex.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('transport').textContent=`-$${tr.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('netUsd').textContent=`$${net.toLocaleString(undefined,{maximumFractionDigits:0})}`;document.getElementById('netWay').textContent=`${(net/0.05).toLocaleString(undefined,{maximumFractionDigits:0})} WAY`}
 function openDapp(){alert('Extinguishment dApp requires Dox_Dev Level 2 verification.')}
-function connectWallet(){const b=document.getElementById('walletBtn');b.textContent='Connecting...';setTimeout(()=>{b.textContent='0x7a3F...9e2D (L2) ✓';b.style.borderColor='var(--green)';b.style.color='var(--green)'},1200)}
+function connectWallet(){
+  if(!window.WayChainWallet){alert('Wallet module not loaded.');return;}
+  const btn=document.getElementById('walletBtn');
+  if(btn)btn.textContent='Connecting...';
+  WayChainWallet.connect('walletBtn').then(acc=>{
+    // real read against the live node
+    if(window.WayChainRPC){
+      WayChainRPC.getBalance(acc.address).then(b=>{
+        console.log('[waychain] connected',acc.address,'balance',b);
+      }).catch(e=>console.warn('[waychain] balance read failed',e.message));
+    }
+  }).catch(e=>{if(btn)btn.textContent='Connect';alert('Wallet error: '+e.message);});
+}
 updateCalc();
 </script>
 </body>
