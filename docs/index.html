@@ -150,7 +150,7 @@ tr:nth-child(even) { background: var(--bg2); }
   <p>Two ways to get WAY tokens:</p>
 
   <h3>Option A: CashApp Bitcoin Bridge</h3>
-  <p><small><em>Spec'd — operational infrastructure in development</em></small></p>
+  <p><small><em>Precompile live (BitcoinRegistry 0x16). Consumer UX in development.</em></small></p>
   <ol>
     <li>Send $1 BTC to the WayChain treasury address (shown on <a href="/badge">Dox_Dev Badge</a> page)</li>
     <li>Your TXID proves the send (6+ confirmations on Bitcoin)</li>
@@ -169,19 +169,20 @@ tr:nth-child(even) { background: var(--bg2); }
   </ol>
 
   <h3>Option C: Send Bitcoin, Receive 1WAY Stablecoin</h3>
-  <p><small><em>Spec'd — Coming soon. Precompile 0x22 is live in code.</em></small></p>
-  <p>Send real BTC and receive 1WAY — the Bitcoin-backed stablecoin — at 1:1 peg. The oracle layer is chain-agnostic: supported source chains can emit a receipt or event, and WayChain can verify it through attestation before a claim is accepted.</p>
+  <p><small><em>Precompile live (WayStablecoin 1WAY 0x22). Consumer UX in development.</em></small></p>
+  <p>Send real BTC and receive <strong>1WAY — the Bitcoin-backed stablecoin</strong> — at 1:1 peg. 1WAY is minted by the <strong>1WAY precompile (0x22)</strong> itself when BTC is deposited and attested (BTC locked → 1WAY minted). It is <em>not</em> minted by the BitcoinRegistry (0x16, which only maps BTC addresses to WayChain addresses) and <em>not</em> by the Vault. The Vault (TwoWayVault 0x18) is a separate CDP engine that mints <strong>2WAY</strong> against deposited stablecoins. The oracle
   <ol>
     <li>Send BTC to the 1WAY bridge address (details on <a href="/badge">badge page</a>)</li>
     <li>Wait for 6+ confirmations (~1 hour on Bitcoin)</li>
-    <li>1WAY credits automatically to your WayChain address</li>
+    <li>1WAY credits to your WayChain address via the 1WAY precompile (0x22)</li>
     <li>Use 1WAY anywhere on WayChain — swap, send, hold</li>
   </ol>
-  <p style="color:var(--copper);font-size:0.9em">1WAY = Bitcoin on WayChain. Fully backed 1:1. Send 1WAY, get BTC back.</p>
+  <p style="color:var(--copper);font-size:0.9em">1WAY = Bitcoin on WayChain. Fully backed 1:1 (BTC locked → 1WAY minted at 0x22). Vault (0x18) mints 2WAY, not 1WAY.</p>
 
   <div class="terminal">
 <span class="prompt">Balance check:</span> curl -X POST https://api.waychain.org \
-  -d '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xYourAddress","latest"],"id":1}'
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"way_getBalance","params":["0xYourAddress"],"id":1}'
   </div>
 
   <h2>Step 3: Send Your First Transaction</h2>
@@ -192,15 +193,12 @@ tr:nth-child(even) { background: var(--bg2); }
   -H "Content-Type: application/json" \
   -d '{
     "jsonrpc":"2.0",
-    "method":"eth_sendTransaction",
-    "params":[{
-      "from":"0xYourAddress",
-      "to":"0xRecipientAddress",
-      "value":"0x1000"
-    }],
+    "method":"eth_sendRawTransaction",
+    "params":["0x<binary-signed-tx>"],
     "id":1
   }'
   </div>
+  <p><small><em>WayChain uses Ed25519-signed binary transactions submitted via <code>eth_sendRawTransaction</code> — there is no <code>eth_sendTransaction</code> (account-unlocking) RPC. Build and sign the tx client-side (see <a href="/wallet">web wallet</a> / mobile wallet), then broadcast the raw bytes.</em></small></p>
 
   <p><strong>What happened:</strong></p>
   <ul>
@@ -286,7 +284,7 @@ wss://api.waychain.org/ws</code></pre></div>
     <tr><td><code>0x13</code></td><td>DoxDevBadge</td><td>Identity badge system</td><td>✅ Live</td></tr>
     <tr><td><code>0x14</code></td><td>BinaryJournal (BIJO)</td><td>Truth anchoring</td><td>✅ Live</td></tr>
     <tr><td><code>0x15</code></td><td>DeadMansSwitch</td><td>Inheritance protocol</td><td>✅ Live</td></tr>
-    <tr><td><code>0x16</code></td><td>BitcoinRegistry</td><td>BTC address ↔ WayChain mapping</td><td>✅ Live</td></tr>
+    <tr><td><code>0x16</code></td><td>BitcoinRegistry</td><td>BTC address ↔ WayChain mapping (bridge registry)</td><td>✅ Live</td></tr>
     <tr><td><code>0x17</code></td><td>StorageEndowment</td><td>Perpetual storage funding</td><td>✅ Live</td></tr>
     <tr><td><code>0x18</code></td><td>TwoWayVault</td><td>Multi-collateral CDP vault</td><td>✅ Live</td></tr>
     <tr><td><code>0x19</code></td><td>StabilityPool</td><td>Protocol economics</td><td>✅ Live</td></tr>
@@ -298,12 +296,21 @@ wss://api.waychain.org/ws</code></pre></div>
     <tr><td><code>0x1F</code></td><td>CrossChain</td><td>External attestations</td><td>✅ Live</td></tr>
     <tr><td><code>0x20</code></td><td>MRT Registry</td><td>Mineral rights</td><td>✅ Live</td></tr>
     <tr><td><code>0x21</code></td><td>WIFRGantletRewards</td><td>WIFR gauntlet reward distribution</td><td>✅ Live</td></tr>
-    <tr><td><strong><code>0x22</code></strong></td><td><strong>WayStablecoin (1WAY)</strong></td><td><strong>BTC-backed stablecoin</strong><br><small>1:1 peg via 3-of-5 multisig</small></td><td><strong>✅ Live</strong></td></tr>
+    <tr><td><strong><code>0x22</code></strong></td><td><strong>WayStablecoin (1WAY)</strong></td><td><strong>BTC-backed stablecoin</strong><br><small>BTC locked → 1WAY minted (1:1)</small></td><td><strong>✅ Live</strong></td></tr>
     <tr><td><strong><code>0x23</code></strong></td><td><strong>TaskRegistry</strong></td><td><strong>Professional oracle tasks</strong><br><small>Bounties for geologists, lawyers, surveyors, engineers</small></td><td><strong>✅ Live</strong></td></tr>
-    <tr><td><strong><code>0x24</code></strong></td><td><strong>SWAY Token</strong></td><td><strong>DEX LP incentive</strong><br><small>Minted on 1WAY + swaps</small></td><td><strong>✅ Live</strong></td></tr>
+    <tr><td><strong><code>0x24</code></strong></td><td><strong>SWAY Token</strong></td><td><strong>DEX LP incentive</strong><br><small>Minted by 2WAY Vault (0x18) / TaskRegistry (0x23) rewards</small></td><td><strong>✅ Live</strong></td></tr>
     <tr><td><strong><code>0x25</code></strong></td><td><strong>SwapRoute (DEX)</strong></td><td><strong>Native DEX</strong><br><small>0.3% fee, SWAY rewards to LPs</small></td><td><strong>✅ Live</strong></td></tr>
     <tr><td><strong><code>0x26</code></strong></td><td><strong>TemplateRegistry</strong></td><td><strong>Safe contract templates</strong><br><small>Class A deployment for Level 2+</small></td><td><strong>✅ Live</strong></td></tr>
   </table>
+
+  <h2>Web Connection Layer (Live)</h2>
+  <p>The frontend talks to mainnet through a single <strong>shared precompile registry</strong> — one source of truth for all 27 precompiles (0x0C–0x26) and all 128 methods (54 read / 74 write), verified against the Go source on the node. Both the web and mobile wallets use it.</p>
+  <ul>
+    <li><strong>Real Ed25519 auth</strong> — the web wallet derives a 20-byte address (<code>hex(pubkey)[0:40]</code>) matching the chain's canonical format. No fake/placeholder addresses.</li>
+    <li><strong>Live reads</strong> — <code>precompileCall</code> dispatches <code>eth_call</code> to the correct precompile + selector + ABI-encoded args. Proven working against mainnet (e.g. Dox_Dev returns 3 badges on-chain).</li>
+    <li><strong>Write path</strong> — web writes are currently <em>gated</em> (the web transaction signer is still being ported). Mobile already signs and broadcasts; web shows clear “not implemented” rather than a broken send.</li>
+  </ul>
+  <p>Prebuilt UI sections (all reading live chain state): <a href="/tokens">/tokens</a> (BIJO · 1WAY · SWAY · SwapRoute), <a href="/identity">/identity</a> (Dox_Dev · Governance · TaskRegistry), <a href="/defi">/defi</a> (TwoWayVault · StabilityPool · TrustlessLock · AccountRecovery), <a href="/realworld">/realworld</a> (MineralRights · BitcoinRegistry · DeadMansSwitch), <a href="/protocol">/protocol</a> (oracles · privacy · cross-chain · template registry).</p>
 
   <h2>Dox_Dev Identity Requirements</h2>
   <ul>
