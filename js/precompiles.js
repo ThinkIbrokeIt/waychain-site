@@ -245,9 +245,12 @@ export const PRECOMPILES = {
   '0x21': {
     name: 'WIFRGantletRewards',
     file: 'evm/precompiles.go',
-    noSelector: true,
-    methods: [{ name: 'claimReward', sig: 'claimReward() — raw input layout', kind: 'write' }],
-  },
+    methods: [
+      { name: 'initialize', sel: 'cf705883', sig: 'initialize()', kind: 'write' },
+      { name: 'getRemainingRewards', sel: '63760e3d', sig: 'getRemainingRewards(uint64)', kind: 'read', args: ['poolId'] },
+      { name: 'getTotalRemaining', sel: '100678aa', sig: 'getTotalRemaining()', kind: 'read' },
+      { name: 'claimPioneer', sel: '8aa238fa', sig: 'claimPioneer(address)', kind: 'write', args: ['pioneer'] },
+    ],  },
   '0x22': {
     name: 'WayStablecoin',
     file: 'evm/way_stablecoin.go',
