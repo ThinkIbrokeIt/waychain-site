@@ -199,8 +199,8 @@ export const PRECOMPILES = {
     methods: [
       { name: 'createProposal', sel: 'd1e2f3a4', sig: 'createProposal()', kind: 'write' },
       { name: 'vote', sel: 'e2f3a4b5', sig: 'vote()', kind: 'write' },
-      { name: 'getProposal', sel: 'f3a4b5c6', sig: 'getProposal()', kind: 'read' },
-      { name: 'getVote', sel: 'a4b5c6d7', sig: 'getVote()', kind: 'read' },
+      { name: 'getProposal', sel: 'f3a4b5c6', sig: 'getProposal(bytes32)', kind: 'read', args: ['proposalID'] },
+      { name: 'getVote', sel: 'a4b5c6d7', sig: 'getVote(bytes32)', kind: 'read', args: ['proposalID'] },
       { name: 'getCredits', sel: 'b5c6d7e8', sig: 'getCredits()', kind: 'read' },
       { name: 'finalize', sel: 'c6d7e8f9', sig: 'finalize()', kind: 'write' },
       { name: 'createMarket', sel: 'd7e8f9a0', sig: 'createMarket()', kind: 'write' },
