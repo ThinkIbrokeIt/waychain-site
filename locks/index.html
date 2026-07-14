@@ -219,9 +219,11 @@ a:hover{color:var(--warm)}
 const RPC='https://api.waychain.org',LOCK_ADDR='0x000000000000000000000000000000000000001A',USER_ADDR='waychain_user';
 
 function connectWallet(){
-  const w=localStorage.getItem(USER_ADDR);
-  if(w){document.getElementById('wallet-status').style.display='block';document.getElementById('lock-wallet-address').textContent=w}
-  else{window.location.href='/wallet'}
+  if(!window.WayChainWallet){window.location.href='/wallet';return;}
+  WayChainWallet.connect().then(acc=>{
+    document.getElementById('wallet-status').style.display='block';
+    document.getElementById('lock-wallet-address').textContent=acc.address;
+  }).catch(()=>window.location.href='/wallet');
 }
 
 const SEL={createTimeLock:'0xa1b2c3d4',createVestingLock:'0xb2c3d4e5',createMultiSigLock:'0xc3d4e5f6',getLock:'0xd4e5f6a7',releasableAmount:'0xe5f6a7b8',release:'0xf6a7b8c9',extend:'0xa7b8c9d0',claimRewards:'0xb8c9d0e1'};
@@ -279,5 +281,11 @@ async function checkReleasable(){
   }catch(e){show(s,'Error: '+e.message,'bad')}
 }
 </script>
+<!-- Real wallet + RPC (issue #10) -->
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+<script src="/js/precompiles.js"></script>
+<script src="/js/wallet.js"></script>
+<script src="/js/rpc.js"></script>
 </body>
 </html>

@@ -170,7 +170,7 @@ tr:nth-child(even) { background: var(--bg2); }
 
   <h3>Option C: Send Bitcoin, Receive 1WAY Stablecoin</h3>
   <p><small><em>Precompile live (WayStablecoin 1WAY 0x22). Consumer UX in development.</em></small></p>
-  <p>Send real BTC and receive <strong>1WAY — the Bitcoin-backed stablecoin</strong> — at 1:1 peg. 1WAY is minted by the <strong>1WAY precompile (0x22)</strong> itself when BTC is deposited and attested (BTC locked → 1WAY minted). It is <em>not</em> minted by the BitcoinRegistry (0x16, which only maps BTC addresses to WayChain addresses) and <em>not</em> by the Vault. The Vault (TwoWayVault 0x18) is a separate CDP engine that mints <strong>2WAY</strong> against deposited stablecoins. The oracle layer is chain-agnostic: supported source chains can emit a receipt or event, and WayChain can verify it through attestation before a claim is accepted.</p>
+  <p>Send real BTC and receive <strong>1WAY — the Bitcoin-backed stablecoin</strong> — at 1:1 peg. 1WAY is minted by the <strong>1WAY precompile (0x22)</strong> itself when BTC is deposited and attested (BTC locked → 1WAY minted). It is <em>not</em> minted by the BitcoinRegistry (0x16, which only maps BTC addresses to WayChain addresses) and <em>not</em> by the Vault. The Vault (TwoWayVault 0x18) is a separate CDP engine that mints <strong>2WAY</strong> against deposited stablecoins. The oracle
   <ol>
     <li>Send BTC to the 1WAY bridge address (details on <a href="/badge">badge page</a>)</li>
     <li>Wait for 6+ confirmations (~1 hour on Bitcoin)</li>
