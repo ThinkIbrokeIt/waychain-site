@@ -430,6 +430,7 @@ const FEATURES=[
   {name:"Binary Journal (BIJO)",status:"live",addr:"0x14",desc:"Immutable truth anchoring. Attest hashes on-chain. Permanent, censorship-resistant.",link:"/whitepaper/#architecture"},
   {name:"Dead Man's Switch",status:"live",addr:"0x15",desc:"Inheritance protocol. Set heirs, heartbeat periodically, release keys when heartbeat stops.",link:"/whitepaper/#overview"},
   {name:"Progressive Staking",status:"live",addr:"0x21-0x25",desc:"5-tier marginal APY: 15% / 8% / 4% / 2% / 1%. Anti-whale by design.",link:"/whitepaper/#philosophy"},
+  {name:"TaskRegistry",status:"live",addr:"0x23",desc:"Claimable WAY for verified professional work — geologists, lawyers, surveyors, engineers earn for oracle attestations and bug bounties.",link:"/docs/#0x23"},
 ];
 const grid=document.getElementById('featuresGrid');
 FEATURES.forEach(f=>{const c=document.createElement('div');c.className='chip';c.innerHTML=`<div class="chip-name">${f.name}</div><span class="chip-badge badge-${f.status}">${f.status==='live'?'Live':'Building'}</span>${f.addr!=='—'?`<div class="chip-addr">${f.addr}</div>`:''}`;c.onclick=()=>openModal(f);grid.appendChild(c)});
