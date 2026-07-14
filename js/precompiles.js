@@ -147,7 +147,9 @@ export const PRECOMPILES = {
     methods: [
       { name: 'deposit', sel: '4e26609a', sig: 'deposit(uint256)', kind: 'write' },
       { name: 'withdraw', sel: '2e1a7ddd', sig: 'withdraw(uint256)', kind: 'write' },
-      { name: 'claimRewards', sel: '6b6f4360', sig: 'claimRewards()', kind: 'read' },
+      { name: 'claimRewards', sel: '6b6f4360', sig: 'claimRewards()', kind: 'write' },
+      { name: 'getUserDeposit', sel: '3c5f5f80', sig: 'getUserDeposit(address)', kind: 'read', args: ['account'] },
+      { name: 'getPoolStats', sel: '8c5f41d0', sig: 'getPoolStats()', kind: 'read' },
     ],
   },
   '0x1A': {
