@@ -337,6 +337,7 @@ p{margin-bottom:12px}
       <div class="calc-row total"><span class="lbl">Net Payout (WAY)</span><span class="val" id="netWay">—</span></div>
     </div>
     <div class="cta-row"><button class="btn-copper" onclick="openDapp()">Request Extinguishment</button><button class="btn-outline" id="walletBtn" onclick="connectWallet()">Connect Dox_Dev L2</button></div>
+    <div id="wallet-widget" style="margin-top:14px"></div>
   </div>
   <section class="section">
     <h2 style="font-size:1.4em">More Use Cases</h2>
@@ -424,6 +425,16 @@ wss://api.waychain.org/ws</pre></div>
 <script src="/js/precompiles.js"></script>
 <script src="/js/wallet.js"></script>
 <script src="/js/rpc.js"></script>
+<script src="/js/wallet-ui.js"></script>
+
+<style>
+.wc-card{background:rgba(0,0,0,0.03);border:1px solid var(--border);border-radius:12px;padding:14px 16px;max-width:420px}
+.wc-row{display:flex;justify-content:space-between;align-items:center}
+.wc-label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.wc-btn{background:var(--copper);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer}
+.wc-addr{font-family:monospace;font-size:12px;color:var(--fg);margin-top:8px;word-break:break-all}
+.wc-bal{font-size:20px;font-weight:600;color:var(--copper);margin-top:4px}
+</style>
 
 <script>
 const pages=['home','protocol','usecases','developers','about'];
