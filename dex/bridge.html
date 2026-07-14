@@ -179,13 +179,12 @@ a:hover{color:var(--comet)}
 
 <script>
 function connectWallet(){
-  const w=localStorage.getItem('waychain_a');
-  if(w){
+  if(!window.WayChainWallet){window.location.href='/wallet';return;}
+  WayChainWallet.connect().then(acc=>{
     document.getElementById('wallet-display').style.display='inline';
-    document.getElementById('bridge-wallet').textContent=w;
-  }else{
-    window.location.href='/wallet';
-  }
+    document.getElementById('bridge-wallet').textContent=acc.address;
+  }).catch(()=>window.location.href='/wallet');
+}
 }
 function show(el,msg,type){
   el.className='status show '+type;
@@ -205,5 +204,11 @@ function claimAll(){
 }
 document.addEventListener('DOMContentLoaded',connectWallet);
 </script>
+<!-- Real wallet + RPC (issue #10) -->
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+<script src="/js/precompiles.js"></script>
+<script src="/js/wallet.js"></script>
+<script src="/js/rpc.js"></script>
 </body>
 </html>
