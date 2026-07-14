@@ -49,7 +49,7 @@
       const to = '0x' + '0'.repeat(24) + addr1.replace(/^0x/, '').toLowerCase();
       const data = global.WayChainPrecompiles.encodeCall(addr1, method, argsHex);
       if (m.kind === 'read' && !opts.write) {
-        return call('eth_call', [{ to, data }, 'latest']);
+        return call('eth_call', [{ to, data }]);
       }
       throw new Error('Web write path not implemented yet (needs tx.js signer port). Tracked in #11/#12.');
     },
