@@ -1,5 +1,5 @@
 // WayChain web RPC — real node connection (issue #10/#11, child of #8).
-// Depends on js/precompiles.js (registry) + js/wallet.js (auth), loaded first.
+// Depends on js/precompiles.js (registry) + js/wallet.js (auth) + js/tx.js (signer).
 (function (global) {
   'use strict';
   const RPC = global.WayChainWallet ? global.WayChainWallet.RPC_URL : 'https://api.waychain.org';
@@ -20,7 +20,22 @@
   };
   const api = {
     call,
-    getBalance: (address) => call('way_getBalance', [address]),
+    // Balance / nonce MUST use the 64-hex pubkey (node keys EOA accounts by full
+    // pubkey; the 20-byte display address returns 0x0). If a 20-byte display address
+    // is passed and it matches the connected account, resolve to its 64-hex pubkey.
+    getBalance: async (addr) => {
+      const a = (addr || '').replace(/^0x/, '');
+      let lookup = a;
+      if (a.length === 40) {
+        const acc = global.waychainAccount || (global.WayChainWallet && global.WayChainWallet.load && global.WayChainWallet.load());
+        if (acc && (acc.address || '').replace(/^0x/, '') === a && acc.publicKey) lookup = acc.publicKey.replace(/^0x/, '');
+      }
+      return call('way_getBalance', ['0x' + lookup]);
+    },
+    getNonce: async (pub64Hex) => {
+      const r = await call('eth_getTransactionCount', [pub64Hex]);
+      return typeof r === 'string' ? (parseInt(r, 16) || 0) : 0;
+    },
     getBlockCount: () => call('way_getBlockCount', []),
     getGovernanceProposals: async () => { const r = await call('way_govProposals', []); return Array.isArray(r) ? r : []; },
     getTwoWayStats: async () => {
@@ -36,8 +51,7 @@
 
     // ── Per-precompile call layer (issue #11) ──
     // READ for all 27 precompiles via eth_call + the shared registry.
-    // WRITE from web requires a tx-signing pipeline (port of mobile tx.js) —
-    // NOT yet available on web; throws a clear error so the gap is visible.
+    // WRITE requires the unlocked wallet (ephemeral seed) + tx.js signer.
     precompileCall: async (addr1, method, argsHex = '', opts = {}) => {
       const reg = (global.WayChainPrecompiles && global.WayChainPrecompiles.PRECOMPILES) || null;
       if (!reg) throw new Error('precompile registry not loaded');
@@ -45,13 +59,17 @@
       if (!pc) throw new Error(`Unknown precompile ${addr1}`);
       const m = pc.methods.find((x) => x.name === method);
       if (!m) throw new Error(`Unknown method ${method} on ${pc.name}`);
-      // address = 0x0..0 + 2-hex index (matches chain precompile address form)
       const to = '0x' + '0'.repeat(24) + addr1.replace(/^0x/, '').toLowerCase();
       const data = global.WayChainPrecompiles.encodeCall(addr1, method, argsHex);
       if (m.kind === 'read' && !opts.write) {
         return call('eth_call', [{ to, data }]);
       }
-      throw new Error('Web write path not implemented yet (needs tx.js signer port). Tracked in #11/#12.');
+      // WRITE path — only when wallet is unlocked (ephemeral seed in memory).
+      if (!global.WayChainWallet || !global.WayChainWallet.isUnlocked || !global.WayChainWallet.isUnlocked()) {
+        throw new Error('Wallet locked. Unlock the wallet to sign this transaction.');
+      }
+      // The precompile address on the wire is the to-field; data carries selector+args.
+      return global.WayChainWallet.sendTx({ to, valueWei: opts.valueWei || 0, data, gasLimit: opts.gasLimit || 21000 });
     },
   };
   global.WayChainRPC = api;
