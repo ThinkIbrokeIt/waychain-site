@@ -329,3 +329,12 @@ export const encodeCall = (addr1, methodName, argsHex = '') => {
 };
 
 export default PRECOMPILES;
+
+// ── Browser global shim (web pages load this as a classic <script>, not a module) ──
+// Exposes window.WayChainPrecompiles = { PRECOMPILES, precompileAddress, encodeCall }
+// so js/rpc.js + js/wallet.js can use the registry without a bundler.
+// (Mobile imports this file as ESM; this tail is harmless there — `window` exists.)
+if (typeof window !== 'undefined') {
+  window.WayChainPrecompiles = { PRECOMPILES, precompileAddress, encodeCall };
+}
+
