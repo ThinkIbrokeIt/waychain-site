@@ -46,4 +46,4 @@ Badges are **non-transferable**, **non-replicable**, and **tied to verified huma
 
 **Resume portability**: Validate any address across projects. Lost credentials? Permanent address migration available.
 
-This badge system integrates with all 21 precompiles (0x0C-0x20), including Trustless Lock, Binary Journal, and 1WAY stablecoin.
+This badge system integrates with all 27 precompiles (0x0C–0x26), including Trustless Lock, Binary Journal, 1WAY stablecoin, TaskRegistry, SWAY, SwapRoute, and TemplateRegistry.

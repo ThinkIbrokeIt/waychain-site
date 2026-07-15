@@ -250,7 +250,7 @@ waychain rpc call eth_getBalance 0xYourAddress latest</code></pre></div>
 
   <table>
     <tr><th>Feature</th><th>WayChain</th><th>Standard EVM</th></tr>
-    <tr><td>Hash function</td><td>SHA256 / Keccak-256 via 0x21</td><td>keccak256</td></tr>
+    <tr><td>Hash function</td><td>SHA256 everywhere (selectors too). 0x21 is WIFRGantletRewards — not Keccak</td><td>keccak256</td></tr>
     <tr><td>Signatures</td><td>Ed25519</td><td>ECDSA (secp256k1)</td></tr>
     <tr><td>Tx format</td><td>Binary (not RLP)</td><td>RLP-encoded</td></tr>
     <tr><td>Fees</td><td>Gas-based (min 1 wei/gas) / fixed costs for specific ops</td><td>Auction-based</td></tr>
