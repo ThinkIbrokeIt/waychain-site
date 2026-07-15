@@ -43,7 +43,8 @@
         const acc = await global.WayChainWallet.connect();
         el('wc-addr').textContent = acc.address;
         btn.textContent = 'Connected';
-        await renderBalance(acc.address);
+        // way_getBalance requires the FULL 64-hex pubkey (20-byte display addr returns 0x0).
+        await renderBalance(acc.publicKey);
       } catch (e) {
         btn.textContent = 'Connect';
         alert('Wallet error: ' + e.message);

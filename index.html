@@ -511,7 +511,7 @@ function connectWallet(){
   WayChainWallet.connect('walletBtn').then(acc=>{
     // real read against the live node
     if(window.WayChainRPC){
-      WayChainRPC.getBalance(acc.address).then(b=>{
+      WayChainRPC.getBalance(acc.publicKey).then(b=>{
         console.log('[waychain] connected',acc.address,'balance',b);
       }).catch(e=>console.warn('[waychain] balance read failed',e.message));
     }

@@ -739,7 +739,7 @@
       const prev = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = '⏳ …'; }
       try {
-        const bH = await rpc('eth_getBalance', [w.address, 'latest']);
+        const bH = await rpc('way_getBalance', [w.publicKey]);
         document.getElementById('ba').innerHTML = w2W(BigInt(bH)) + ' <small>WAY</small>';
         setStatus('balance-status', '✅ Balance updated', 'ok');
       } catch (e) {
