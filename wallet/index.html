@@ -8,7 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --warm: #FFF8F0;
@@ -26,100 +26,80 @@
       --warning: #d29922;
       --error: #f85149;
       --info: #58a6ff;
+      --radius: 18px;
+      --radius-sm: 12px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--slate);
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(184,115,51,0.18), transparent 60%),
+        var(--slate);
       color: var(--fg);
-      line-height: 1.7;
+      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 20px;
+      padding: 20px 16px 48px;
     }
     #app {
-      max-width: 520px;
+      max-width: 480px;
       width: 100%;
       background: var(--slate2);
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
       overflow: hidden;
       border: 1px solid var(--border);
     }
+    /* Header */
     header {
-      background: url('/assets/waychain-hero.jpg') center/cover no-repeat;
-      position: relative;
-      padding: 24px;
+      background:
+        radial-gradient(600px 240px at 50% 0%, rgba(255,191,0,0.16), transparent 70%),
+        linear-gradient(180deg, #242018, var(--slate2));
+      padding: 26px 22px 22px;
       text-align: center;
-      color: var(--warm);
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.4);
-    }
-    header > * {
       position: relative;
-      z-index: 1;
     }
-    header img {
-      height: 48px;
-      width: auto;
-      display: block;
-      margin: 0 auto 12px;
+    .brandmark {
+      width: 56px; height: 56px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 35%, var(--amber), var(--copper));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 26px; color: #2A2A2A;
+      box-shadow: 0 6px 18px rgba(184,115,51,0.4);
     }
     header h1 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.8em;
+      font-size: 1.5em;
       color: var(--warm);
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
     header p {
-      font-size: 0.95em;
-      color: var(--warm);
-      opacity: 0.9;
+      font-size: 0.85em;
+      color: var(--muted);
+      margin-top: 4px;
     }
-    .section {
-      padding: 24px;
-      border-bottom: 1px solid var(--border);
-    }
+    .section { padding: 20px 22px; border-bottom: 1px solid var(--border); }
     .section:last-child { border-bottom: none; }
     .section h2 {
-      font-size: 1.25em;
-      color: var(--warm);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section h2 img {
-      height: 24px;
-      width: 24px;
+      font-size: 0.78em;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 600;
     }
     .card {
       background: var(--slate3);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
+      border-radius: var(--radius-sm);
+      padding: 18px;
       border: 1px solid var(--border);
     }
-    .card h3 {
-      font-size: 1.1em;
-      color: var(--copper);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .label {
-      font-size: 0.9em;
+    label, .label {
+      font-size: 0.82em;
       color: var(--muted);
       margin-bottom: 6px;
       display: block;
@@ -127,146 +107,200 @@
     }
     input {
       width: 100%;
-      padding: 12px 14px;
+      padding: 13px 14px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       background: var(--slate);
       color: var(--fg);
       font-size: 14px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.18s, box-shadow 0.18s;
     }
-    input:focus { border-color: var(--copper); }
+    input:focus { border-color: var(--copper); box-shadow: 0 0 0 3px rgba(184,115,51,0.18); }
     input:disabled { opacity: 0.5; cursor: not-allowed; }
     .btn {
-      display: inline-block;
-      padding: 10px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
+      transition: transform 0.12s ease, opacity 0.18s, background 0.18s;
       width: 100%;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      font-family: inherit;
     }
-    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-    .btn-primary { background: var(--copper); color: var(--warm); }
+    .btn:last-child { margin-bottom: 0; }
+    .btn:hover:not(:disabled) { opacity: 0.92; transform: translateY(-1px); }
+    .btn:active:not(:disabled) { transform: translateY(0); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-primary { background: linear-gradient(180deg, var(--copper), #9c5f28); color: var(--warm); }
     .btn-secondary { background: var(--slate); color: var(--fg); border: 1px solid var(--border); }
-    .btn-danger { background: var(--red); color: var(--warm); }
-    .btn-success { background: var(--green); color: var(--warm); }
-    .btn-outline { background: transparent; color: var(--copper); border: 1px solid var(--copper); }
-    .btn-group { display: flex; gap: 8px; }
-    .btn-group .btn { flex: 1; }
-    .addr {
-      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
-      font-size: 13px;
-      color: var(--info);
-      word-break: break-all;
-      background: var(--slate);
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      margin: 8px 0;
-      line-height: 1.5;
-    }
-    .bal {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--fg);
-      margin: 12px 0;
+    .btn-success { background: linear-gradient(180deg, #57b85f, #3f9c47); color: #fff; }
+    .btn-danger { background: linear-gradient(180deg, #e0584f, var(--red)); color: #fff; }
+    .btn-outline { background: transparent; color: var(--copper); border: 1px solid rgba(184,115,51,0.5); }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-group { display: flex; gap: 10px; }
+    .btn-group .btn { flex: 1; margin-bottom: 0; }
+    .btn-sm { padding: 9px 12px; font-size: 12.5px; border-radius: 10px; }
+
+    /* Balance hero */
+    .hero {
       text-align: center;
-      font-family: 'Playfair Display', Georgia, serif;
+      padding: 8px 4px 4px;
     }
+    .hero .bal {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4em;
+      font-weight: 700;
+      color: var(--warm);
+      letter-spacing: 0.3px;
+    }
+    .hero .bal small { font-size: 0.42em; color: var(--muted); font-family: 'Inter', sans-serif; font-weight: 500; margin-left: 6px; }
+    .hero .addr-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 12px;
+      padding: 7px 14px;
+      background: var(--slate);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: var(--info);
+      cursor: pointer;
+      transition: border-color 0.18s;
+    }
+    .hero .addr-pill:hover { border-color: var(--copper); }
+
+    .empty-cta { text-align: center; padding: 30px 10px 14px; }
+    .empty-cta .glyph {
+      width: 64px; height: 64px; margin: 0 auto 14px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(184,115,51,0.18), rgba(184,115,51,0.05));
+      border: 1px solid rgba(184,115,51,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+    }
+    .empty-cta h3 { color: var(--warm); font-size: 1.1em; margin-bottom: 6px; }
+    .empty-cta p { color: var(--muted); font-size: 0.85em; margin-bottom: 18px; }
+
+    /* Action grid (mirrors mobile wallet tiles) */
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+    .grid .tile {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+      padding: 18px 10px; border-radius: 14px;
+      background: var(--slate3); border: 1px solid var(--border);
+      color: var(--fg); font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: transform 0.12s, border-color 0.18s, background 0.18s;
+      font-family: inherit;
+    }
+    .grid .tile span { font-size: 13px; }
+    .grid .tile:hover:not(:disabled) { border-color: var(--copper); transform: translateY(-1px); }
+    .grid .tile:disabled { opacity: 0.45; cursor: not-allowed; }
+    .grid .tile-primary { background: linear-gradient(180deg, rgba(184,115,51,0.22), rgba(184,115,51,0.08)); border-color: rgba(184,115,51,0.5); color: var(--warm); }
+
+    .warn-banner {
+      background: rgba(229,57,53,0.12); border: 1px solid var(--red);
+      color: #FF8A80; border-radius: 12px; padding: 12px 14px;
+      font-size: 13px; font-weight: 500; text-align: center; cursor: pointer;
+      margin-bottom: 14px;
+    }
+
+    /* status / dot */
     .status {
-      padding: 10px 12px;
-      border-radius: 8px;
+      padding: 11px 13px;
+      border-radius: 10px;
       font-size: 13px;
       margin-top: 12px;
       word-break: break-all;
       line-height: 1.5;
       display: none;
     }
-    .status.ok { background: rgba(63, 185, 80, 0.15); border: 1px solid var(--success); color: var(--success); }
-    .status.error { background: rgba(248, 81, 73, 0.15); border: 1px solid var(--error); color: var(--error); }
-    .status.info { background: rgba(88, 166, 255, 0.15); border: 1px solid var(--info); color: var(--info); }
-    .status.warning { background: rgba(210, 153, 34, 0.15); border: 1px solid var(--warning); color: var(--warning); }
+    .status.ok { background: rgba(63,185,80,0.14); border: 1px solid var(--success); color: var(--success); }
+    .status.error { background: rgba(248,81,73,0.14); border: 1px solid var(--error); color: var(--error); }
+    .status.info { background: rgba(88,166,255,0.14); border: 1px solid var(--info); color: var(--info); }
+    .status.warning { background: rgba(210,153,34,0.14); border: 1px solid var(--warning); color: var(--warning); }
+
+    .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .dot.on { background: var(--success); box-shadow: 0 0 8px var(--success); }
+    .dot.off { background: var(--muted); }
+
+    .addr {
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px; color: var(--info);
+      word-break: break-all;
+      background: var(--slate);
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+    .secret {
+      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      font-size: 12.5px; color: var(--amber);
+      word-break: break-all;
+      background: var(--slate);
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(210,153,34,0.4);
+      margin: 8px 0;
+      line-height: 1.5;
+      display: none;
+    }
+    .row-actions { display: flex; gap: 10px; margin-top: 6px; }
+    .row-actions .btn { margin-bottom: 0; }
+
+    .tip {
+      background: rgba(184,115,51,0.10);
+      border-left: 3px solid var(--copper);
+      padding: 12px 15px;
+      margin: 14px 0;
+      border-radius: 0 10px 10px 0;
+      font-size: 13px;
+      color: var(--fg);
+      line-height: 1.55;
+    }
+    .tip strong { color: var(--amber); }
+
+    .collapse-head {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; user-select: none;
+      padding: 4px 0;
+    }
+    .collapse-head .chev { transition: transform 0.2s; color: var(--muted); }
+    .collapse-head.open .chev { transform: rotate(90deg); }
+    .collapse-body { display: none; margin-top: 12px; }
+    .collapse-body.open { display: block; }
+
     .tx-item {
       padding: 12px 0;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; gap: 10px;
     }
     .tx-item:last-child { border-bottom: none; }
-    .tx-hash {
-      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .tx-details {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .tx-hash { font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; color: var(--muted); }
+    .tx-details { display: flex; flex-direction: column; gap: 3px; text-align: right; }
     .tx-label { font-size: 11px; color: var(--muted); }
     .tx-value { font-weight: 600; color: var(--fg); }
-    .guide {
-      background: var(--slate3);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 16px 0;
-      border: 1px solid var(--border);
-    }
-    .guide h3 {
-      color: var(--copper);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .guide ol {
-      padding-left: 20px;
-    }
-    .guide li {
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-    .guide code {
-      background: var(--slate);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace;
-      font-size: 13px;
-    }
-    .tip {
-      background: rgba(184, 115, 51, 0.1);
-      border-left: 3px solid var(--copper);
-      padding: 12px 16px;
-      margin: 16px 0;
-      border-radius: 0 8px 8px 0;
-    }
-    .tip h4 {
-      color: var(--copper);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+
     .footer {
-      text-align: center;
-      padding: 24px;
-      color: var(--muted);
-      font-size: 0.9em;
+      text-align: center; padding: 20px 22px;
+      color: var(--muted); font-size: 0.8em;
       border-top: 1px solid var(--border);
     }
     .footer a { color: var(--copper); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
+    .hide { display: none !important; }
+    .mb { margin-bottom: 10px; }
     @media (max-width: 480px) {
-      #app { border-radius: 0; margin: 0; }
+      #app { border-radius: 0; }
+      body { padding: 0 0 40px; }
       .btn-group { flex-direction: column; }
     }
   </style>
@@ -274,132 +308,132 @@
 <body>
   <div id="app">
     <header>
-      <img src="/assets/waylogo.png" alt="WayChain">
+      <div class="brandmark">W</div>
       <h1>WayChain Wallet</h1>
-      <p>Self-custodial WayChain wallet — browser-local keys, your sovereignty</p>
+      <p>Self-custodial &middot; your keys, your chain</p>
     </header>
 
-    <!-- Getting Started Guide -->
-    <section class="section" id="getting-started">
-      <h2><img src="/assets/wayIconslantern.png" alt="Illuminate"> Getting Started</h2>
-      <div class="guide">
-        <h3><img src="/assets/wayIconslantern.png" alt="Illuminate" width="20" height="20"> For New Users</h3>
-        <ol>
-          <li><strong>Generate a new wallet:</strong> Click "Create New Wallet" below. This generates Ed25519 keys in your browser.</li>
-          <li><strong>Save your recovery phrase:</strong> Your 12-word phrase appears once. Write it down and store offline. Never share it.</li>
-          <li><strong>Security note:</strong> This wallet stores keys in browser storage on this device. Use a trusted device only. Do not keep large balances here.</li>
-          <li><strong>Your address:</strong> Your WayChain address (starting with 0x) receives tokens.</li>
-          <li><strong>Fund your wallet:</strong> Use the faucet button for test WAY.</li>
-        </ol>
-        <div class="tip">
-          <h4><img src="/assets/wayIconsanchor.png" alt="Immovable" width="20" height="20"> Important</h4>
-          <p>WayChain uses <strong>Ed25519 keys</strong>, and this browser wallet keeps a 12-word recovery phrase plus private key locally for convenience. Protect both carefully. If lost, funds are unrecoverable.</p>
+    <!-- EMPTY STATE -->
+    <section class="section" id="empty-state">
+      <div class="empty-cta">
+        <div class="glyph">🔑</div>
+        <h3>Welcome to your wallet</h3>
+        <p>Create a new wallet or import an existing one to get started.</p>
+        <button class="btn btn-primary" onclick="genWallet()">Create New Wallet</button>
+        <button class="btn btn-secondary" onclick="showImp()">Import Wallet</button>
+      </div>
+
+      <div id="imp" class="hide">
+        <div class="card" style="margin-top:16px;">
+          <label>Private Key (64 bytes / 128 hex)</label>
+          <input type="text" id="ik" placeholder="Paste your private key" autocomplete="off">
+          <button class="btn btn-success btn-sm" style="margin-top:12px;" onclick="impWallet()">Import with Private Key</button>
+          <div class="tip" style="margin-bottom:0;">Paste your private key exactly as saved. Leading <code>0x</code> is optional. Must be 64 bytes (128 hex chars).</div>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <label>Recovery Phrase (12 words)</label>
+          <input type="text" id="imn" placeholder="word1 word2 word3 ... word12" autocomplete="off">
+          <button class="btn btn-success btn-sm" style="margin-top:12px;" onclick="impMnemonic()">Restore with Phrase</button>
+          <div class="tip" style="margin-bottom:0;">Case-insensitive. Separate words with spaces.</div>
         </div>
       </div>
     </section>
 
-    <!-- Wallet Status -->
-    <section class="section">
-      <h2><img src="/assets/wayIconslantern.png" alt="Illuminate"> Wallet Status</h2>
-      <div class="card">
-        <div class="label">Wallet Status</div>
-        <div class="kind" style="display: flex; align-items: center; gap: 8px;">
-          <span class="dot" id="kd"></span>
-          <span id="ks">No wallet loaded</span>
-        </div>
-        <div id="wi" class="hide">
-          <div class="label">Your WayChain Address</div>
-          <div class="addr" id="ad"></div>
-          <button class="btn btn-outline" onclick="copyAddr()">📋 Copy Address</button>
-          <div class="label">Recovery Phrase (Keep Secret!)</div>
-          <div class="addr" id="mnemonic-display" style="font-family: monospace; font-size: 14px; word-break: break-all; color: var(--amber); display: none;"></div>
-          <button class="btn btn-outline" onclick="toggleMnemonic()" style="margin-top: 8px; font-size: 12px; padding: 6px 12px;">👁️ Show Recovery Phrase</button>
-          <div class="label">Private Key (hex)</div>
-          <div class="addr" id="pkd" style="font-family: monospace; font-size: 12px; word-break: break-all;"></div>
-          <button class="btn btn-outline" onclick="togglePk()" style="margin-top: 8px; font-size: 12px; padding: 6px 12px;">👁️ Show Private Key</button>
+    <!-- WALLET (loaded) — aligned with mobile wallet IA -->
+    <section class="section hide" id="wallet-state">
+      <!-- Backup warning (mirrors mobile "Not backed up" banner) -->
+      <div class="warn-banner hide" id="backup-warn" onclick="revealRecovery()">
+        ⚠️ Not backed up — tap to view your recovery phrase
+      </div>
+
+      <!-- Balance hero -->
+      <div class="hero">
+        <div class="hero-label">Total Balance</div>
+        <div class="bal" id="ba">— <small>WAY</small></div>
+        <div class="addr-pill" onclick="copyAddr()" id="addr-pill">
+          <span id="ad-short">0x…</span>
+          <span style="color:var(--muted);font-size:11px;">⧉ copy</span>
         </div>
       </div>
-    </section>
 
-    <!-- Balance & Faucet -->
-    <section class="section">
-      <h2><img src="/assets/wayIconsanchor.png" alt="Immovable"> Balance & Faucet</h2>
-      <div class="card">
-        <div class="bal" id="ba">— WAY</div>
-        <div class="btn-group">
-          <button class="btn btn-secondary" onclick="refreshBal()" id="rb" disabled>🔄 Refresh Balance</button>
-          <button class="btn btn-success" onclick="faucet()" id="fb" disabled>🚰 Get Test WAY</button>
-        </div>
-        <div id="balance-status" class="status"></div>
+      <div id="balance-status" class="status"></div>
+
+      <!-- Action grid (mirrors mobile WalletScreen grid) -->
+      <div class="grid">
+        <button class="tile" onclick="revealRecovery()">📥<span>Receive</span></button>
+        <button class="tile tile-primary" onclick="document.getElementById('send-card').scrollIntoView({behavior:'smooth'})">📤<span>Send</span></button>
+        <button class="tile" onclick="document.getElementById('txh').scrollIntoView({behavior:'smooth'})">🕘<span>History</span></button>
+        <button class="tile" onclick="faucet()" id="fb" disabled>🚰<span>Get Test WAY</span></button>
+        <button class="tile" onclick="document.getElementById('tokens-note').scrollIntoView({behavior:'smooth'})">🪙<span>Tokens</span></button>
+        <button class="tile" onclick="document.getElementById('identity-note').scrollIntoView({behavior:'smooth'})">🛡️<span>Identity</span></button>
+        <button class="tile" onclick="document.getElementById('locks-note').scrollIntoView({behavior:'smooth'})">🔒<span>Locks</span></button>
+        <button class="tile" onclick="document.getElementById('protocol-note').scrollIntoView({behavior:'smooth'})">⚙️<span>Protocol</span></button>
       </div>
-    </section>
 
-    <!-- Send WAY -->
-    <section class="section">
-      <h2><img src="/assets/wayIconscompass.png" alt="For All"> Send WAY</h2>
-      <div class="card">
-        <div class="label">To Address</div>
-        <input type="text" id="to" placeholder="0x..." autocomplete="off">
-        <div class="label">Amount (WAY)</div>
+      <!-- Send (inline, below grid like mobile's Send screen) -->
+      <div class="card" id="send-card" style="margin-top:16px;">
+        <h2 style="margin-bottom:14px;">Send WAY</h2>
+        <label>To Address</label>
+        <input type="text" id="to" placeholder="0x…" autocomplete="off">
+        <label style="margin-top:12px;">Amount (WAY)</label>
         <input type="text" id="amt" placeholder="e.g. 0.01" autocomplete="off">
-        <div class="label">Gas Price (gwei)</div>
-        <input type="text" id="gp" placeholder="1000" value="1000">
-        <div class="btn-group">
-          <button class="btn btn-primary" onclick="sendTx()" id="sb" disabled>📤 Send Transaction</button>
-        </div>
+        <label style="margin-top:12px;">Gas Price (gwei)</label>
+        <input type="text" id="gp" value="1000">
+        <button class="btn btn-primary" id="sb" onclick="sendTx()" disabled style="margin-top:14px;">Send Transaction</button>
         <div id="tx-status" class="status"></div>
       </div>
-    </section>
 
-    <!-- Transaction History -->
-    <section class="section">
-      <h2><img src="/assets/wayIconsstar.png" alt="Tended"> Transaction History</h2>
-      <div class="card" id="txh">
-        <div style="text-align: center; color: var(--muted); font-style: italic; padding: 24px;">
-          No transactions yet.
+      <!-- Recent activity -->
+      <div class="card" style="margin-top:12px;">
+        <h2 style="margin-bottom:8px;">Recent Activity</h2>
+        <div id="txh">
+          <div style="text-align:center;color:var(--muted);font-style:italic;padding:18px 0;">No transactions yet.</div>
         </div>
       </div>
-    </section>
 
-    <!-- Wallet Management -->
-    <section class="section">
-      <h2><img src="/assets/wayIconswheel.png" alt="Navigate"> Wallet Management</h2>
-      <div class="card">
-        <div class="btn-group" style="margin-bottom: 16px;">
-          <button class="btn btn-primary" id="gb" onclick="genWallet()">🆕 Create New Wallet</button>
-          <button class="btn btn-secondary" id="ib" onclick="showImp()">📂 Import Wallet</button>
+      <!-- Linked precompile info tiles (mirror mobile grid destinations) -->
+      <div class="card" id="tokens-note" style="margin-top:12px;">
+        <h2 style="margin-bottom:8px;">Tokens</h2>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">Manage BIJO, 1WAY, SWAY and other WayChain assets. Token balances and transfers live on-chain via the precompiles.</p>
+      </div>
+      <div class="card" id="identity-note" style="margin-top:12px;">
+        <h2 style="margin-bottom:8px;">Identity</h2>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">View your Dox_Dev badge level and verification status. Curator-gated issuance keeps the network trustworthy.</p>
+      </div>
+      <div class="card" id="locks-note" style="margin-top:12px;">
+        <h2 style="margin-bottom:8px;">Locks</h2>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">TrustlessLock (0x1A) anti-rug liquidity locks. Release and extend locked positions directly.</p>
+      </div>
+      <div class="card" id="protocol-note" style="margin-top:12px;">
+        <h2 style="margin-bottom:8px;">Protocol</h2>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">Advanced precompiles (0x0C–0x12, 0x17, 0x1C, 0x1F) and network parameters. For power users.</p>
+      </div>
+
+      <!-- Settings / reveal (mirrors mobile Settings + reveal flow) -->
+      <div class="card" style="margin-top:12px;">
+        <h2 style="margin-bottom:12px;">Wallet Settings</h2>
+        <label>Your Full Address</label>
+        <div class="addr" id="ad"></div>
+        <div class="row-actions">
+          <button class="btn btn-outline btn-sm" onclick="copyAddr()">Copy Address</button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleMnemonic()" id="mn-btn">Show Recovery Phrase</button>
         </div>
-        <div id="imp" class="hide" style="margin-top: 12px;">
-          <div class="label">Private Key (hex, 128 characters)</div>
-          <input type="text" id="ik" placeholder="Enter your 64-byte private key (hex) or 128-character hex string" autocomplete="off">
-          <div class="tip">
-            <p><strong>To restore:</strong> Paste your private key exactly as you saved it. It must be 64 bytes (128 hex characters). Leading "0x" is optional.</p>
-          </div>
-          <button class="btn btn-success" onclick="impWallet()" style="margin-top: 8px;">Import with Private Key</button>
+        <div class="secret" id="mnemonic-display"></div>
+
+        <label style="margin-top:14px;">Private Key (hex)</label>
+        <div class="secret" id="pkd" style="color:var(--error);border-color:rgba(248,81,73,0.4);"></div>
+        <button class="btn btn-ghost btn-sm" onclick="togglePk()" id="pk-btn">Show Private Key</button>
+
+        <div class="tip" style="margin:14px 0 0;">
+          <strong>Never share</strong> your private key or recovery phrase. Anyone with them controls your funds. WayChain stores keys only in this browser.
         </div>
-        <div id="imp-mnemonic" class="hide" style="margin-top: 12px;">
-          <div class="label">Recovery Phrase (12 words)</div>
-          <input type="text" id="imn" placeholder="word1 word2 word3 ... word12" autocomplete="off">
-          <div class="tip">
-            <p><strong>To restore:</strong> Paste your 12-word recovery phrase. Case-insensitive.</p>
-          </div>
-          <button class="btn btn-success" onclick="impMnemonic()" style="margin-top: 8px;">Restore Wallet</button>
-        </div>
-        <div id="mnemonic-box" class="hide" style="margin-top: 16px;">
-          <div class="label">Your 12-Word Recovery Phrase</div>
-          <div class="addr" id="mnemonic-display" style="font-family: monospace; font-size: 14px; word-break: break-all; color: var(--amber);"></div>
-          <p style="font-size: 12px; color: var(--muted); margin-top: 8px;">Write this down. Never share it. It recovers your wallet.</p>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-danger" onclick="clearWallet()">🗑️ Clear Wallet</button>
-        </div>
-        <div id="manage-status" class="status"></div>
+        <button class="btn btn-danger" onclick="clearWallet()" style="margin-top:14px;">Remove Wallet from This Device</button>
       </div>
     </section>
 
     <div class="footer">
-      <p>WayChain Wallet • v1.0 • <a href="/" style="text-decoration: none;">← Back to WayChain</a></p>
-      <p>Keys are stored locally in your browser. No server receives them, but browser storage is not a hardened vault. Use only on devices you trust.</p>
+      <p>WayChain Wallet &middot; v1.1 &middot; <a href="/">Back to WayChain</a></p>
+      <p style="margin-top:6px;">Keys are stored locally in your browser. Use only on devices you trust — browser storage is not a hardened vault.</p>
     </div>
   </div>
 
@@ -414,16 +448,13 @@
 
     // BIP39 Mnemonic functions for wallet recovery
     function genMnemonic() {
-      // Generate 12-word BIP39 mnemonic (via entropy)
       const entropy = crypto.getRandomValues(new Uint8Array(16));
       return bip39.entropyToMnemonic(toH(entropy));
     }
     function mnemonicToSeed(mnemonic) {
-      // PBKDF2 derive seed: BIP39_STRAW_SHI + password
       return bip39.mnemonicToSeed(mnemonic, '');
     }
     async function seedToKeyPair(seed) {
-      // SHA256 the seed to get 32 bytes for Ed25519
       const h = await crypto.subtle.digest('SHA-256', seed);
       const seedBytes = new Uint8Array(h);
       return nacl.sign.keyPair.fromSeed(seedBytes.slice(0, 32));
@@ -431,7 +462,7 @@
     function svM(m) { localStorage.setItem('waychain_mnemonic', m); }
     function ldM() { return localStorage.getItem('waychain_mnemonic'); }
 
-    // Utility functions (unchanged from original)
+    // Utility functions
     function toH(a) { return Array.from(a).map(b => b.toString(16).padStart(2, '0')).join(''); }
     function frH(h) {
       if (typeof h !== 'string') return new Uint8Array(0);
@@ -444,28 +475,21 @@
     function b2B(n, l) {
       const b = new Uint8Array(l);
       let v = BigInt(n);
-      for (let i = l - 1; i >= 0; i--) {
-        b[i] = Number(v & 0xFFn);
-        v >>= 8n;
-      }
+      for (let i = l - 1; i >= 0; i--) { b[i] = Number(v & 0xFFn); v >>= 8n; }
       return b;
     }
     function cat(a) {
       const l = a.reduce((s, x) => s + x.length, 0);
       const r = new Uint8Array(l);
       let o = 0;
-      for (const x of a) {
-        r.set(x, o);
-        o += x.length;
-      }
+      for (const x of a) { r.set(x, o); o += x.length; }
       return r;
     }
     function w2w(s) {
       s = s.trim();
       const d = s.indexOf('.');
       if (d === -1) return BigInt(s) * 10n ** BigInt(DEC);
-      let w = s.slice(0, d) || '0',
-          f = s.slice(d + 1);
+      let w = s.slice(0, d) || '0', f = s.slice(d + 1);
       f = (f.length > DEC ? f.slice(0, DEC) : f).padEnd(DEC, '0');
       return BigInt(w + f);
     }
@@ -484,13 +508,14 @@
             a = new Uint8Array(h);
       return '0x' + toH(a.slice(0, 20));
     }
+    function shortAddr(a) { return a ? a.slice(0, 6) + '…' + a.slice(-4) : '0x…'; }
     async function rpc(m, p) {
       const r = await fetch(RPC, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: m, params: p })
-      }),
-      d = await r.json();
+      });
+      const d = await r.json();
       if (d.error) throw new Error(d.error.message || JSON.stringify(d.error));
       return d.result;
     }
@@ -498,11 +523,7 @@
       const p = localStorage.getItem(LP),
             s = localStorage.getItem(LS),
             a = localStorage.getItem(LA);
-      if (p && s && a) return {
-        publicKey: frH(p),
-        secretKey: frH(s),
-        address: a
-      };
+      if (p && s && a) return { publicKey: frH(p), secretKey: frH(s), address: a };
       return null;
     }
     function svW(p, s, a) {
@@ -516,12 +537,9 @@
       localStorage.removeItem(LA);
     }
     function ldT() {
-      try { return JSON.parse(localStorage.getItem(LT) || '[]'); }
-      catch { return []; }
+      try { return JSON.parse(localStorage.getItem(LT) || '[]'); } catch { return []; }
     }
-    function svT(t) {
-      localStorage.setItem(LT, JSON.stringify(t.slice(0, 20)));
-    }
+    function svT(t) { localStorage.setItem(LT, JSON.stringify(t.slice(0, 20))); }
     function adTx(h, to, amt, st) {
       const t = ldT();
       t.unshift({ hash: h, to, amt, st, time: Date.now() });
@@ -529,28 +547,25 @@
       rTx();
     }
     function bld(n, fB, tB, v, gL, gP) {
-      const d = new Uint8Array(0),
-            e = new Uint8Array(0);
+      const d = new Uint8Array(0), e = new Uint8Array(0);
       return cat([
         b2B(n, 8),
-        new Uint8Array([fB.length]),
-        fB,
-        new Uint8Array([tB.length]),
-        tB,
+        new Uint8Array([fB.length]), fB,
+        new Uint8Array([tB.length]), tB,
         b2B(v, 32),
         b2B(gL, 8),
         b2B(gP, 8),
-        b2B(d.length, 4),
-        d,
+        b2B(d.length, 4), d,
         new Uint8Array([0]),
-        b2B(e.length, 4),
-        e
+        b2B(e.length, 4), e
       ]);
     }
-    async function snd(fA, tA, v, gL, gP, sk) {
-      const nH = await rpc('eth_getTransactionCount', [fA, 'pending']),
+    // FIX (handoff-flagged): node requires the FULL 64-hex pubkey as wire 'from',
+    // not the 20-byte display address. Use stored publicKey (64-hex) for fB.
+    async function snd(wallet, tA, v, gL, gP, sk) {
+      const nH = await rpc('eth_getTransactionCount', [wallet.address, 'pending']),
             n = BigInt(nH),
-            fB = frH(fA),
+            fB = wallet.publicKey,            // 64-hex pubkey (correct wire 'from')
             tB = frH(tA),
             u = bld(n, fB, tB, v, gL, gP),
             sig = nacl.sign.detached(u, sk);
@@ -559,10 +574,8 @@
       return rpc('eth_sendRawTransaction', [tx]);
     }
 
-    // UI State
     let w = null;
 
-    // Status helpers
     function setStatus(id, msg, type) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -571,152 +584,146 @@
       el.style.display = 'block';
     }
     function clearStatus() {
-      document.getElementById('balance-status').style.display = 'none';
-      document.getElementById('tx-status').style.display = 'none';
-      document.getElementById('manage-status').style.display = 'none';
+      ['balance-status','tx-status','manage-status'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.style.display = 'none';
+      });
     }
 
-    // UI Update
     function upUI() {
       clearStatus();
       w = ldW();
-      document.getElementById('kd').className = 'dot' + (w ? ' on' : ' off');
-      document.getElementById('ks').textContent = w ? 'Wallet loaded' : 'No wallet loaded';
-      const wi = document.getElementById('wi'),
-            ad = document.getElementById('ad'),
-            pk = document.getElementById('pkd');
+      const empty = document.getElementById('empty-state'),
+            loaded = document.getElementById('wallet-state');
       if (w) {
-        wi.classList.remove('hide');
-        ad.textContent = w.address;
-        pk.textContent = '0x' + toH(w.secretKey);
-        // Show mnemonic if available
-        const mnemonic = localStorage.getItem('waychain_mnemonic');
-        const mnEl = document.getElementById('mnemonic-display');
-        if (mnemonic && mnEl) {
-          mnEl.textContent = mnemonic;
-          mnEl.style.display = 'none'; // Hidden by default, click to show
-        }
+        empty.classList.add('hide');
+        loaded.classList.remove('hide');
+        document.getElementById('ad').textContent = w.address;
+        document.getElementById('ad-short').textContent = shortAddr(w.address);
+        document.getElementById('ba').innerHTML = '— <small>WAY</small>';
+        // secret fields default hidden
+        document.getElementById('pkd').style.display = 'none';
+        document.getElementById('mnemonic-display').style.display = 'none';
+        const mnemonic = ldM();
+        if (mnemonic) document.getElementById('mnemonic-display').textContent = mnemonic;
+        // backup warning mirrors mobile "Not backed up" banner
+        const backedUp = localStorage.getItem('waychain_backedup_' + w.address) === '1';
+        const warn = document.getElementById('backup-warn');
+        if (!backedUp) warn.classList.remove('hide'); else warn.classList.add('hide');
       } else {
-        wi.classList.add('hide');
+        loaded.classList.add('hide');
+        empty.classList.remove('hide');
       }
-      document.getElementById('imp').classList.add('hide');
-      document.getElementById('rb').disabled = !w;
       document.getElementById('fb').disabled = !w;
       document.getElementById('sb').disabled = !w;
-      if (!w) document.getElementById('ba').textContent = '— WAY';
     }
 
-    // Wallet Functions
+    // Mirrors mobile: reveal recovery phrase + mark backed up
+    function revealRecovery() {
+      const mnEl = document.getElementById('mnemonic-display');
+      const btn = document.getElementById('mn-btn');
+      if (!mnEl.textContent) {
+        const m = ldM();
+        if (m) mnEl.textContent = m;
+      }
+      mnEl.style.display = 'block';
+      btn.textContent = 'Hide Recovery Phrase';
+      if (w) {
+        localStorage.setItem('waychain_backedup_' + w.address, '1');
+        document.getElementById('backup-warn').classList.add('hide');
+      }
+    }
+
     async function genWallet() {
-      const btn = document.getElementById('gb');
-      btn.disabled = true;
-      btn.textContent = '⏳ Creating...';
+      const btn = document.querySelector('#empty-state .btn-primary');
+      btn.disabled = true; btn.textContent = '⏳ Creating…';
       try {
-        // Generate mnemonic-based wallet
         const mnemonic = genMnemonic();
         const seed = await mnemonicToSeed(mnemonic);
-        const seedArr = new Uint8Array(seed);
-        const k = await seedToKeyPair(seedArr);
+        const k = await seedToKeyPair(new Uint8Array(seed));
         const a = await p2a(k.publicKey);
         svW(k.publicKey, k.secretKey, a);
-        svM(mnemonic); // Save recovery phrase to localStorage
+        svM(mnemonic);
         upUI();
-        // Show mnemonic for backup
-        const mnEl = document.getElementById('mnemonic-display');
-        const mnBox = document.getElementById('mnemonic-box');
-        if (mnEl && mnBox) {
-          mnEl.textContent = mnemonic;
-          mnBox.classList.remove('hide');
-        }
-        setStatus('manage-status', '✅ Wallet created: ' + a + '. Save your recovery phrase!', 'ok');
+        // surface recovery phrase immediately for backup (mirrors mobile reveal flow)
+        revealRecovery();
+        setStatus('balance-status', '✅ Wallet created: ' + shortAddr(a) + '. Save your recovery phrase now!', 'ok');
         refreshBal();
       } catch (e) {
-        setStatus('manage-status', '❌ ' + e.message, 'error');
+        setStatus('balance-status', '❌ ' + e.message, 'error');
       } finally {
-        btn.disabled = false;
-        btn.textContent = '🆕 Create New Wallet';
+        btn.disabled = false; btn.textContent = 'Create New Wallet';
       }
     }
 
     function showImp() {
-      const imp = document.getElementById('imp');
-      const impMnemonic = document.getElementById('imp-mnemonic');
-      imp.classList.toggle('hide');
-      impMnemonic.classList.toggle('hide');
+      document.getElementById('imp').classList.toggle('hide');
       document.getElementById('ik').value = '';
       document.getElementById('imn').value = '';
-      document.getElementById('ik').focus();
     }
 
     async function impWallet() {
       const raw = document.getElementById('ik').value.trim();
-      if (!raw) {
-        setStatus('manage-status', '⚠️ Please enter your private key', 'error');
-        return;
-      }
+      if (!raw) { setStatus('balance-status', '⚠️ Please enter your private key', 'error'); return; }
       let b;
-      try { b = frH(raw); }
-      catch {
-        setStatus('manage-status', '⚠️ Invalid hex format', 'error');
-        return;
-      }
-      if (b.length !== 64) {
-        setStatus('manage-status', '⚠️ Key must be 64 bytes (128 hex characters)', 'error');
-        return;
-      }
+      try { b = frH(raw); } catch { setStatus('balance-status', '⚠️ Invalid hex format', 'error'); return; }
+      if (b.length !== 64) { setStatus('balance-status', '⚠️ Key must be 64 bytes (128 hex characters)', 'error'); return; }
       try {
         const k = nacl.sign.keyPair.fromSecretKey(b),
               a = await p2a(k.publicKey);
         svW(k.publicKey, k.secretKey, a);
         upUI();
-        document.getElementById('ik').value = '';
-        document.getElementById('imp').classList.add('hide');
-        setStatus('manage-status', '✅ Wallet imported: ' + a, 'ok');
+        setStatus('balance-status', '✅ Wallet imported: ' + shortAddr(a), 'ok');
         refreshBal();
-      } catch (e) {
-        setStatus('manage-status', '❌ Import failed: ' + e.message, 'error');
-      }
+      } catch (e) { setStatus('balance-status', '❌ Import failed: ' + e.message, 'error'); }
     }
 
     function clearWallet() {
-      if (!confirm('Remove wallet? Back up your private key first.')) return;
+      if (!confirm('Remove wallet from this device? Make sure you have your recovery phrase backed up.')) return;
       clW();
       w = null;
       upUI();
-      document.getElementById('ba').textContent = '— WAY';
-      setStatus('manage-status', '🗑️ Wallet cleared', 'info');
+      setStatus('balance-status', '🗑️ Wallet removed', 'info');
     }
 
     function togglePk() {
       const d = document.getElementById('pkd');
-      d.style.display = d.style.display === 'none' ? 'block' : 'none';
+      const btn = document.getElementById('pk-btn');
+      if (d.style.display === 'none' || !d.style.display) {
+        if (w) d.textContent = '0x' + toH(w.secretKey);
+        d.style.display = 'block'; btn.textContent = 'Hide Private Key';
+      } else { d.style.display = 'none'; btn.textContent = 'Show Private Key'; }
+    }
+    function toggleMnemonic() {
+      const el = document.getElementById('mnemonic-display');
+      const btn = document.getElementById('mn-btn');
+      if (el.style.display === 'none' || !el.style.display) {
+        el.style.display = 'block'; btn.textContent = 'Hide Recovery Phrase';
+      } else { el.style.display = 'none'; btn.textContent = 'Show Recovery Phrase'; }
     }
 
     function copyAddr() {
       if (!w) return;
       navigator.clipboard.writeText(w.address).then(() => {
-        const b = document.querySelector('.btn-outline');
-        const orig = b.textContent;
-        b.textContent = '✅ Copied!';
-        setTimeout(() => b.textContent = orig, 2000);
-      }).catch(() => setStatus('manage-status', '⚠️ Copy failed', 'error'));
+        const pill = document.getElementById('addr-pill');
+        const orig = document.getElementById('ad-short').textContent;
+        document.getElementById('ad-short').textContent = '✅ copied';
+        setTimeout(() => document.getElementById('ad-short').textContent = orig, 1500);
+      }).catch(() => setStatus('balance-status', '⚠️ Copy failed', 'error'));
     }
 
-    // Balance & Transactions
     async function refreshBal() {
       if (!w) return;
       const btn = document.getElementById('rb');
-      btn.disabled = true;
-      btn.textContent = '⏳ Updating...';
+      const prev = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ …'; }
       try {
         const bH = await rpc('eth_getBalance', [w.address, 'latest']);
-        document.getElementById('ba').textContent = w2W(BigInt(bH)) + ' WAY';
+        document.getElementById('ba').innerHTML = w2W(BigInt(bH)) + ' <small>WAY</small>';
         setStatus('balance-status', '✅ Balance updated', 'ok');
       } catch (e) {
         setStatus('balance-status', '❌ ' + e.message, 'error');
       }
-      btn.disabled = false;
-      btn.textContent = '🔄 Refresh Balance';
+      if (btn) { btn.disabled = false; btn.textContent = prev; }
     }
 
     async function sendTx() {
@@ -725,18 +732,14 @@
             aS = document.getElementById('amt').value.trim(),
             gS = document.getElementById('gp').value.trim();
       if (!tA || !tA.startsWith('0x') || tA.length !== 42) {
-        setStatus('tx-status', '⚠️ Invalid address format', 'error');
-        return;
+        setStatus('tx-status', '⚠️ Invalid address format', 'error'); return;
       }
       if (!aS || isNaN(Number(aS)) || Number(aS) <= 0) {
-        setStatus('tx-status', '⚠️ Invalid amount', 'error');
-        return;
+        setStatus('tx-status', '⚠️ Invalid amount', 'error'); return;
       }
-      const gP = BigInt(gS || '1000'),
-            gL = 21000n;
+      const gP = BigInt(gS || '1000'), gL = 21000n;
       let vW;
-      try { vW = w2w(aS); }
-      catch { setStatus('tx-status', '⚠️ Invalid amount', 'error'); return; }
+      try { vW = w2w(aS); } catch { setStatus('tx-status', '⚠️ Invalid amount', 'error'); return; }
       try {
         const bH = await rpc('eth_getBalance', [w.address, 'latest']),
               bW = BigInt(bH),
@@ -745,17 +748,13 @@
           setStatus('tx-status', '⚠️ Insufficient balance. Need ' + w2W(tC) + ' WAY, have ' + w2W(bW), 'error');
           return;
         }
-      } catch (e) {
-        setStatus('tx-status', '⚠️ ' + e.message, 'error');
-        return;
-      }
+      } catch (e) { setStatus('tx-status', '⚠️ ' + e.message, 'error'); return; }
       const btn = document.getElementById('sb');
-      btn.disabled = true;
-      btn.textContent = '⏳ Sending...';
+      btn.disabled = true; btn.textContent = '⏳ Sending…';
       document.getElementById('tx-status').style.display = 'none';
       try {
-        const h = await snd(w.address, tA, vW, gL, gP, w.secretKey);
-        setStatus('tx-status', '✅ Sent! Tx: ' + h.substring(0, 10) + '...', 'ok');
+        const h = await snd(w, tA, vW, gL, gP, w.secretKey);
+        setStatus('tx-status', '✅ Sent! Tx: ' + h.substring(0, 10) + '…', 'ok');
         adTx(h, tA, aS, 'pending');
         setTimeout(refreshBal, 2000);
         document.getElementById('to').value = '';
@@ -763,94 +762,62 @@
       } catch (e) {
         setStatus('tx-status', '❌ Send failed: ' + e.message, 'error');
       }
-      btn.disabled = false;
-      btn.textContent = '📤 Send Transaction';
+      btn.disabled = false; btn.textContent = 'Send Transaction';
     }
 
     async function faucet() {
       if (!w) return;
       const btn = document.getElementById('fb');
-      btn.disabled = true;
-      btn.textContent = '⏳ Requesting...';
-      setStatus('balance-status', '⏳ Requesting test WAY...', 'info');
+      btn.disabled = true; btn.textContent = '⏳ …';
+      setStatus('balance-status', '⏳ Requesting test WAY…', 'info');
       try {
-        const r = await fetch(FU, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ address: w.address })
-        }),
-        d = await r.json();
-        if (r.ok) {
-          setStatus('balance-status', '✅ Faucet sent! Check balance shortly.', 'ok');
+        let ok = false;
+        try {
+          const r = await fetch(FU, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ address: w.address }) });
+          if (r.ok) ok = true;
+        } catch {}
+        if (!ok) {
+          const r2 = await fetch(FU + '?address=' + encodeURIComponent(w.address));
+          if (r2.ok) ok = true;
+        }
+        if (ok) {
+          setStatus('balance-status', '✅ Faucet sent! Balance updates shortly.', 'ok');
           setTimeout(refreshBal, 3000);
         } else {
-          throw new Error(d.error || d.message || JSON.stringify(d));
+          setStatus('balance-status', '⚠️ Faucet unavailable. Try again later.', 'error');
         }
       } catch (e) {
-        try {
-          const r2 = await fetch(FU + '?address=' + encodeURIComponent(w.address));
-          if (r2.ok) {
-            setStatus('balance-status', '✅ Faucet sent! Check balance shortly.', 'ok');
-            setTimeout(refreshBal, 3000);
-          } else {
-            throw new Error('Faucet unavailable');
-          }
-        } catch {} 
-        setStatus('balance-status', '⚠️ Faucet unavailable. Try again later.', 'error');
+        setStatus('balance-status', '⚠️ ' + e.message, 'error');
       }
-      btn.disabled = false;
-      btn.textContent = '🚰 Get Test WAY';
+      btn.disabled = false; btn.textContent = 'Get Test WAY';
     }
 
-    // Import from Recovery Phrase
     async function impMnemonic() {
       const raw = document.getElementById('imn').value.trim();
-      if (!raw || raw.split(' ').length !== 12) {
-        setStatus('manage-status', '⚠️ Enter 12 words', 'error');
-        return;
-      }
+      if (!raw || raw.split(' ').length !== 12) { setStatus('balance-status', '⚠️ Enter 12 words', 'error'); return; }
       try {
         const seed = mnemonicToSeed(raw);
-        const seedArr = new Uint8Array(seed);
-        const k = await seedToKeyPair(seedArr);
+        const k = await seedToKeyPair(new Uint8Array(seed));
         const a = await p2a(k.publicKey);
         svW(k.publicKey, k.secretKey, a);
         upUI();
-        document.getElementById('imn').value = '';
-        document.getElementById('imp-mnemonic').classList.add('hide');
-        setStatus('manage-status', '✅ Wallet restored: ' + a, 'ok');
+        setStatus('balance-status', '✅ Wallet restored: ' + shortAddr(a), 'ok');
         refreshBal();
-      } catch (e) {
-        setStatus('manage-status', '❌ Import failed: ' + e.message, 'error');
-      }
+      } catch (e) { setStatus('balance-status', '❌ Import failed: ' + e.message, 'error'); }
     }
 
-    // Toggle visibility of mnemonic/private key
-    function toggleMnemonic() {
-      const el = document.getElementById('mnemonic-display');
-      const btn = event.target;
-      if (el.style.display === 'none' || !el.style.display) {
-        el.style.display = 'block';
-        btn.textContent = '🙈 Hide Recovery Phrase';
-      } else {
-        el.style.display = 'none';
-        btn.textContent = '👁️ Show Recovery Phrase';
-      }
-    }
-
-    // Transaction History
     function rTx() {
       const el = document.getElementById('txh'),
             txs = ldT();
       if (!txs.length) {
-        el.innerHTML = '<div style="text-align: center; color: var(--muted); font-style: italic; padding: 24px;">No transactions yet.</div>';
+        el.innerHTML = '<div style="text-align:center;color:var(--muted);font-style:italic;padding:18px 0;">No transactions yet.</div>';
         return;
       }
       el.innerHTML = txs.map(t => `
         <div class="tx-item">
-          <div class="tx-hash">${t.hash.substring(0, 10)}...${t.hash.slice(-6)}</div>
+          <div class="tx-hash">${t.hash.substring(0, 10)}…${t.hash.slice(-6)}</div>
           <div class="tx-details">
-            <div><span class="tx-label">To:</span> <span class="tx-value">${t.to.substring(0, 6)}...${t.to.slice(-4)}</span></div>
+            <div><span class="tx-label">To:</span> <span class="tx-value">${t.to.substring(0, 6)}…${t.to.slice(-4)}</span></div>
             <div><span class="tx-label">Amount:</span> <span class="tx-value">${w2W(BigInt(t.amt))} WAY</span></div>
             <div><span class="tx-label">Status:</span> <span class="tx-value">${t.st}</span></div>
           </div>
