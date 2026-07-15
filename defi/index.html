@@ -52,8 +52,8 @@
       <div class="gate">
         <input id="sp-amt" placeholder="amount (2WAY)" style="width:200px">
         <button id="sp-deposit-btn" disabled onclick="spDeposit()">Deposit (connect)</button>
+        <button id="sp-withdraw-btn" disabled onclick="spWithdraw()">Withdraw (connect)</button>
       </div>
-    </div>
 
     <!-- TrustlessLock 0x1A -->
     <div class="card">
@@ -65,14 +65,17 @@
       <div class="gate">
         <input id="tl-id" placeholder="lock ID (32-byte hex)" style="width:360px">
         <button id="tl-get" onclick="tlLookup()">Look Up</button>
+        <button id="tl-release" disabled onclick="tlRelease()">Release (connect)</button>
+        <input id="tl-blocks" placeholder="extend (+blocks)" style="width:160px">
+        <button id="tl-extend" disabled onclick="tlExtend()">Extend (connect)</button>
       </div>
-      <div class="note">Time-locks, vesting locks, and multisig locks — the anti-rug-pull primitive. Write ops (create/release/extend) require a wallet signer.</div>
+      <div class="note">Time-locks, vesting locks, and multisig locks — the anti-rug-pull primitive. <code>release</code> + <code>extend</code> are wired below; <code>createTimeLock/Vesting/MultiSig</code> need pool/token/recipient args (add via a follow-up).</div>
     </div>
 
     <!-- AccountRecovery 0x11 -->
     <div class="card">
       <div class="tok"><h2>Account Recovery</h2><span class="addr">0x0000…0011</span></div>
-      <div class="sub" style="margin-top:6px">Social recovery via 3+ guardian approvals. This is a no-selector precompile (raw signed-input layout). Recovery is a write op requiring guardian signatures — gated behind a connected wallet.</div>
+      <div class="sub" style="margin-top:6px">Social recovery via 3+ guardian approvals. This is a <strong>no-selector precompile</strong> (raw guardian-signed input layout) — it cannot be called via the standard selector dispatch, and requires collecting 3+ guardian signatures off-chain first. <strong>Not wired in the web UI yet</strong> (would ship a guaranteed failure otherwise).</div>
       <div class="gate">
         <button id="ar-recover" disabled onclick="arRecover()">Recover Account (connect)</button>
       </div>
@@ -104,7 +107,7 @@
         const tvl = await RPC.precompileCall('0x19', 'getPoolStats', '');
         // (totalDeposited, totalDebt, rewards) — show first word as TVL
         document.getElementById('sp-tvl').textContent = (tvl && tvl.length >= 66) ? hexToNum('0x' + tvl.slice(2, 66)) : '0';
-        const d = await RPC.precompileCall('0x19', 'getUserDeposit', ABI.encodeAddress(addr));
+        const d = await RPC.precompileCall('0x19', 'getUserDeposit', ABI.rawAddress20(addr));
         document.getElementById('sp-deposit').textContent = hexToNum(d);
       } catch (e) { document.getElementById('sp-tvl').textContent = 'err'; }
     }
@@ -123,24 +126,68 @@
     }
 
     async function spDeposit() {
-      const a = window.waychainAccount; if (!a) return alert('Connect wallet first');
+      if (!(await ensureUnlocked())) return;
       const amt = document.getElementById('sp-amt').value.trim();
-      if (!amt) return alert('Enter amount');
-      try { await RPC.precompileCall('0x19', 'deposit', ABI.encodeUint256(amt), { write: true }); }
-      catch (e) { alert('Web write not implemented yet (signer port pending): ' + e.message); }
+      if (!amt || Number(amt) <= 0) return alert('Enter an amount');
+      try {
+        const wei = BigInt(Math.floor(Number(amt) * 1e18)).toString(16);
+        const r = await RPC.precompileCall('0x19', 'deposit', ABI.encodeUint256('0x' + wei), { write: true });
+        alert('Deposited. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+        readDefi(window.waychainAccount.address);
+      } catch (e) { alert('Deposit failed: ' + e.message); }
+    }
+    async function spWithdraw() {
+      if (!(await ensureUnlocked())) return;
+      const amt = document.getElementById('sp-amt').value.trim();
+      if (!amt || Number(amt) <= 0) return alert('Enter an amount');
+      try {
+        const wei = BigInt(Math.floor(Number(amt) * 1e18)).toString(16);
+        const r = await RPC.precompileCall('0x19', 'withdraw', ABI.encodeUint256('0x' + wei), { write: true });
+        alert('Withdrawn. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+        readDefi(window.waychainAccount.address);
+      } catch (e) { alert('Withdraw failed: ' + e.message); }
+    }
+    async function tlRelease() {
+      if (!(await ensureUnlocked())) return;
+      const id = document.getElementById('tl-id').value.trim().replace(/^0x/, '');
+      if (id.length !== 64) return alert('Enter a 32-byte lock ID');
+      try {
+        const r = await RPC.precompileCall('0x1A', 'release', ABI.pad32(id), { write: true });
+        alert('Released. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+      } catch (e) { alert('Release failed: ' + e.message); }
+    }
+    async function tlExtend() {
+      if (!(await ensureUnlocked())) return;
+      const id = document.getElementById('tl-id').value.trim().replace(/^0x/, '');
+      if (id.length !== 64) return alert('Enter a 32-byte lock ID');
+      const blocks = document.getElementById('tl-blocks').value.trim();
+      if (!blocks || Number(blocks) <= 0) return alert('Enter +blocks');
+      try {
+        const args = ABI.pad32(id) + ABI.encodeUint256(blocks);
+        const r = await RPC.precompileCall('0x1A', 'extend', args, { write: true });
+        alert('Extended. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+      } catch (e) { alert('Extend failed: ' + e.message); }
     }
     async function arRecover() {
-      const a = window.waychainAccount; if (!a) return alert('Connect wallet first');
-      try { await RPC.precompileCall('0x11', 'recover', '', { write: true }); }
-      catch (e) { alert('Web write not implemented yet (signer port pending): ' + e.message); }
+      alert('AccountRecovery (0x11) is a no-selector precompile — it needs 3+ guardian signatures collected off-chain, not a direct web call. Not wired yet.');
+    }
+
+    async function ensureUnlocked() {
+      if (!window.waychainAccount) { alert('Connect wallet first'); return false; }
+      if (!window.WayChainWallet.isUnlocked()) {
+        try { await window.WayChainWallet.unlock(); } catch (e) { alert('Unlock failed: ' + e.message); return false; }
+      }
+      return true;
     }
 
     const origConnect = window.WayChainWallet && window.WayChainWallet.connect;
     if (origConnect) {
       window.WayChainWallet.connect = async function () {
         const acc = await origConnect.apply(this, arguments);
-        document.getElementById('sp-deposit-btn').disabled = false;
-        document.getElementById('sp-deposit-btn').textContent = 'Deposit';
+        ['sp-deposit-btn', 'sp-withdraw-btn', 'tl-release', 'tl-extend'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) { el.disabled = false; el.textContent = el.textContent.replace(' (connect)', ''); }
+        });
         document.getElementById('ar-recover').disabled = false;
         document.getElementById('ar-recover').textContent = 'Recover Account';
         await readDefi(acc.address);
