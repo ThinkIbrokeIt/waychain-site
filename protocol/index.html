@@ -81,6 +81,13 @@
       <div class="adv">Witnesses events on external chains (witnessEvent/getAttestation/challengeAttestation). Selector-based. Requires relayed chain proofs — advanced; not callable from this read-only UI.</div>
     </div>
 
+    <!-- AccountRecovery 0x11 (no-selector) -->
+    <div class="card">
+      <div class="tok"><h2>Account Recovery</h2><span class="addr">0x0000…0011</span></div>
+      <div class="sub" style="margin-top:6px">Social-recovery vault: nominated guardians can rotate a lost key after a cooldown. Requires multiple guardian signatures — not callable from this read-only UI.</div>
+      <div class="adv">No-selector precompile (0x11): input is raw guardian-signed recovery payloads. Advanced; handled off-chain by the recovery guardian set.</div>
+    </div>
+
     <!-- TemplateRegistry 0x26 -->
     <div class="card">
       <div class="tok"><h2>Template Registry</h2><span class="addr">0x0000…0026</span></div>
