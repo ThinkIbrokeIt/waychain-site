@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>WayChain Wallet</title>
   <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+  <script type="module">
+    // BIP39 mnemonic support via @scure/bip39 (browser ESM; the old UMD
+    // dist/index.browser.min.js was removed from bip39 v3 and 404s).
+    import { generateMnemonic, mnemonicToSeedSync } from 'https://cdn.jsdelivr.net/npm/@scure/bip39@1.2.2/+esm';
+    import { wordlist } from 'https://cdn.jsdelivr.net/npm/@scure/bip39@1.2.2/wordlists/english.js/+esm';
+    window.bip39 = {
+      entropyToMnemonic: (hex) => generateMnemonic(wordlist), // wallet generates 16B entropy internally
+      mnemonicToSeed: (m, pwd) => mnemonicToSeedSync(m, pwd || ''),
+      generateMnemonic: () => generateMnemonic(wordlist),
+    };
+    window.__bip39Ready = true;
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -447,11 +458,22 @@
           FU = RPC + '/faucet';
 
     // BIP39 Mnemonic functions for wallet recovery
-    function genMnemonic() {
+    async function ensureBip39() {
+      // ES module loads deferred; wait until the global is ready.
+      let tries = 0;
+      while (typeof bip39 === 'undefined' && tries < 50) {
+        await new Promise(r => setTimeout(r, 50));
+        tries++;
+      }
+      if (typeof bip39 === 'undefined') throw new Error('mnemonic library failed to load');
+    }
+    async function genMnemonic() {
+      await ensureBip39();
       const entropy = crypto.getRandomValues(new Uint8Array(16));
       return bip39.entropyToMnemonic(toH(entropy));
     }
-    function mnemonicToSeed(mnemonic) {
+    async function mnemonicToSeed(mnemonic) {
+      await ensureBip39();
       return bip39.mnemonicToSeed(mnemonic, '');
     }
     async function seedToKeyPair(seed) {
@@ -637,7 +659,7 @@
       const btn = document.querySelector('#empty-state .btn-primary');
       btn.disabled = true; btn.textContent = '⏳ Creating…';
       try {
-        const mnemonic = genMnemonic();
+        const mnemonic = await genMnemonic();
         const seed = await mnemonicToSeed(mnemonic);
         const k = await seedToKeyPair(new Uint8Array(seed));
         const a = await p2a(k.publicKey);
@@ -796,7 +818,7 @@
       const raw = document.getElementById('imn').value.trim();
       if (!raw || raw.split(' ').length !== 12) { setStatus('balance-status', '⚠️ Enter 12 words', 'error'); return; }
       try {
-        const seed = mnemonicToSeed(raw);
+        const seed = await mnemonicToSeed(raw);
         const k = await seedToKeyPair(new Uint8Array(seed));
         const a = await p2a(k.publicKey);
         svW(k.publicKey, k.secretKey, a);
