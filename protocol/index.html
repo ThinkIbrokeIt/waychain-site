@@ -38,7 +38,10 @@
         <div class="stat"><div class="k">Total Rewards Remaining</div><div class="v" id="wifr-total">—</div></div>
         <div class="stat"><div class="k">Pool 1 Remaining</div><div class="v" id="wifr-pool1">—</div></div>
       </div>
-      <div class="note">Live reward pool. Pioneers claim via claimPioneer(address) — a write op (wallet signer required).</div>
+      <div class="note">Live reward pool. Pioneers claim via <code>claimPioneer(address)</code> — a write op (wallet signer required).</div>
+      <div class="gate">
+        <button id="wifr-claim" disabled onclick="claimWifr()">Claim Pioneer Rewards (connect)</button>
+      </div>
     </div>
 
     <!-- StateRent 0x12 (no-selector raw) -->
@@ -115,7 +118,35 @@
       } catch (e) { document.getElementById('rent-due').textContent = 'err'; }
     }
 
+    // ── Real write: WIFR claimPioneer(address) — raw 20-byte address (Go input[4:24]) ──
+    async function ensureUnlocked() {
+      if (!window.waychainAccount) { alert('Connect wallet first'); return false; }
+      if (!window.WayChainWallet.isUnlocked()) {
+        try { await window.WayChainWallet.unlock(); } catch (e) { alert('Unlock failed: ' + e.message); return false; }
+      }
+      return true;
+    }
+    async function claimWifr() {
+      if (!(await ensureUnlocked())) return;
+      try {
+        const args = window.WayChainABI.rawAddress20(window.waychainAccount.address);
+        const r = await RPC.precompileCall('0x21', 'claimPioneer', args, { write: true });
+        alert('Claimed. Tx: ' + (r && r.txHash ? r.txHash.slice(0, 20) + '…' : 'ok'));
+        readProtocol();
+      } catch (e) { alert('Claim failed: ' + e.message); }
+    }
+
+    const origConnect = window.WayChainWallet && window.WayChainWallet.connect;
+    if (origConnect) {
+      window.WayChainWallet.connect = async function () {
+        const acc = await origConnect.apply(this, arguments);
+        const el = document.getElementById('wifr-claim');
+        if (el) { el.disabled = false; el.textContent = 'Claim Pioneer Rewards'; }
+        await readProtocol();
+        return acc;
+      };
+    }
+
     window.addEventListener('load', readProtocol);
-  </script>
 </body>
 </html>
