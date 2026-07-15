@@ -1,5 +1,5 @@
 {
-  "version": "4.1.37",
+  "version": "4.1.38",
   "chain_id": 10008,
   "chain_id_hex": "0x2718",
   "name": "WayChain",
@@ -16,7 +16,8 @@
     "WayChain Mobile Wallet — added to feature chips, use cases, and footer",
     "Energy Tide — added as branded product: feature chip, use case, footer",
     "Feature chips expanded from 6 to 7: Mobile Wallet and Energy Tide promoted to first priority",
-    "Footer: Mobile Wallet, Energy Tide links in Connect and Use Cases sections"
+    "Footer: Mobile Wallet, Energy Tide links in Connect and Use Cases sections",
+    "Mobile nav: header dashboard links consolidated into hamburger dropdown (≤768px)"
   ],
   "fixes": [
     "BIJO clarified as ecosystem reward token (not fuel token)",
