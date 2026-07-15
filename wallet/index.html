@@ -276,7 +276,7 @@
     <header>
       <img src="/assets/waylogo.png" alt="WayChain">
       <h1>WayChain Wallet</h1>
-      <p>Self-custodial browser wallet — your keys, your sovereignty</p>
+      <p>Self-custodial WayChain wallet — browser-local keys, your sovereignty</p>
     </header>
 
     <!-- Getting Started Guide -->
@@ -287,12 +287,13 @@
         <ol>
           <li><strong>Generate a new wallet:</strong> Click "Create New Wallet" below. This generates Ed25519 keys in your browser.</li>
           <li><strong>Save your recovery phrase:</strong> Your 12-word phrase appears once. Write it down and store offline. Never share it.</li>
+          <li><strong>Security note:</strong> This wallet stores keys in browser storage on this device. Use a trusted device only. Do not keep large balances here.</li>
           <li><strong>Your address:</strong> Your WayChain address (starting with 0x) receives tokens.</li>
           <li><strong>Fund your wallet:</strong> Use the faucet button for test WAY.</li>
         </ol>
         <div class="tip">
           <h4><img src="/assets/wayIconsanchor.png" alt="Immovable" width="20" height="20"> Important</h4>
-          <p>WayChain uses <strong>Ed25519 keys</strong> (not seed phrases). Your security depends entirely on protecting your private key. If lost, funds are unrecoverable.</p>
+          <p>WayChain uses <strong>Ed25519 keys</strong>, and this browser wallet keeps a 12-word recovery phrase plus private key locally for convenience. Protect both carefully. If lost, funds are unrecoverable.</p>
         </div>
       </div>
     </section>
@@ -398,7 +399,7 @@
 
     <div class="footer">
       <p>WayChain Wallet • v1.0 • <a href="/" style="text-decoration: none;">← Back to WayChain</a></p>
-      <p>Keys are stored locally in your browser. No server ever sees your private key.</p>
+      <p>Keys are stored locally in your browser. No server receives them, but browser storage is not a hardened vault. Use only on devices you trust.</p>
     </div>
   </div>
 

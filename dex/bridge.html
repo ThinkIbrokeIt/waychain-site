@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AirBridge — WayChain Stablecoin Bridge</title>
+<title>WayChain Bridge — AirBridge</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -110,7 +110,7 @@ a:hover{color:var(--comet)}
 <nav class="nav">
   <div class="nav-logo">
     <img src="/assets/waylogo.png" alt="WayChain" class="nav-logo-img">
-    <div class="nav-logo-text">AirBridge</div>
+    <div class="nav-logo-text">WayChain Bridge</div>
   </div>
   <div class="nav-links">
     <a href="/">Home</a>
@@ -121,9 +121,9 @@ a:hover{color:var(--comet)}
 </nav>
 
 <div class="hero">
-  <h1>AirBridge</h1>
+  <h1>WayChain Bridge</h1>
   <div class="tagline">Stablecoin • WayChain 0x22</div>
-  <p>Bridge external stablecoins to 1WAY. Stake for 2WAY and earn WAY + SWAY rewards.</p>
+  <p>Bridge external stablecoins to 1WAY. 2WAY is the stability layer: LPs deposit, minters route fees, and early rewards go to WAY + SWAY.</p>
 </div>
 
 <div class="container">
@@ -148,7 +148,7 @@ a:hover{color:var(--comet)}
   <!-- Stake for 2WAY -->
   <div class="card">
     <h3>🪙 Stake for 2WAY</h3>
-    <p style="font-size:.8em;color:var(--dusk);margin-bottom:14px">Stake 1WAY → mint 2WAY CDP (precompile 0x18). Earn WAY + SWAY.</p>
+    <p style="font-size:.8em;color:var(--dusk);margin-bottom:14px">Mint 2WAY against stablecoin collateral (precompile 0x18). Minting routes protocol fees into the LP reward layer. Early rewards: WAY + SWAY.</p>
     <div class="input-row"><input type="text" id="stakeAmt" placeholder="1WAY amount to stake" value="500"></div>
     <button class="btn" onclick="stake2way()">Launch Stake</button>
     <div id="stakeStatus" class="status"></div>
@@ -174,18 +174,17 @@ a:hover{color:var(--comet)}
 </div>
 
 <div class="footer">
-  AirBridge • 1WAY Stablecoin (0x22) + 2WAY CDP (0x18). Chain ID 10008.
+  WayChain Bridge • 1WAY Stablecoin (0x22) + 2WAY CDP (0x18). Chain ID 10008.
 </div>
 
 <script>
 function connectWallet(){
-  const w=localStorage.getItem('waychain_a');
-  if(w){
+  if(!window.WayChainWallet){window.location.href='/wallet';return;}
+  WayChainWallet.connect().then(acc=>{
     document.getElementById('wallet-display').style.display='inline';
-    document.getElementById('bridge-wallet').textContent=w;
-  }else{
-    window.location.href='/wallet';
-  }
+    document.getElementById('bridge-wallet').textContent=acc.address;
+  }).catch(()=>window.location.href='/wallet');
+}
 }
 function show(el,msg,type){
   el.className='status show '+type;
@@ -205,5 +204,11 @@ function claimAll(){
 }
 document.addEventListener('DOMContentLoaded',connectWallet);
 </script>
+<!-- Real wallet + RPC (issue #10) -->
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+<script src="/js/precompiles.js"></script>
+<script src="/js/wallet.js"></script>
+<script src="/js/rpc.js"></script>
 </body>
 </html>
