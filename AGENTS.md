@@ -433,3 +433,6 @@ cd /home/wink/projects/waychain-site && git push origin dev
 ```
 
 > These routes are deployed from the monorepo at `ThinkIbrokeIt/waychain` via `./deploy.sh` in that repo's `site/` directory.
+> **This repository is a READ-ONLY MIRROR of the [WayChain monorepo](https://github.com/ThinkIbrokeIt/waychain).**
+> The monorepo is the single source of truth. Edit there; this mirror syncs automatically.
+

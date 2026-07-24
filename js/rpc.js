@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // WayChain web RPC — real node connection (issue #10/#11, child of #8).
 // Depends on js/precompiles.js (registry) + js/wallet.js (auth) + js/tx.js (signer).
 (function (global) {
@@ -36,6 +37,22 @@
       const r = await call('eth_getTransactionCount', [pub64Hex]);
       return typeof r === 'string' ? (parseInt(r, 16) || 0) : 0;
     },
+    // Dox_Dev badge level (0 unverified → 1 basic → 2 professional → 3p/3t).
+    // MUST use the 64-hex pubkey (node keys EOA accounts by full pubkey; the
+    // 20-byte display address returns 0x0). If a 20-byte display address is
+    // passed and it matches the connected account, resolve to its 64-hex pubkey.
+    getDoxLevel: async (addrOrAccount) => {
+      const raw = addrOrAccount?.publicKey || addrOrAccount || '';
+      const a = raw.replace(/^0x/, '');
+      let lookup = a;
+      if (a.length === 40) {
+        const acc = global.waychainAccount || (global.WayChainWallet && global.WayChainWallet.load && global.WayChainWallet.load());
+        if (acc && (acc.address || '').replace(/^0x/, '') === a && acc.publicKey) lookup = acc.publicKey.replace(/^0x/, '');
+      }
+      const r = await call('way_getDoxLevel', ['0x' + lookup]);
+      const n = parseInt(r, 16);
+      return Number.isFinite(n) ? n : 0;
+    },
     getBlockCount: () => call('way_getBlockCount', []),
     getGovernanceProposals: async () => { const r = await call('way_govProposals', []); return Array.isArray(r) ? r : []; },
     getTwoWayStats: async () => {
@@ -48,9 +65,31 @@
       if (!r || typeof r !== 'object') throw new Error('no bridgeStats');
       return { committed: hexToNum(r.committed), withdrawn: hexToNum(r.withdrawn) };
     },
+    // Quest / TaskRegistry live reads (0x23). Use way_* RPCs (public RPC blocks
+    // eth_call to precompiles). Keeps web + mobile in sync (no silent drift).
+    questStatus: async (taskIdHex, claimantHex) => {
+      const r = await call('way_taskStatus', [taskIdHex, claimantHex]);
+      return typeof r === 'string' ? r : 'none';
+    },
+    questPoolRemaining: async () => {
+      const r = await call('way_questPoolRemaining', []);
+      return hexToNum(r);
+    },
+    questGetAutopilot: async () => {
+      const r = await call('way_questGetAutopilot', []);
+      return typeof r === 'string' ? r : '';
+    },
+    wayTotalSupply: async () => {
+      const r = await call('way_wayTotalSupply', []);
+      return hexToNum(r);
+    },
+    questCap: async () => {
+      const r = await call('way_questCap', []);
+      return hexToNum(r);
+    },
 
     // ── Per-precompile call layer (issue #11) ──
-    // READ for all 27 precompiles via eth_call + the shared registry.
+    // READ for all 28 precompiles via eth_call + the shared registry.
     // WRITE requires the unlocked wallet (ephemeral seed) + tx.js signer.
     precompileCall: async (addr1, method, argsHex = '', opts = {}) => {
       const reg = (global.WayChainPrecompiles && global.WayChainPrecompiles.PRECOMPILES) || null;
