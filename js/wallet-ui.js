@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // WayChain web core wallet UI (issue #12.1, child of #8/#12).
 // Renders a live address + WAY balance widget using the real auth (#10)
 // + call layer (#11). Drop a <div id="wallet-widget"></div> on any page.
@@ -43,7 +44,8 @@
         const acc = await global.WayChainWallet.connect();
         el('wc-addr').textContent = acc.address;
         btn.textContent = 'Connected';
-        await renderBalance(acc.address);
+        // way_getBalance requires the FULL 64-hex pubkey (20-byte display addr returns 0x0).
+        await renderBalance(acc.publicKey);
       } catch (e) {
         btn.textContent = 'Connect';
         alert('Wallet error: ' + e.message);

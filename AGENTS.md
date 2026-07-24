@@ -133,7 +133,7 @@ System version tracking file. Current values as of July 4, 2026 (v4.1.0):
   "whitepaper_sections": 22,
   "live_features": 18,
   "spec_features": 6,
-  "precompiles": 21,
+  "precompiles": 27,
   "state_rent_pricing": "cloud-benchmarked ($0.12/MB/year)",
   "blueprint_files": 29,
   "blueprint_lines": 11947,
@@ -433,3 +433,7 @@ cd /home/wink/projects/waychain-site && git push origin dev
 ```
 
 > These routes are deployed from the monorepo at `ThinkIbrokeIt/waychain` via `./deploy.sh` in that repo's `site/` directory.
+> **This repository is a READ-ONLY MIRROR of the [WayChain monorepo](https://github.com/ThinkIbrokeIt/waychain).**
+> The monorepo is the single source of truth. Do not edit here — edit the monorepo and this mirror is synced automatically.
+> Last synced: 2026-07-24T19:49:20Z.
+

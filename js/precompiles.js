@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: PolyForm-Noncommercial-1.0.0
 // WayChain Precompile Registry — SINGLE SOURCE OF TRUTH for frontend↔backend wiring.
 //
-// Every precompile (0x0C–0x26) implemented natively in Go in
+// Every precompile (0x0C–0x27) implemented natively in Go in
 // waychain-consensus/evm/. This module mirrors that table so web + mobile
 // share ONE address/selector map (issue #9, child of #8).
 //
@@ -13,12 +14,12 @@
 // To build a call:  input = selectorBytes(4) + encodedArgs
 //   helper encodeCall(precompile, method, argsHex) does this.
 
-// Full 20-byte precompile address from the 1-byte table index (0x0C..0x26).
+// Full 20-byte precompile address from the 1-byte table index (0x0C..0x27).
 export const precompileAddress = (hex1) =>
   '0x' + '0'.repeat(24) + hex1.toLowerCase().replace(/^0x/, '');
 
 // ── Registry ──────────────────────────────────────────────────────────────
-// addr1 = the 1-byte table index (0x0C..0x26)
+// addr1 = the 1-byte table index (0x0C..0x27)
 // methods: { name, sel (4-byte hex, no 0x), sig, kind: 'read'|'write' }
 export const PRECOMPILES = {
   // 0x0C-0x12, 0x17 are SINGLE-PURPOSE precompiles: the Go functions read a
@@ -147,7 +148,9 @@ export const PRECOMPILES = {
     methods: [
       { name: 'deposit', sel: '4e26609a', sig: 'deposit(uint256)', kind: 'write' },
       { name: 'withdraw', sel: '2e1a7ddd', sig: 'withdraw(uint256)', kind: 'write' },
-      { name: 'claimRewards', sel: '6b6f4360', sig: 'claimRewards()', kind: 'read' },
+      { name: 'claimRewards', sel: '6b6f4360', sig: 'claimRewards()', kind: 'write' },
+      { name: 'getUserDeposit', sel: '3c5f5f80', sig: 'getUserDeposit(address)', kind: 'read', args: ['account'] },
+      { name: 'getPoolStats', sel: '8c5f41d0', sig: 'getPoolStats()', kind: 'read' },
     ],
   },
   '0x1A': {
@@ -197,10 +200,10 @@ export const PRECOMPILES = {
     name: 'Governance',
     file: 'evm/governance.go',
     methods: [
-      { name: 'createProposal', sel: 'd1e2f3a4', sig: 'createProposal()', kind: 'write' },
-      { name: 'vote', sel: 'e2f3a4b5', sig: 'vote()', kind: 'write' },
-      { name: 'getProposal', sel: 'f3a4b5c6', sig: 'getProposal()', kind: 'read' },
-      { name: 'getVote', sel: 'a4b5c6d7', sig: 'getVote()', kind: 'read' },
+      { name: 'createProposal', sel: 'd1e2f3a4', sig: 'createProposal(uint8 voteType,bytes32 titleHash,bytes32 descHash,address target,bytes calldata)', kind: 'write' },
+      { name: 'vote', sel: 'e2f3a4b5', sig: 'vote(bytes32 proposalID,uint8 voteDirection,uint256 credits)', kind: 'write' },
+      { name: 'getProposal', sel: 'f3a4b5c6', sig: 'getProposal(bytes32)', kind: 'read', args: ['proposalID'] },
+      { name: 'getVote', sel: 'a4b5c6d7', sig: 'getVote(bytes32)', kind: 'read', args: ['proposalID'] },
       { name: 'getCredits', sel: 'b5c6d7e8', sig: 'getCredits()', kind: 'read' },
       { name: 'finalize', sel: 'c6d7e8f9', sig: 'finalize()', kind: 'write' },
       { name: 'createMarket', sel: 'd7e8f9a0', sig: 'createMarket()', kind: 'write' },
@@ -241,10 +244,11 @@ export const PRECOMPILES = {
     ],
   },
   '0x21': {
-    name: 'WIFRGantletRewards',
-    file: 'evm/precompiles.go',
-    noSelector: true,
-    methods: [{ name: 'claimReward', sig: 'claimReward() — raw input layout', kind: 'write' }],
+    name: 'Keccak256',
+    file: 'evm/keccak_precompile.go',
+    methods: [
+      { name: 'hash', sig: 'keccak256(bytes) — 32-byte SHA-3 digest (app-layer hashing bridge)', kind: 'read' },
+    ],
   },
   '0x22': {
     name: 'WayStablecoin',
@@ -266,6 +270,14 @@ export const PRECOMPILES = {
     methods: [
       { name: 'taskClaim', sel: 'a1b2c3d4', sig: 'taskClaim(bytes32)', kind: 'write' },
       { name: 'taskVerify', sel: 'b2c3d4e5', sig: 'taskVerify(bytes32,address)', kind: 'write' },
+      { name: 'taskStatus', sel: 'c3d4e5f6', sig: 'taskStatus(bytes32)', kind: 'read' },
+      { name: 'taskStatusOf', sel: 'b5c0a0cf', sig: 'taskStatusOf(bytes32,address)', kind: 'read' },
+      { name: 'getTaskReward', sel: 'e32481a4', sig: 'getTaskReward(bytes32)', kind: 'read' },
+      { name: 'questPoolRemaining', sel: 'df95446f', sig: 'questPoolRemaining()', kind: 'read' },
+      { name: 'questFund', sel: 'cea1b2c3', sig: 'questFund(uint256)', kind: 'write' },
+      { name: 'taskAutoVerify', sel: '04a78446', sig: 'taskAutoVerify(bytes32,address,bytes)', kind: 'write' },
+      { name: 'questSetAutopilot', sel: '7680323f', sig: 'questSetAutopilot(address)', kind: 'write' },
+      { name: 'questGetAutopilot', sel: '79b592db', sig: 'questGetAutopilot()', kind: 'read' },
     ],
   },
   '0x24': {
@@ -305,6 +317,18 @@ export const PRECOMPILES = {
       { name: 'isRegistrar', sel: '47b4d00d', sig: 'isRegistrar(address)', kind: 'read' },
     ],
   },
+  '0x27': {
+    name: 'GasFaucet',
+    file: 'evm/faucet.go',
+    methods: [
+      { name: 'drip', sel: '2a7ab5da', sig: 'drip() — drips WAY for gas to caller', kind: 'write' },
+      { name: 'getDripAmount', sel: 'f7c3438b', sig: 'getDripAmount()', kind: 'read' },
+      { name: 'getLastDrip', sel: '1decb48c', sig: 'getLastDrip(address)', kind: 'read', args: ['account'] },
+      { name: 'getFaucetBalance', sel: '1ac9c1d0', sig: 'getFaucetBalance()', kind: 'read' },
+      { name: 'setDripAmount', sel: '94ac47f1', sig: 'setDripAmount(uint256)', kind: 'write' },
+      { name: 'setCooldown', sel: '8567a687', sig: 'setCooldown(uint64)', kind: 'write' },
+    ],
+  },
 };
 
 // Convenience: flat list of {addr, name, file, methods}
@@ -316,7 +340,7 @@ export const PRECOMPILE_LIST = Object.entries(PRECOMPILES).map(([addr, v]) => ({
 
 // Encode a precompile call.
 //  - Selector precompiles (most): data = selector(4 bytes) + argsHex.
-//  - No-selector precompiles (0x0C-0x12, 0x17, 0x21): data = argsHex directly
+//  - No-selector precompiles (0x0C-0x12, 0x17): data = argsHex directly
 //    (the Go function reads a fixed raw input layout, no selectorBytes dispatch).
 // Returns the `data` payload for eth_call / sendRawTransaction.
 export const encodeCall = (addr1, methodName, argsHex = '') => {
