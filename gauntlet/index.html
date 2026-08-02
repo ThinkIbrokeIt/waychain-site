@@ -163,7 +163,24 @@ body { background: var(--slate); color: var(--warm); padding: 40px 20px; }
     <h4>The Race is On</h4>
     <p>24-hour uptime test prevents bot spam. First 20 to complete Tier 3 become legendary Genesis Oracles, forever memorialized on-chain.</p>
     <p style="margin-top:8px"><a href="/wifr" style="color:var(--copper)">← Back to WIFR</a></p>
+    <p id="chain-id-display" style="margin-top:12px;font-size:12px;color:var(--amber);">Chain ID: loading...</p>
   </div>
 </div>
+
+<script>
+  // Fetch chain ID and display it
+  fetch('https://api.waychain.org')
+    .then(response => response.json())
+    .then(data => {
+      const el = document.getElementById('chain-id-display');
+      if (el) el.textContent = 'Chain ID: ' + data.chain_id;
+    })
+    .catch(err => {
+      console.error('Failed to fetch chain ID:', err);
+      const el = document.getElementById('chain-id-display');
+      if (el) el.textContent = 'Chain ID: error';
+    });
+</script>
+
 </body>
 </html>

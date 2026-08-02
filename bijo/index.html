@@ -116,7 +116,7 @@ a:hover{color:var(--warm)}
 </div>
 
 <div class="footer">
-  <p>BIJO Proposal Pipeline — WayChain. Chain ID 10008.</p>
+  <p>BIJO Proposal Pipeline — WayChain. Chain ID <span id="chain-id-display">10008</span>.</p>
   <p style="margin-top:8px"><a href="https://waychain.org">waychain.org</a></p>
 </div>
 
@@ -167,6 +167,17 @@ async function trackProposal(){
       : 'Awaiting vote. Dox_Dev-weighted quorum per chain rules.';
   }catch(e){setStatus('trackStatus','Track failed: '+e.message,'err');}
 }
+
+// Fetch chain ID and display it
+fetch('https://api.waychain.org')
+  .then(response => response.json())
+  .then(data => {
+    const el = document.getElementById('chain-id-display');
+    if (el) el.textContent = data.chain_id;
+  })
+  .catch(err => {
+    console.error('Failed to fetch chain ID:', err);
+  });
 </script>
 </body>
 </html>

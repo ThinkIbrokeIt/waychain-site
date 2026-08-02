@@ -177,8 +177,21 @@ td{padding:8px 12px;border-bottom:1px solid var(--border)}
 
 <div class="footer">
 <p style="font-style:italic;color:var(--copper);font-size:1.1em">"The light doesn't push. It shows."</p>
-<p style="margin-top:12px">WayChain — Actually Decentralized. Chain ID 10008.</p>
+<p style="margin-top:12px">WayChain — Actually Decentralized. Chain ID <span id="chain-id-display">10008</span>.</p>
 </div>
+
+<script>
+  // Fetch chain ID and display it in the footer
+  fetch('https://api.waychain.org')
+    .then(response => response.json())
+    .then(data => {
+      const el = document.getElementById('chain-id-display');
+      if (el) el.textContent = data.chain_id;
+    })
+    .catch(err => {
+      console.error('Failed to fetch chain ID:', err);
+    });
+</script>
 
 </body>
 </html>
