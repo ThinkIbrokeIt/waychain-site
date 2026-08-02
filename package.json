@@ -1,0 +1,14 @@
+{
+  "name": "waychain-site-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cypress e2e tests for WayChain site (issue #176)",
+  "scripts": {
+    "test": "cypress run",
+    "test:open": "cypress open",
+    "verify": "cypress verify"
+  },
+  "devDependencies": {
+    "cypress": "^13.15.0"
+  }
+}

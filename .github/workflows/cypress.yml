@@ -1,0 +1,28 @@
+name: Cypress E2E
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Cypress run (live site + api.waychain.org)
+        run: npx cypress run
+        env:
+          CYPRESS_baseUrl: https://waychain.org
+          CYPRESS_rpcUrl: https://api.waychain.org
