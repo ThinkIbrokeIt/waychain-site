@@ -119,9 +119,21 @@ npx eas build -p android --profile preview</div>
   </div>
 
   <div class="footer">
-    WayChain — a self-sovereign L1. <a href="/docs">Docs</a> · <a href="/explorer">Explorer</a> · <a href="https://github.com/ThinkIbrokeIt" target="_blank" rel="noopener">GitHub</a>
+    WayChain — a self-sovereign L1. Chain ID <span id="chain-id-display">10008</span> · <a href="/docs">Docs</a> · <a href="/explorer">Explorer</a> · <a href="https://github.com/ThinkIbrokeIt" target="_blank" rel="noopener">GitHub</a>
   </div>
 
-</div>
-</body>
-</html>
+  <script>
+    // Fetch chain ID and display it
+    fetch('https://api.waychain.org')
+      .then(response => response.json())
+      .then(data => {
+        const el = document.getElementById('chain-id-display');
+        if (el) el.textContent = data.chain_id;
+      })
+      .catch(err => {
+        console.error('Failed to fetch chain ID:', err);
+      });
+  </script>
+  </div>
+  </body>
+  </html>

@@ -82,7 +82,7 @@ a:hover{color:var(--warm)}
 </div>
 
 <div class="footer">
-  <p>Verify Ladder — WayChain shared primitive. Chain ID 10008.</p>
+  <p>Verify Ladder — WayChain shared primitive. Chain ID <span id="chain-id-display">10008</span>.</p>
   <p style="margin-top:8px"><a href="https://waychain.org">waychain.org</a></p>
 </div>
 
@@ -119,6 +119,19 @@ function humanVerify() {
   render();
 }
 render();
+</script>
+
+<script>
+  // Fetch chain ID and display it
+  fetch('https://api.waychain.org')
+    .then(response => response.json())
+    .then(data => {
+      const el = document.getElementById('chain-id-display');
+      if (el) el.textContent = data.chain_id;
+    })
+    .catch(err => {
+      console.error('Failed to fetch chain ID:', err);
+    });
 </script>
 </body>
 </html>
