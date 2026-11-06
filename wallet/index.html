@@ -5,7 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>WayChain Wallet</title>
   <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bip39@3.0.12/dist/index.browser.min.js"></script>
+  <!-- BIP39 mnemonic support. The old UMD dist/index.browser.min.js was removed
+       from bip39 v3 (404s). @scure/bip39 is ESM-only, so we load it via a
+       dynamic import inside a classic script (static module tags are unreliable
+       in headless browsers). -->
+  <script>
+    (async () => {
+      try {
+        const bip39mod = await import('https://cdn.jsdelivr.net/npm/@scure/bip39@1.2.2/+esm');
+        const wl = await import('https://cdn.jsdelivr.net/npm/@scure/bip39@1.2.2/wordlists/english.js/+esm');
+        window.bip39 = {
+          entropyToMnemonic: (hex) => bip39mod.generateMnemonic(wl.wordlist),
+          mnemonicToSeed: (m, pwd) => bip39mod.mnemonicToSeedSync(m, pwd || ''),
+          generateMnemonic: () => bip39mod.generateMnemonic(wl.wordlist),
+        };
+        window.__bip39Ready = true;
+      } catch (e) {
+        console.error('bip39 load failed', e);
+        window.__bip39Ready = false;
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
